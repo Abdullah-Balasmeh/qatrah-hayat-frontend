@@ -1,0 +1,13 @@
+{
+"Landing-Page-keys": "Landing-Page-keys",
+
+"Landing-Header-keys":{
+  "HOME": "الرئيسية",
+  "DONATION_REQUESTS": "طلبات التبرع",
+  "CAMPAIGNS": "الحملات",
+  "ABOUT_US": "من نحن",
+  "CONTACT_US": "اتصل بنا",
+  "LOGIN": "تسجيل الدخول",
+  "CREATE_ACCOUNT": "إنشاء حساب"
+}
+}

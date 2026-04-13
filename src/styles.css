@@ -1,15 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* Global reveal on scroll animation */
-.reveal-init {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
+:root {
+  --primary-color: #BF0007;
+  --primary-color-light: #FFEFF0;
+  --secondary-color: #101727;
+  --surface-ground: #FFEFF0;
+  --surface-card: #ffffff;
+  --box-shadow-nav-bar: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08),
+                0 0.75rem 2rem rgba(0, 0, 0, 0.12);
+  --box-shadow-card: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.18);
+  --primary-text-color: #101727;
+  --secondary-text-color: #ffffff;
 }
 
-.reveal-show {
-  opacity: 1;
-  transform: translateY(0);
+/* defaults style for all */
+* {
+  font-family: 'Cairo', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0;
+  border: none;
+  text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* =========================
+   Main navbar
+   ========================= */
+.header-navbar {
+  background-color: var(--surface-card);
+  box-shadow: var(--box-shadow-nav-bar);
+  padding: 0.85rem 1rem;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+}
+
+/* =========================
+   Logo
+   ========================= */
+.header-brand {
+  margin: 0;
+  padding: 0;
+}
+
+.header-logo {
+  width: 125px;
+  height: auto;
+  display: block;
+}
+
+/* =========================
+   Body
+   ========================= */
+
+.layout-body{
+  background-color: var(--surface-ground);
+  min-height: 100vh;
 }

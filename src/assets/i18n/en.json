@@ -1,0 +1,13 @@
+{
+"Landing-Page-keys": "Landing-Page-keys",
+
+"Landing-Header-keys":{
+  "HOME": "Home",
+  "DONATION_REQUESTS": "Donation Requests",
+  "CAMPAIGNS": "Campaigns",
+  "ABOUT_US": "About Us",
+  "CONTACT_US": "Contact Us",
+  "LOGIN": "Login",
+  "CREATE_ACCOUNT": "Create Account"
+}
+}
