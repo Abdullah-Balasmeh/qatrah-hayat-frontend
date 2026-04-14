@@ -1,0 +1,103 @@
+<header class="site-header">
+  <nav class="navbar navbar-expand-lg header-navbar">
+    <div class="container-fluid header-container">
+      <!-- Logo -->
+      <a
+        class="navbar-brand header-brand"
+        routerLink="/home"
+        data-aos="fade-down"
+        data-aos-delay="80"
+      >
+        <img
+          [src]="
+            isArabic()
+              ? 'assets/images/Qatrah_Hayat_logo_ar.svg'
+              : 'assets/images/Qatrah_Hayat_logo.svg'
+          "
+          alt="Qatrah Hayat Logo"
+          class="header-logo"
+        />
+      </a>
+
+      <!-- Mobile menu toggle -->
+      <button
+        class="navbar-toggler header-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNavbar"
+        aria-controls="mainNavbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        data-aos="fade-down"
+        data-aos-delay="120"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Collapsible actions area -->
+      <div class="collapse navbar-collapse header-collapse" id="mainNavbar">
+        <!-- Desktop buttons -->
+        <div class="header-actions d-none d-lg-flex">
+          <button
+            class="btn header-btn header-btn--outline"
+            routerLink="/auth/login"
+            data-aos="fade-down"
+            data-aos-delay="180"
+          >
+            {{ "Landing-Header-Keys.LOGIN" | translate }}
+          </button>
+
+          <button
+            class="btn header-btn header-btn--primary"
+            routerLink="/auth/sign-up"
+            data-aos="fade-down"
+            data-aos-delay="240"
+          >
+            {{ "Landing-Header-Keys.CREATE_ACCOUNT" | translate }}
+          </button>
+
+          <button
+            class="btn header-btn header-btn--lang"
+            (click)="toggleLanguage()"
+            data-aos="fade-down"
+            data-aos-delay="300"
+          >
+            <i class="fa-solid fa-globe"></i>
+            <span>{{ langService.currentLang === "en" ? "AR" : "EN" }}</span>
+          </button>
+        </div>
+
+        <!-- Mobile buttons -->
+        <div class="header-mobile-actions d-lg-none">
+          <button
+            class="btn header-btn header-btn--outline w-100"
+            routerLink="/auth/login"
+            data-aos="fade-up"
+            data-aos-delay="160"
+          >
+            {{ "Landing-Header-Keys.LOGIN" | translate }}
+          </button>
+
+          <button
+            class="btn header-btn header-btn--primary w-100"
+            routerLink="/auth/sign-up"
+            data-aos="fade-up"
+            data-aos-delay="220"
+          >
+            {{ "Landing-Header-Keys.CREATE_ACCOUNT" | translate }}
+          </button>
+
+          <button
+            class="btn header-btn header-btn--lang w-100"
+            (click)="toggleLanguage()"
+            data-aos="fade-up"
+            data-aos-delay="280"
+          >
+            <i class="fa-solid fa-globe"></i>
+            <span>{{ isArabic() ? "EN" : "AR" }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

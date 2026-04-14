@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import {Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LandingHeaderComponent } from '../../../features/landing/presentation/components/landing-header/landing-header.component';
+
 import { FooterComponent } from '../../../shared/components/footer/footer.component';
+import { AuthHeaderComponent } from "../../../features/auth/presentation/components/auth-header/auth-header.component";
 
 @Component({
   selector: 'app-auth-layout',
-  imports: [RouterOutlet, LandingHeaderComponent, FooterComponent],
+  imports: [RouterOutlet, FooterComponent, AuthHeaderComponent],
   templateUrl: './auth-layout.component.html',
   styleUrl: './auth-layout.component.css'
 })

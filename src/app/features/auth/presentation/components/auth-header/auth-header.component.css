@@ -8,65 +8,15 @@
 }
 
 /* =========================
-   Navbar collapse area
+   Collapsible content area
    ========================= */
 .header-collapse {
   align-items: center;
+  justify-content: flex-start;
 }
 
 /* =========================
-   Navigation list
-   ========================= */
-.header-nav {
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.header-link {
-  position: relative;
-  display: inline-block;
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-semi-bold);
-  color: var(--primary-color-text);
-  padding: 0.5rem 0.75rem;
-  transition:
-    color 0.3s ease,
-    transform 0.3s ease;
-}
-
-/* Underline effect */
-.header-link::after {
-  content: "";
-  position: absolute;
-  left: 0.75rem;
-  bottom: 0.2rem;
-  width: calc(100% - 1.5rem);
-  height: 2px;
-  background-color: var(--primary-color);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
-.header-link:hover {
-  color: var(--primary-color);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-bold);
-  transform: translateY(-2px);
-}
-
-.header-link:hover::after,
-.header-link.active::after {
-  transform: scaleX(1);
-}
-
-.header-link.active {
-  color: var(--primary-color);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-bold);
-}
-
-/* =========================
-   Buttons shared styles
+   Shared button styles
    ========================= */
 .header-btn {
   display: inline-flex;
@@ -96,8 +46,7 @@
   border: 1px solid var(--primary-color);
 }
 
-.header-btn--outline:hover,
-.header-btn--outline:focus {
+.header-btn--outline:hover {
   background-color: var(--primary-color-light);
   color: var(--primary-color);
   border-color: var(--primary-color);
@@ -110,8 +59,7 @@
   border: 1px solid var(--primary-color);
 }
 
-
-.header-btn--primary:focus {
+.header-btn--primary:hover {
   background-color: var(--primary-color);
   color: var(--secondary-text-color);
   border-color: var(--primary-color);
@@ -124,6 +72,7 @@
   border: 1px solid var(--secondary-color);
 }
 
+.header-btn--lang:hover,
 .header-btn--lang:focus {
   background-color: var(--secondary-color);
   color: var(--secondary-text-color);
@@ -131,15 +80,17 @@
 }
 
 /* =========================
-   Desktop actions
+   Desktop buttons container
    ========================= */
 .header-actions {
   align-items: center;
+  justify-content: flex-start;
   gap: 0.75rem;
+  margin-inline-start: auto;
 }
 
 /* =========================
-   Mobile actions
+   Mobile buttons container
    ========================= */
 .header-mobile-actions {
   display: flex;
@@ -149,7 +100,7 @@
 }
 
 /* =========================
-   Toggler
+   Mobile toggler button
    ========================= */
 .header-toggler {
   border: none;
@@ -161,42 +112,19 @@
 }
 
 /* =========================
-   Mobile layout
+   Mobile layout adjustments
    ========================= */
 @media (max-width: 991.98px) {
   .header-collapse {
     margin-top: 1rem;
     padding-top: 1rem;
     border-top: 1px solid rgba(0, 0, 0, 0.06);
-  }
-
-  .header-nav {
-    align-items: stretch;
-    gap: 0.25rem;
-  }
-
-  .header-link {
-    width: 100%;
-    text-align: center;
-    padding: 0.85rem 1rem;
-  }
-
-  .header-link::after {
-    left: 50%;
-    bottom: 0.4rem;
-    width: 25%;
-    transform: translateX(-50%) scaleX(0);
-    transform-origin: center;
-  }
-
-  .header-link:hover::after,
-  .header-link.active::after {
-    transform: translateX(-50%) scaleX(1);
+    justify-content: initial;
   }
 }
 
 /* =========================
-   Larger screens
+   Large screen spacing
    ========================= */
 @media (min-width: 1200px) {
   .header-navbar {

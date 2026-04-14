@@ -8,7 +8,9 @@ import AOS from 'aos';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements AfterViewInit {
-   ngAfterViewInit(): void {
+
+
+  ngAfterViewInit(): void {
     AOS.init({
       duration: 700,
       easing: 'ease-out-cubic',
@@ -17,5 +19,8 @@ export class AppComponent implements AfterViewInit {
       delay: 0,
       mirror: false
     });
+
+
   }
-}
+  }
+

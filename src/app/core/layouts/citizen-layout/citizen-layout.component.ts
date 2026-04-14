@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component } from '@angular/core';
 
 @Component({
   selector: 'app-citizen-layout',
@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './citizen-layout.component.html',
   styleUrl: './citizen-layout.component.css'
 })
-export class CitizenLayoutComponent {
+export class CitizenLayoutComponent{
 
 }
