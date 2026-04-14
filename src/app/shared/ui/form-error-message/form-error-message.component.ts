@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './form-error-message.component.css'
 })
 export class FormErrorMessageComponent {
-  @Input() errorMessage: string = '';
+  @Input() errorMessage: string | null = '';
 }

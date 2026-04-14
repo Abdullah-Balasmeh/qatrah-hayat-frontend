@@ -7,6 +7,8 @@ import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { LanguageService } from './core/services/language.service';
+import { AuthRepositoryImpl } from './features/auth/data/repositories_impl/auth-repo-impl';
+import { AuthRepo } from './features/auth/domain/repositories/auth.repo';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,7 +24,12 @@ export const appConfig: ApplicationConfig = {
     }),
     provideAppInitializer(() => {
       return inject(LanguageService).init();
-    })
+    }),
+
+        {
+      provide: AuthRepo,
+      useClass: AuthRepositoryImpl
+    }
   ]
 };
 

@@ -1,4 +1,5 @@
-import { GenderEnum } from "./gender-enum";
+import { GenderEnum } from "../../../../core/enums/gender-enum";
+import { UserRole } from "../../../../core/enums/user-role.enum";
 
 
 export interface CurrentUserModel {
@@ -8,5 +9,5 @@ export interface CurrentUserModel {
   fullNameEn: string;
   gender: GenderEnum;
   isProfileCompleted: boolean;
-  role: string;
+  roles: UserRole[];
 }

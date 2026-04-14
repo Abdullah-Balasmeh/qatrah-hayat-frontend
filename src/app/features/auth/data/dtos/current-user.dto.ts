@@ -1,13 +1,12 @@
 import { GenderEnum } from "../../../../core/enums/gender-enum";
+import { UserRole } from "../../../../core/enums/user-role.enum";
 
-
-export interface AuthResponseDto {
+export interface CurrentUserDto {
   userId: number;
   email: string;
   fullNameAr: string;
   fullNameEn: string;
   gender: GenderEnum;
   isProfileCompleted: boolean;
-  role: string;
-  token: string;
+  roles: UserRole[];
 }
