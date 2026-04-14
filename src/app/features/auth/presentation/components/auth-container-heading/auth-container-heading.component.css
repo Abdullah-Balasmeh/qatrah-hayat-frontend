@@ -1,0 +1,27 @@
+.container-heading {
+  border-radius: 1.5rem 1.5rem 0 0;
+  background: var(--secondary-color);
+  color: var(--secondary-text-color);
+  text-align: center;
+  padding: 1rem;
+  width: 100%;
+}
+
+.container-heading-title {
+  color: var(--secondary-text-color);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bolder);
+}
+
+.container-heading-subtitle {
+ color: var(--secondary-text-color);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+.container-heading-logo {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

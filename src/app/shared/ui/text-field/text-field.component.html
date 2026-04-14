@@ -1,0 +1,32 @@
+<div
+  class="form-inputs"
+  [class.focused]="isFocused"
+  [class.invalid-input]="isInvalid"
+>
+  @if (prefixIcon) {
+    <i class="prefix-icon" [class]="prefixIcon" aria-hidden="true"></i>
+  } @else {
+    <span class="prefix-spacer" aria-hidden="true"></span>
+  }
+
+  <input
+    class="text-input"
+    [value]="value"
+    [id]="inputId"
+    [type]="type"
+    [maxlength]="maxLength"
+    [placeholder]="placeholder"
+    [formControl]="control"
+    [autocomplete]="autocomplete"
+    [readonly]="readonly"
+    (focus)="readonly ? null : onFocus()"
+    (blur)="onBlur()"
+    (input)="onInput($event)"
+  />
+
+  @if (hasSuffix) {
+    <i class="suffix-icon" [class]="suffixIcon" aria-hidden="true"></i>
+  } @else {
+    <span class="suffix-spacer" aria-hidden="true"></span>
+  }
+</div>

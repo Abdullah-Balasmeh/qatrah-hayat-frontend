@@ -21,5 +21,30 @@
   "FOOTER_PHONE": "+962 7 9000 0000",
   "FOOTER_LOCATION": "عمان، الأردن",
   "FOOTER_COPYRIGHT": "© 2026 قطرة حياة. جميع الحقوق محفوظة."
+},
+
+
+"Auth-Keys":"Auth-Keys",
+  "Login-Keys":{
+  "LOGIN_VISUAL_TITLE": "معًا ننقذ حياة",
+  "LOGIN_VISUAL_SUBTITLE": "سجّل دخولك للوصول إلى حسابك، متابعة طلبات التبرع، والمساهمة في خدمة المحتاجين للدم بسهولة وأمان.",
+  "LOGIN_VISUAL_FEATURE_1": "متابعة طلبات التبرع بسهولة",
+  "LOGIN_VISUAL_FEATURE_2": "إدارة ملفك الشخصي بأمان",
+  "LOGIN_VISUAL_FEATURE_3": "الوصول إلى الفروع والحملات",
+  "LOGIN_PAGE_TITLE": "أهلاً مجدداً!",
+  "LOGIN_PAGE_SUBTITLE":"سجّل الدخول واصنع فرقًا اليوم.",
+  "NATIONAL_ID_PLACEHOLDER":  "الرقم الوطني...",
+  "NATIONAL_ID_IS_REQUIRED": "الرقم الوطني مطلوب",
+  "NATIONAL_ID_MUST_BE_10_DIGITS": "الرقم الوطني يجب أن يكون 10 أرقام",
+  "PASSWORD_PLACEHOLDER": "كلمة المرور...",
+  "PASSWORD_IS_REQUIRED": "كلمة المرور مطلوبة",
+  "REMEMBER_ME": "تذكرني؟",
+  "FORGET_PASSWORD": "نسيت كلمة المرور؟",
+  "LOGIN_BUTTON": "تسجيل الدخول",
+  "LOGIN_PAGE_FOOTER_TEXT": "ليس لديك حساب؟",
+  "LOGIN_PAGE_FOOTER_LINK_TEXT": "إنشاء حساب",
+  "INVALID_CREDENTIALS": "الرقم الوطني أو كلمة المرور غير صحيحة.",
+  "INACTIVE_ACCOUNT": "هذا الحساب غير نشط. يرجى التواصل مع الدعم.",
+  "GENERIC_ERROR_LOGIN": "حدث خطأ أثناء تسجيل الدخول. يرجى المحاولة مرة أخرى لاحقاً."
 }
 }

@@ -1,0 +1,24 @@
+.check-box-input input {
+  width: 1.1rem;
+  height: 1.1rem;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+
+}
+
+.check-box-input label {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--primary-text-color);
+  cursor: pointer;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+
+
+.check-box-input label:hover {
+  color: var(--primary-color);
+  font-weight: var(--font-weight-semi-bold);
+  text-decoration: underline;
+}

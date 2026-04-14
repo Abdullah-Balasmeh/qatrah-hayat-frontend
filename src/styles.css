@@ -17,6 +17,7 @@
   --font-weight-medium: 500;
   --font-weight-semi-bold: 600;
   --font-weight-bold: 700;
+  --font-weight-bolder: 800;
 
   /* Font sizes */
   --font-size-xs: 0.75rem;     /* 12px helper text, hints, timestamps, captions, secondary labels */
@@ -136,4 +137,46 @@ html {
 .layout-body{
   background-color: var(--surface-ground);
   min-height: 100vh;
+}
+
+/* =========================
+   Buttons style
+   ========================= */
+.qh-primary-btn {
+  background: var(--primary-color);
+  color: var( --secondary-text-color);
+  border: 1px solid var(--primary-color);
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+  font-size: var(--font-size-md);
+  transition: all 0.25s ease;
+}
+
+
+.qh-primary-btn:active {
+  transform: scale(0.95);
+}
+
+.qh-secondary-btn {
+  background-color: transparent;
+  color: var( --primary-text-color);
+  border: 1px solid var( --primary-text-color);
+  text-decoration: none;
+  padding: 0.85rem 1.6rem;
+  font-weight: var(--font-weight-semi-bold);
+  font-size: var(--font-size-md);
+  border-radius: 999px;
+  transition: all 0.25s ease;
+}
+
+.qh-secondary-btn:hover {
+  background-color: var( --primary-text-color);
+  color: var( --secondary-text-color);
+  transform: translateY(-1px);
+}
+
+.qh-secondary-btn:active {
+  transform: scale(0.95);
 }

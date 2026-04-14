@@ -1,34 +1,57 @@
-<div class="auth-split-layout">
-  <!-- Visual Side -->
-  <div class="auth-visual-content">
+
+  <div class="auth-split-layout">
     <!-- Visual Side -->
-    <div class="auth-visual" data-aos="fade-left" data-aos-delay="100">
+    <div class="auth-visual">
       <div class="auth-visual-content">
-        <div class="auth-badge">
-          <img src="assets/images/donation.svg" alt="Qatrah Hayat Logo" />
+        <div class="auth-badge" data-aos="fade-down" data-aos-delay="150">
+          <img src="assets/images/blood_request.svg" alt="Qatrah Hayat Logo" />
         </div>
 
-        <h1>{{ "LOGIN_VISUAL_TITLE" | translate }}</h1>
-        <p>
-          {{ "LOGIN_VISUAL_SUBTITLE" | translate }}
+        <h1 data-aos="fade-down" data-aos-delay="300">{{ "Login-Keys.LOGIN_VISUAL_TITLE" | translate }}</h1>
+        <p data-aos="fade-down" data-aos-delay="450">
+          {{ "Login-Keys.LOGIN_VISUAL_SUBTITLE" | translate }}
         </p>
 
         <div class="auth-features">
-          <div class="feature-item">
+          <div class="feature-item" data-aos="fade-up" data-aos-delay="600">
             <i class="fa-solid fa-droplet"></i>
-            <span>{{ "LOGIN_VISUAL_FEATURE_1" | translate }}</span>
+            <span>{{ "Login-Keys.LOGIN_VISUAL_FEATURE_1" | translate }}</span>
           </div>
 
-          <div class="feature-item">
+          <div class="feature-item" data-aos="fade-up" data-aos-delay="750">
             <i class="fa-solid fa-heart-circle-check"></i>
-            <span>{{ "LOGIN_VISUAL_FEATURE_2" | translate }}</span>
+            <span>{{ "Login-Keys.LOGIN_VISUAL_FEATURE_2" | translate }}</span>
           </div>
 
-          <div class="feature-item">
+          <div class="feature-item" data-aos="fade-up" data-aos-delay="900">
             <i class="fa-solid fa-hospital"></i>
-            <span>{{ "LOGIN_VISUAL_FEATURE_3" | translate }}</span>
+            <span>{{ "Login-Keys.LOGIN_VISUAL_FEATURE_3" | translate }}</span>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Form Side -->
+    <div class="auth-form-side">
+      <div class="auth-form-wrapper">
+        <div class="auth-container">
+          <!-- heading -->
+          <app-auth-container-heading
+            title="{{ 'Login-Keys.LOGIN_PAGE_TITLE' | translate }}"
+            subtitle="{{ 'Login-Keys.LOGIN_PAGE_SUBTITLE' | translate }}"
+          ></app-auth-container-heading>
+
+          <!-- form -->
+          <app-citizen-login-form></app-citizen-login-form>
+
+          <!-- footer -->
+          <app-auth-container-footer
+            text="{{ 'Login-Keys.LOGIN_PAGE_FOOTER_TEXT' | translate }}"
+            linkText="{{ 'Login-Keys.LOGIN_PAGE_FOOTER_LINK_TEXT' | translate }}"
+            linkUrl="/user-auth/signup"
+          ></app-auth-container-footer>
+        </div>
+      </div>
+    </div>
   </div>
+

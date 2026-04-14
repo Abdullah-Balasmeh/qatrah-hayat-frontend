@@ -21,5 +21,30 @@
   "FOOTER_PHONE": "+962 7 9000 0000",
   "FOOTER_LOCATION": "Amman, Jordan",
   "FOOTER_COPYRIGHT": "© 2026 Qatrah Hayat. All rights reserved."
+},
+
+"Auth-Keys":"Auth-Keys",
+  "Login-Keys":{
+  "LOGIN_VISUAL_TITLE": "Together, We Save Lives",
+  "LOGIN_VISUAL_SUBTITLE": "Sign in to access your account, track donation requests, and contribute to supporting people in need of blood safely and easily.",
+  "LOGIN_VISUAL_FEATURE_1": "Track donation requests easily",
+  "LOGIN_VISUAL_FEATURE_2": "Manage your profile securely",
+  "LOGIN_VISUAL_FEATURE_3": "Access branches and campaigns",
+  "LOGIN_PAGE_TITLE": "Welcome Back!",
+  "LOGIN_PAGE_SUBTITLE": "Log in and make a difference today.",
+  "NATIONAL_ID_PLACEHOLDER": "National ID...",
+  "NATIONAL_ID_IS_REQUIRED": "National ID is required",
+  "NATIONAL_ID_MUST_BE_10_DIGITS": "National ID must be 10 digits",
+  "PASSWORD_PLACEHOLDER": "Password...",
+  "PASSWORD_IS_REQUIRED": "Password is required",
+  "REMEMBER_ME": "Remember Me?",
+  "FORGET_PASSWORD": "Forgot Password?",
+  "LOGIN_BUTTON": "Login",
+  "LOGIN_PAGE_FOOTER_TEXT": "Don't have an account?",
+  "LOGIN_PAGE_FOOTER_LINK_TEXT": "Create Account",
+  "INVALID_CREDENTIALS": "Invalid National ID or Password.",
+  "INACTIVE_ACCOUNT": "This account is inactive. Please contact support.",
+  "GENERIC_ERROR_LOGIN": "An error occurred while logging in. Please try again later."
 }
+
 }

@@ -1,0 +1,5 @@
+.error-message {
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 600;
+}
