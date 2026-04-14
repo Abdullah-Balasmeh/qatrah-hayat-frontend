@@ -1,7 +1,7 @@
 {
 "Landing-Page-keys": "Landing-Page-keys",
 
-"Landing-Header-keys":{
+"Landing-Header-Keys":{
   "HOME": "الرئيسية",
   "DONATION_REQUESTS": "طلبات التبرع",
   "CAMPAIGNS": "الحملات",
@@ -9,5 +9,17 @@
   "CONTACT_US": "اتصل بنا",
   "LOGIN": "تسجيل الدخول",
   "CREATE_ACCOUNT": "إنشاء حساب"
+},
+
+"Footer-Keys":{
+  "ABOUT_US_FOOTER":"كل قطرة دم تُحدث فرقًا. انضم إلينا في مهمتنا لتوفير حياة أفضل للجميع وضمان وصول الدم لكل من يحتاجه في كل لحظة.",
+  "QUICK_LINKS": "روابط سريعة",
+  "LEGAL_LINKS": "روابط قانونية",
+  "PRIVACY_POLICY": "حياة الخصوصية",
+  "TERMS_OF_USE": "الشروط والاحكام",
+  "CONTACT_US": "اتصل بنا",
+  "FOOTER_PHONE": "+962 7 9000 0000",
+  "FOOTER_LOCATION": "عمان، الأردن",
+  "FOOTER_COPYRIGHT": "© 2026 قطرة حياة. جميع الحقوق محفوظة."
 }
 }

@@ -25,8 +25,8 @@
 .header-link {
   position: relative;
   display: inline-block;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semi-bold);
   color: var(--primary-color-text);
   padding: 0.5rem 0.75rem;
   transition:
@@ -49,6 +49,8 @@
 
 .header-link:hover {
   color: var(--primary-color);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
   transform: translateY(-2px);
 }
 
@@ -59,6 +61,8 @@
 
 .header-link.active {
   color: var(--primary-color);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
 }
 
 /* =========================
@@ -72,8 +76,8 @@
   min-height: 42px;
   padding: 0.65rem 1rem;
   border-radius: 0.75rem;
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semi-bold);
   transition:
     transform 0.2s ease,
     background-color 0.3s ease,
@@ -115,7 +119,7 @@
 
 /* Language button */
 .header-btn--lang {
-  background-color: var(--secondary-color);
+  background: var(--secondary-color);
   color: var(--secondary-text-color);
   border: 1px solid var(--secondary-color);
 }
@@ -181,7 +185,7 @@
   .header-link::after {
     left: 50%;
     bottom: 0.4rem;
-    width: 60%;
+    width: 25%;
     transform: translateX(-50%) scaleX(0);
     transform-origin: center;
   }
@@ -198,9 +202,5 @@
 @media (min-width: 1200px) {
   .header-navbar {
     padding-inline: 1.5rem;
-  }
-
-  .header-link {
-    font-size: 1.05rem;
   }
 }

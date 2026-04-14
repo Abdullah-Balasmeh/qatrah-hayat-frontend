@@ -1,7 +1,7 @@
 {
 "Landing-Page-keys": "Landing-Page-keys",
 
-"Landing-Header-keys":{
+"Landing-Header-Keys":{
   "HOME": "Home",
   "DONATION_REQUESTS": "Donation Requests",
   "CAMPAIGNS": "Campaigns",
@@ -9,5 +9,17 @@
   "CONTACT_US": "Contact Us",
   "LOGIN": "Login",
   "CREATE_ACCOUNT": "Create Account"
+},
+
+"Footer-Keys":{
+  "ABOUT_US_FOOTER": "Every drop of blood makes a difference. Join us in our mission to provide a better life for all and ensure that blood reaches those in need at every moment.",
+  "QUICK_LINKS": "Quick Links",
+  "LEGAL_LINKS": "Legal Links",
+  "PRIVACY_POLICY": "Privacy Policy",
+  "TERMS_OF_USE": "Terms of Use",
+  "CONTACT_US": "Contact Us",
+  "FOOTER_PHONE": "+962 7 9000 0000",
+  "FOOTER_LOCATION": "Amman, Jordan",
+  "FOOTER_COPYRIGHT": "© 2026 Qatrah Hayat. All rights reserved."
 }
 }

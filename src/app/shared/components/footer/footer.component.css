@@ -1,0 +1,183 @@
+/* =========================
+   Footer wrapper
+   ========================= */
+.site-footer {
+  background: var(--secondary-color);
+  color: var(--secondary-text-color);
+  padding: 3rem 0 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.site-footer::before,
+.site-footer::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.site-footer::before {
+  width: 320px;
+  height: 320px;
+  top: -80px;
+  left: -80px;
+}
+
+.site-footer::after {
+  width: 260px;
+  height: 260px;
+  bottom: -70px;
+  right: -70px;
+}
+
+/* Main spacing container */
+.footer-container {
+  padding-inline: 1rem;
+}
+
+/* Row wrapper for footer content */
+.footer-content {
+  align-items: flex-start;
+}
+
+/* =========================
+   Reusable footer section
+   ========================= */
+.footer-section {
+  height: 100%;
+}
+
+/* =========================
+   Brand / logo
+   ========================= */
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.footer-logo {
+  width: 125px;
+  height: auto;
+  display: block;
+}
+
+.footer-description {
+  margin-top: 1rem;
+  font-size: var(--font-size-base);
+  line-height: 1.8;
+  color: var(--secondary-text-color);
+  max-width: 26rem;
+}
+
+/* =========================
+   Section titles
+   ========================= */
+.footer-title {
+  margin-bottom: 1rem;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: var(--secondary-text-color);
+}
+
+/* =========================
+   Footer lists
+   ========================= */
+.footer-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-list-item {
+  margin-bottom: 0.85rem;
+}
+
+/* =========================
+   Footer links
+   ========================= */
+.footer-link {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semi-bold);
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.footer-link:hover {
+  color: var(--primary-color);
+}
+
+/* Phone number formatting */
+.footer-phone {
+  display: inline-block;
+  direction: ltr;
+  unicode-bidi: bidi-override;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semi-bold);
+  color: var(--secondary-text-color);
+}
+
+/* =========================
+   Footer bottom
+   ========================= */
+.footer-bottom {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.footer-divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.14);
+  margin-bottom: 1rem;
+}
+
+.footer-copyright-text {
+  margin: 0;
+  font-size: var(--font-size-md);
+  line-height: 1.7;
+  color: var(--secondary-text-color);
+}
+
+/* =========================
+   Tablet and below
+   ========================= */
+@media (max-width: 991.98px) {
+  .site-footer {
+    padding: 2.5rem 0 1.25rem;
+  }
+
+  .footer-title {
+    margin-bottom: 0.85rem;
+  }
+
+  .footer-description {
+    max-width: 100%;
+  }
+}
+
+/* =========================
+   Mobile
+   ========================= */
+@media (max-width: 767.98px) {
+  .site-footer {
+    text-align: center;
+  }
+
+  .footer-brand {
+    justify-content: center;
+  }
+
+  .footer-phone {
+    display: inline-block;
+  }
+
+  .footer-list-item {
+    margin-bottom: 0.75rem;
+  }
+}
