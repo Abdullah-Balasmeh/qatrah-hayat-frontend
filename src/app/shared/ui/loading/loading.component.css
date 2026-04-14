@@ -1,0 +1,93 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* يوسّط اللودر داخل الشاشة */
+.loader-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+/* كرت خفيف حول اللودر */
+.loader-card {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  justify-content: center;
+}
+
+/* الشكل الرئيسي */
+.loader-qh-primary {
+  width: 100%;
+  min-height: 120px;
+  border: none;
+  outline: none;
+  border-radius: 1.75rem;
+  background: linear-gradient(135deg, #c40000 0%, #e00000 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 14px 35px rgba(180, 0, 0, 0.2);
+  cursor: default;
+}
+
+/* حجم الأيقونة */
+.heartbeat-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 82px;
+  height: 40px;
+}
+
+.heartbeat-svg {
+  width: 82px;
+  height: 40px;
+  overflow: visible;
+}
+
+/* لا نغيّر الأنيميشن */
+.heartbeat-svg path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 160;
+  stroke-dashoffset: 160;
+  animation: heartbeat-draw 1.05s ease-in-out infinite;
+}
+
+.loader-text {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-align: center;
+}
+
+@keyframes heartbeat-draw {
+  0% {
+    stroke-dashoffset: 160;
+    opacity: 0.35;
+  }
+
+  45% {
+    stroke-dashoffset: 10;
+    opacity: 1;
+  }
+
+  100% {
+    stroke-dashoffset: -160;
+    opacity: 0.35;
+  }
+}

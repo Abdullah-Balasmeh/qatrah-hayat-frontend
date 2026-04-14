@@ -1,15 +1,182 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* Global reveal on scroll animation */
-.reveal-init {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
+:root {
+  --primary-color: #BF0007;
+  --primary-color-light: #FFEFF0;
+  --secondary-color: linear-gradient(135deg, #07152d 0%, #0b1d3d 60%, #10264b 100%);
+  --surface-ground: #FFEFF0;
+  --surface-card: #ffffff;
+  --box-shadow-nav-bar: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08),
+                0 0.75rem 2rem rgba(0, 0, 0, 0.12);
+  --box-shadow-card: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.18);
+  --primary-text-color: #101727;
+  --secondary-text-color: #ffffff;
+
+    /* Font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+  --font-weight-bolder: 800;
+
+  /* Font sizes */
+  --font-size-xs: 0.75rem;     /* 12px helper text, hints, timestamps, captions, secondary labels */
+  --font-size-sm: 0.875rem;    /* 14px secondary text, input hints, small buttons, badges */
+  --font-size-base: 1rem;      /* 16px body text, form text, card text, navbar links, table text, most UI labels */
+  --font-size-md: 1.125rem;    /* 18px small card titles, section labels, tabs, strong buttons, important nav text */
+  --font-size-lg: 1.25rem;     /* 20px card headings, widget titles, section titles */
+  --font-size-xl: 1.5rem;      /* 24px page section titles, major card headers, auth form titles */
+  --font-size-2xl: 1.75rem;    /* 28px page headers, main section hero subtitle, dashboard titles */
+  --font-size-3xl: 2.25rem;    /* 36px landing hero title, main marketing heading */
+  --font-size-4xl: 2.75rem;    /* 44px main promo heading*/
 }
 
-.reveal-show {
-  opacity: 1;
-  transform: translateY(0);
+/*
+body text:
+font-size: 1rem;
+font-weight: 400;
+line-height: 1.6;
+
+small text:
+font-size: 0.875rem;
+font-weight: 400;
+line-height: 1.5;
+
+buttons:
+font-size: 1rem;
+font-weight: 600;
+line-height: 1.2;
+
+inputs:
+font-size: 1rem;
+font-weight: 400;
+
+input labels:
+font-size: 0.95rem;
+font-weight: 600;
+
+navbar links:
+font-size: 1rem;
+font-weight: 600;
+
+card title:
+font-size: 1.125rem;
+font-weight: 700;
+
+section title:
+font-size: 1.5rem;
+font-weight: 700;
+
+page title:
+font-size: 1.75rem;
+font-weight: 700;
+
+hero title:
+font-size: 2.25rem;
+font-weight: 700;
+
+hero subtitle:
+font-size: 1.75rem;
+font-weight: 700;
+
+hero paragraph:
+font-size: 1rem;
+font-weight: 400;
+line-height: 1.6;
+*/
+
+/* defaults style for all */
+* {
+  font-family: 'Cairo', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0;
+  border: none;
+  text-decoration: none;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+
+/* =========================
+   Main navbar
+   ========================= */
+.header-navbar {
+  background-color: var(--surface-card);
+  box-shadow: var(--box-shadow-nav-bar);
+  padding: 0.85rem 1rem;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+}
+
+/* =========================
+   Logo
+   ========================= */
+.header-brand {
+  margin: 0;
+  padding: 0;
+}
+
+.header-logo {
+  width: 125px;
+  height: auto;
+  display: block;
+}
+
+/* =========================
+   Body
+   ========================= */
+
+.layout-body{
+  background-color: var(--surface-ground);
+  min-height: 100vh;
+}
+
+/* =========================
+   Buttons style
+   ========================= */
+.qh-primary-btn {
+  background: var(--primary-color);
+  color: var( --secondary-text-color);
+  border: 1px solid var(--primary-color);
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+  font-size: var(--font-size-md);
+  transition: all 0.25s ease;
+}
+
+
+.qh-primary-btn:active {
+  transform: scale(0.95);
+}
+
+.qh-secondary-btn {
+  background-color: transparent;
+  color: var( --primary-text-color);
+  border: 1px solid var( --primary-text-color);
+  text-decoration: none;
+  padding: 0.85rem 1.6rem;
+  font-weight: var(--font-weight-semi-bold);
+  font-size: var(--font-size-md);
+  border-radius: 999px;
+  transition: all 0.25s ease;
+}
+
+.qh-secondary-btn:hover {
+  background-color: var( --primary-text-color);
+  color: var( --secondary-text-color);
+  transform: translateY(-1px);
+}
+
+.qh-secondary-btn:active {
+  transform: scale(0.95);
 }

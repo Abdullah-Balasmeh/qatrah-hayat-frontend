@@ -1,0 +1,71 @@
+.form-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--surface-ground);
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  box-shadow: var(--box-shadow-card);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+}
+
+/* 1) default state */
+.form-inputs:not(.focused):not(.invalid-input) {
+  border: 1px solid #ccc;
+}
+
+/* 2) focus state */
+.form-inputs.focused {
+  border: 1px solid var(--primary-text-color);
+
+}
+
+/* 3) invalid state */
+.form-inputs.invalid-input {
+  border: 1px solid var(--primary-color);
+}
+
+.prefix-icon,
+.suffix-icon,
+.prefix-spacer,
+.suffix-spacer,
+/* suffix-btn for password text field */
+.suffix-btn {
+  width: 2.25rem;
+  min-width: 2.25rem;
+  display: grid;
+  place-items: center;
+  font-size: var(--font-size-lg);
+  color: var(--primary-text-color);
+}
+
+.form-inputs.invalid-input .prefix-icon,
+.form-inputs.invalid-input .suffix-icon,
+.form-inputs.invalid-input .suffix-btn {
+  color: var(--primary-color);
+}
+
+/* for password text field */
+.suffix-btn {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.text-input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--primary-text-color);
+}
+
+
+.text-input::placeholder {
+  font-weight: 500;
+  color: #777;
+}

@@ -1,0 +1,52 @@
+:host {
+  display: block;
+  width: 100%;
+}
+.qh-primary-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heartbeat-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 34px;
+}
+
+.heartbeat-svg {
+  width: 72px;
+  height: 34px;
+  overflow: visible;
+}
+
+.heartbeat-svg path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 160;
+  stroke-dashoffset: 160;
+  animation: heartbeat-draw 1.05s ease-in-out infinite;
+}
+
+@keyframes heartbeat-draw {
+  0% {
+    stroke-dashoffset: 160;
+    opacity: 0.35;
+  }
+
+  45% {
+    stroke-dashoffset: 10;
+    opacity: 1;
+  }
+
+  100% {
+    stroke-dashoffset: -160;
+    opacity: 0.35;
+  }
+}

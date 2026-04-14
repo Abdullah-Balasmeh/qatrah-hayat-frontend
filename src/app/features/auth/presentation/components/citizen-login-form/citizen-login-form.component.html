@@ -1,0 +1,71 @@
+<div class="form-container py-4 px-2">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <!-- National ID Text Field -->
+     <app-text-field
+      [control]="loginForm.controls.nationalId"
+      type="text"
+      placeholder="{{ 'Login-Keys.NATIONAL_ID_PLACEHOLDER' | translate }}"
+      prefixIcon="fas fa-id-card"
+      autocomplete="off"
+      inputId="nationalId"
+      maxLength="10"
+      [isNumeric]="true"
+      data-aos="fade-down" data-aos-delay="600"
+    />
+
+    <!-- National ID Error Message -->
+    @if (
+      loginForm.controls.nationalId.touched ||
+      loginForm.controls.nationalId.dirty
+    ) {
+      @if (loginForm.controls.nationalId.hasError("required")) {
+        <app-form-error-message
+          [errorMessage]="'Login-Keys.NATIONAL_ID_IS_REQUIRED' | translate"
+        ></app-form-error-message>
+      } @else if (
+        loginForm.controls.nationalId.hasError("minlength") ||
+        loginForm.controls.nationalId.hasError("maxlength")
+      ) {
+        <app-form-error-message
+          [errorMessage]="'Login-Keys.NATIONAL_ID_MUST_BE_10_DIGITS' | translate"
+        ></app-form-error-message>
+      }
+    }
+    <!-- Password Text Field -->
+
+     <app-password-text-field
+      [control]="loginForm.controls.password"
+      placeholder="{{ 'Login-Keys.PASSWORD_PLACEHOLDER' | translate }}"
+      prefixIcon="fas fa-lock"
+      autocomplete="current-password"
+      inputId="password"
+      data-aos="fade-down" data-aos-delay="750"
+    />
+
+    <!-- Password Error Message -->
+    @if (
+      loginForm.controls.password.touched || loginForm.controls.password.dirty
+    ) {
+      @if (loginForm.controls.password.hasError("required")) {
+        <app-form-error-message
+          [errorMessage]="'Login-Keys.PASSWORD_IS_REQUIRED' | translate"
+        ></app-form-error-message>
+      }
+    }
+    <!-- Forget Password and Remember Me -->
+    <app-forget-password-and-remember-me data-aos="fade-down" data-aos-delay="900"/>
+
+    @if (serverErrorMessage()) {
+      <app-form-error-message [errorMessage]="serverErrorMessage()" />
+    }
+
+    <!-- Submit Button -->
+    <app-primary-button
+      label="{{ 'Login-Keys.LOGIN_BUTTON' | translate }}"
+      type="submit"
+      [disabled]="isLoading()"
+      [isLoading]="isLoading()"
+      data-aos="fade-up" data-aos-delay="1050"
+    />
+  </form>
+</div>
