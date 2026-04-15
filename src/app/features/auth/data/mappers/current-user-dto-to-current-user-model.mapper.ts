@@ -12,6 +12,10 @@ export function mapCurrentUserDtoToCurrentUserModel(
     fullNameEn: response.fullNameEn,
     gender: response.gender,
     isProfileCompleted: response.isProfileCompleted,
-    roles: response.roles
+    roles: response.roles,
+    dateOfBirth: response.dateOfBirth,
+    bloodType: response.bloodType,
+    branchId: response.branchId,
+    hospitalId: response.hospitalId,
   };
 }

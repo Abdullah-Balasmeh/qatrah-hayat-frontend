@@ -21,6 +21,7 @@ export interface ApiErrorResponse {
   Title?: string;
   Status?: number;
   Message?: string;
+  Code?: string;
   Errors?: string[];
 }
 
@@ -104,49 +105,60 @@ export class ApiService {
     );
   }
 
-  private handleError(error: unknown): Observable<never> {
-    if (error instanceof TimeoutError) {
-      return throwError(() => new TimeoutFailure());
-    }
+ private handleError(error: unknown): Observable<never> {
+  if (error instanceof TimeoutError) {
+    return throwError(() => new TimeoutFailure());
+  }
 
-    if (error instanceof HttpErrorResponse) {
-      if (error.status === 0) {
-        return throwError(() => new NetworkFailure(
-          'Network error. Please check your internet connection.',
-          error
-        ));
-      }
-
-      const apiError = this.parseApiError(error);
-
-      const message =
-        apiError?.Message ||
-        apiError?.Title ||
-        error.message ||
-        'Request failed.';
-
-      const errors = Array.isArray(apiError?.Errors) ? apiError.Errors : [];
-      if (error.status === 404) {
-        return throwError(() => new NotFoundFailure(message, error));
-      }
-      if (error.status === 401 || error.status === 403) {
-        return throwError(() => new UnauthorizedFailure(message, error));
-      }
-
-      return throwError(() => new ServerFailure(
-        message,
-        error.status || apiError?.Status || 500,
-        errors,
+  if (error instanceof HttpErrorResponse) {
+    if (error.status === 0) {
+      return throwError(() => new NetworkFailure(
+        'Network error. Please check your internet connection.',
         error
       ));
     }
 
-    return throwError(() => new UnknownFailure(
-      'An unexpected error occurred.',
+    const apiError = this.parseApiError(error);
+
+    const message =
+      apiError?.Message ||
+      apiError?.Title ||
+      error.message ||
+      'Request failed.';
+
+    const code = apiError?.Code;
+    const errors = Array.isArray(apiError?.Errors) ? apiError.Errors : [];
+
+    if (error.status === 404) {
+      return throwError(() => new NotFoundFailure(
+        message,
+        code ?? 'NOT_FOUND',
+        error
+      ));
+    }
+
+    if (error.status === 401 || error.status === 403) {
+      return throwError(() => new UnauthorizedFailure(
+        message,
+        code ?? 'UNAUTHORIZED',
+        error
+      ));
+    }
+
+    return throwError(() => new ServerFailure(
+      message,
+      error.status || apiError?.Status || 500,
+      errors,
+      code ?? 'SERVER_ERROR',
       error
     ));
   }
 
+  return throwError(() => new UnknownFailure(
+    'An unexpected error occurred.',
+    error
+  ));
+}
   private parseApiError(error: HttpErrorResponse): ApiErrorResponse | null {
     if (!error.error) {
       return null;
