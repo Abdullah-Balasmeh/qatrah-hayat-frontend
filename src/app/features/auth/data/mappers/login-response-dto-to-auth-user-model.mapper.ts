@@ -1,8 +1,8 @@
 import { AuthUserModel } from '../../domain/models/auth-user.model';
-import { AuthResponseDto } from '../dtos/auth-response.dto';
+import { LoginResponseDto } from '../dtos/login-response.dto';
 
-export function mapAuthResponseDtoToAuthUserModel(
-  response: AuthResponseDto
+export function mapLoginResponseDtoToAuthUserModel(
+  response: LoginResponseDto
 ): AuthUserModel {
   return {
     userId: response.userId,
@@ -12,6 +12,10 @@ export function mapAuthResponseDtoToAuthUserModel(
     gender: response.gender,
     isProfileCompleted: response.isProfileCompleted,
     roles: response.roles,
-    token: response.token
+    token: response.token,
+    dateOfBirth: response.dateOfBirth,
+    bloodType: response.bloodType,
+    branchId: response.branchId,
+    hospitalId: response.hospitalId,
   };
 }

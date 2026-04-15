@@ -9,9 +9,11 @@ import { AuthApiService } from '../services/auth-api.service';
 import { mapLoginRequestModelToLoginRequestDto } from '../mappers/login-request-model-to-login-request-dto.mapper';
 import { AuthRepo } from '../../domain/repositories/auth.repo';
 import { AuthUserModel } from '../../domain/models/auth-user.model';
-import { mapAuthResponseDtoToAuthUserModel } from '../mappers/auth-response-dto-to-auth-user-model.mapper';
+import { mapLoginResponseDtoToAuthUserModel } from '../mappers/login-response-dto-to-auth-user-model.mapper';
 import { mapCurrentUserDtoToCurrentUserModel } from '../mappers/current-user-dto-to-current-user-model.mapper';
 import { mapRegisterRequestModelToRegisterRequestDto } from '../mappers/register-request-model-to-register-request-dto.mapper';
+import { RegisterResponseModel } from '../../domain/models/register-response.model';
+import { mapRegisterResponseDtoToRegisterResponseModel } from '../mappers/register-response-dto-to-register-response-model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,15 +25,15 @@ export class AuthRepositoryImpl implements AuthRepo {
     const dto = mapLoginRequestModelToLoginRequestDto(request);
 
     return this.api.login(dto).pipe(
-      map(mapAuthResponseDtoToAuthUserModel)
+      map(mapLoginResponseDtoToAuthUserModel)
     );
   }
 
-  register(request: RegisterRequestModel): Observable<AuthUserModel> {
+  register(request: RegisterRequestModel): Observable<RegisterResponseModel> {
     const dto = mapRegisterRequestModelToRegisterRequestDto(request);
 
     return this.api.signUp(dto).pipe(
-      map(mapAuthResponseDtoToAuthUserModel)
+      map(mapRegisterResponseDtoToRegisterResponseModel)
     );
   }
 

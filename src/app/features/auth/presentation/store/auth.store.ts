@@ -17,7 +17,7 @@ export class AuthStore {
   readonly initialized = this._initialized.asReadonly();
 
   readonly isLoggedIn = computed(() => this._currentUser() !== null);
-  readonly role = computed(() => this._currentUser()?.roles ?? []);
+  readonly roles = computed(() => this._currentUser()?.roles ?? []);
   readonly fullNameAr = computed(() => this._currentUser()?.fullNameAr ?? '');
   readonly fullNameEn = computed(() => this._currentUser()?.fullNameEn ?? '');
   readonly isProfileCompleted = computed(

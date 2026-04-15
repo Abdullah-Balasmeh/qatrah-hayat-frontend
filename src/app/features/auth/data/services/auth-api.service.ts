@@ -1,11 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../../../core/services/api.service';
-import { AuthResponseDto } from '../dtos/auth-response.dto';
+import { LoginResponseDto } from '../dtos/login-response.dto';
 import { LoginRequestDto } from '../dtos/login-request.dto';
 import { RegisterRequestDto } from '../dtos/register-request.dto';
 import { API_ENDPOINTS } from '../../../../core/constants/api.constants';
 import { CurrentUserDto } from '../dtos/current-user.dto';
+import { RegisterResponseDto } from '../dtos/register-response.dto';
 
 
 
@@ -20,15 +21,15 @@ export class AuthApiService {
   private readonly currentUserUrl = API_ENDPOINTS.auth.me;
 
 
-  login(request: LoginRequestDto): Observable<AuthResponseDto> {
-    return this.api.post<LoginRequestDto, AuthResponseDto>(
+  login(request: LoginRequestDto): Observable<LoginResponseDto> {
+    return this.api.post<LoginRequestDto, LoginResponseDto>(
       this.loginUrl,
       request
     );
   }
 
-  signUp(request: RegisterRequestDto): Observable<AuthResponseDto> {
-    return this.api.post<RegisterRequestDto, AuthResponseDto>(
+  signUp(request: RegisterRequestDto): Observable<RegisterResponseDto> {
+    return this.api.post<RegisterRequestDto, RegisterResponseDto>(
       this.registerUrl,
       request
     );

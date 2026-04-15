@@ -1,3 +1,4 @@
+import { BloodTypeEnum } from '../../../../core/enums/blood-type-enum';
 import { GenderEnum } from '../../../../core/enums/gender-enum';
 import { UserRole } from '../../../../core/enums/user-role.enum';
 
@@ -6,8 +7,12 @@ export interface AuthUserModel {
   email: string;
   fullNameAr: string;
   fullNameEn: string;
-  gender: GenderEnum;
-  isProfileCompleted: boolean;
   roles: UserRole[];
+  gender: GenderEnum;
+  dateOfBirth: string;
+  bloodType: BloodTypeEnum;
+  branchId: number | null;
+  hospitalId: number | null;
+  isProfileCompleted: boolean;
   token: string;
 }

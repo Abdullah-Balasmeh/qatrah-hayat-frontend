@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, catchError, map, tap, throwError, of } from 'rxjs';
+import { Observable, catchError, map, tap, throwError, of, finalize } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
 
@@ -30,10 +30,10 @@ export class AuthFacade {
 
   readonly currentUser = this.authStore.currentUser;
   readonly isLoggedIn = this.authStore.isLoggedIn;
-  readonly role = this.authStore.role;
+  readonly roles = this.authStore.roles;
   readonly initialized = this.authStore.initialized;
-readonly loading = this.authStore.loading;
-readonly error = this.authStore.error;
+  readonly loading = this.authStore.loading;
+  readonly error = this.authStore.error;
   loginCitizen(
     request: LoginRequestModel,
     returnUrl: string | null
@@ -48,46 +48,43 @@ readonly error = this.authStore.error;
       catchError((error: Failure) => {
         const message = this.mapLoginErrorToMessage(error);
         this.authStore.setError(message);
-        return throwError(() => message);
+        return throwError(() => new Error(message));
       }),
-      tap({
-        next: () => this.authStore.setLoading(false),
-        error: () => this.authStore.setLoading(false)
-      })
+      finalize(() => this.authStore.setLoading(false))
     );
   }
 
-  restoreSession(): Observable<boolean> {
-    const token = this.authTokenService.getToken();
+restoreSession(): Observable<boolean> {
+  const token = this.authTokenService.getToken();
 
-    if (!token) {
-      this.authStore.setInitialized(true);
+  if (!token) {
+    this.authStore.setInitialized(true);
+    return of(false);
+  }
+
+  const cachedUser = this.authUserStorageService.getUser();
+  if (cachedUser) {
+    this.authStore.setCurrentUser(cachedUser);
+  }
+
+  this.authStore.setLoading(true);
+
+  return this.authRepository.getCurrentUser().pipe(
+    tap((user) => {
+      this.authStore.setCurrentUser(user);
+      this.authUserStorageService.setUser(user);
+    }),
+    map(() => true),
+    catchError(() => {
+      this.logout(false);
       return of(false);
-    }
-
-    const cachedUser = this.authUserStorageService.getUser();
-    if (cachedUser) {
-      this.authStore.setCurrentUser(cachedUser);
-    }
-
-    this.authStore.setLoading(true);
-
-    return this.authRepository.getCurrentUser().pipe(
-      tap((user) => {
-        this.authStore.setCurrentUser(user);
-        this.authUserStorageService.setUser(user);
-        this.authStore.setInitialized(true);
-        this.authStore.setLoading(false);
-      }),
-      map(() => true),
-      catchError(() => {
-        this.logout(false);
-        this.authStore.setInitialized(true);
-        this.authStore.setLoading(false);
-        return of(false);
-      })
-    );
-  }
+    }),
+    finalize(() => {
+      this.authStore.setInitialized(true);
+      this.authStore.setLoading(false);
+    })
+  );
+}
 
   logout(redirectToLogin = true): void {
     this.authTokenService.clear();
@@ -109,7 +106,11 @@ readonly error = this.authStore.error;
       fullNameEn: authUser.fullNameEn,
       gender: authUser.gender,
       isProfileCompleted: authUser.isProfileCompleted,
-      roles: authUser.roles
+      roles: authUser.roles,
+      dateOfBirth: authUser.dateOfBirth,
+      bloodType: authUser.bloodType,
+      branchId: authUser.branchId,
+      hospitalId: authUser.hospitalId,
     };
 
     this.authStore.setCurrentUser(currentUser);
@@ -133,16 +134,18 @@ readonly error = this.authStore.error;
     this.router.navigateByUrl(returnUrl || '/user/dashboard');
   }
 
-  private mapLoginErrorToMessage(error: Failure): string {
-    switch (error.message) {
-      case 'Invalid email/National ID or password.':
-        return this.translate.instant('Login-Keys.INVALID_CREDENTIALS');
-      case 'This account is inactive.':
-        return this.translate.instant('Login-Keys.INACTIVE_ACCOUNT');
-      default:
-        return this.translate.instant('Login-Keys.GENERIC_ERROR_LOGIN');
-    }
+private mapLoginErrorToMessage(error: Failure): string {
+  switch (error.code) {
+    case 'AUTH_INVALID_CREDENTIALS':
+      return this.translate.instant('Login-Keys.INVALID_CREDENTIALS');
+
+    case 'AUTH_ACCOUNT_INACTIVE':
+      return this.translate.instant('Login-Keys.INACTIVE_ACCOUNT');
+
+    default:
+      return this.translate.instant('Login-Keys.GENERIC_ERROR_LOGIN');
   }
+}
 
   hasRole(roles: UserRole[]): boolean {
     return this.authStore.hasRole(roles);
