@@ -1,5 +1,5 @@
 export interface RegisterResponseModel {
-  userId: string;
+  userId: number;
   email: string;
   fullNameAr: string;
   fullNameEn: string;

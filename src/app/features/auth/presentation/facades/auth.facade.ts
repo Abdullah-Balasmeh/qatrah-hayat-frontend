@@ -16,6 +16,8 @@ import { UserRole } from '../../../../core/enums/user-role.enum';
 import { AuthStore } from '../store/auth.store';
 import { AuthUserModel } from '../../domain/models/auth-user.model';
 import { AuthRepo } from '../../domain/repositories/auth.repo';
+import { RegisterRequestModel } from '../../domain/models/register-request.model';
+import { RegisterResponseModel } from '../../domain/models/register-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +36,10 @@ export class AuthFacade {
   readonly initialized = this.authStore.initialized;
   readonly loading = this.authStore.loading;
   readonly error = this.authStore.error;
+
+   hasRole(roles: UserRole[]): boolean {
+    return this.authStore.hasRole(roles);
+  }
   loginCitizen(
     request: LoginRequestModel,
     returnUrl: string | null
@@ -42,7 +48,7 @@ export class AuthFacade {
     this.authStore.setError(null);
 
     return this.authRepository.login(request).pipe(
-      tap((authUser) => this.handleAuthSuccess(authUser)),
+      tap((authUser) => this.handleLoginSuccess(authUser)),
       tap((authUser) => this.redirectAfterCitizenLogin(authUser, returnUrl)),
       map(() => void 0),
       catchError((error: Failure) => {
@@ -52,6 +58,59 @@ export class AuthFacade {
       }),
       finalize(() => this.authStore.setLoading(false))
     );
+  }
+  registerCitizen(
+  request: RegisterRequestModel
+): Observable<RegisterResponseModel> {
+  this.authStore.setLoading(true);
+  this.authStore.setError(null);
+
+  return this.authRepository.register(request).pipe(
+    catchError((error: Failure) => {
+      const message = this.mapRegisterErrorToMessage(error);
+      this.authStore.setError(message);
+      return throwError(() => new Error(message));
+    }),
+    finalize(() => this.authStore.setLoading(false))
+  );
+}
+loginStaff(
+    request: LoginRequestModel
+  ): Observable<void> {
+    this.authStore.setLoading(true);
+    this.authStore.setError(null);
+
+    return this.authRepository.login(request).pipe(
+      tap((authUser) => this.handleLoginSuccess(authUser)),
+      tap((authUser) => this.redirectAfterStaffLogin(authUser)),
+      map(() => void 0),
+      catchError((error: Failure) => {
+        const message = this.mapLoginErrorToMessage(error);
+        this.authStore.setError(message);
+        return throwError(() => new Error(message));
+      }),
+      finalize(() => this.authStore.setLoading(false))
+    );
+  }
+
+
+  logoutCitizen(redirectToLogin = true): void {
+    this.authTokenService.clear();
+    this.authUserStorageService.clear();
+    this.authStore.clear();
+
+    if (redirectToLogin) {
+      this.router.navigate(['/auth/login']);
+    }
+  }
+    logoutStaff(redirectToLogin = true): void {
+    this.authTokenService.clear();
+    this.authUserStorageService.clear();
+    this.authStore.clear();
+
+    if (redirectToLogin) {
+      this.router.navigate(['/auth/staff-login']);
+    }
   }
 
 restoreSession(): Observable<boolean> {
@@ -76,7 +135,8 @@ restoreSession(): Observable<boolean> {
     }),
     map(() => true),
     catchError(() => {
-      this.logout(false);
+      this.logoutCitizen(false);
+      this.logoutStaff(false);
       return of(false);
     }),
     finalize(() => {
@@ -86,17 +146,7 @@ restoreSession(): Observable<boolean> {
   );
 }
 
-  logout(redirectToLogin = true): void {
-    this.authTokenService.clear();
-    this.authUserStorageService.clear();
-    this.authStore.clear();
-
-    if (redirectToLogin) {
-      this.router.navigate(['/auth/login']);
-    }
-  }
-
-  private handleAuthSuccess(authUser: AuthUserModel): void {
+  private handleLoginSuccess(authUser: AuthUserModel): void {
     this.authTokenService.setToken(authUser.token);
 
     const currentUser: CurrentUserModel = {
@@ -134,6 +184,30 @@ restoreSession(): Observable<boolean> {
     this.router.navigateByUrl(returnUrl || '/user/dashboard');
   }
 
+private redirectAfterStaffLogin(authUser: AuthUserModel): void {
+  const roles = authUser.roles;
+
+  if (roles.includes(UserRole.Admin)) {
+    this.router.navigateByUrl('/admin/dashboard');
+    return;
+  }
+
+  if (roles.includes(UserRole.BranchManager)) {
+    this.router.navigateByUrl('/branch-manager/dashboard');
+    return;
+  }
+
+  if (roles.includes(UserRole.Employee)) {
+    this.router.navigateByUrl('/staff/dashboard');
+    return;
+  }
+
+  if (roles.includes(UserRole.Doctor)) {
+    this.router.navigateByUrl('/doctor/dashboard');
+    return;
+  }
+}
+
 private mapLoginErrorToMessage(error: Failure): string {
   switch (error.code) {
     case 'AUTH_INVALID_CREDENTIALS':
@@ -147,7 +221,28 @@ private mapLoginErrorToMessage(error: Failure): string {
   }
 }
 
-  hasRole(roles: UserRole[]): boolean {
-    return this.authStore.hasRole(roles);
+private mapRegisterErrorToMessage(error: Failure): string {
+  switch (error.code) {
+    case 'NON_JORDANIAN_CITIZEN':
+      return this.translate.instant('Only_Jordanian_citizens_can_register');
+
+    case 'EMAIL_ALREADY_REGISTERED':
+      return this.translate.instant('Email_is_already_registered');
+
+    case 'NATIONAL_ID_ALREADY_REGISTERED':
+      return this.translate.instant('National_ID_is_already_registered');
+
+    case 'NATIONAL_ID_NOT_FOUND':
+      return this.translate.instant('National_ID_Not_Found');
+
+    case 'VALIDATION_ERROR':
+    case 'REGISTRATION_FAILED':
+    case 'ROLE_ASSIGNMENT_FAILED':
+      return this.translate.instant('Generic_Error_Signup');
+
+    default:
+      return this.translate.instant('Generic_Error_Signup');
   }
+}
+
 }
