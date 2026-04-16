@@ -1,42 +1,25 @@
 /* form style */
-
-.container-error-message {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--primary-color);
-  margin-top: 1rem;
+.form-container {
+  padding: 3rem 1rem;
 }
-
-
-
-.signup-card {
-  max-width: 1000px;
-  background: var(--surface-card);
-
-}
-
 
 form {
-  padding: 1.5rem;
-}
-
-.section-title {
-  margin-bottom: 1rem;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--secondary-color);
+  display: block;
 }
 
 .form-section {
   padding: 1.25rem;
   margin-bottom: 1.25rem;
-  border: 1px solid var(--secondary-color);
+  border: 1px solid var(--primary-text-color);
   border-radius: 18px;
 }
 
+.section-title {
+  margin-bottom: 1rem;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-text-color);
+}
 
 .field-error-space {
   min-height: 24px;
@@ -53,10 +36,22 @@ form {
   margin-top: 1rem;
 }
 
+.success-message {
+  margin-bottom: 1rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid #cfe7d1;
+  border-radius: 12px;
+  background-color: #edf9ee;
+  color: #1f5f2c;
+}
+
 @media (max-width: 767.98px) {
+  .form-container {
+    padding: 1rem;
+  }
 
   form {
-    padding: 1rem;
+    padding: 0;
   }
 
   .form-section {

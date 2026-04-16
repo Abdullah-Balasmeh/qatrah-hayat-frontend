@@ -1,13 +1,13 @@
-<div class="signup-card mx-auto">
+<div class="form-container">
   <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" novalidate>
     <!-- Section 1: National ID -->
-    <div class="form-section">
-      <h5 class="section-title">
+    <div class="form-section" data-aos="zoom-in" data-aos-delay="100">
+      <h5 class="section-title" data-aos="fade-down" data-aos-delay="200">
         {{ "Signup-Keys.NATIONAL_REGISTRY_VERIFICATION" | translate }}
       </h5>
 
       <div class="row g-3 align-items-start">
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-8" data-aos="fade-up" data-aos-delay="300">
           <app-text-field
             [control]="signUpForm.controls.nationalId"
             type="text"
@@ -44,7 +44,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="300">
           <app-primary-button
             label="{{ 'Signup-Keys.BRING_BTN' | translate }}"
             type="button"
@@ -57,13 +57,13 @@
     </div>
 
     <!-- Section 2: Personal Information -->
-    <div class="form-section">
-      <h5 class="section-title">
+    <div class="form-section" data-aos="zoom-in" data-aos-delay="400">
+      <h5 class="section-title" data-aos="fade-down" data-aos-delay="500">
         {{ "Signup-Keys.PERSONAL_INFORMATION" | translate }}
       </h5>
 
       <div class="row g-3">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="600">
           <app-text-field
             [control]="signUpForm.controls.fullNameAr"
             placeholder="{{ 'Signup-Keys.FULL_NAME_AR_PLACEHOLDER' | translate }}"
@@ -74,7 +74,7 @@
           />
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="700">
           <app-text-field
             [control]="signUpForm.controls.fullNameEn"
             placeholder="{{ 'Signup-Keys.FULL_NAME_EN_PLACEHOLDER' | translate }}"
@@ -85,7 +85,7 @@
           />
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="800">
           <app-text-field
             [control]="signUpForm.controls.dateOfBirth"
             placeholder="{{ 'Signup-Keys.DATE_OF_BIRTH_PLACEHOLDER' | translate }}"
@@ -96,7 +96,7 @@
           />
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="900">
           <app-text-field
             [control]="signUpForm.controls.bloodTypeDisplay"
             placeholder="{{ 'Signup-Keys.BLOOD_TYPE_PLACEHOLDER' | translate }}"
@@ -107,7 +107,7 @@
           />
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="1000">
           <app-text-field
             [control]="signUpForm.controls.genderDisplay"
             placeholder="{{ 'Signup-Keys.GENDER_PLACEHOLDER' | translate }}"
@@ -118,7 +118,7 @@
           />
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="1100">
           <app-marital-status-radio-group
             [control]="signUpForm.controls.maritalStatus"
           />
@@ -136,7 +136,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="1200">
           <app-text-field
             [control]="signUpForm.controls.email"
             type="email"
@@ -165,7 +165,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="1300">
           <app-text-field
             [control]="signUpForm.controls.phoneNumber"
             type="text"
@@ -196,7 +196,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="1400">
           <app-text-field
             [control]="signUpForm.controls.address"
             type="text"
@@ -206,7 +206,7 @@
           />
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="1500">
           <app-text-field
             [control]="signUpForm.controls.jobTitle"
             type="text"
@@ -219,11 +219,11 @@
     </div>
 
     <!-- Section 3: Security -->
-    <div class="form-section">
-      <h5 class="section-title">{{ "Signup-Keys.SECURITY" | translate }}</h5>
+    <div class="form-section" data-aos="zoom-in" data-aos-delay="1600">
+      <h5 class="section-title" data-aos="fade-up" data-aos-delay="1600">{{"Signup-Keys.SECURITY" | translate }}</h5>
 
       <div class="row g-3">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="1700">
           <app-password-text-field
             [control]="signUpForm.controls.password"
             placeholder="{{ 'Signup-Keys.PASSWORD_PLACEHOLDER' | translate }}"
@@ -249,7 +249,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="1800">
           <app-password-text-field
             [control]="signUpForm.controls.confirmPassword"
             placeholder="{{ 'Signup-Keys.CONFIRM_PASSWORD_PLACEHOLDER' | translate }}"
@@ -257,7 +257,7 @@
             autocomplete="new-password"
             inputId="confirmPassword"
           />
-          <div class="field-error-space">
+          <div class="field-error-space" data-aos="fade-up" data-aos-delay="1800">
             @if (
               signUpForm.controls.confirmPassword.touched ||
               signUpForm.controls.confirmPassword.dirty
@@ -281,8 +281,8 @@
     </div>
 
     <!-- Section 4: Agreements -->
-    <div class="form-section">
-      <h5 class="section-title">{{ "Signup-Keys.AGREEMENTS" | translate }}</h5>
+    <div class="form-section" data-aos="zoom-in" data-aos-delay="1900">
+      <h5 class="section-title" data-aos="fade-up" data-aos-delay="1900">{{"Signup-Keys.AGREEMENTS" | translate }}</h5>
 
       <div class="checkbox-group">
         <app-check-box-input
@@ -292,12 +292,16 @@
             'Signup-Keys.TERMS_AND_PRIVACY' | translate
           }}"
           name="iAgree"
+          data-aos="fade-up"
+          data-aos-delay="2000"
         />
         <app-check-box-input
           [control]="signUpForm.controls.iConfirm"
           inputId="iConfirm"
           label="{{ 'Signup-Keys.I_CONFIRM' | translate }}"
           name="iConfirm"
+          data-aos="fade-up"
+          data-aos-delay="2100"
         />
       </div>
 
@@ -325,12 +329,12 @@
       </div>
     </div>
 
-    <div class="submit-wrapper">
+    <div class="submit-wrapper" data-aos="fade-up" data-aos-delay="2200">
       @if (serverErrorMessage()) {
         <app-form-error-message [errorMessage]="serverErrorMessage()" />
       }
       @if (showSuccessMessage()) {
-        <div class="alert alert-success mb-3" role="alert">
+        <div class="success-message" role="alert">
           <strong>{{ "Signup-Keys.ACCOUNT_CREATED_SUCCESSFULLY" | translate }}:</strong>
           {{ "Signup-Keys.YOU_CAN_LOGIN_NOW" | translate }}
         </div>

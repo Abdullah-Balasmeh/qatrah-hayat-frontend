@@ -1,56 +1,55 @@
-  <div class="auth-split-layout">
-    <!-- Visual Side -->
-    <div class="auth-visual">
-      <div class="auth-visual-content">
-        <div class="auth-badge" data-aos="fade-down" data-aos-delay="150">
-          <img src="assets/images/donation.svg" alt="Qatrah Hayat Logo" />
-        </div>
-
-        <h1 data-aos="fade-down" data-aos-delay="300">{{ "Signup-Keys.SIGNUP_VISUAL_TITLE" | translate }}</h1>
-        <p data-aos="fade-down" data-aos-delay="450">
-          {{ "Signup-Keys.SIGNUP_VISUAL_SUBTITLE" | translate }}
-        </p>
-
-        <div class="auth-features">
-          <div class="feature-item" data-aos="fade-up" data-aos-delay="600">
-            <i class="fa-solid fa-user-plus"></i>
-            <span>{{ "Signup-Keys.SIGNUP_VISUAL_FEATURE_1" | translate }}</span>
-          </div>
-
-          <div class="feature-item" data-aos="fade-up" data-aos-delay="750">
-            <i class="fa-solid fa-shield-heart"></i>
-            <span>{{ "Signup-Keys.SIGNUP_VISUAL_FEATURE_2" | translate }}</span>
-          </div>
-
-          <div class="feature-item" data-aos="fade-up" data-aos-delay="900">
-            <i class="fa-solid fa-hand-holding-droplet"></i>
-            <span>{{ "Signup-Keys.SIGNUP_VISUAL_FEATURE_3" | translate }}</span>
-          </div>
-        </div>
+<div class="auth-split-layout">
+  <!-- Visual Side -->
+  <div class="auth-visual">
+    <div class="auth-visual-content">
+      <div class="auth-badge" data-aos="fade-down" data-aos-delay="150">
+        <img src="assets/images/donation.svg" alt="Qatrah Hayat Logo" />
       </div>
-    </div>
 
-    <!-- Form Side -->
-    <div class="auth-form-side">
-      <div class="auth-form-wrapper">
-        <div class="auth-container">
-          <!-- heading -->
-          <app-auth-container-heading
-            title="{{ 'Signup-Keys.SIGNUP_PAGE_TITLE' | translate }}"
-            subtitle="{{ 'Signup-Keys.SIGNUP_PAGE_SUBTITLE' | translate }}"
-          ></app-auth-container-heading>
+      <h1 data-aos="fade-down" data-aos-delay="300">
+        {{ "Signup-Keys.SIGNUP_VISUAL_TITLE" | translate }}
+      </h1>
+      <p data-aos="fade-down" data-aos-delay="450">
+        {{ "Signup-Keys.SIGNUP_VISUAL_SUBTITLE" | translate }}
+      </p>
 
-          <!-- form -->
-          <app-citizen-sign-up-form></app-citizen-sign-up-form>
+      <div class="auth-features">
+        <div class="feature-item" data-aos="fade-up" data-aos-delay="600">
+          <i class="fa-solid fa-user-plus"></i>
+          <span>{{ "Signup-Keys.SIGNUP_VISUAL_FEATURE_1" | translate }}</span>
+        </div>
 
-          <!-- footer -->
-          <app-auth-container-footer
-            text="{{ 'Signup-Keys.SIGNUP_PAGE_FOOTER_TEXT' | translate }}"
-            linkText="{{ 'Signup-Keys.SIGNUP_PAGE_FOOTER_LINK_TEXT' | translate }}"
-            linkUrl="/auth/login"
-          ></app-auth-container-footer>
+        <div class="feature-item" data-aos="fade-up" data-aos-delay="750">
+          <i class="fa-solid fa-shield-heart"></i>
+          <span>{{ "Signup-Keys.SIGNUP_VISUAL_FEATURE_2" | translate }}</span>
+        </div>
+
+        <div class="feature-item" data-aos="fade-up" data-aos-delay="900">
+          <i class="fa-solid fa-hand-holding-droplet"></i>
+          <span>{{ "Signup-Keys.SIGNUP_VISUAL_FEATURE_3" | translate }}</span>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Form Side -->
+  <div class="auth-form-side">
+    <div class="auth-container">
+      <!-- heading -->
+      <app-auth-container-heading
+        title="{{ 'Signup-Keys.SIGNUP_PAGE_TITLE' | translate }}"
+        subtitle="{{ 'Signup-Keys.SIGNUP_PAGE_SUBTITLE' | translate }}"
+      ></app-auth-container-heading>
+
+      <!-- form -->
+      <app-citizen-sign-up-form></app-citizen-sign-up-form>
+
+      <!-- footer -->
+      <app-auth-container-footer
+        text="{{ 'Signup-Keys.SIGNUP_PAGE_FOOTER_TEXT' | translate }}"
+        linkText="{{ 'Signup-Keys.SIGNUP_PAGE_FOOTER_LINK_TEXT' | translate }}"
+        linkUrl="/auth/login"
+      ></app-auth-container-footer>
+    </div>
+  </div>
+</div>
