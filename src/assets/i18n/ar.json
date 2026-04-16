@@ -33,6 +33,7 @@
   "LOGIN_VISUAL_FEATURE_3": "الوصول إلى الفروع والحملات",
   "LOGIN_PAGE_TITLE": "أهلاً مجدداً!",
   "LOGIN_PAGE_SUBTITLE":"سجّل الدخول واصنع فرقًا اليوم.",
+  "STAFF_LOGIN_PAGE_SUBTITLE": "سجّل الدخول إلى نظام قطرة حياة.",
   "NATIONAL_ID_PLACEHOLDER":  "الرقم الوطني...",
   "NATIONAL_ID_IS_REQUIRED": "الرقم الوطني مطلوب",
   "NATIONAL_ID_MUST_BE_10_DIGITS": "الرقم الوطني يجب أن يكون 10 أرقام",

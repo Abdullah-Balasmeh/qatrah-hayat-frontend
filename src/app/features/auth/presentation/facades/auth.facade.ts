@@ -74,15 +74,42 @@ export class AuthFacade {
     finalize(() => this.authStore.setLoading(false))
   );
 }
+loginStaff(
+    request: LoginRequestModel
+  ): Observable<void> {
+    this.authStore.setLoading(true);
+    this.authStore.setError(null);
+
+    return this.authRepository.login(request).pipe(
+      tap((authUser) => this.handleLoginSuccess(authUser)),
+      tap((authUser) => this.redirectAfterStaffLogin(authUser)),
+      map(() => void 0),
+      catchError((error: Failure) => {
+        const message = this.mapLoginErrorToMessage(error);
+        this.authStore.setError(message);
+        return throwError(() => new Error(message));
+      }),
+      finalize(() => this.authStore.setLoading(false))
+    );
+  }
 
 
-  logout(redirectToLogin = true): void {
+  logoutCitizen(redirectToLogin = true): void {
     this.authTokenService.clear();
     this.authUserStorageService.clear();
     this.authStore.clear();
 
     if (redirectToLogin) {
       this.router.navigate(['/auth/login']);
+    }
+  }
+    logoutStaff(redirectToLogin = true): void {
+    this.authTokenService.clear();
+    this.authUserStorageService.clear();
+    this.authStore.clear();
+
+    if (redirectToLogin) {
+      this.router.navigate(['/auth/staff-login']);
     }
   }
 
@@ -108,7 +135,8 @@ restoreSession(): Observable<boolean> {
     }),
     map(() => true),
     catchError(() => {
-      this.logout(false);
+      this.logoutCitizen(false);
+      this.logoutStaff(false);
       return of(false);
     }),
     finalize(() => {
@@ -156,6 +184,30 @@ restoreSession(): Observable<boolean> {
     this.router.navigateByUrl(returnUrl || '/user/dashboard');
   }
 
+private redirectAfterStaffLogin(authUser: AuthUserModel): void {
+  const roles = authUser.roles;
+
+  if (roles.includes(UserRole.Admin)) {
+    this.router.navigateByUrl('/admin/dashboard');
+    return;
+  }
+
+  if (roles.includes(UserRole.BranchManager)) {
+    this.router.navigateByUrl('/branch-manager/dashboard');
+    return;
+  }
+
+  if (roles.includes(UserRole.Employee)) {
+    this.router.navigateByUrl('/staff/dashboard');
+    return;
+  }
+
+  if (roles.includes(UserRole.Doctor)) {
+    this.router.navigateByUrl('/doctor/dashboard');
+    return;
+  }
+}
+
 private mapLoginErrorToMessage(error: Failure): string {
   switch (error.code) {
     case 'AUTH_INVALID_CREDENTIALS':
@@ -192,6 +244,5 @@ private mapRegisterErrorToMessage(error: Failure): string {
       return this.translate.instant('Generic_Error_Signup');
   }
 }
-
 
 }

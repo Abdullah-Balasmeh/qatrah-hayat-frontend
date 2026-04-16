@@ -1,1 +1,13 @@
-<p>staff-login-page works!</p>
+<div class="staff-login-page">
+    <div class="auth-container">
+              <!-- heading -->
+          <app-auth-container-heading
+            title="{{ 'Login-Keys.LOGIN_PAGE_TITLE' | translate }}"
+            subtitle="{{ 'Login-Keys.STAFF_LOGIN_PAGE_SUBTITLE' | translate }}"
+          ></app-auth-container-heading>
+
+          <!-- form -->
+          <app-staff-login-form></app-staff-login-form>
+
+        </div>
+</div>

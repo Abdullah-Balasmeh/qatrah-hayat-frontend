@@ -32,6 +32,7 @@
   "LOGIN_VISUAL_FEATURE_3": "Access branches and campaigns",
   "LOGIN_PAGE_TITLE": "Welcome Back!",
   "LOGIN_PAGE_SUBTITLE": "Log in and make a difference today.",
+  "STAFF_LOGIN_PAGE_SUBTITLE": "Log in to the Qatrah Hayat system.",
   "NATIONAL_ID_PLACEHOLDER": "National ID...",
   "NATIONAL_ID_IS_REQUIRED": "National ID is required",
   "NATIONAL_ID_MUST_BE_10_DIGITS": "National ID must be 10 digits",

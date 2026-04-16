@@ -1,0 +1,20 @@
+.staff-login-page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 1rem;
+}
+
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+  background-color: var(--surface-card);
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+  max-width: 450px;
+}

@@ -153,6 +153,7 @@
 @media (max-width: 991.98px) {
   .auth-split-layout {
     flex-direction: column;
+    padding: 2rem;
   }
 
   .auth-visual,
