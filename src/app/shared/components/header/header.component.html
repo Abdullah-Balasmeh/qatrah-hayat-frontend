@@ -1,0 +1,71 @@
+<header class="site-header">
+  <nav class="navbar navbar-expand-lg header-navbar">
+    <div class="container-fluid header-container">
+      <!-- Brand / Logo -->
+      <a
+        class="navbar-brand header-brand"
+        routerLink="/home"
+        data-aos="fade-down"
+        data-aos-delay="100"
+      >
+        <img
+          [src]="
+            isArabic()
+              ? 'assets/images/Qatrah_Hayat_logo_ar.svg'
+              : 'assets/images/Qatrah_Hayat_logo.svg'
+          "
+          alt="Qatrah Hayat Logo"
+          class="header-logo"
+        />
+      </a>
+
+      <!-- Mobile menu toggle button -->
+    <button
+        class="btn sidebar-toggle-btn"
+        type="button"
+        (click)="toggleSidebar()"
+        aria-label="Toggle sidebar"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <div class="collapse navbar-collapse header-collapse" id="mainNavbar">
+        <!-- Navigation links -->
+     <ul class="navbar-nav header-nav mx-auto">
+  @for (item of navItems; track item.labelKey) {
+    <li
+      class="nav-item"
+      [attr.data-aos]="isArabic() ? 'fade-right' : 'fade-left'"
+      [attr.data-aos-delay]="item.delay"
+    >
+      <a
+        class="nav-link header-link"
+        [routerLink]="item.routerLink"
+        [fragment]="item.fragment"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.exact ?? true }"
+      >
+        {{ item.labelKey | translate }}
+      </a>
+    </li>
+  }
+</ul>
+
+        <!-- Desktop actions -->
+        <div class="header-actions d-none d-lg-flex">
+          <app-notification-button data-aos="fade-down"
+            data-aos-delay="430"></app-notification-button>
+          <button
+            class="btn header-btn header-btn--lang"
+            (click)="toggleLanguage()"
+           data-aos="fade-down"
+            data-aos-delay="480"
+          >
+            <i class="fa-solid fa-globe"></i>
+            <span>{{ langService.currentLang === "en" ? "AR" : "EN" }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

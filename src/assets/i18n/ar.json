@@ -103,6 +103,19 @@
 
   "SIGNUP_PAGE_FOOTER_TEXT": "لديك حساب بالفعل؟",
   "SIGNUP_PAGE_FOOTER_LINK_TEXT": "تسجيل الدخول"
-
+  },
+  "Admin-Keys":{
+    "DASHBOARD": "لوحة التحكم",
+    "USERS": "المستخدمين",
+    "HOSPITALS": "المستشفيات",
+    "CAMPAIGNS": "الحملات",
+    "BRANCHES": "الفروع",
+    "MAIN": "الرئيسية",
+    "MY_PROFILE": "الملف الشخصي",
+    "SERVICES": "الخدمات",
+    "NOTIFICATIONS": "الإشعارات",
+    "REPORTS": "التقارير",
+    "SETTINGS": "الإعدادات",
+    "LOGOUT": "تسجيل الخروج"
   }
 }

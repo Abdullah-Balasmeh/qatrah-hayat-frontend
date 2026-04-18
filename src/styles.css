@@ -137,6 +137,7 @@ html {
 .layout-body{
   background-color: var(--surface-ground);
   min-height: 100vh;
+  width: 100%;
 }
 
 /* =========================

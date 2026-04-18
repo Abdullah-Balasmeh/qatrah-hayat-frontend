@@ -1,4 +1,9 @@
-<app-auth-header></app-auth-header>
+<!-- <app-auth-header></app-auth-header> -->
+@if(isStaff()){
+  <app-auth-staff-header></app-auth-staff-header>
+} @else {
+  <app-auth-header></app-auth-header>
+}
 <main class="layout-body">
   <router-outlet></router-outlet>
 </main>

@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-staff-login-page',
-  imports: [TranslateModule, StaffLoginFormComponent, AuthContainerHeadingComponent, AuthContainerFooterComponent],
+  imports: [TranslateModule, StaffLoginFormComponent, AuthContainerHeadingComponent],
   templateUrl: './staff-login-page.component.html',
   styleUrl: './staff-login-page.component.css'
 })

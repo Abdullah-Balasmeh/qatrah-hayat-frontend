@@ -1,0 +1,32 @@
+<header class="site-header">
+  <nav class="navbar navbar-expand-lg header-navbar">
+    <div class="container-fluid header-container">
+      <!-- Logo -->
+      <a
+        class="navbar-brand header-brand"
+        data-aos="fade-down"
+        data-aos-delay="80"
+      >
+        <img
+          [src]="
+            isArabic()
+              ? 'assets/images/Qatrah_Hayat_logo_ar.svg'
+              : 'assets/images/Qatrah_Hayat_logo.svg'
+          "
+          alt="Qatrah Hayat Logo"
+          class="header-logo"
+        />
+      </a>
+          <button
+            class="btn header-btn header-btn--lang"
+            (click)="toggleLanguage()"
+            data-aos="fade-down"
+            data-aos-delay="300"
+          >
+            <i class="fa-solid fa-globe"></i>
+            <span>{{ langService.currentLang === "en" ? "AR" : "EN" }}</span>
+          </button>
+
+    </div>
+  </nav>
+</header>
