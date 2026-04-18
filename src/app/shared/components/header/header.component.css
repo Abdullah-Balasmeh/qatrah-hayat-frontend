@@ -57,7 +57,6 @@
 .header-link:hover::after,
 .header-link.active::after {
   transform: scaleX(1);
-  height: 3px;
 }
 
 .header-link.active {
@@ -152,13 +151,26 @@
 /* =========================
    Toggler
    ========================= */
-.header-toggler {
+.sidebar-toggle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--secondary-color);
+  color: #fff;
   border: none;
-  box-shadow: none;
+  display: none;
+  align-items: center;
+  justify-content: center;
 }
 
-.header-toggler:focus {
-  box-shadow: none;
+.sidebar-toggle-btn:hover {
+  background: #1a2338;
+  color: #fff;
+}
+
+.btn {
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 /* =========================
@@ -175,7 +187,9 @@
     align-items: stretch;
     gap: 0.25rem;
   }
-
+  .sidebar-toggle-btn{
+    display: flex;
+  }
   .header-link {
     width: 100%;
     text-align: center;

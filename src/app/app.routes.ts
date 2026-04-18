@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { PublicLayoutComponent } from './core/layouts/public-layout/public-layout.component';
 import { AuthLayoutComponent } from './core/layouts/auth-layout/auth-layout.component';
 import { guestGuard } from './core/guards/guest.guard';
+import { AdminLayoutComponent } from './core/layouts/admin-layout/admin-layout.component';
 
 export const routes: Routes = [
   {
@@ -28,6 +29,23 @@ export const routes: Routes = [
     canActivate: [guestGuard],
     loadChildren: () =>
       import('./features/auth/auth.routes').then(r => r.AUTH_ROUTES)
+  },
+  {
+    path: 'admin',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+      },
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./features/dashboard/presentation/pages/admin-dashboard/admin-dashboard.component')
+            .then(c => c.AdminDashboardComponent),
+      }
+    ]
   },
 
   {
