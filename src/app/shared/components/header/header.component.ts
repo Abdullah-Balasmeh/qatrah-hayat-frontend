@@ -1,9 +1,10 @@
-import { Component, EventEmitter, inject, Output, signal } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
 import { LanguageService } from '../../../core/services/language.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { NotificationButtonComponent } from '../../ui/notification-button/notification-button.component';
+import { HeaderNavItem } from '../../types/header-nav-item.types';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,7 @@ import { NotificationButtonComponent } from '../../ui/notification-button/notifi
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  @Input() navItems: HeaderNavItem[] = [];
  @Output() menuToggle = new EventEmitter<void>();
   langService = inject(LanguageService);
 
@@ -22,10 +24,10 @@ export class HeaderComponent {
     this.isArabic.set(this.langService.currentLang === 'ar');
   }
 
-
-
   toggleSidebar(): void {
     this.menuToggle.emit();
   }
+
+
 
 }

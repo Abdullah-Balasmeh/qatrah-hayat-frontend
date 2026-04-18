@@ -3,11 +3,14 @@ import { PublicLayoutComponent } from './core/layouts/public-layout/public-layou
 import { AuthLayoutComponent } from './core/layouts/auth-layout/auth-layout.component';
 import { guestGuard } from './core/guards/guest.guard';
 import { AdminLayoutComponent } from './core/layouts/admin-layout/admin-layout.component';
+import { UserRole } from './core/enums/user-role.enum';
+import { roleGuard } from './core/guards/role.guard';
 
 export const routes: Routes = [
   {
     path: '',
     component: PublicLayoutComponent,
+    canActivate: [guestGuard],
     children: [
       {
         path: '',
@@ -33,6 +36,10 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
+    canActivate: [roleGuard],
+    data: {
+      roles: [UserRole.Admin]
+    },
     children: [
       {
         path: '',
@@ -44,6 +51,11 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/dashboard/presentation/pages/admin-dashboard/admin-dashboard.component')
             .then(c => c.AdminDashboardComponent),
+      },
+      {
+        path: 'users',
+        loadChildren: () =>
+          import('./features/user-management/user-management.routes').then(r => r.USER_MANAGEMENT_ROUTES)
       }
     ]
   },

@@ -29,140 +29,40 @@
         <i class="fa-solid fa-bars"></i>
       </button>
 
-      <!-- Collapsible navbar content -->
       <div class="collapse navbar-collapse header-collapse" id="mainNavbar">
         <!-- Navigation links -->
-        <ul class="navbar-nav header-nav mx-auto">
-          <li
-            class="nav-item"
-            [attr.data-aos]="isArabic() ? 'fade-right' : 'fade-left'"
-            data-aos-delay="180"
-          >
-            <a
-              class="nav-link header-link"
-              routerLink="/home"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-            >
-              {{ "Landing-Header-Keys.HOME" | translate }}
-            </a>
-          </li>
-
-          <li
-            class="nav-item"
-             [attr.data-aos]="isArabic() ? 'fade-right' : 'fade-left'"
-            data-aos-delay="230"
-          >
-            <a
-              class="nav-link header-link"
-              routerLink="/donation-requests"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-            >
-              {{ "Landing-Header-Keys.DONATION_REQUESTS" | translate }}
-            </a>
-          </li>
-
-          <li
-            class="nav-item"
-            [attr.data-aos]="isArabic() ? 'fade-right' : 'fade-left'"
-            data-aos-delay="280"
-          >
-            <a
-              class="nav-link header-link"
-              routerLink="/campaigns"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-            >
-              {{ "Landing-Header-Keys.CAMPAIGNS" | translate }}
-            </a>
-          </li>
-
-          <li
-            class="nav-item"
-            [attr.data-aos]="isArabic() ? 'fade-right' : 'fade-left'"
-            data-aos-delay="330"
-          >
-            <a class="nav-link header-link" routerLink="/" fragment="about-us">
-              {{ "Landing-Header-Keys.ABOUT_US" | translate }}
-            </a>
-          </li>
-
-          <li
-            class="nav-item"
-            [attr.data-aos]="isArabic() ? 'fade-right' : 'fade-left'"
-            data-aos-delay="380"
-          >
-            <a
-              class="nav-link header-link"
-              routerLink="/contact-us"
-              routerLinkActive="active"
-              [routerLinkActiveOptions]="{ exact: true }"
-            >
-              {{ "Landing-Header-Keys.CONTACT_US" | translate }}
-            </a>
-          </li>
-        </ul>
+     <ul class="navbar-nav header-nav mx-auto">
+  @for (item of navItems; track item.labelKey) {
+    <li
+      class="nav-item"
+      [attr.data-aos]="isArabic() ? 'fade-right' : 'fade-left'"
+      [attr.data-aos-delay]="item.delay"
+    >
+      <a
+        class="nav-link header-link"
+        [routerLink]="item.routerLink"
+        [fragment]="item.fragment"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.exact ?? true }"
+      >
+        {{ item.labelKey | translate }}
+      </a>
+    </li>
+  }
+</ul>
 
         <!-- Desktop actions -->
         <div class="header-actions d-none d-lg-flex">
-          <button
-            class="btn header-btn header-btn--outline"
-            routerLink="/auth/login"
-            data-aos="fade-down"
-            data-aos-delay="430"
-          >
-            {{ "Landing-Header-Keys.LOGIN" | translate }}
-          </button>
-
-          <button
-            class="btn header-btn header-btn--primary"
-            routerLink="/auth/sign-up"
-            data-aos="fade-down"
-            data-aos-delay="480"
-          >
-            {{ "Landing-Header-Keys.CREATE_ACCOUNT" | translate }}
-          </button>
-
+          <app-notification-button data-aos="fade-down"
+            data-aos-delay="430"></app-notification-button>
           <button
             class="btn header-btn header-btn--lang"
             (click)="toggleLanguage()"
            data-aos="fade-down"
-            data-aos-delay="530"
+            data-aos-delay="480"
           >
             <i class="fa-solid fa-globe"></i>
             <span>{{ langService.currentLang === "en" ? "AR" : "EN" }}</span>
-          </button>
-        </div>
-
-        <!-- Mobile actions -->
-        <div class="header-mobile-actions d-lg-none">
-          <button
-            class="btn header-btn header-btn--outline w-100"
-            routerLink="/auth/login"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            {{ "Landing-Header-Keys.LOGIN" | translate }}
-          </button>
-
-          <button
-            class="btn header-btn header-btn--primary w-100"
-            routerLink="/auth/sign-up"
-            data-aos="fade-up"
-            data-aos-delay="260"
-          >
-            {{ "Landing-Header-Keys.CREATE_ACCOUNT" | translate }}
-          </button>
-
-          <button
-            class="btn header-btn header-btn--lang w-100"
-            (click)="toggleLanguage()"
-            data-aos="fade-up"
-            data-aos-delay="320"
-          >
-            <i class="fa-solid fa-globe"></i>
-            <span>{{ isArabic() ? "EN" : "AR" }}</span>
           </button>
         </div>
       </div>

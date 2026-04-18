@@ -9,6 +9,8 @@ import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { LanguageService } from './core/services/language.service';
 import { AuthRepositoryImpl } from './features/auth/data/repositories_impl/auth-repo-impl';
 import { AuthRepo } from './features/auth/domain/repositories/auth.repo';
+import { AuthFacade } from './features/auth/presentation/facades/auth.facade';
+import { firstValueFrom } from 'rxjs';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,8 +27,12 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(() => {
       return inject(LanguageService).init();
     }),
+    provideAppInitializer(() => {
+      const authFacade = inject(AuthFacade);
+      return firstValueFrom(authFacade.restoreSession());
+    }),
 
-        {
+    {
       provide: AuthRepo,
       useClass: AuthRepositoryImpl
     }

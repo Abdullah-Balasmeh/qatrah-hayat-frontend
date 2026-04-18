@@ -95,18 +95,14 @@ loginStaff(
 
 
   logoutCitizen(redirectToLogin = true): void {
-    this.authTokenService.clear();
-    this.authUserStorageService.clear();
-    this.authStore.clear();
+  this.clearSession();
 
     if (redirectToLogin) {
       this.router.navigate(['/auth/login']);
     }
   }
     logoutStaff(redirectToLogin = true): void {
-    this.authTokenService.clear();
-    this.authUserStorageService.clear();
-    this.authStore.clear();
+    this.clearSession();
 
     if (redirectToLogin) {
       this.router.navigate(['/auth/staff-login']);
@@ -135,8 +131,7 @@ restoreSession(): Observable<boolean> {
     }),
     map(() => true),
     catchError(() => {
-      this.logoutCitizen(false);
-      this.logoutStaff(false);
+      this.clearSession();
       return of(false);
     }),
     finalize(() => {
@@ -144,6 +139,11 @@ restoreSession(): Observable<boolean> {
       this.authStore.setLoading(false);
     })
   );
+}
+private clearSession(): void {
+  this.authTokenService.clear();
+  this.authUserStorageService.clear();
+  this.authStore.clear();
 }
 
   private handleLoginSuccess(authUser: AuthUserModel): void {
@@ -176,36 +176,48 @@ restoreSession(): Observable<boolean> {
         queryParams: {
           sessionType: ScreeningSessionType.Registration,
           isForFemaleOnly: authUser.gender === GenderEnum.Female
-        }
+        },
+        replaceUrl: true
       });
       return;
     }
 
-    this.router.navigateByUrl(returnUrl || '/user/dashboard');
+    this.router.navigateByUrl(returnUrl || '/user/dashboard',{
+       replaceUrl: true
+    });
   }
 
 private redirectAfterStaffLogin(authUser: AuthUserModel): void {
   const roles = authUser.roles;
 
   if (roles.includes(UserRole.Admin)) {
-    this.router.navigateByUrl('/admin/dashboard');
+    this.router.navigateByUrl('/admin/dashboard' , {
+       replaceUrl: true
+    });
     return;
   }
 
   if (roles.includes(UserRole.BranchManager)) {
-    this.router.navigateByUrl('/branch-manager/dashboard');
+    this.router.navigateByUrl('/branch-manager/dashboard' , {
+       replaceUrl: true
+    });
     return;
   }
 
   if (roles.includes(UserRole.Employee)) {
-    this.router.navigateByUrl('/staff/dashboard');
+    this.router.navigateByUrl('/staff/dashboard' , {
+       replaceUrl: true
+    });
     return;
   }
 
   if (roles.includes(UserRole.Doctor)) {
-    this.router.navigateByUrl('/doctor/dashboard');
+    this.router.navigateByUrl('/doctor/dashboard' , {
+       replaceUrl: true
+    });
     return;
   }
+   this.router.navigateByUrl('/unauthorized', { replaceUrl: true });
 }
 
 private mapLoginErrorToMessage(error: Failure): string {

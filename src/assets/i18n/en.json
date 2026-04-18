@@ -101,6 +101,22 @@
   "SIGNUP_BUTTON": "Create Account",
   "SIGNUP_PAGE_FOOTER_TEXT": "Already have an account?",
   "SIGNUP_PAGE_FOOTER_LINK_TEXT": "Login"
+  },
+
+  "Admin-Keys":{
+    "DASHBOARD": "Dashboard",
+    "USERS": "Users",
+    "HOSPITALS": "Hospitals",
+    "CAMPAIGNS": "Campaigns",
+    "BRANCHES": "Branches",
+    "MAIN": "Main",
+    "MY_PROFILE": "My Profile",
+    "SERVICES": "Services",
+    "REPORTS": "Reports",
+    "NOTIFICATIONS": "Notifications",
+    "SETTINGS": "Settings",
+    "LOGOUT": "Logout"
+
   }
 
 }

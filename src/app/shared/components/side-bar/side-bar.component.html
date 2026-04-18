@@ -1,0 +1,53 @@
+<aside
+  class="user-sidebar"
+  [class.open]="isOpen"
+  [class.rtl]="isArabic"
+  [class.ltr]="!isArabic"
+>
+  <div class="sidebar-header">
+    <div class="sidebar-user">
+      <div class="avatar">
+        {{
+          getUserAvatar(
+            isArabic
+              ? authFacade.currentUser()?.fullNameAr
+              : authFacade.currentUser()?.fullNameEn
+          )
+        }}
+      </div>
+      <div class="user-info">
+        <h6>
+          {{
+            isArabic
+              ? authFacade.currentUser()?.fullNameAr
+              : authFacade.currentUser()?.fullNameEn
+          }}
+        </h6>
+      </div>
+    </div>
+
+    <button class="close-btn d-lg-none" (click)="close()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+   @for (item of items; track item.sectionTitle) {
+    <div class="sidebar-section">
+      <p class="section-title">{{ item.sectionTitle | translate }}</p>
+      @for (sectionItem of item.sectionItems; track sectionItem.labelKey) {
+        <a routerLink="{{ sectionItem.routerLink }}" routerLinkActive="active" (click)="close()">
+          <i class="fa-solid {{ sectionItem.icon }}"></i>
+          <span>{{ sectionItem.labelKey | translate }}</span>
+        </a>
+      }
+    </div>
+   }
+
+
+  <div class="sidebar-footer">
+    <button class="logout-btn" (click)="onLogout()">
+      <i class="fa-solid fa-right-from-bracket"></i>
+      <span>{{ "Admin-Keys.LOGOUT" | translate }}</span>
+    </button>
+  </div>
+</aside>

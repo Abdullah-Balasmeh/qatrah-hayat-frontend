@@ -25,7 +25,7 @@
 .header-link {
   position: relative;
   display: inline-block;
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semi-bold);
   color: var(--primary-color-text);
   padding: 0.5rem 0.75rem;
@@ -49,7 +49,7 @@
 
 .header-link:hover {
   color: var(--primary-color);
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   transform: translateY(-2px);
 }
@@ -62,7 +62,7 @@
 
 .header-link.active {
   color: var(--primary-color);
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
 }
 
