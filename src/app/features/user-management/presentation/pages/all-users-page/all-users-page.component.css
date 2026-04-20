@@ -1,0 +1,33 @@
+.users-management-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem;
+  background: var(--surface-ground);
+}
+
+.content-card {
+  background-color: var(--surface-card);
+  border-radius: 1.5rem;
+  box-shadow: var(--box-shadow-card);
+  padding: 1.3rem;
+}
+.alert-error {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-radius: 1rem;
+  padding: 0.9rem 1rem;
+  font-weight: var(--font-weight-semi-bold);
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 992px) {
+  .users-management-page {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-card {
+    padding: 1rem;
+  }
+}

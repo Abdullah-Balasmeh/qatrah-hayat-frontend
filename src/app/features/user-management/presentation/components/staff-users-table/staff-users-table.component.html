@@ -1,0 +1,108 @@
+<div class="table-wrapper">
+  <table class="users-table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Contact</th>
+        <th>Role</th>
+        <th>Branch / Hospital</th>
+        <th>Status</th>
+        <th class="actions-header">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (user of users(); track user.userId) {
+        <tr>
+          <td data-label="User">
+            <div class="user-cell">
+              <div class="avatar">
+                {{ user.fullNameEn.charAt(0) }}
+              </div>
+
+              <div>
+                <strong>{{ user.fullNameEn }}</strong>
+                <span>{{ user.fullNameAr }}</span>
+                <small>ID: {{ user.nationalId }}</small>
+              </div>
+            </div>
+          </td>
+
+          <td data-label="Contact">
+            <div class="stacked-text">
+              <span>{{ user.email }}</span>
+              <small>{{ user.phoneNumber }}</small>
+            </div>
+          </td>
+
+          <td data-label="Role">
+            <div class="badges-list">
+              @for (role of user.roles; track role) {
+                <app-role-badge [role]="role"></app-role-badge>
+              }
+            </div>
+          </td>
+
+          <td data-label="Branch / Hospital">
+            <div class="stacked-text">
+              <span>{{ user.branchNameEn || 'No Branch' }}</span>
+              <small>{{ user.hospitalNameEn || 'No Hospital' }}</small>
+            </div>
+          </td>
+
+          <td data-label="Status">
+            <app-user-status-badge [isActive]="user.isActive"></app-user-status-badge>
+          </td>
+
+          <td data-label="Actions">
+            <div class="actions">
+              <a class="icon-btn view" [routerLink]="['staff', user.userId]">
+                <i class="fa-solid fa-eye"></i>
+              </a>
+
+              <a class="icon-btn edit" [routerLink]="['staff', user.userId, 'edit']">
+                <i class="fa-solid fa-pen"></i>
+              </a>
+
+              @if (user.isActive) {
+                <button
+                  type="button"
+                  class="icon-btn deactivate"
+                  (click)="deactivateClicked.emit(user.userId)"
+                >
+                  <i class="fa-solid fa-user-slash"></i>
+                </button>
+              } @else {
+                <button
+                  type="button"
+                  class="icon-btn activate"
+                  (click)="activateClicked.emit(user.userId)"
+                >
+                  <i class="fa-solid fa-user-check"></i>
+                </button>
+              }
+
+              <button
+                type="button"
+                class="icon-btn delete"
+                (click)="deleteClicked.emit(user.userId)"
+              >
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="6">
+            <div class="empty-state">
+              <i class="fa-solid fa-user-slash"></i>
+              <h3>No staff users found</h3>
+              <p>Try changing the search term or filters.</p>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

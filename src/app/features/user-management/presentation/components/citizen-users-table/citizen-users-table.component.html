@@ -1,0 +1,109 @@
+<div class="table-wrapper">
+  <table class="users-table">
+    <thead>
+      <tr>
+        <th>Citizen</th>
+        <th>Contact</th>
+        <th>Blood Type</th>
+        <th>Donations</th>
+        <th>Status</th>
+        <th class="actions-header">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (user of users(); track user.userId) {
+        <tr>
+          <td data-label="Citizen">
+            <div class="user-cell">
+              <div class="avatar">
+                {{ user.fullNameEn.charAt(0) }}
+              </div>
+
+              <div>
+                <strong>{{ user.fullNameEn }}</strong>
+                <span>{{ user.fullNameAr }}</span>
+                <small>ID: {{ user.nationalId }}</small>
+              </div>
+            </div>
+          </td>
+
+          <td data-label="Contact">
+            <div class="stacked-text">
+              <span>{{ user.email }}</span>
+              <small>{{ user.phoneNumber }}</small>
+            </div>
+          </td>
+
+          <td data-label="Blood Type">
+            <span class="blood-type">
+              {{ getBloodTypeLabel(user.bloodType) }}
+            </span>
+          </td>
+
+          <td data-label="Donations">
+            <div class="stacked-text">
+              <span>{{ user.donationCount }} donations</span>
+              <small>
+                Next:
+                {{ user.nextEligibleDate ? (user.nextEligibleDate | date: 'mediumDate') : 'Not set' }}
+              </small>
+            </div>
+          </td>
+
+          <td data-label="Status">
+            <app-user-status-badge [isActive]="user.isActive"></app-user-status-badge>
+          </td>
+
+          <td data-label="Actions">
+            <div class="actions">
+              <a class="icon-btn view" [routerLink]="['citizens', user.userId]">
+                <i class="fa-solid fa-eye"></i>
+              </a>
+
+              <a class="icon-btn edit" [routerLink]="['citizens', user.userId, 'edit']">
+                <i class="fa-solid fa-pen"></i>
+              </a>
+
+              @if (user.isActive) {
+                <button
+                  type="button"
+                  class="icon-btn deactivate"
+                  (click)="deactivateClicked.emit(user.userId)"
+                >
+                  <i class="fa-solid fa-user-slash"></i>
+                </button>
+              } @else {
+                <button
+                  type="button"
+                  class="icon-btn activate"
+                  (click)="activateClicked.emit(user.userId)"
+                >
+                  <i class="fa-solid fa-user-check"></i>
+                </button>
+              }
+
+              <button
+                type="button"
+                class="icon-btn delete"
+                (click)="deleteClicked.emit(user.userId)"
+              >
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="6">
+            <div class="empty-state">
+              <i class="fa-solid fa-user-slash"></i>
+              <h3>No citizens found</h3>
+              <p>Try changing the search term or filters.</p>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

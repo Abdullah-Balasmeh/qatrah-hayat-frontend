@@ -1,0 +1,37 @@
+<div class="pagination-row">
+  <p>
+    Showing
+    <strong>{{ shownFrom() }}</strong>
+    to
+    <strong>{{ shownTo() }}</strong>
+    of
+    <strong>{{ totalCount() }}</strong>
+    results
+  </p>
+
+  <div class="pagination-actions">
+    <button
+      type="button"
+      class="page-btn"
+      [disabled]="pageNumber() <= 1"
+      (click)="previousClicked.emit()"
+    >
+      <i class="fa-solid fa-chevron-left"></i>
+      Previous
+    </button>
+
+    <span class="page-number">
+      Page {{ pageNumber() }} of {{ totalPages() || 1 }}
+    </span>
+
+    <button
+      type="button"
+      class="page-btn"
+      [disabled]="pageNumber() >= totalPages()"
+      (click)="nextClicked.emit()"
+    >
+      Next
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
+</div>

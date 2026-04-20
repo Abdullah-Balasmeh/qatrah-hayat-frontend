@@ -116,6 +116,21 @@
     "NOTIFICATIONS": "الإشعارات",
     "REPORTS": "التقارير",
     "SETTINGS": "الإعدادات",
-    "LOGOUT": "تسجيل الخروج"
+    "LOGOUT": "تسجيل الخروج",
+    "USER_MANAGEMENT": "إدارة المستخدمين",
+    "USER_MANAGEMENT_DESCRIPTION":"إدارة الموظفين والمواطنين، ومراجعة حالة الحسابات، والتحكم في صلاحيات المستخدمين.",
+    "FILTER": "تصفية",
+    "ADD_STAFF": "إضافة موظف",
+    "TOTAL_USERS": "إجمالي المستخدمين",
+    "TOTAL_STAFFS": "إجمالي الموظفين",
+    "TOTAL_CITIZENS": "إجمالي المواطنين",
+    "LAST_UPDATE": "آخر تحديث",
+    "STAFF": "الموظفين",
+    "CITIZENS": "المواطنين",
+    "SEARCH_PLACEHOLDER": "بحث بالاسم أو البريد الإلكتروني أو الرقم الوطني...",
+    "FILTER_BY_STATUS": "تصفية حسب الحالة",
+    "ALL_STATUS": "جميع الحالات",
+    "ACTIVE_ONLY": "الحالات النشطة فقط",
+    "INACTIVE_ONLY": "الحالات غير النشطة فقط"
   }
 }

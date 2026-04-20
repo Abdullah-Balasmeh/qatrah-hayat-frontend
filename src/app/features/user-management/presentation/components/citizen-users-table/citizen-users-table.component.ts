@@ -1,0 +1,30 @@
+import { Component, input, output } from '@angular/core';
+import { CitizenInfoResponseModel } from '../../../domain/models/citizen-info-response.model';
+import { UserStatusBadgeComponent } from '../user-status-badge/user-status-badge.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { RouterLink } from '@angular/router';
+import { DatePipe } from '@angular/common';
+import { BloodTypeEnum } from '../../../../../core/enums/blood-type-enum';
+
+@Component({
+  selector: 'app-citizen-users-table',
+  standalone: true,
+  imports: [UserStatusBadgeComponent, TranslateModule, RouterLink, DatePipe],
+  templateUrl: './citizen-users-table.component.html',
+  styleUrl: './citizen-users-table.component.css'
+})
+export class CitizenUsersTableComponent {
+  readonly users = input.required<CitizenInfoResponseModel[]>();
+
+  readonly bloodTypeLabels = input.required<
+    { value: BloodTypeEnum; label: string }[]
+  >();
+
+  readonly activateClicked = output<number>();
+  readonly deactivateClicked = output<number>();
+  readonly deleteClicked = output<number>();
+
+  getBloodTypeLabel(bloodType: BloodTypeEnum): string {
+    return this.bloodTypeLabels().find(option => option.value === bloodType)?.label ?? '—';
+  }
+}

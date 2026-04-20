@@ -115,7 +115,22 @@
     "REPORTS": "Reports",
     "NOTIFICATIONS": "Notifications",
     "SETTINGS": "Settings",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "USER_MANAGEMENT": "User Management",
+    "USER_MANAGEMENT_DESCRIPTION": "Manage staff and citizens, review account status, and control user access.",
+    "FILTER": "Filter",
+    "ADD_STAFF": "Add Staff",
+    "TOTAL_USERS": "Total Users",
+    "TOTAL_STAFFS": "Total Staffs",
+    "TOTAL_CITIZENS": "Total Citizens",
+    "LAST_UPDATE": "Last Update",
+    "STAFF": "Staff",
+    "CITIZENS": "Citizens",
+    "SEARCH_PLACEHOLDER": "Search by name , email or national ID...",
+    "FILTER_BY_STATUS": "Filter by Status",
+    "ALL_STATUS": "All Status",
+    "ACTIVE_ONLY": "Active Only",
+    "INACTIVE_ONLY": "Inactive Only"
 
   }
 

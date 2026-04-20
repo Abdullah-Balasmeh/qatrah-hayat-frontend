@@ -1,0 +1,22 @@
+<div class="filters-row">
+<div class="search-bar">
+    <app-search-bar
+    class="search-control"
+    [searchValue]="searchValue()"
+    (searchValueChange)="onSearchValueChange($event)"
+    (searchSubmitted)="onSearch()"
+    inputId="users-search"
+    autocomplete="off"
+    [placeholder]="'Admin-Keys.SEARCH_PLACEHOLDER' | translate"
+  ></app-search-bar>
+</div>
+
+  <app-filter-button
+    [options]="statusOptions"
+    [selectedValue]="selectedStatus()"
+    [placeholder]="'Admin-Keys.FILTER_BY_STATUS'"
+    [prefixIcon]="'fa-solid fa-filter'"
+    [translateLabels]="true"
+    (valueChanged)="onStatusChange($event)"
+  ></app-filter-button>
+</div>
