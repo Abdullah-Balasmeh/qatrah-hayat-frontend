@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { StaffInfoResponseModel } from '../../domain/models/staff-info-response.model';
 import { CitizenInfoResponseModel } from '../../domain/models/citizen-info-response.model';
 import { UserManagementQueryModel } from '../../domain/models/user-management-query.model';
-import { AddStaffRequestModel } from '../../domain/models/add-staff-request.model';
 import { UpdateStaffRequestModel } from '../../domain/models/update-staff-request.model';
 import { UpdateCitizenRequestModel } from '../../domain/models/update-citizen-request.model';
 
@@ -13,6 +12,9 @@ import { PagedResultModel } from '../../../../core/models/paged-result.model';
 import { ApiService } from '../../../../core/services/api.service';
 import { API_ENDPOINTS } from '../../../../core/constants/api.constants';
 import { UsersStatisticsResponseModel } from '../../domain/models/users-statistics-response.model';
+import { CitizenLookupResponseModel } from '../../domain/models/citizen-lookup-response.model';
+import { CreateStaffFromRegistryRequestModel } from '../../domain/models/create-staff-from-registry-request.model';
+import { PromoteCitizenToStaffRequestModel } from '../../domain/models/promote-citizen-to-staff-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,16 +36,48 @@ export class UsersManagementApiService {
   }
 
   getStaffById(userId: number): Observable<StaffInfoResponseModel> {
-    const url = this.buildUrl(this.endpoints.getStaffByIdEndpoint, userId);
+    const url = this.buildUserUrl(this.endpoints.getStaffByIdEndpoint, userId);
 
     return this.api.get<StaffInfoResponseModel>(url);
   }
 
-  addStaff(
-    request: AddStaffRequestModel
+  lookupCitizenByNationalId(
+    nationalId: string
+  ): Observable<CitizenLookupResponseModel> {
+    const url = this.endpoints.lookupCitizenEndpoint.replace(
+      '{nationalId}',
+      nationalId
+    );
+
+    return this.api.get<CitizenLookupResponseModel>(url);
+  }
+
+  createStaffFromNationalRegistry(
+    request: CreateStaffFromRegistryRequestModel
   ): Observable<StaffInfoResponseModel> {
-    return this.api.post<AddStaffRequestModel, StaffInfoResponseModel>(
-      this.endpoints.addStaffEndpoint,
+    return this.api.post<
+      CreateStaffFromRegistryRequestModel,
+      StaffInfoResponseModel
+    >(
+      this.endpoints.createStaffFromNationalRegistryEndpoint,
+      request
+    );
+  }
+
+  promoteCitizenToStaff(
+    userId: number,
+    request: PromoteCitizenToStaffRequestModel
+  ): Observable<StaffInfoResponseModel> {
+    const url = this.buildUserUrl(
+      this.endpoints.promoteCitizenToStaffEndpoint,
+      userId
+    );
+
+    return this.api.post<
+      PromoteCitizenToStaffRequestModel,
+      StaffInfoResponseModel
+    >(
+      url,
       request
     );
   }
@@ -52,7 +86,7 @@ export class UsersManagementApiService {
     userId: number,
     request: UpdateStaffRequestModel
   ): Observable<StaffInfoResponseModel> {
-    const url = this.buildUrl(this.endpoints.updateStaffEndpoint, userId);
+    const url = this.buildUserUrl(this.endpoints.updateStaffEndpoint, userId);
 
     return this.api.put<UpdateStaffRequestModel, StaffInfoResponseModel>(
       url,
@@ -72,7 +106,7 @@ export class UsersManagementApiService {
   }
 
   getCitizenById(userId: number): Observable<CitizenInfoResponseModel> {
-    const url = this.buildUrl(this.endpoints.getCitizenByIdEndpoint, userId);
+    const url = this.buildUserUrl(this.endpoints.getCitizenByIdEndpoint, userId);
 
     return this.api.get<CitizenInfoResponseModel>(url);
   }
@@ -81,7 +115,7 @@ export class UsersManagementApiService {
     userId: number,
     request: UpdateCitizenRequestModel
   ): Observable<CitizenInfoResponseModel> {
-    const url = this.buildUrl(this.endpoints.updateCitizenEndpoint, userId);
+    const url = this.buildUserUrl(this.endpoints.updateCitizenEndpoint, userId);
 
     return this.api.put<UpdateCitizenRequestModel, CitizenInfoResponseModel>(
       url,
@@ -90,34 +124,30 @@ export class UsersManagementApiService {
   }
 
   activateUser(userId: number): Observable<void> {
-    const url = this.buildUrl(this.endpoints.activateUserEndpoint, userId);
+    const url = this.buildUserUrl(this.endpoints.activateUserEndpoint, userId);
 
-    return this.api.patch<Record<string, never>, void>(
-      url,
-      {}
-    );
+    return this.api.patch<Record<string, never>, void>(url, {});
   }
 
   deactivateUser(userId: number): Observable<void> {
-    const url = this.buildUrl(this.endpoints.deactivateUserEndpoint, userId);
+    const url = this.buildUserUrl(this.endpoints.deactivateUserEndpoint, userId);
 
-    return this.api.patch<Record<string, never>, void>(
-      url,
-      {}
-    );
+    return this.api.patch<Record<string, never>, void>(url, {});
   }
 
   softDeleteUser(userId: number): Observable<void> {
-    const url = this.buildUrl(this.endpoints.softDeleteUserEndpoint, userId);
+    const url = this.buildUserUrl(this.endpoints.softDeleteUserEndpoint, userId);
 
     return this.api.delete<void>(url);
   }
 
   getUsersStatistics(): Observable<UsersStatisticsResponseModel> {
-    return this.api.get<UsersStatisticsResponseModel>(this.endpoints.getUsersStatisticsEndpoint);
+    return this.api.get<UsersStatisticsResponseModel>(
+      this.endpoints.getUsersStatisticsEndpoint
+    );
   }
 
-  private buildUrl(endpoint: string, userId: number): string {
+  private buildUserUrl(endpoint: string, userId: number): string {
     return endpoint.replace('{userId}', userId.toString());
   }
 

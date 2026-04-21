@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { finalize } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 
 import {
   UsersManagementStore,
@@ -8,7 +8,10 @@ import {
 import { UserManagementQueryModel } from '../../domain/models/user-management-query.model';
 import { UsersManagementRepositoryImpl } from '../../data/repositories_impl/users-management.repository.impl';
 import { Router } from '@angular/router';
-import { AddStaffRequestModel } from '../../domain/models/add-staff-request.model';
+import { CreateStaffFromRegistryRequestModel } from '../../domain/models/create-staff-from-registry-request.model';
+import { PromoteCitizenToStaffRequestModel } from '../../domain/models/promote-citizen-to-staff-request.model';
+import { StaffInfoResponseModel } from '../../domain/models/staff-info-response.model';
+import { CitizenLookupResponseModel } from '../../domain/models/citizen-lookup-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -47,6 +50,45 @@ export class UsersManagementFacade {
     this.loadUsers();
   }
 
+  lookupCitizenByNationalId(
+    nationalId: string
+  ): Observable<CitizenLookupResponseModel> {
+    this.store.loading.set(true);
+    this.store.errorMessage.set(null);
+
+    return this.repository.lookupCitizenByNationalId(nationalId).pipe(
+      finalize(() => this.store.loading.set(false))
+    );
+  }
+
+  createStaffFromNationalRegistry(
+    request: CreateStaffFromRegistryRequestModel
+  ): Observable<StaffInfoResponseModel> {
+    this.store.loading.set(true);
+    this.store.errorMessage.set(null);
+
+    return this.repository.createStaffFromNationalRegistry(request).pipe(
+      finalize(() => this.store.loading.set(false))
+    );
+  }
+
+  promoteCitizenToStaff(
+    userId: number,
+    request: PromoteCitizenToStaffRequestModel
+  ): Observable<StaffInfoResponseModel> {
+    this.store.loading.set(true);
+    this.store.errorMessage.set(null);
+
+    return this.repository.promoteCitizenToStaff(userId, request).pipe(
+      finalize(() => this.store.loading.set(false))
+    );
+  }
+
+  navigateToUsersManagement(): void {
+    this.loadUsersStatistics();
+    this.router.navigate(['/admin/users']);
+  }
+
   loadUsersStatistics(): void {
     this.repository.getUsersStatistics().subscribe({
       next: (statistics) => {
@@ -57,6 +99,7 @@ export class UsersManagementFacade {
       },
     });
   }
+
   loadUsers(): void {
     const query = this.buildQuery();
 
@@ -100,6 +143,7 @@ export class UsersManagementFacade {
 
   softDeleteUser(userId: number): void {
     this.store.loading.set(true);
+
     this.repository
       .softDeleteUser(userId)
       .pipe(finalize(() => this.store.loading.set(false)))
@@ -165,24 +209,5 @@ export class UsersManagementFacade {
       pageNumber: this.store.pageNumber(),
       pageSize: this.store.pageSize(),
     };
-  }
-  addStaff(request: AddStaffRequestModel): void {
-    this.store.loading.set(true);
-    this.store.errorMessage.set(null);
-
-    this.repository
-      .addStaff(request)
-      .pipe(finalize(() => this.store.loading.set(false)))
-      .subscribe({
-        next: () => {
-          this.loadUsersStatistics();
-          this.router.navigate(['/admin/users-management']);
-        },
-        error: (error) => {
-          this.store.errorMessage.set(
-            error?.message ?? 'Failed to add staff user.',
-          );
-        },
-      });
   }
 }

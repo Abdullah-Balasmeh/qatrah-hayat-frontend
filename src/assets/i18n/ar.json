@@ -48,6 +48,10 @@
     "SINGLE": "أعزب / عزباء",
     "MARRIED": "متزوج / متزوجة"
   },
+  "Gender-Keys": {
+    "MALE": "ذكر",
+    "FEMALE": "أنثى"
+  },
   "Signup-Keys": {
     "SIGNUP_VISUAL_TITLE": "ابدأ رحلتك مع قطرة حياة",
     "SIGNUP_VISUAL_SUBTITLE": "أنشئ حسابك الآن وانضم إلى مجتمع يساهم في دعم المحتاجين للدم بطريقة منظمة وآمنة وسهلة الاستخدام.",
@@ -122,7 +126,7 @@
     "LAST_UPDATE": "آخر تحديث",
     "STAFF": "الموظفين",
     "CITIZENS": "المواطنين",
-    "SEARCH_PLACEHOLDER": "بحث بالاسم أو البريد الإلكتروني أو الرقم الوطني...",
+    "SEARCH_PLACEHOLDER": "بحث بالاسم أو الرقم الوطني...",
     "FILTER_BY_STATUS": "تصفية حسب الحالة",
     "ALL_STATUS": "جميع الحالات",
     "ACTIVE_ONLY": "الحالات النشطة فقط",
@@ -160,6 +164,30 @@
     "CONFIRM_ACTIVATE_USER_MESSAGE": "هل تريد تفعيل هذا المستخدم؟ سيتمكن من استخدام حسابه مرة أخرى.",
     "CONFIRM_ACTION_TITLE": "تأكيد العملية",
     "CONFIRM_ACTION_MESSAGE": "هل أنت متأكد من تنفيذ هذه العملية؟"
+  },
+  "Add-Staff-Keys": {
+    "ADD_STAFF": "إضافة موظف",
+    "ADD_STAFF_DESCRIPTION": "إنشاء حساب موظف جديد وتعيين الدور والفرع أو المستشفى المناسبين.",
+    "BACK_TO_USERS": "العودة إلى المستخدمين",
+    "NEW_USER_STAFF_CREATION_MESSAGE": "هذا الرقم الوطني لا يملك حسابًا في النظام. سيتم إنشاء حساب مواطن جديد مع إضافة الدور الوظيفي.",
+    "EXISTING_CITIZEN_PROMOTION_MESSAGE": "هذا المواطن لديه حساب مسبقًا في النظام. سيتم فقط إضافة الدور الوظيفي وربطه بالفرع أو المستشفى.",
+    "USER_ALREADY_STAFF": "هذا المستخدم موظف مسبقًا ولا يمكن إضافته مرة أخرى.",
+    "ACCOUNT_INFORMATION": "معلومات الحساب",
+    "STAFF_INFORMATION": "المعلومات الوظيفية",
+    "STAFF_ROLE": "الدور الوظيفي",
+    "SELECT_STAFF_ROLE": "اختر الدور الوظيفي",
+    "STAFF_ROLE_REQUIRED": "الدور الوظيفي مطلوب.",
+    "HOSPITAL": "المستشفى",
+    "SELECT_HOSPITAL": "اختر المستشفى",
+    "HOSPITAL_REQUIRED": "المستشفى مطلوب للمستخدم الطبيب.",
+    "BRANCH": "الفرع",
+    "SELECT_BRANCH": "اختر الفرع",
+    "BRANCH_REQUIRED": "الفرع مطلوب للموظف ومدير الفرع.",
+    "ADMIN_DOES_NOT_REQUIRE_LOCATION": "المسؤول لا يحتاج إلى ربطه بفرع أو مستشفى.",
+    "STAFF_ADDED_SUCCESSFULLY": "تمت إضافة الموظف بنجاح.",
+    "FAILED_TO_ADD_STAFF": "فشلت عملية إضافة الموظف.",
+    "FAILED_TO_PROMOTE_CITIZEN": "فشلت عملية ترقية المواطن إلى موظف.",
+    "USER_ID_NOT_FOUND": "لم يتم العثور على رقم المستخدم الخاص بالمواطن."
   },
   "Loading-Keys": {
     "LOADING": "جار التحميل"
