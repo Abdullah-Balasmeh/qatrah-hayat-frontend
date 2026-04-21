@@ -4,6 +4,6 @@ export enum MaritalStatusEnum {
 }
 
 export const MARITAL_STATUS_OPTIONS = [
-  { value: MaritalStatusEnum.Single, label: 'Single' },
-  { value: MaritalStatusEnum.Married, label: 'Married' }
+  { value: MaritalStatusEnum.Single, label: 'Marital-Status-Keys.SINGLE' },
+  { value: MaritalStatusEnum.Married, label: 'Marital-Status-Keys.MARRIED' }
 ];

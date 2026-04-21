@@ -1,24 +1,45 @@
 {
-  "Landing-Page-keys": "Landing-Page-keys",
-  "Landing-Header-Keys": {
-    "HOME": "Home",
-    "DONATION_REQUESTS": "Donation Requests",
-    "CAMPAIGNS": "Campaigns",
-    "ABOUT_US": "About Us",
-    "CONTACT_US": "Contact Us",
-    "LOGIN": "Login",
-    "CREATE_ACCOUNT": "Create Account"
+  "Shared-Keys": "Shared-Keys",
+  "Marital-Status-Keys": {
+    "SINGLE_MALE": "Single",
+    "MARRIED": "Married"
   },
-  "Footer-Keys": {
-    "ABOUT_US_FOOTER": "Every drop of blood makes a difference. Join us in our mission to provide a better life for all and ensure that blood reaches those in need at every moment.",
-    "QUICK_LINKS": "Quick Links",
-    "LEGAL_LINKS": "Legal Links",
-    "PRIVACY_POLICY": "Privacy Policy",
-    "TERMS_OF_USE": "Terms of Use",
-    "CONTACT_US": "Contact Us",
-    "FOOTER_PHONE": "+962 7 9000 0000",
-    "FOOTER_LOCATION": "Amman, Jordan",
-    "FOOTER_COPYRIGHT": "© 2026 Qatrah Hayat. All rights reserved."
+  "Gender-Keys": {
+    "MALE": "Male",
+    "FEMALE": "Female"
+  },
+  "Blood-Type-Status-Keys": {
+    "PROVISIONAL": "Provisional",
+    "CONFIRMED": "Confirmed"
+  },
+  "Eligibility-Status-Keys": {
+    "ELIGIBLE": "Eligible",
+    "TEMP_DEFERRED": "Temporarily Deferred",
+    "PERM_DEFERRED": "Permanently Deferred"
+  },
+  "Loading-Keys": {
+    "LOADING": "Loading"
+  },
+  "Role-Keys": {
+    "ROLE_CITIZEN": "Citizen",
+    "ROLE_DOCTOR": "Doctor",
+    "ROLE_EMPLOYEE": "Employee",
+    "ROLE_BRANCH_MANAGER": "Branch Manager",
+    "ROLE_ADMIN": "Admin"
+  },
+  "PAGINATION_KEYS": {
+    "SHOWING": "Showing",
+    "TO": "to",
+    "OF": "of",
+    "RESULTS": "results",
+    "PREVIOUS": "Previous",
+    "NEXT": "Next",
+    "PAGE": "Page",
+    "PAGE_OF": "Page of"
+  },
+  "COMMON": {
+    "CANCEL": "Cancel",
+    "CONFIRM": "Confirm"
   },
   "Auth-Keys": "Auth-Keys",
   "Login-Keys": {
@@ -43,14 +64,6 @@
     "INVALID_CREDENTIALS": "Invalid National ID or Password.",
     "INACTIVE_ACCOUNT": "This account is inactive. Please contact support.",
     "GENERIC_ERROR_LOGIN": "An error occurred while logging in. Please try again later."
-  },
-  "Marital-Status-Keys": {
-    "SINGLE_MALE": "Single",
-    "MARRIED": "Married"
-  },
-  "Gender-Keys": {
-    "MALE": "Male",
-    "FEMALE": "Female"
   },
   "Signup-Keys": {
     "SIGNUP_VISUAL_TITLE": "Start Your Journey with Qatrah Hayat",
@@ -108,6 +121,27 @@
     "EMAIL_ALREADY_REGISTERED": "Email is already registered",
     "NATIONAL_ID_ALREADY_REGISTERED": "National ID is already registered",
     "EMAIL_NOT_FOUND": "Email not found"
+  },
+  "Landing-Page-keys": "Landing-Page-keys",
+  "Landing-Header-Keys": {
+    "HOME": "Home",
+    "DONATION_REQUESTS": "Donation Requests",
+    "CAMPAIGNS": "Campaigns",
+    "ABOUT_US": "About Us",
+    "CONTACT_US": "Contact Us",
+    "LOGIN": "Login",
+    "CREATE_ACCOUNT": "Create Account"
+  },
+  "Footer-Keys": {
+    "ABOUT_US_FOOTER": "Every drop of blood makes a difference. Join us in our mission to provide a better life for all and ensure that blood reaches those in need at every moment.",
+    "QUICK_LINKS": "Quick Links",
+    "LEGAL_LINKS": "Legal Links",
+    "PRIVACY_POLICY": "Privacy Policy",
+    "TERMS_OF_USE": "Terms of Use",
+    "CONTACT_US": "Contact Us",
+    "FOOTER_PHONE": "+962 7 9000 0000",
+    "FOOTER_LOCATION": "Amman, Jordan",
+    "FOOTER_COPYRIGHT": "© 2026 Qatrah Hayat. All rights reserved."
   },
   "Admin-Keys": {
     "DASHBOARD": "Dashboard",
@@ -195,29 +229,5 @@
     "FAILED_TO_ADD_STAFF": "Failed to add staff user.",
     "FAILED_TO_PROMOTE_CITIZEN": "Failed to promote citizen to staff.",
     "USER_ID_NOT_FOUND": "Citizen user ID was not found."
-  },
-  "Loading-Keys": {
-    "LOADING": "Loading"
-  },
-  "Role-Keys": {
-    "ROLE_CITIZEN": "Citizen",
-    "ROLE_DOCTOR": "Doctor",
-    "ROLE_EMPLOYEE": "Employee",
-    "ROLE_BRANCH_MANAGER": "Branch Manager",
-    "ROLE_ADMIN": "Admin"
-  },
-  "PAGINATION_KEYS": {
-    "SHOWING": "Showing",
-    "TO": "to",
-    "OF": "of",
-    "RESULTS": "results",
-    "PREVIOUS": "Previous",
-    "NEXT": "Next",
-    "PAGE": "Page",
-    "PAGE_OF": "Page of"
-  },
-  "COMMON": {
-    "CANCEL": "Cancel",
-    "CONFIRM": "Confirm"
   }
 }

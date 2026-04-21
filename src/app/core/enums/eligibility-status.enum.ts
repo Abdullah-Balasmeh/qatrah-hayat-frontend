@@ -4,8 +4,9 @@ export enum EligibilityStatus {
   PermDeferred = 3
 }
 
-export const ELIGIBILITY_STATUS_LABELS: Record<EligibilityStatus, string> = {
-  [EligibilityStatus.Eligible]: 'Eligible',
-  [EligibilityStatus.TempDeferred]: 'Temporarily Deferred',
-  [EligibilityStatus.PermDeferred]: 'Permanently Deferred'
-};
+export const ELIGIBILITY_STATUS_OPTIONS = [
+  { value: EligibilityStatus.Eligible, label: 'Eligibility-Status-Keys.ELIGIBLE' },
+  { value: EligibilityStatus.TempDeferred, label: 'Eligibility-Status-Keys.TEMP_DEFERRED' },
+  { value: EligibilityStatus.PermDeferred, label: 'Eligibility-Status-Keys.PERM_DEFERRED' }
+];
+
