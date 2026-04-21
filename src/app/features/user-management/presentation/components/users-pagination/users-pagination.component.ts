@@ -1,8 +1,9 @@
 import { Component, input, output } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-users-pagination',
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './users-pagination.component.html',
   styleUrl: './users-pagination.component.css'
 })

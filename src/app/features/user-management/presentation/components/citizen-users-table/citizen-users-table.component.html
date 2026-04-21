@@ -2,73 +2,84 @@
   <table class="users-table">
     <thead>
       <tr>
-        <th>Citizen</th>
-        <th>Contact</th>
-        <th>Blood Type</th>
-        <th>Donations</th>
-        <th>Status</th>
-        <th class="actions-header">Actions</th>
+        <th>{{ 'Admin-Keys.CITIZEN' | translate }}</th>
+        <th>{{ 'Admin-Keys.CONTACT' | translate }}</th>
+        <th>{{ 'Admin-Keys.BLOOD_TYPE' | translate }}</th>
+        <th>{{ 'Admin-Keys.DONATIONS' | translate }}</th>
+        <th>{{ 'Admin-Keys.STATUS' | translate }}</th>
+        <th class="actions-header">{{ 'Admin-Keys.ACTIONS' | translate }}</th>
       </tr>
     </thead>
 
     <tbody>
       @for (user of users(); track user.userId) {
         <tr>
-          <td data-label="Citizen">
+          <td [attr.data-label]="'Admin-Keys.CITIZEN' | translate">
             <div class="user-cell">
-              <div class="avatar">
-                {{ user.fullNameEn.charAt(0) }}
-              </div>
-
-              <div>
-                <strong>{{ user.fullNameEn }}</strong>
-                <span>{{ user.fullNameAr }}</span>
-                <small>ID: {{ user.nationalId }}</small>
+              <div class="user-info">
+                <strong>{{ isArabic() ? user.fullNameAr : user.fullNameEn }}</strong>
+                <span>{{ isArabic() ? user.fullNameEn : user.fullNameAr }}</span>
+                <small>
+                  {{ 'Admin-Keys.NATIONAL_ID' | translate }}:
+                  {{ user.nationalId }}
+                </small>
               </div>
             </div>
           </td>
 
-          <td data-label="Contact">
+          <td [attr.data-label]="'Admin-Keys.CONTACT' | translate">
             <div class="stacked-text">
               <span>{{ user.email }}</span>
               <small>{{ user.phoneNumber }}</small>
             </div>
           </td>
 
-          <td data-label="Blood Type">
+          <td [attr.data-label]="'Admin-Keys.BLOOD_TYPE' | translate">
             <span class="blood-type">
               {{ getBloodTypeLabel(user.bloodType) }}
             </span>
           </td>
 
-          <td data-label="Donations">
+          <td [attr.data-label]="'Admin-Keys.DONATIONS' | translate">
             <div class="stacked-text">
-              <span>{{ user.donationCount }} donations</span>
+              <span>
+                {{ 'Admin-Keys.DONATIONS_COUNT' | translate }} : {{ user.donationCount }}
+              </span>
+
               <small>
-                Next:
-                {{ user.nextEligibleDate ? (user.nextEligibleDate | date: 'mediumDate') : 'Not set' }}
+                {{ 'Admin-Keys.NEXT_ELIGIBLE_DATE' | translate }}:
+                {{ user.nextEligibleDate ? (user.nextEligibleDate | date: 'mediumDate') : ('Admin-Keys.NOT_SET' | translate) }}
               </small>
             </div>
           </td>
 
-          <td data-label="Status">
+          <td [attr.data-label]="'Admin-Keys.STATUS' | translate">
             <app-user-status-badge [isActive]="user.isActive"></app-user-status-badge>
           </td>
 
-          <td data-label="Actions">
+          <td [attr.data-label]="'Admin-Keys.ACTIONS' | translate">
             <div class="actions">
-              <a class="icon-btn view" [routerLink]="['citizens', user.userId]">
+              <a
+                class="icon-btn view"
+                [routerLink]="['citizens', user.userId]"
+                [title]="'Admin-Keys.VIEW' | translate"
+              >
                 <i class="fa-solid fa-eye"></i>
               </a>
 
-              <a class="icon-btn edit" [routerLink]="['citizens', user.userId, 'edit']">
-                <i class="fa-solid fa-pen"></i>
+              <a
+                class="icon-btn edit"
+                [routerLink]="['citizens', user.userId, 'edit']"
+                [title]="'Admin-Keys.EDIT' | translate"
+              >
+                <i class="fa-solid fa-pen-to-square"></i>
               </a>
 
               @if (user.isActive) {
                 <button
                   type="button"
                   class="icon-btn deactivate"
+                  [title]="'Admin-Keys.DEACTIVATE' | translate"
                   (click)="deactivateClicked.emit(user.userId)"
                 >
                   <i class="fa-solid fa-user-slash"></i>
@@ -77,6 +88,7 @@
                 <button
                   type="button"
                   class="icon-btn activate"
+                  [title]="'Admin-Keys.ACTIVATE' | translate"
                   (click)="activateClicked.emit(user.userId)"
                 >
                   <i class="fa-solid fa-user-check"></i>
@@ -86,6 +98,7 @@
               <button
                 type="button"
                 class="icon-btn delete"
+                [title]="'Admin-Keys.DELETE' | translate"
                 (click)="deleteClicked.emit(user.userId)"
               >
                 <i class="fa-solid fa-trash"></i>
@@ -94,12 +107,12 @@
           </td>
         </tr>
       } @empty {
-        <tr>
+        <tr class="empty-tr">
           <td colspan="6">
             <div class="empty-state">
               <i class="fa-solid fa-user-slash"></i>
-              <h3>No citizens found</h3>
-              <p>Try changing the search term or filters.</p>
+              <h3>{{ 'Admin-Keys.NO_CITIZENS_FOUND' | translate }}</h3>
+              <p>{{ 'Admin-Keys.NOT_FOUND_DESCRIPTION' | translate }}</p>
             </div>
           </td>
         </tr>

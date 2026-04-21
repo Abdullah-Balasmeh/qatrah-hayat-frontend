@@ -1,37 +1,40 @@
 <div class="pagination-row">
   <p>
-    Showing
+    {{ "PAGINATION_KEYS.SHOWING" | translate }}
     <strong>{{ shownFrom() }}</strong>
-    to
+    {{ "PAGINATION_KEYS.TO" | translate }}
     <strong>{{ shownTo() }}</strong>
-    of
+    {{ "PAGINATION_KEYS.OF" | translate }}
     <strong>{{ totalCount() }}</strong>
-    results
+    {{ "PAGINATION_KEYS.RESULTS" | translate }}
   </p>
 
   <div class="pagination-actions">
     <button
       type="button"
-      class="page-btn"
+      class="page-btn previous-btn"
       [disabled]="pageNumber() <= 1"
       (click)="previousClicked.emit()"
     >
-      <i class="fa-solid fa-chevron-left"></i>
-      Previous
+      <i class="fa-solid pagination-arrow"></i>
+      {{ "PAGINATION_KEYS.PREVIOUS" | translate }}
     </button>
 
     <span class="page-number">
-      Page {{ pageNumber() }} of {{ totalPages() || 1 }}
+      {{ "PAGINATION_KEYS.PAGE" | translate }}
+      {{ pageNumber() }}
+      {{ "PAGINATION_KEYS.OF" | translate }}
+      {{ totalPages() }}
     </span>
 
     <button
       type="button"
-      class="page-btn"
+      class="page-btn next-btn"
       [disabled]="pageNumber() >= totalPages()"
       (click)="nextClicked.emit()"
     >
-      Next
-      <i class="fa-solid fa-chevron-right"></i>
+      {{ "PAGINATION_KEYS.NEXT" | translate }}
+      <i class="fa-solid pagination-arrow"></i>
     </button>
   </div>
 </div>

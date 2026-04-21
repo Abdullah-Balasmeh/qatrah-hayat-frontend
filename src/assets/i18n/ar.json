@@ -140,12 +140,21 @@
     "EDIT": "تعديل",
     "ACTIVATE": "تفعيل",
     "DEACTIVATE": "تعطيل",
+    "ACTIVE": "نشط",
+    "INACTIVE": "غير نشط",
     "DELETE": "حذف",
     "NO_STAFF_FOUND": "لا يوجد موظفون",
-    "NO_STAFF_FOUND_DESCRIPTION": "جرّب تغيير البحث أو الفلاتر."
+    "NOT_FOUND_DESCRIPTION": "جرّب تغيير البحث أو الفلاتر.",
+    "CITIZEN": "مواطن",
+    "BLOOD_TYPE": "فصيلة الدم",
+    "DONATIONS": "التبرعات",
+    "DONATIONS_COUNT": "تبرع",
+    "NEXT_ELIGIBLE_DATE": "التالي",
+    "NOT_SET": "غير محدد",
+    "NO_CITIZENS_FOUND": "لا يوجد مواطنين"
   },
   "Loading-Keys": {
-    "LOADING": "جار التحميل..."
+    "LOADING": "جار التحميل"
   },
   "Role-Keys": {
     "ROLE_CITIZEN": "مواطن",
@@ -153,5 +162,15 @@
     "ROLE_EMPLOYEE": "موظف",
     "ROLE_BRANCH_MANAGER": "مدير فرع",
     "ROLE_ADMIN": "مسؤول النظام"
+  },
+  "PAGINATION_KEYS": {
+    "SHOWING": "أظهر",
+    "TO": "إلى",
+    "OF": "من",
+    "RESULTS": "النتائج",
+    "PREVIOUS": "السابق",
+    "NEXT": "التالي",
+    "PAGE": "صفحة",
+    "PAGE_OF": "صفحة من"
   }
 }

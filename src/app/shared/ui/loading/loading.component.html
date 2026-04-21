@@ -1,5 +1,4 @@
 <div class="loader-card">
-    <button class="loader-qh-primary" type="button" disabled>
       <span class="heartbeat-loader" aria-hidden="true">
         <svg viewBox="0 0 120 60" class="heartbeat-svg">
           <path
@@ -16,8 +15,13 @@
           />
         </svg>
       </span>
-
-      <p class="loader-text">{{ "Loading-Keys.LOADING" | translate }}</p>
-    </button>
+      <p class="loader-text">
+  {{ "Loading-Keys.LOADING" | translate }}
+  <span class="loading-dots" aria-hidden="true">
+    <span>.</span>
+    <span>.</span>
+    <span>.</span>
+  </span>
+</p>
   </div>
 

@@ -30,7 +30,22 @@
   cursor: pointer;
   transition: 0.2s ease;
 }
+.previous-btn .pagination-arrow::before {
+  content: "\f053"; /* chevron-left */
+}
 
+.next-btn .pagination-arrow::before {
+  content: "\f054"; /* chevron-right */
+}
+
+/* RTL */
+:host-context([dir="rtl"]) .previous-btn .pagination-arrow::before {
+  content: "\f054"; /* chevron-right */
+}
+
+:host-context([dir="rtl"]) .next-btn .pagination-arrow::before {
+  content: "\f053"; /* chevron-left */
+}
 .page-btn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
