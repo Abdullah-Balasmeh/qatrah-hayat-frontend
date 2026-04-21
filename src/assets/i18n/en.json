@@ -64,6 +64,8 @@
     "NATIONAL_ID_PLACEHOLDER": "National ID...",
     "NATIONAL_ID_IS_REQUIRED": "National ID is required",
     "NATIONAL_ID_MUST_BE_10_DIGITS": "National ID must be 10 digits",
+    "NATIONAL_ID_NOT_FOUND": "National ID not found",
+    "NATIONAL_ID_SERVER_ERROR": "An error occurred while fetching National ID. Please try again later.",
     "BRING_BTN": "Bring",
     "PERSONAL_INFORMATION": "Personal Information",
     "FULL_NAME_AR_PLACEHOLDER": "Full Name (Arabic)...",
@@ -101,7 +103,11 @@
     "YOU_CAN_LOGIN_NOW": "You can now log in using your credentials.",
     "SIGNUP_BUTTON": "Create Account",
     "SIGNUP_PAGE_FOOTER_TEXT": "Already have an account?",
-    "SIGNUP_PAGE_FOOTER_LINK_TEXT": "Login"
+    "SIGNUP_PAGE_FOOTER_LINK_TEXT": "Login",
+    "NON_JORDANIAN_CITIZEN": "Only Jordanian citizens can register",
+    "EMAIL_ALREADY_REGISTERED": "Email is already registered",
+    "NATIONAL_ID_ALREADY_REGISTERED": "National ID is already registered",
+    "EMAIL_NOT_FOUND": "Email not found"
   },
   "Admin-Keys": {
     "DASHBOARD": "Dashboard",
@@ -171,6 +177,7 @@
     "BACK_TO_USERS": "Back to Users",
     "NEW_USER_STAFF_CREATION_MESSAGE": "This national ID does not have an account. A new citizen account with staff role will be created.",
     "EXISTING_CITIZEN_PROMOTION_MESSAGE": "This citizen already has an account. Only a staff role and location will be added.",
+    "EMPLOYEE_DOES_NOT_REQUIRE_LOCATION": "Employee users do not need to be linked to a branch or hospital.",
     "USER_ALREADY_STAFF": "This user is already a staff member and cannot be added again.",
     "ACCOUNT_INFORMATION": "Account Information",
     "STAFF_INFORMATION": "Staff Information",

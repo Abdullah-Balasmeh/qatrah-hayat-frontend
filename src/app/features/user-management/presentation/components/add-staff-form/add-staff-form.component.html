@@ -8,53 +8,36 @@
 
       <div class="row g-3 align-items-start">
         <div class="col-12 col-md-8">
-          <app-text-field
-            [control]="addStaffForm.controls.nationalId"
-            type="text"
-            placeholder="{{ 'Signup-Keys.NATIONAL_ID_PLACEHOLDER' | translate }}"
-            prefixIcon="fas fa-id-card"
-            autocomplete="off"
-            inputId="nationalId"
-            maxLength="10"
-            [isNumeric]="true"
-          />
+          <app-text-field [control]="addStaffForm.controls.nationalId" type="text"
+            placeholder="{{ 'Signup-Keys.NATIONAL_ID_PLACEHOLDER' | translate }}" prefixIcon="fas fa-id-card"
+            autocomplete="off" inputId="nationalId" maxLength="10" [isNumeric]="true" />
 
           <div class="field-error-space">
             @if (
-              addStaffForm.controls.nationalId.touched ||
-              addStaffForm.controls.nationalId.dirty
+            addStaffForm.controls.nationalId.touched ||
+            addStaffForm.controls.nationalId.dirty
             ) {
-              @if (addStaffForm.controls.nationalId.hasError("required")) {
-                <app-form-error-message
-                  [errorMessage]="'Signup-Keys.NATIONAL_ID_IS_REQUIRED' | translate"
-                />
-              } @else if (
-                addStaffForm.controls.nationalId.hasError("minlength") ||
-                addStaffForm.controls.nationalId.hasError("maxlength") ||
-                addStaffForm.controls.nationalId.hasError("pattern")
-              ) {
-                <app-form-error-message
-                  [errorMessage]="'Signup-Keys.NATIONAL_ID_MUST_BE_10_DIGITS' | translate"
-                />
-              }
+            @if (addStaffForm.controls.nationalId.hasError("required")) {
+            <app-form-error-message [errorMessage]="'Signup-Keys.NATIONAL_ID_IS_REQUIRED' | translate" />
+            } @else if (
+            addStaffForm.controls.nationalId.hasError("minlength") ||
+            addStaffForm.controls.nationalId.hasError("maxlength") ||
+            addStaffForm.controls.nationalId.hasError("pattern")
+            ) {
+            <app-form-error-message [errorMessage]="'Signup-Keys.NATIONAL_ID_MUST_BE_10_DIGITS' | translate" />
+            }
             }
 
-            @if (civilStatusErrorMessage()) {
-              <app-form-error-message
-                [errorMessage]="civilStatusErrorMessage()"
-              />
+            @if (civilStatusErrorMessage() && !isAlreadyStaffMode()) {
+            <app-form-error-message [errorMessage]="civilStatusErrorMessage()" />
             }
           </div>
         </div>
 
         <div class="col-12 col-md-4">
-          <app-primary-button
-            label="{{ 'Signup-Keys.BRING_BTN' | translate }}"
-            type="button"
-            (buttonClick)="onFetchCitizenData()"
-            [disabled]="isFetchingCitizenData() || isLoading()"
-            [isLoading]="isFetchingCitizenData()"
-          />
+          <app-primary-button label="{{ 'Signup-Keys.BRING_BTN' | translate }}" type="button"
+            (buttonClick)="onFetchCitizenData()" [disabled]="isFetchingCitizenData() || isLoading()"
+            [isLoading]="isFetchingCitizenData()" />
         </div>
       </div>
     </div>
@@ -66,304 +49,221 @@
       </h5>
 
       @if (isNewUserMode()) {
-        <div class="info-message" role="status">
-          {{ "Add-Staff-Keys.NEW_USER_STAFF_CREATION_MESSAGE" | translate }}
-        </div>
+      <div class="info-message" role="status">
+        {{ "Add-Staff-Keys.NEW_USER_STAFF_CREATION_MESSAGE" | translate }}
+      </div>
       }
 
       @if (isPromoteMode()) {
-        <div class="info-message" role="status">
-          {{ "Add-Staff-Keys.EXISTING_CITIZEN_PROMOTION_MESSAGE" | translate }}
-        </div>
+      <div class="alert alert-warning" role="alert">
+        {{ "Add-Staff-Keys.EXISTING_CITIZEN_PROMOTION_MESSAGE" | translate }}
+      </div>
       }
 
       @if (isAlreadyStaffMode()) {
-        <div class="danger-message" role="alert">
-          {{ "Add-Staff-Keys.USER_ALREADY_STAFF" | translate }}
-        </div>
+      <div class="alert alert-danger" role="alert">
+        {{ "Add-Staff-Keys.USER_ALREADY_STAFF" | translate }}
+      </div>
       }
 
       <div class="row g-3">
         <div class="col-12 col-md-6">
-          <app-text-field
-            [control]="addStaffForm.controls.fullNameAr"
-            placeholder="{{ 'Signup-Keys.FULL_NAME_AR_PLACEHOLDER' | translate }}"
-            type="text"
-            prefixIcon="fas fa-user"
-            inputId="fullNameAr"
-            [readonly]="true"
-          />
+          <app-text-field [control]="addStaffForm.controls.fullNameAr"
+            placeholder="{{ 'Signup-Keys.FULL_NAME_AR_PLACEHOLDER' | translate }}" type="text" prefixIcon="fas fa-user"
+            inputId="fullNameAr" [readonly]="true" />
         </div>
 
         <div class="col-12 col-md-6">
-          <app-text-field
-            [control]="addStaffForm.controls.fullNameEn"
-            placeholder="{{ 'Signup-Keys.FULL_NAME_EN_PLACEHOLDER' | translate }}"
-            type="text"
-            prefixIcon="fas fa-user"
-            inputId="fullNameEn"
-            [readonly]="true"
-          />
+          <app-text-field [control]="addStaffForm.controls.fullNameEn"
+            placeholder="{{ 'Signup-Keys.FULL_NAME_EN_PLACEHOLDER' | translate }}" type="text" prefixIcon="fas fa-user"
+            inputId="fullNameEn" [readonly]="true" />
         </div>
 
         <div class="col-12 col-md-6">
-          <app-text-field
-            [control]="addStaffForm.controls.dateOfBirth"
-            placeholder="{{ 'Signup-Keys.DATE_OF_BIRTH_PLACEHOLDER' | translate }}"
-            type="text"
-            prefixIcon="fas fa-calendar"
-            inputId="birthDate"
-            [readonly]="true"
-          />
+          <app-text-field [control]="addStaffForm.controls.dateOfBirth"
+            placeholder="{{ 'Signup-Keys.DATE_OF_BIRTH_PLACEHOLDER' | translate }}" type="text"
+            prefixIcon="fas fa-calendar" inputId="birthDate" [readonly]="true" />
         </div>
 
         <div class="col-12 col-md-6">
-          <app-text-field
-            [control]="addStaffForm.controls.bloodTypeDisplay"
-            placeholder="{{ 'Signup-Keys.BLOOD_TYPE_PLACEHOLDER' | translate }}"
-            type="text"
-            prefixIcon="fas fa-tint"
-            inputId="bloodType"
-            [readonly]="true"
-          />
+          <app-text-field [control]="addStaffForm.controls.bloodTypeDisplay"
+            placeholder="{{ 'Signup-Keys.BLOOD_TYPE_PLACEHOLDER' | translate }}" type="text" prefixIcon="fas fa-tint"
+            inputId="bloodType" [readonly]="true" />
         </div>
 
         <div class="col-12 col-md-6">
-          <app-text-field
-            [control]="addStaffForm.controls.genderDisplay"
-            placeholder="{{ 'Signup-Keys.GENDER_PLACEHOLDER' | translate }}"
-            type="text"
-            prefixIcon="fas fa-venus-mars"
-            inputId="gender"
-            [readonly]="true"
-          />
+          <app-text-field [control]="addStaffForm.controls.genderDisplay"
+            placeholder="{{ 'Signup-Keys.GENDER_PLACEHOLDER' | translate }}" type="text" prefixIcon="fas fa-venus-mars"
+            inputId="gender" [readonly]="true" />
         </div>
       </div>
     </div>
 
     <!-- Section 3: Account Information -->
-    <div class="form-section">
+   @if(isNewUserMode()){
+     <div class="form-section">
       <h5 class="section-title">
         {{ "Add-Staff-Keys.ACCOUNT_INFORMATION" | translate }}
       </h5>
 
       <div class="row g-3">
         <div class="col-12 col-md-6">
-          <app-marital-status-radio-group
-            [control]="addStaffForm.controls.maritalStatus"
-          />
+          <app-marital-status-radio-group [control]="addStaffForm.controls.maritalStatus" />
 
           <div class="field-error-space">
             @if (
-              addStaffForm.controls.maritalStatus.touched ||
-              addStaffForm.controls.maritalStatus.dirty
+            addStaffForm.controls.maritalStatus.touched ||
+            addStaffForm.controls.maritalStatus.dirty
             ) {
-              @if (addStaffForm.controls.maritalStatus.hasError("required")) {
-                <app-form-error-message
-                  [errorMessage]="'Signup-Keys.MARITAL_STATUS_IS_REQUIRED' | translate"
-                />
-              }
+            @if (addStaffForm.controls.maritalStatus.hasError("required")) {
+            <app-form-error-message [errorMessage]="'Signup-Keys.MARITAL_STATUS_IS_REQUIRED' | translate" />
+            }
             }
           </div>
         </div>
 
         <div class="col-12 col-md-6">
-          <app-text-field
-            [control]="addStaffForm.controls.email"
-            type="email"
-            placeholder="{{ 'Signup-Keys.EMAIL_PLACEHOLDER' | translate }}"
-            prefixIcon="fas fa-envelope"
-            inputId="email"
-          />
+          <app-text-field [control]="addStaffForm.controls.email" type="email"
+            placeholder="{{ 'Signup-Keys.EMAIL_PLACEHOLDER' | translate }}" prefixIcon="fas fa-envelope"
+            inputId="email" />
 
           <div class="field-error-space">
             @if (
-              addStaffForm.controls.email.touched ||
-              addStaffForm.controls.email.dirty
+            addStaffForm.controls.email.touched ||
+            addStaffForm.controls.email.dirty
             ) {
-              @if (addStaffForm.controls.email.hasError("required")) {
-                <app-form-error-message
-                  [errorMessage]="'Signup-Keys.EMAIL_IS_REQUIRED' | translate"
-                />
-              } @else if (
-                addStaffForm.controls.email.hasError("email") ||
-                addStaffForm.controls.email.hasError("pattern")
-              ) {
-                <app-form-error-message
-                  [errorMessage]="'Signup-Keys.EMAIL_MUST_BE_VALID' | translate"
-                />
-              }
+            @if (addStaffForm.controls.email.hasError("required")) {
+            <app-form-error-message [errorMessage]="'Signup-Keys.EMAIL_IS_REQUIRED' | translate" />
+            } @else if (
+            addStaffForm.controls.email.hasError("email") ||
+            addStaffForm.controls.email.hasError("pattern")
+            ) {
+            <app-form-error-message [errorMessage]="'Signup-Keys.EMAIL_MUST_BE_VALID' | translate" />
+            }
             }
           </div>
         </div>
 
         <div class="col-12 col-md-6">
-          <app-text-field
-            [control]="addStaffForm.controls.phoneNumber"
-            type="text"
-            placeholder="{{ 'Signup-Keys.PHONE_PLACEHOLDER' | translate }}"
-            prefixIcon="fas fa-phone"
-            inputId="phone"
-            maxLength="10"
-            [isNumeric]="true"
-          />
+          <app-text-field [control]="addStaffForm.controls.phoneNumber" type="text"
+            placeholder="{{ 'Signup-Keys.PHONE_PLACEHOLDER' | translate }}" prefixIcon="fas fa-phone" inputId="phone"
+            maxLength="10" [isNumeric]="true" />
 
           <div class="field-error-space">
             @if (
-              addStaffForm.controls.phoneNumber.touched ||
-              addStaffForm.controls.phoneNumber.dirty
+            addStaffForm.controls.phoneNumber.touched ||
+            addStaffForm.controls.phoneNumber.dirty
             ) {
-              @if (addStaffForm.controls.phoneNumber.hasError("required")) {
-                <app-form-error-message
-                  [errorMessage]="'Signup-Keys.PHONE_IS_REQUIRED' | translate"
-                />
-              } @else if (
-                addStaffForm.controls.phoneNumber.hasError("pattern") ||
-                addStaffForm.controls.phoneNumber.hasError("maxlength") ||
-                addStaffForm.controls.phoneNumber.hasError("minlength")
-              ) {
-                <app-form-error-message
-                  [errorMessage]="'Signup-Keys.PHONE_MUST_BE_10_DIGITS' | translate"
-                />
-              }
+            @if (addStaffForm.controls.phoneNumber.hasError("required")) {
+            <app-form-error-message [errorMessage]="'Signup-Keys.PHONE_IS_REQUIRED' | translate" />
+            } @else if (
+            addStaffForm.controls.phoneNumber.hasError("pattern") ||
+            addStaffForm.controls.phoneNumber.hasError("maxlength") ||
+            addStaffForm.controls.phoneNumber.hasError("minlength")
+            ) {
+            <app-form-error-message [errorMessage]="'Signup-Keys.PHONE_MUST_BE_10_DIGITS' | translate" />
+            }
             }
           </div>
         </div>
       </div>
     </div>
+   }
 
     <!-- Section 4: Security -->
-    <div class="form-section">
+   @if(isNewUserMode()){
+     <div class="form-section">
       <h5 class="section-title">
         {{ "Signup-Keys.SECURITY" | translate }}
       </h5>
 
       <div class="row g-3">
         <div class="col-12 col-md-6">
-          <app-password-text-field
-            [control]="addStaffForm.controls.password"
-            placeholder="{{ 'Signup-Keys.PASSWORD_PLACEHOLDER' | translate }}"
-            prefixIcon="fas fa-lock"
-            autocomplete="new-password"
-            inputId="password"
-          />
+          <app-password-text-field [control]="addStaffForm.controls.password"
+            placeholder="{{ 'Signup-Keys.PASSWORD_PLACEHOLDER' | translate }}" prefixIcon="fas fa-lock"
+            autocomplete="new-password" inputId="password" />
 
           <div class="field-error-space">
             @if (
-              addStaffForm.controls.password.touched ||
-              addStaffForm.controls.password.dirty
+            addStaffForm.controls.password.touched ||
+            addStaffForm.controls.password.dirty
             ) {
-              @if (addStaffForm.controls.password.hasError("required")) {
-                <app-form-error-message
-                  [errorMessage]="'Signup-Keys.PASSWORD_IS_REQUIRED' | translate"
-                />
-              } @else if (addStaffForm.controls.password.hasError("pattern")) {
-                <app-form-error-message
-                  [errorMessage]="'Signup-Keys.PASSWORD_STRENGTH_ERROR' | translate"
-                />
-              }
+            @if (addStaffForm.controls.password.hasError("required")) {
+            <app-form-error-message [errorMessage]="'Signup-Keys.PASSWORD_IS_REQUIRED' | translate" />
+            } @else if (addStaffForm.controls.password.hasError("pattern")) {
+            <app-form-error-message [errorMessage]="'Signup-Keys.PASSWORD_STRENGTH_ERROR' | translate" />
+            }
             }
           </div>
         </div>
 
         <div class="col-12 col-md-6">
-          <app-password-text-field
-            [control]="addStaffForm.controls.confirmPassword"
-            placeholder="{{ 'Signup-Keys.CONFIRM_PASSWORD_PLACEHOLDER' | translate }}"
-            prefixIcon="fas fa-lock"
-            autocomplete="new-password"
-            inputId="confirmPassword"
-          />
+          <app-password-text-field [control]="addStaffForm.controls.confirmPassword"
+            placeholder="{{ 'Signup-Keys.CONFIRM_PASSWORD_PLACEHOLDER' | translate }}" prefixIcon="fas fa-lock"
+            autocomplete="new-password" inputId="confirmPassword" />
 
           <div class="field-error-space">
             @if (
-              addStaffForm.controls.confirmPassword.touched ||
-              addStaffForm.controls.confirmPassword.dirty
+            addStaffForm.controls.confirmPassword.touched ||
+            addStaffForm.controls.confirmPassword.dirty
             ) {
-              @if (addStaffForm.controls.confirmPassword.hasError("required")) {
-                <app-form-error-message
-                  [errorMessage]="'Signup-Keys.CONFIRM_PASSWORD_IS_REQUIRED' | translate"
-                />
-              } @else if (
-                addStaffForm.hasError("passwordMismatch") &&
-                addStaffForm.controls.confirmPassword.value
-              ) {
-                <app-form-error-message
-                  [errorMessage]="'Signup-Keys.CONFIRM_PASSWORD_MUST_MATCH' | translate"
-                />
-              }
+            @if (addStaffForm.controls.confirmPassword.hasError("required")) {
+            <app-form-error-message [errorMessage]="'Signup-Keys.CONFIRM_PASSWORD_IS_REQUIRED' | translate" />
+            } @else if (
+            addStaffForm.hasError("passwordMismatch") &&
+            addStaffForm.controls.confirmPassword.value
+            ) {
+            <app-form-error-message [errorMessage]="'Signup-Keys.CONFIRM_PASSWORD_MUST_MATCH' | translate" />
+            }
             }
           </div>
         </div>
       </div>
     </div>
+   }
 
     <!-- Section 5: Staff Information -->
-    <div class="form-section">
-      <h5 class="section-title">
-        {{ "Add-Staff-Keys.STAFF_INFORMATION" | translate }}
-      </h5>
+ @if (isCitizenVerified() && !isAlreadyStaffMode()) {
+  <div class="form-section">
+    <h5 class="section-title">
+      {{ "Add-Staff-Keys.STAFF_INFORMATION" | translate }}
+    </h5>
 
-      <div class="row g-3">
-        <div class="col-12 col-md-6">
-          <label class="form-label" for="staffRole">
-            {{ "Add-Staff-Keys.STAFF_ROLE" | translate }}
-          </label>
+    <div class="row g-3">
+      <div class="col-12 col-md-6">
+        <app-drop-down-with-label
+          [label]="'Add-Staff-Keys.STAFF_ROLE' | translate"
+          [options]="staffRoleOptions"
+          [selectedValue]="addStaffForm.controls.staffRole.value"
+          [placeholder]="'Add-Staff-Keys.SELECT_STAFF_ROLE' | translate"
+          [translateLabels]="true"
+          (valueChanged)="onStaffRoleChange($event)"
+        />
 
-          <select
-            id="staffRole"
-            class="form-select"
-            formControlName="staffRole"
-          >
-            <option [ngValue]="null" disabled>
-              {{ "Add-Staff-Keys.SELECT_STAFF_ROLE" | translate }}
-            </option>
-
-            @for (role of staffRoleOptions; track role.value) {
-              <option [ngValue]="role.value">
-                {{ role.label | translate }}
-              </option>
+        <div class="field-error-space">
+          @if (
+            addStaffForm.controls.staffRole.touched ||
+            addStaffForm.controls.staffRole.dirty
+          ) {
+            @if (addStaffForm.controls.staffRole.hasError("required")) {
+              <app-form-error-message
+                [errorMessage]="'Add-Staff-Keys.STAFF_ROLE_REQUIRED' | translate"
+              />
             }
-          </select>
-
-          <div class="field-error-space">
-            @if (
-              addStaffForm.controls.staffRole.touched ||
-              addStaffForm.controls.staffRole.dirty
-            ) {
-              @if (addStaffForm.controls.staffRole.hasError("required")) {
-                <app-form-error-message
-                  [errorMessage]="'Add-Staff-Keys.STAFF_ROLE_REQUIRED' | translate"
-                />
-              }
-            }
-          </div>
+          }
         </div>
+      </div>
 
-        <!-- Hospital: Always visible for preview -->
+      @if (addStaffForm.controls.staffRole.value === UserRole.Doctor) {
         <div class="col-12 col-md-6">
-          <label class="form-label" for="hospitalId">
-            {{ "Add-Staff-Keys.HOSPITAL" | translate }}
-          </label>
-
-          <select
-            id="hospitalId"
-            class="form-select"
-            formControlName="hospitalId"
-          >
-            <option [ngValue]="null" disabled>
-              {{ "Add-Staff-Keys.SELECT_HOSPITAL" | translate }}
-            </option>
-
-            <!-- Replace this with your hospitals list -->
-            <!--
-            @for (hospital of hospitals(); track hospital.id) {
-              <option [ngValue]="hospital.id">
-                {{ hospital.hospitalNameAr }}
-              </option>
-            }
-            -->
-          </select>
+          <app-drop-down-with-label
+            [label]="'Add-Staff-Keys.HOSPITAL' | translate"
+            [options]="hospitalOptions"
+            [selectedValue]="addStaffForm.controls.hospitalId.value"
+            [placeholder]="'Add-Staff-Keys.SELECT_HOSPITAL' | translate"
+            [translateLabels]="false"
+            (valueChanged)="onHospitalChange($event)"
+          />
 
           <div class="field-error-space">
             @if (
@@ -378,31 +278,18 @@
             }
           </div>
         </div>
+      }
 
-        <!-- Branch: Always visible for preview -->
+      @if (addStaffForm.controls.staffRole.value === UserRole.BranchManager) {
         <div class="col-12 col-md-6">
-          <label class="form-label" for="branchId">
-            {{ "Add-Staff-Keys.BRANCH" | translate }}
-          </label>
-
-          <select
-            id="branchId"
-            class="form-select"
-            formControlName="branchId"
-          >
-            <option [ngValue]="null" disabled>
-              {{ "Add-Staff-Keys.SELECT_BRANCH" | translate }}
-            </option>
-
-            <!-- Replace this with your branches list -->
-            <!--
-            @for (branch of branches(); track branch.id) {
-              <option [ngValue]="branch.id">
-                {{ branch.branchNameAr }}
-              </option>
-            }
-            -->
-          </select>
+          <app-drop-down-with-label
+            [label]="'Add-Staff-Keys.BRANCH' | translate"
+            [options]="branchOptions"
+            [selectedValue]="addStaffForm.controls.branchId.value"
+            [placeholder]="'Add-Staff-Keys.SELECT_BRANCH' | translate"
+            [translateLabels]="false"
+            (valueChanged)="onBranchChange($event)"
+          />
 
           <div class="field-error-space">
             @if (
@@ -417,35 +304,54 @@
             }
           </div>
         </div>
+      }
 
+      @if (addStaffForm.controls.staffRole.value === UserRole.Employee) {
+        <div class="col-12">
+          <div class="info-message">
+            {{ "Add-Staff-Keys.EMPLOYEE_DOES_NOT_REQUIRE_LOCATION" | translate }}
+          </div>
+        </div>
+      }
+
+      @if (addStaffForm.controls.staffRole.value === UserRole.Admin) {
         <div class="col-12">
           <div class="info-message">
             {{ "Add-Staff-Keys.ADMIN_DOES_NOT_REQUIRE_LOCATION" | translate }}
           </div>
         </div>
-      </div>
+      }
     </div>
+  </div>
+}
 
     <!-- Submit -->
     <div class="submit-wrapper">
       @if (serverErrorMessage()) {
-        <app-form-error-message [errorMessage]="serverErrorMessage()" />
+      <app-form-error-message [errorMessage]="serverErrorMessage()" />
       }
 
       @if (showSuccessMessage()) {
-        <div class="success-message" role="alert">
-          <strong>
-            {{ "Add-Staff-Keys.STAFF_ADDED_SUCCESSFULLY" | translate }}
-          </strong>
-        </div>
+      <div class="success-message" role="alert">
+        <strong>
+          {{ "Add-Staff-Keys.STAFF_ADDED_SUCCESSFULLY" | translate }}
+        </strong>
+      </div>
       }
 
-      <app-primary-button
-        label="{{ 'Add-Staff-Keys.ADD_STAFF' | translate }}"
-        type="submit"
-        [disabled]="isLoading() || isFetchingCitizenData()"
-        [isLoading]="isLoading()"
-      />
+     @if (isNewUserMode() || isPromoteMode()) {
+  <app-primary-button
+    label="{{ 'Add-Staff-Keys.ADD_STAFF' | translate }}"
+    type="submit"
+    [disabled]="
+      isLoading() ||
+      isFetchingCitizenData() ||
+      !isCitizenVerified() ||
+      isAlreadyStaffMode()
+    "
+    [isLoading]="isLoading()"
+  />
+}
     </div>
   </form>
 </div>

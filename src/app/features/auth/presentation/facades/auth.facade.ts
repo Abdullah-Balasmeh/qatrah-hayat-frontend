@@ -236,24 +236,24 @@ private mapLoginErrorToMessage(error: Failure): string {
 private mapRegisterErrorToMessage(error: Failure): string {
   switch (error.code) {
     case 'NON_JORDANIAN_CITIZEN':
-      return this.translate.instant('Only_Jordanian_citizens_can_register');
+      return this.translate.instant('Signup-Keys.NON_JORDANIAN_CITIZEN');
 
     case 'EMAIL_ALREADY_REGISTERED':
-      return this.translate.instant('Email_is_already_registered');
+      return this.translate.instant('Signup-Keys.EMAIL_ALREADY_REGISTERED');
 
     case 'NATIONAL_ID_ALREADY_REGISTERED':
-      return this.translate.instant('National_ID_is_already_registered');
+      return this.translate.instant('Signup-Keys.NATIONAL_ID_ALREADY_REGISTERED');
 
     case 'NATIONAL_ID_NOT_FOUND':
-      return this.translate.instant('National_ID_Not_Found');
+      return this.translate.instant('Signup-Keys.NATIONAL_ID_NOT_FOUND');
 
     case 'VALIDATION_ERROR':
     case 'REGISTRATION_FAILED':
     case 'ROLE_ASSIGNMENT_FAILED':
-      return this.translate.instant('Generic_Error_Signup');
+      return this.translate.instant('Signup-Keys.GENERIC_ERROR_SIGNUP');
 
     default:
-      return this.translate.instant('Generic_Error_Signup');
+      return this.translate.instant('Signup-Keys.GENERIC_ERROR_SIGNUP');
   }
 }
 

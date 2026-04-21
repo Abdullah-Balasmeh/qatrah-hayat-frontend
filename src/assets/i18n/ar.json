@@ -64,6 +64,8 @@
     "NATIONAL_ID_PLACEHOLDER": "الرقم الوطني...",
     "NATIONAL_ID_IS_REQUIRED": "الرقم الوطني مطلوب",
     "NATIONAL_ID_MUST_BE_10_DIGITS": "الرقم الوطني يجب أن يكون 10 أرقام",
+    "NATIONAL_ID_NOT_FOUND": "الرقم الوطني غير موجود",
+    "NATIONAL_ID_SERVER_ERROR": "حدث خطأ أثناء التحقق من الرقم الوطني. يرجى المحاولة مرة أخرى لاحقًا.",
     "BRING_BTN": "احضار",
     "PERSONAL_INFORMATION": "المعلومات الشخصية",
     "FULL_NAME_AR_PLACEHOLDER": "الاسم الكامل (عربي)...",
@@ -101,7 +103,11 @@
     "YOU_CAN_LOGIN_NOW": "يمكنك الآن تسجيل الدخول باستخدام بيانات الاعتماد الخاصة بك.",
     "SIGNUP_BUTTON": "إنشاء حساب",
     "SIGNUP_PAGE_FOOTER_TEXT": "لديك حساب بالفعل؟",
-    "SIGNUP_PAGE_FOOTER_LINK_TEXT": "تسجيل الدخول"
+    "SIGNUP_PAGE_FOOTER_LINK_TEXT": "تسجيل الدخول",
+    "NON_JORDANIAN_CITIZEN": "Only Jordanian citizens can register",
+    "EMAIL_ALREADY_REGISTERED": "Email is already registered",
+    "NATIONAL_ID_ALREADY_REGISTERED": "National ID is already registered",
+    "EMAIL_NOT_FOUND": "Email not found"
   },
   "Admin-Keys": {
     "DASHBOARD": "لوحة التحكم",
@@ -171,6 +177,7 @@
     "BACK_TO_USERS": "العودة إلى المستخدمين",
     "NEW_USER_STAFF_CREATION_MESSAGE": "هذا الرقم الوطني لا يملك حسابًا في النظام. سيتم إنشاء حساب مواطن جديد مع إضافة الدور الوظيفي.",
     "EXISTING_CITIZEN_PROMOTION_MESSAGE": "هذا المواطن لديه حساب مسبقًا في النظام. سيتم فقط إضافة الدور الوظيفي وربطه بالفرع أو المستشفى.",
+    "EMPLOYEE_DOES_NOT_REQUIRE_LOCATION": "الموظف لا يحتاج إلى ربطه بفرع أو مستشفى.",
     "USER_ALREADY_STAFF": "هذا المستخدم موظف مسبقًا ولا يمكن إضافته مرة أخرى.",
     "ACCOUNT_INFORMATION": "معلومات الحساب",
     "STAFF_INFORMATION": "المعلومات الوظيفية",

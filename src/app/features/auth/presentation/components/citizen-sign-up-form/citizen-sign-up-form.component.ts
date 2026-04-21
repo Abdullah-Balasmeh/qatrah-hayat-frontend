@@ -142,11 +142,11 @@ export class CitizenSignUpFormComponent {
         error: (error: Failure) => {
           if (error instanceof NotFoundFailure) {
             this.civilStatusErrorMessage.set(
-              this.translate.instant('National_ID_Not_Found')
+              this.translate.instant('Signup-Keys.NATIONAL_ID_NOT_FOUND')
             );
           } else {
             this.civilStatusErrorMessage.set(
-              this.translate.instant('National_ID_Server_Error')
+              this.translate.instant('Signup-Keys.NATIONAL_ID_SERVER_ERROR')
             );
           }
         }
