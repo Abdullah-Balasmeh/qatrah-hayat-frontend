@@ -1,0 +1,75 @@
+.form-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--input-background-color);
+  border: 1px solid var(--divider-color);
+  border-radius: 999px;
+  padding: 0.85rem 1rem;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+
+
+}
+
+.form-inputs.focused {
+  border: 1px solid var(--primary-text-color);
+}
+
+
+.prefix-icon {
+  width: 2.25rem;
+  min-width: 2.25rem;
+  display: grid;
+  place-items: center;
+  font-size: var(--font-size-lg);
+  color: var(--primary-text-color);
+}
+
+
+.text-input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--primary-text-color);
+}
+
+.text-input::placeholder {
+  font-weight: var(--font-weight-medium);
+   color: #777;
+}
+
+.clear-button {
+  width: 2rem;
+  height: 2rem;
+  min-width: 2rem;
+  border: 0;
+  outline: 0;
+  border-radius: 50%;
+  background: rgba(16, 23, 39, 0.07);
+  display: grid;
+  place-items: center;
+  color: var(--primary-text-color);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.clear-button:hover {
+  background: var(--primary-color-light);
+  color: var(--primary-color);
+}
+
+.clear-button:active {
+  transform: scale(0.92);
+}
+
+.clear-button:focus-visible {
+  box-shadow: 0 0 0 3px rgba(191, 0, 7, 0.16);
+}

@@ -1,0 +1,231 @@
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 1.2rem;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 980px;
+}
+
+.users-table thead {
+  background-color: var(--input-background-color);
+}
+
+.users-table th {
+  padding: 1.1rem 1rem;
+  color: var(--primary-text-color);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.users-table th:first-child {
+  border-start-start-radius: 1rem;
+  border-end-start-radius: 1rem;
+}
+
+.users-table th:last-child {
+  border-start-end-radius: 1rem;
+  border-end-end-radius: 1rem;
+}
+
+.users-table td {
+  padding: 1.15rem 1rem;
+  border-bottom: 1px solid var(--divider-color);
+  vertical-align: middle;
+  text-align: center;
+}
+
+.users-table tbody tr {
+  transition: 0.2s ease;
+}
+
+.users-table tbody tr:hover {
+  background-color: var(--primary-color-light);
+}
+
+.empty-tr:hover {
+  background-color: var(--surface-card) !important;
+}
+
+.user-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-info strong {
+  display: block;
+  color: var(--primary-text-color);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 0.15rem;
+  letter-spacing: 0.01rem;
+}
+
+.user-info span,
+.user-info small,
+.stacked-text small {
+  display: block;
+  color: var(--primary-text-color);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.stacked-text span {
+  display: block;
+  color: var(--primary-text-color);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semi-bold);
+  margin-bottom: 0.15rem;
+}
+
+.blood-type {
+  display: inline-grid;
+  place-items: center;
+  min-width: 3rem;
+  min-height: 2.25rem;
+  padding: 0 0.75rem;
+  border-radius: 0.85rem;
+  background-color: var(--primary-color-light);
+  color: var(--primary-color);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  border: 1px solid rgba(191, 0, 7, 0.16);
+}
+
+.actions-header {
+  text-align: center !important;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.85rem;
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+  background-color: var(--input-background-color);
+  border: none;
+}
+
+.actions a {
+  text-decoration: none;
+}
+
+.icon-btn:hover {
+  transform: translateY(-2px);
+}
+
+.icon-btn.view {
+  color: #10264B;
+  background-color: #EAF0FA;
+}
+
+.icon-btn.edit {
+  color: #4338CA;
+  background-color: #F0F9FF;
+}
+
+.icon-btn.activate {
+  color: #047857;
+  background-color: #ecfdf5;
+}
+
+.icon-btn.deactivate {
+  color: #B7791F;
+  background-color: #FFF4D6;
+}
+
+.icon-btn.delete {
+  color: var(--primary-color);
+  background-color: var(--primary-color-light);
+}
+
+.empty-state {
+  min-height: 16rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: rgba(16, 23, 39, 0.65);
+}
+
+.empty-state i {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.empty-state h3 {
+  color: var(--primary-text-color);
+  font-size: var(--font-size-lg);
+  margin-bottom: 0.35rem;
+}
+
+.empty-state p {
+  color: rgba(16, 23, 39, 0.58);
+  font-size: var(--font-size-sm);
+}
+
+@media (max-width: 768px) {
+  .users-table {
+    min-width: 0;
+  }
+
+  .users-table thead {
+    display: none;
+  }
+
+  .users-table,
+  .users-table tbody,
+  .users-table tr,
+  .users-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .users-table tr {
+    border: 1px solid var(--divider-color);
+    border-radius: 1.2rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .users-table tbody tr:hover {
+    background-color: transparent;
+  }
+
+  .users-table td {
+    border-bottom: none;
+    padding: 0.75rem 0;
+  }
+
+  .users-table td::before {
+    content: attr(data-label);
+    display: block;
+    color: rgba(16, 23, 39, 0.5);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 0.35rem;
+    text-transform: uppercase;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+}

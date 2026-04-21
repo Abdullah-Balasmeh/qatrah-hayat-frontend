@@ -1,0 +1,188 @@
+import { Injectable } from '@angular/core';
+import { finalize } from 'rxjs';
+
+import {
+  UsersManagementStore,
+  UsersTabType,
+} from '../store/users-management.store';
+import { UserManagementQueryModel } from '../../domain/models/user-management-query.model';
+import { UsersManagementRepositoryImpl } from '../../data/repositories_impl/users-management.repository.impl';
+import { Router } from '@angular/router';
+import { AddStaffRequestModel } from '../../domain/models/add-staff-request.model';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UsersManagementFacade {
+  constructor(
+    private readonly repository: UsersManagementRepositoryImpl,
+    public readonly store: UsersManagementStore,
+    private readonly router: Router,
+  ) {}
+
+  changeTab(tab: UsersTabType): void {
+    this.store.selectedTab.set(tab);
+    this.store.resetPagination();
+    this.loadUsers();
+  }
+
+  changeSearchTerm(searchTerm: string): void {
+    this.store.searchTerm.set(searchTerm);
+    this.store.pageNumber.set(1);
+    this.loadUsers();
+  }
+
+  changeStatusFilter(value: boolean | null): void {
+    this.store.isActive.set(value);
+    this.store.pageNumber.set(1);
+    this.loadUsers();
+  }
+
+  changePage(pageNumber: number): void {
+    if (pageNumber < 1 || pageNumber > this.store.totalPages()) {
+      return;
+    }
+
+    this.store.pageNumber.set(pageNumber);
+    this.loadUsers();
+  }
+
+  loadUsersStatistics(): void {
+    this.repository.getUsersStatistics().subscribe({
+      next: (statistics) => {
+        this.store.setStatistics(statistics);
+      },
+      error: () => {
+        this.store.errorMessage.set('Failed to load users statistics.');
+      },
+    });
+  }
+  loadUsers(): void {
+    const query = this.buildQuery();
+
+    if (this.store.selectedTab() === 'staff') {
+      this.loadStaff(query);
+      return;
+    }
+
+    this.loadCitizens(query);
+  }
+
+  activateUser(userId: number): void {
+    this.store.loading.set(true);
+
+    this.repository
+      .activateUser(userId)
+      .pipe(finalize(() => this.store.loading.set(false)))
+      .subscribe({
+        next: () => {
+          this.loadUsers();
+          this.loadUsersStatistics();
+        },
+        error: () => this.store.errorMessage.set('Failed to activate user.'),
+      });
+  }
+
+  deactivateUser(userId: number): void {
+    this.store.loading.set(true);
+
+    this.repository
+      .deactivateUser(userId)
+      .pipe(finalize(() => this.store.loading.set(false)))
+      .subscribe({
+        next: () => {
+          this.loadUsers();
+          this.loadUsersStatistics();
+        },
+        error: () => this.store.errorMessage.set('Failed to deactivate user.'),
+      });
+  }
+
+  softDeleteUser(userId: number): void {
+    this.store.loading.set(true);
+    this.repository
+      .softDeleteUser(userId)
+      .pipe(finalize(() => this.store.loading.set(false)))
+      .subscribe({
+        next: () => {
+          this.loadUsers();
+          this.loadUsersStatistics();
+        },
+        error: () => this.store.errorMessage.set('Failed to delete user.'),
+      });
+  }
+
+  private loadStaff(query: UserManagementQueryModel): void {
+    this.store.loading.set(true);
+    this.store.errorMessage.set(null);
+
+    this.repository
+      .getAllStaffUsers(query)
+      .pipe(finalize(() => this.store.loading.set(false)))
+      .subscribe({
+        next: (result) => {
+          this.store.staffUsers.set(result.items);
+          this.store.setPagination(
+            result.pageNumber,
+            result.pageSize,
+            result.totalCount,
+            result.totalPages,
+          );
+        },
+        error: () => {
+          this.store.errorMessage.set('Failed to load staff users.');
+        },
+      });
+  }
+
+  private loadCitizens(query: UserManagementQueryModel): void {
+    this.store.loading.set(true);
+    this.store.errorMessage.set(null);
+
+    this.repository
+      .getAllCitizenUsers(query)
+      .pipe(finalize(() => this.store.loading.set(false)))
+      .subscribe({
+        next: (result) => {
+          this.store.citizenUsers.set(result.items);
+          this.store.setPagination(
+            result.pageNumber,
+            result.pageSize,
+            result.totalCount,
+            result.totalPages,
+          );
+        },
+        error: () => {
+          this.store.errorMessage.set('Failed to load citizen users.');
+        },
+      });
+  }
+
+  private buildQuery(): UserManagementQueryModel {
+    return {
+      searchTerm: this.store.searchTerm() || null,
+      isActive: this.store.isActive(),
+      pageNumber: this.store.pageNumber(),
+      pageSize: this.store.pageSize(),
+    };
+  }
+  addStaff(request: AddStaffRequestModel): void {
+    this.store.loading.set(true);
+    this.store.errorMessage.set(null);
+
+    this.repository
+      .addStaff(request)
+      .pipe(finalize(() => this.store.loading.set(false)))
+      .subscribe({
+        next: () => {
+          this.loadUsersStatistics();
+          this.router.navigate(['/admin/users-management']);
+        },
+        error: (error) => {
+          this.store.errorMessage.set(
+            error?.message ?? 'Failed to add staff user.',
+          );
+        },
+      });
+  }
+}

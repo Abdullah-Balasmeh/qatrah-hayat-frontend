@@ -1,0 +1,56 @@
+@if (isOpen()) {
+  <div class="modal-backdrop" (click)="onCancel()">
+    <div
+      class="confirmation-modal"
+      [class.danger]="type() === 'danger'"
+      [class.warning]="type() === 'warning'"
+      [class.success]="type() === 'success'"
+      [class.info]="type() === 'info'"
+      (click)="$event.stopPropagation()"
+      role="dialog"
+      aria-modal="true"
+    >
+      <button
+        type="button"
+        class="close-btn"
+        [disabled]="isLoading()"
+        (click)="onCancel()"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-icon">
+        <i [class]="modalIcon()"></i>
+      </div>
+
+      <div class="modal-content">
+        <h2>{{ title() | translate }}</h2>
+        <p>{{ message() | translate }}</p>
+      </div>
+
+      <div class="modal-actions">
+        <button
+          type="button"
+          class="cancel-btn"
+          [disabled]="isLoading()"
+          (click)="onCancel()"
+        >
+          {{ cancelText() | translate }}
+        </button>
+
+        <button
+          type="button"
+          class="confirm-btn"
+          [disabled]="isLoading()"
+          (click)="onConfirm()"
+        >
+          @if (isLoading()) {
+            <i class="fa-solid fa-spinner fa-spin"></i>
+          }
+
+          {{ confirmText() | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+}

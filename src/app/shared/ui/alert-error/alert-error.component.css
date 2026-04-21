@@ -1,0 +1,8 @@
+.alert-error {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border-radius: 1rem;
+  padding: 0.9rem 1rem;
+  font-weight: var(--font-weight-semi-bold);
+  margin-bottom: 1rem;
+}

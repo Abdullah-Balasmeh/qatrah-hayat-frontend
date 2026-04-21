@@ -1,0 +1,31 @@
+<div
+  class="form-inputs"
+  [class.focused]="isFocused"
+  [class.has-value]="hasValue"
+>
+  <i class="prefix-icon fa fa-search" aria-hidden="true"></i>
+
+  <input
+    class="text-input"
+    [ngModel]="searchValue"
+    (ngModelChange)="onSearchValueChange($event)"
+    [id]="inputId"
+    type="text"
+    [placeholder]="placeholder"
+    [autocomplete]="autocomplete"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    (keyup.enter)="onEnter()"
+  />
+
+  @if (hasValue) {
+    <button
+      type="button"
+      class="suffix-icon clear-button"
+      aria-label="Clear search"
+      (click)="clearSearch()"
+    >
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+  }
+</div>

@@ -1,0 +1,72 @@
+<section class="users-management-page">
+  <app-users-page-header></app-users-page-header>
+
+  <app-users-statistics-section
+    [totalUsers]="store.totalUsers()"
+    [totalStaff]="store.totalStaff()"
+    [totalCitizens]="store.totalCitizens()"
+    [lastUpdate]="lastUpdateLabel()"
+  ></app-users-statistics-section>
+
+  <div class="content-card">
+    <app-users-tabs
+      [selectedTab]="store.selectedTab()"
+      (tabChanged)="onTabChange($event)"
+    ></app-users-tabs>
+
+<app-users-filters
+  [searchValue]="searchValue"
+  [selectedStatus]="selectedStatus()"
+  (searchValueChanged)="searchValue = $event"
+  (searchSubmitted)="onSearch()"
+  (statusChanged)="onStatusChange($event)"
+></app-users-filters>
+
+    @if (store.errorMessage()) {
+      <app-alert-error [message]="store.errorMessage()!"></app-alert-error>
+    }
+
+    @if (store.loading()) {
+      <app-loading></app-loading>
+    } @else {
+      @if (store.selectedTab() === 'staff') {
+        <app-staff-users-table
+          [users]="store.staffUsers()"
+          (activateClicked)="activateUser($event)"
+          (deactivateClicked)="deactivateUser($event)"
+          (deleteClicked)="deleteUser($event)"
+        ></app-staff-users-table>
+      }
+
+      @if (store.selectedTab() === 'citizens') {
+        <app-citizen-users-table
+          [users]="store.citizenUsers()"
+          [bloodTypeLabels]="bloodTypeLabels"
+          (activateClicked)="activateUser($event)"
+          (deactivateClicked)="deactivateUser($event)"
+          (deleteClicked)="deleteUser($event)"
+        ></app-citizen-users-table>
+      }
+    }
+
+    <app-users-pagination
+      [shownFrom]="shownFrom()"
+      [shownTo]="shownTo()"
+      [totalCount]="store.totalCount()"
+      [pageNumber]="store.pageNumber()"
+      [totalPages]="store.totalPages()"
+      (previousClicked)="previousPage()"
+      (nextClicked)="nextPage()"
+    ></app-users-pagination>
+  </div>
+  <app-confirmation-modal
+  [isOpen]="isConfirmationModalOpen()"
+  [type]="confirmationModalType()"
+  [title]="confirmationModalTitle()"
+  [message]="confirmationModalMessage()"
+  [confirmText]="confirmationModalConfirmText()"
+  [cancelText]="'COMMON.CANCEL'"
+  (confirmed)="confirmUserAction()"
+  (cancelled)="closeConfirmationModal()"
+></app-confirmation-modal>
+</section>

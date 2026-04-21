@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -10,10 +10,11 @@ type Lang = 'en' | 'ar';
 export class LanguageService {
   private readonly key = 'lang';
   private translate = inject(TranslateService);
+  readonly currentLangSignal = signal<Lang>('ar');
   async init(): Promise<void> {
     const savedLang = this.getSavedLanguage();
     const langToUse: Lang = savedLang ?? 'ar';
-
+ this.currentLangSignal.set(langToUse);
     this.translate.setFallbackLang('ar');
     await firstValueFrom(this.translate.use(langToUse));
 
@@ -28,7 +29,7 @@ export class LanguageService {
 
   async setLanguage(lang: Lang): Promise<void> {
     await firstValueFrom(this.translate.use(lang));
-
+  this.currentLangSignal.set(lang);
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 

@@ -1,0 +1,62 @@
+.stat-card {
+  background-color: var(--surface-card);
+  border-radius: 1.25rem;
+  padding: 1.2rem;
+  box-shadow: var(--box-shadow-card);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  display: grid;
+  place-items: center;
+  font-size: var(--font-size-lg);
+}
+
+.stat-card p {
+  color: var(--grey-color);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);;
+  margin-bottom: 0.1rem;
+}
+
+.stat-card strong {
+  color: var(--primary-text-color);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.icon-gold {
+  background-color: #FFF4D6;
+}
+
+.icon-gold i {
+  color: #B7791F;
+}
+
+.icon-green {
+  background-color: #d1fae5;
+}
+
+.icon-green i {
+  color: #059669;
+}
+.icon-navy {
+  background-color: #EAF0FA;
+}
+
+.icon-navy i {
+  color: #10264B;
+}
+
+.icon-pink {
+  background-color: var(--primary-color-light);
+}
+
+.icon-pink i {
+  color: var(--primary-color);
+}

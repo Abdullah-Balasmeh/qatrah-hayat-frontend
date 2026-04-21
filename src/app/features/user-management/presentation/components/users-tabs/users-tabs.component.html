@@ -1,0 +1,21 @@
+<div class="tabs">
+  <button
+    type="button"
+    class="tab-btn"
+    [class.active]="selectedTab() === 'staff'"
+    (click)="selectTab('staff')"
+  >
+    <i class="fa-solid fa-user-tie"></i>
+    {{ "Admin-Keys.STAFF" | translate }}
+  </button>
+
+  <button
+    type="button"
+    class="tab-btn"
+    [class.active]="selectedTab() === 'citizens'"
+    (click)="selectTab('citizens')"
+  >
+    <i class="fa-solid fa-user"></i>
+    {{ "Admin-Keys.CITIZENS" | translate }}
+  </button>
+</div>

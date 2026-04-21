@@ -4,6 +4,9 @@
   --primary-color: #BF0007;
   --primary-color-light: #FFEFF0;
   --secondary-color: linear-gradient(135deg, #07152d 0%, #0b1d3d 60%, #10264b 100%);
+  --grey-color:rgba(16, 23, 39, 0.62);
+  --divider-color:rgba(16, 23, 39, 0.08);
+  --input-background-color: #f8fafc;
   --surface-ground: #FFEFF0;
   --surface-card: #ffffff;
   --box-shadow-nav-bar: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08),

@@ -1,0 +1,29 @@
+<div class="stats-grid">
+  <app-stat-card
+    [title]="'Admin-Keys.TOTAL_USERS' | translate"
+    [value]="totalUsers()"
+    [icon]="'fa-solid fa-users'"
+    [colorClass]="'icon-gold'"
+  ></app-stat-card>
+
+  <app-stat-card
+    [title]="'Admin-Keys.TOTAL_STAFFS' | translate"
+    [value]="totalStaff()"
+    [icon]="'fa-solid fa-user-shield'"
+    [colorClass]="'icon-navy'"
+  ></app-stat-card>
+
+  <app-stat-card
+    [title]="'Admin-Keys.TOTAL_CITIZENS' | translate"
+    [value]="totalCitizens()"
+    [icon]="'fa-solid fa-user-group'"
+    [colorClass]="'icon-pink'"
+  ></app-stat-card>
+
+  <app-stat-card
+    [title]="'Admin-Keys.LAST_UPDATE' | translate"
+    [value]="lastUpdate()"
+    [icon]="'fa-solid fa-clock-rotate-left'"
+    [colorClass]="'icon-green'"
+  ></app-stat-card>
+</div>

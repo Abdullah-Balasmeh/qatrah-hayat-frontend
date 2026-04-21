@@ -1,0 +1,123 @@
+<div class="table-wrapper">
+  <table class="users-table">
+    <thead>
+      <tr>
+        <th>{{ 'Admin-Keys.USER' | translate }}</th>
+        <th>{{ 'Admin-Keys.CONTACT' | translate }}</th>
+        <th>{{ 'Admin-Keys.JOB_ROLE' | translate }}</th>
+        <th>{{ 'Admin-Keys.BRANCH_HOSPITAL' | translate }}</th>
+        <th>{{ 'Admin-Keys.STATUS' | translate }}</th>
+        <th class="actions-header">{{ 'Admin-Keys.ACTIONS' | translate }}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (user of users(); track user.userId) {
+        <tr>
+          <td [attr.data-label]="'Admin-Keys.USER' | translate">
+            <div class="user-cell">
+              <div class="user-info">
+                <strong>{{isArabic() ? user.fullNameAr : user.fullNameEn }}</strong>
+                <span>{{isArabic() ? user.fullNameEn : user.fullNameAr }}</span>
+                <small>
+                  {{ 'Admin-Keys.NATIONAL_ID' | translate }}:
+                  {{ user.nationalId }}
+                </small>
+              </div>
+            </div>
+          </td>
+
+          <td [attr.data-label]="'Admin-Keys.CONTACT' | translate">
+            <div class="stacked-text">
+              <span>{{ user.email }}</span>
+              <small>{{ user.phoneNumber }}</small>
+            </div>
+          </td>
+
+          <td [attr.data-label]="'Admin-Keys.JOB_ROLE' | translate">
+            <div class="badges-list">
+              @for (role of getStaffRoles(user.roles); track role) {
+                <app-role-badge [role]="role"></app-role-badge>
+              }
+            </div>
+          </td>
+
+          <td [attr.data-label]="'Admin-Keys.BRANCH_HOSPITAL' | translate">
+            <div class="stacked-text">
+              <span>
+                {{ user.branchNameEn || ('Admin-Keys.NO_BRANCH' | translate) }}
+              </span>
+
+              <small>
+                {{ user.hospitalNameEn || ('Admin-Keys.NO_HOSPITAL' | translate) }}
+              </small>
+            </div>
+          </td>
+
+          <td [attr.data-label]="'Admin-Keys.STATUS' | translate">
+            <app-user-status-badge [isActive]="user.isActive"></app-user-status-badge>
+          </td>
+
+          <td [attr.data-label]="'Admin-Keys.ACTIONS' | translate">
+            <div class="actions">
+              <a
+                class="icon-btn view"
+                [routerLink]="['staff', user.userId]"
+                [title]="'Admin-Keys.VIEW' | translate"
+              >
+                <i class="fa-solid fa-eye"></i>
+              </a>
+
+              <a
+                class="icon-btn edit"
+                [routerLink]="['staff', user.userId, 'edit']"
+                [title]="'Admin-Keys.EDIT' | translate"
+              >
+               <i class="fa-solid fa-pen-to-square"></i>
+              </a>
+
+              @if (user.isActive) {
+                <button
+                  type="button"
+                  class="icon-btn deactivate"
+                  [title]="'Admin-Keys.DEACTIVATE' | translate"
+                  (click)="deactivateClicked.emit(user.userId)"
+                >
+                  <i class="fa-solid fa-user-slash"></i>
+                </button>
+              } @else {
+                <button
+                  type="button"
+                  class="icon-btn activate"
+                  [title]="'Admin-Keys.ACTIVATE' | translate"
+                  (click)="activateClicked.emit(user.userId)"
+                >
+                  <i class="fa-solid fa-user-check"></i>
+                </button>
+              }
+
+              <button
+                type="button"
+                class="icon-btn delete"
+                [title]="'Admin-Keys.DELETE' | translate"
+                (click)="deleteClicked.emit(user.userId)"
+              >
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      } @empty {
+        <tr class="empty-tr">
+          <td colspan="6">
+            <div class="empty-state">
+              <i class="fa-solid fa-user-slash"></i>
+              <h3>{{ 'Admin-Keys.NO_STAFF_FOUND' | translate }}</h3>
+              <p>{{ 'Admin-Keys.NOT_FOUND_DESCRIPTION' | translate }}</p>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

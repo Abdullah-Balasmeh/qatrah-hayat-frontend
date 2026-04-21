@@ -5,17 +5,29 @@ export const API_BASE_URL = environment.apiBaseUrl;
 
 export const API_ENDPOINTS = {
   auth: {
-    register: `${API_BASE_URL}/api/Auth/register`,
-    login: `${API_BASE_URL}/api/Auth/login`,
-    me: `${API_BASE_URL}/api/Auth/me`,
+    register: `${API_BASE_URL}/Auth/register`,
+    login: `${API_BASE_URL}/Auth/login`,
+    me: `${API_BASE_URL}/Auth/me`,
   },
   civilStatus: {
-    get: `${API_BASE_URL}/api/CivilStatus/{nationalId}`
+    get: `${API_BASE_URL}/CivilStatus/{nationalId}`
   },
   screening: {
-    submit: `${API_BASE_URL}/api/Screening/submit`,
-    get: `${API_BASE_URL}/api/Screening/questions`
-  }
-
+    submit: `${API_BASE_URL}/Screening/submit`,
+    get: `${API_BASE_URL}/Screening/questions`
+  },
+  userManagement: {
+    getAllStaffUsersEndpoint: `${API_BASE_URL}/users-management/staff`,
+    getStaffByIdEndpoint: `${API_BASE_URL}/users-management/staff/{userId}`,
+    addStaffEndpoint: `${API_BASE_URL}/users-management/staff`,
+    updateStaffEndpoint: `${API_BASE_URL}/users-management/staff/{userId}`,
+    getAllCitizenUsersEndpoint:`${API_BASE_URL}/users-management/citizens`,
+    getCitizenByIdEndpoint: `${API_BASE_URL}/users-management/citizens/{userId}`,
+    updateCitizenEndpoint: `${API_BASE_URL}/users-management/citizens/{userId}`,
+    activateUserEndpoint: `${API_BASE_URL}/users-management/{userId}/activate`,
+    deactivateUserEndpoint: `${API_BASE_URL}/users-management/{userId}/deactivate`,
+    softDeleteUserEndpoint: `${API_BASE_URL}/users-management/{userId}`,
+    getUsersStatisticsEndpoint: `${API_BASE_URL}/users-management/statistics`
+  },
 
 };
