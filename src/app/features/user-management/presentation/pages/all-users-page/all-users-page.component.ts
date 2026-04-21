@@ -1,5 +1,5 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
-import { USER_ROLE_LABELS } from '../../../../../core/enums/user-role.enum';
+import { USER_ROLE_OPTIONS } from '../../../../../core/enums/user-role.enum';
 import { UsersManagementFacade } from '../../facades/users-management.facade';
 import { GENDER_OPTIONS } from '../../../../../core/enums/gender-enum';
 import { BLOOD_TYPE_OPTIONS } from '../../../../../core/enums/blood-type-enum';
@@ -15,6 +15,7 @@ import { UsersStatisticsSectionComponent } from "../../components/users-statisti
 import { UsersPageHeaderComponent } from "../../components/users-page-header/users-page-header.component";
 import { LoadingComponent } from "../../../../../shared/ui/loading/loading.component";
 import { UserStatusFilter } from '../../components/users-filters/users-filters.component';
+import { AlertErrorComponent } from "../../../../../shared/ui/alert-error/alert-error.component";
 @Component({
   selector: 'app-all-users-page',
   standalone: true,
@@ -29,7 +30,8 @@ import { UserStatusFilter } from '../../components/users-filters/users-filters.c
     UsersTabsComponent,
     UsersStatisticsSectionComponent,
     UsersPageHeaderComponent,
-    LoadingComponent
+    LoadingComponent,
+    AlertErrorComponent
 ],
   templateUrl: './all-users-page.component.html',
   styleUrl: './all-users-page.component.css'
@@ -37,7 +39,7 @@ import { UserStatusFilter } from '../../components/users-filters/users-filters.c
 export class AllUsersPageComponent implements OnInit {
   readonly bloodTypeLabels = BLOOD_TYPE_OPTIONS;
   readonly genderLabels = GENDER_OPTIONS;
-  readonly roleLabels = USER_ROLE_LABELS;
+  readonly roleLabels = USER_ROLE_OPTIONS;
 
   private readonly facade = inject(UsersManagementFacade);
   readonly store = this.facade.store;

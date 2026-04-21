@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { BLOOD_TYPE_OPTIONS } from '../../../../../core/enums/blood-type-enum';
 import { GENDER_OPTIONS } from '../../../../../core/enums/gender-enum';
-import { UserRole, USER_ROLE_LABELS } from '../../../../../core/enums/user-role.enum';
+import { UserRole, USER_ROLE_OPTIONS } from '../../../../../core/enums/user-role.enum';
 import { AddStaffRequestModel } from '../../../domain/models/add-staff-request.model';
 import { UsersManagementFacade } from '../../facades/users-management.facade';
 import { AddStaffFormModel } from '../../view-models/add-staff-form.model';
@@ -30,19 +30,19 @@ export class AddStaffPageComponent {
   readonly staffRoleOptions = [
     {
       value: UserRole.Doctor,
-      label: USER_ROLE_LABELS[UserRole.Doctor]
+      label: USER_ROLE_OPTIONS[UserRole.Doctor]
     },
     {
       value: UserRole.Employee,
-      label: USER_ROLE_LABELS[UserRole.Employee]
+      label: USER_ROLE_OPTIONS[UserRole.Employee]
     },
     {
       value: UserRole.BranchManager,
-      label: USER_ROLE_LABELS[UserRole.BranchManager]
+      label: USER_ROLE_OPTIONS[UserRole.BranchManager]
     },
     {
       value: UserRole.Admin,
-      label: USER_ROLE_LABELS[UserRole.Admin]
+      label: USER_ROLE_OPTIONS[UserRole.Admin]
     }
   ];
 

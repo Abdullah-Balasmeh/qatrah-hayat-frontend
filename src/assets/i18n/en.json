@@ -130,8 +130,36 @@
     "FILTER_BY_STATUS": "Filter by Status",
     "ALL_STATUS": "All Status",
     "ACTIVE_ONLY": "Active Only",
-    "INACTIVE_ONLY": "Inactive Only"
+    "INACTIVE_ONLY": "Inactive Only",
+    "USER": "User",
+    "CONTACT": "Contact",
+    "JOB_ROLE": "Job Role",
+    "BRANCH_HOSPITAL": "Branch / Hospital",
+    "STATUS": "Status",
+    "ACTIONS": "Actions",
+    "NATIONAL_ID": "ID",
+    "NO_BRANCH": "No Branch",
+    "NO_HOSPITAL": "No Hospital",
+    "VIEW": "View",
+    "EDIT": "Edit",
+    "ACTIVATE": "Activate",
+    "DEACTIVATE": "Deactivate",
+    "DELETE": "Delete",
+    "NO_STAFF_FOUND": "No staff users found",
+    "NO_STAFF_FOUND_DESCRIPTION": "Try changing the search term or filters."
 
+  },
+
+  "Loading-Keys":{
+    "LOADING": "Loading..."
+  },
+
+  "Role-Keys":{
+    "ROLE_CITIZEN": "Citizen",
+    "ROLE_DOCTOR": "Doctor",
+    "ROLE_EMPLOYEE": "Employee",
+    "ROLE_BRANCH_MANAGER": "Branch Manager",
+    "ROLE_ADMIN": "Admin"
   }
 
 }
