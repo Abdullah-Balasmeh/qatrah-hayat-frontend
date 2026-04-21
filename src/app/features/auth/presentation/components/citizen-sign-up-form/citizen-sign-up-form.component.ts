@@ -159,7 +159,7 @@ export class CitizenSignUpFormComponent {
 
     if (!this.isCitizenVerified()) {
       this.civilStatusErrorMessage.set(
-        this.translate.instant('isCitizenVerifiedError')
+        this.translate.instant('Signup-Keys.NATIONAL_REGISTRY_VERIFICATION')
       );
       return;
     }

@@ -48,6 +48,10 @@
     "SINGLE_MALE": "Single",
     "MARRIED": "Married"
   },
+  "Gender-Keys": {
+    "MALE": "Male",
+    "FEMALE": "Female"
+  },
   "Signup-Keys": {
     "SIGNUP_VISUAL_TITLE": "Start Your Journey with Qatrah Hayat",
     "SIGNUP_VISUAL_SUBTITLE": "Create your account now and join a community that helps support people in need of blood through a safe and well-organized platform.",
@@ -122,7 +126,7 @@
     "LAST_UPDATE": "Last Update",
     "STAFF": "Staff",
     "CITIZENS": "Citizens",
-    "SEARCH_PLACEHOLDER": "Search by name , email or national ID...",
+    "SEARCH_PLACEHOLDER": "Search by name or national ID...",
     "FILTER_BY_STATUS": "Filter by Status",
     "ALL_STATUS": "All Status",
     "ACTIVE_ONLY": "Active Only",
@@ -160,6 +164,30 @@
     "CONFIRM_ACTIVATE_USER_MESSAGE": "Do you want to activate this user? They will be able to use their account again.",
     "CONFIRM_ACTION_TITLE": "Confirm Action",
     "CONFIRM_ACTION_MESSAGE": "Are you sure you want to perform this action?"
+  },
+  "Add-Staff-Keys": {
+    "ADD_STAFF": "Add Staff",
+    "ADD_STAFF_DESCRIPTION": "Create a new staff account and assign the correct role, branch, or hospital.",
+    "BACK_TO_USERS": "Back to Users",
+    "NEW_USER_STAFF_CREATION_MESSAGE": "This national ID does not have an account. A new citizen account with staff role will be created.",
+    "EXISTING_CITIZEN_PROMOTION_MESSAGE": "This citizen already has an account. Only a staff role and location will be added.",
+    "USER_ALREADY_STAFF": "This user is already a staff member and cannot be added again.",
+    "ACCOUNT_INFORMATION": "Account Information",
+    "STAFF_INFORMATION": "Staff Information",
+    "STAFF_ROLE": "Staff Role",
+    "SELECT_STAFF_ROLE": "Select staff role",
+    "STAFF_ROLE_REQUIRED": "Staff role is required.",
+    "HOSPITAL": "Hospital",
+    "SELECT_HOSPITAL": "Select hospital",
+    "HOSPITAL_REQUIRED": "Hospital is required for doctor users.",
+    "BRANCH": "Branch",
+    "SELECT_BRANCH": "Select branch",
+    "BRANCH_REQUIRED": "Branch is required for employee and branch manager users.",
+    "ADMIN_DOES_NOT_REQUIRE_LOCATION": "Admin users do not need to be linked to a branch or hospital.",
+    "STAFF_ADDED_SUCCESSFULLY": "Staff user added successfully.",
+    "FAILED_TO_ADD_STAFF": "Failed to add staff user.",
+    "FAILED_TO_PROMOTE_CITIZEN": "Failed to promote citizen to staff.",
+    "USER_ID_NOT_FOUND": "Citizen user ID was not found."
   },
   "Loading-Keys": {
     "LOADING": "Loading"

@@ -27,7 +27,10 @@ export const API_ENDPOINTS = {
     activateUserEndpoint: `${API_BASE_URL}/users-management/{userId}/activate`,
     deactivateUserEndpoint: `${API_BASE_URL}/users-management/{userId}/deactivate`,
     softDeleteUserEndpoint: `${API_BASE_URL}/users-management/{userId}`,
-    getUsersStatisticsEndpoint: `${API_BASE_URL}/users-management/statistics`
+    getUsersStatisticsEndpoint: `${API_BASE_URL}/users-management/statistics`,
+    lookupCitizenEndpoint: `${API_BASE_URL}/users-management/citizens/lookup/{nationalId}`,
+    createStaffFromNationalRegistryEndpoint: `${API_BASE_URL}/users-management/staff/create-from-national-registry`,
+    promoteCitizenToStaffEndpoint: `${API_BASE_URL}/users-management/citizens/{userId}/promote-to-staff`
   },
 
 };
