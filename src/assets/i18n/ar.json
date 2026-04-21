@@ -151,7 +151,15 @@
     "DONATIONS_COUNT": "تبرع",
     "NEXT_ELIGIBLE_DATE": "التالي",
     "NOT_SET": "غير محدد",
-    "NO_CITIZENS_FOUND": "لا يوجد مواطنين"
+    "NO_CITIZENS_FOUND": "لا يوجد مواطنين",
+    "CONFIRM_DELETE_USER_TITLE": "تأكيد حذف المستخدم",
+    "CONFIRM_DELETE_USER_MESSAGE": "هل أنت متأكد من حذف هذا المستخدم؟ لن يظهر المستخدم ضمن القوائم بعد تنفيذ العملية.",
+    "CONFIRM_DEACTIVATE_USER_TITLE": "تأكيد تعطيل المستخدم",
+    "CONFIRM_DEACTIVATE_USER_MESSAGE": "هل تريد تعطيل هذا المستخدم؟ لن يتمكن من استخدام حسابه حتى يتم تفعيله مرة أخرى.",
+    "CONFIRM_ACTIVATE_USER_TITLE": "تأكيد تفعيل المستخدم",
+    "CONFIRM_ACTIVATE_USER_MESSAGE": "هل تريد تفعيل هذا المستخدم؟ سيتمكن من استخدام حسابه مرة أخرى.",
+    "CONFIRM_ACTION_TITLE": "تأكيد العملية",
+    "CONFIRM_ACTION_MESSAGE": "هل أنت متأكد من تنفيذ هذه العملية؟"
   },
   "Loading-Keys": {
     "LOADING": "جار التحميل"
@@ -172,5 +180,9 @@
     "NEXT": "التالي",
     "PAGE": "صفحة",
     "PAGE_OF": "صفحة من"
+  },
+  "COMMON": {
+    "CANCEL": "إلغاء",
+    "CONFIRM": "تأكيد"
   }
 }

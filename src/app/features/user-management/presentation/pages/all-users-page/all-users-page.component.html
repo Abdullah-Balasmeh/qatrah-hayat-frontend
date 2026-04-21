@@ -59,4 +59,14 @@
       (nextClicked)="nextPage()"
     ></app-users-pagination>
   </div>
+  <app-confirmation-modal
+  [isOpen]="isConfirmationModalOpen()"
+  [type]="confirmationModalType()"
+  [title]="confirmationModalTitle()"
+  [message]="confirmationModalMessage()"
+  [confirmText]="confirmationModalConfirmText()"
+  [cancelText]="'COMMON.CANCEL'"
+  (confirmed)="confirmUserAction()"
+  (cancelled)="closeConfirmationModal()"
+></app-confirmation-modal>
 </section>

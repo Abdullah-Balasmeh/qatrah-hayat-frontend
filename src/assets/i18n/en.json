@@ -151,7 +151,15 @@
     "DONATIONS_COUNT": "donations",
     "NEXT_ELIGIBLE_DATE": "Next",
     "NOT_SET": "Not set",
-    "NO_CITIZENS_FOUND": "No citizens found"
+    "NO_CITIZENS_FOUND": "No citizens found",
+    "CONFIRM_DELETE_USER_TITLE": "Confirm User Deletion",
+    "CONFIRM_DELETE_USER_MESSAGE": "Are you sure you want to delete this user? The user will no longer appear in the lists after this action.",
+    "CONFIRM_DEACTIVATE_USER_TITLE": "Confirm User Deactivation",
+    "CONFIRM_DEACTIVATE_USER_MESSAGE": "Do you want to deactivate this user? They will not be able to use their account until it is activated again.",
+    "CONFIRM_ACTIVATE_USER_TITLE": "Confirm User Activation",
+    "CONFIRM_ACTIVATE_USER_MESSAGE": "Do you want to activate this user? They will be able to use their account again.",
+    "CONFIRM_ACTION_TITLE": "Confirm Action",
+    "CONFIRM_ACTION_MESSAGE": "Are you sure you want to perform this action?"
   },
   "Loading-Keys": {
     "LOADING": "Loading"
@@ -172,5 +180,9 @@
     "NEXT": "Next",
     "PAGE": "Page",
     "PAGE_OF": "Page of"
+  },
+  "COMMON": {
+    "CANCEL": "Cancel",
+    "CONFIRM": "Confirm"
   }
 }

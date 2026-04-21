@@ -99,14 +99,7 @@ export class UsersManagementFacade {
   }
 
   softDeleteUser(userId: number): void {
-    const confirmed = confirm('Are you sure you want to delete this user?');
-
-    if (!confirmed) {
-      return;
-    }
-
     this.store.loading.set(true);
-
     this.repository
       .softDeleteUser(userId)
       .pipe(finalize(() => this.store.loading.set(false)))

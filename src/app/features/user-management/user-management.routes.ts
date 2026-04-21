@@ -24,30 +24,30 @@ export const USER_MANAGEMENT_ROUTES: Routes = [
           import('./presentation/pages/add-staff-page/add-staff-page.component')
             .then(c => c.AddStaffPageComponent)
       },
-      // {
-      //   path: 'staff/:id',
-      //   loadComponent: () =>
-      //     import('./presentation/pages/staff-details-page/staff-details-page.component')
-      //       .then(c => c.StaffDetailsPageComponent)
-      // },
-      // {
-      //   path: 'staff/:id/edit',
-      //   loadComponent: () =>
-      //     import('./presentation/pages/edit-staff-page/edit-staff-page.component')
-      //       .then(c => c.EditStaffPageComponent)
-      // },
-      // {
-      //   path: 'citizens/:id',
-      //   loadComponent: () =>
-      //     import('./presentation/pages/citizen-details-page/citizen-details-page.component')
-      //       .then(c => c.CitizenDetailsPageComponent)
-      // },
-      // {
-      //   path: 'citizens/:id/edit',
-      //   loadComponent: () =>
-      //     import('./presentation/pages/edit-citizen-page/edit-citizen-page.component')
-      //       .then(c => c.EditCitizenPageComponent)
-      // }
+      {
+        path: 'staff/:id',
+        loadComponent: () =>
+          import('./presentation/pages/staff-details-page/staff-details-page.component')
+            .then(c => c.StaffDetailsPageComponent)
+      },
+      {
+        path: 'staff/:id/edit',
+        loadComponent: () =>
+          import('./presentation/pages/edit-staff-page/edit-staff-page.component')
+            .then(c => c.EditStaffPageComponent)
+      },
+      {
+        path: 'citizens/:id',
+        loadComponent: () =>
+          import('./presentation/pages/citizen-details-page/citizen-details-page.component')
+            .then(c => c.CitizenDetailsPageComponent)
+      },
+      {
+        path: 'citizens/:id/edit',
+        loadComponent: () =>
+          import('./presentation/pages/edit-citizen-page/edit-citizen-page.component')
+            .then(c => c.EditCitizenPageComponent)
+      }
     ]
   }
 ];
