@@ -1,24 +1,45 @@
 {
-  "Landing-Page-keys": "Landing-Page-keys",
-  "Landing-Header-Keys": {
-    "HOME": "الرئيسية",
-    "DONATION_REQUESTS": "طلبات التبرع",
-    "CAMPAIGNS": "الحملات",
-    "ABOUT_US": "من نحن",
-    "CONTACT_US": "اتصل بنا",
-    "LOGIN": "تسجيل الدخول",
-    "CREATE_ACCOUNT": "إنشاء حساب"
+  "Shared-Keys": "Shared-Keys",
+  "Marital-Status-Keys": {
+    "SINGLE": "أعزب / عزباء",
+    "MARRIED": "متزوج / متزوجة"
   },
-  "Footer-Keys": {
-    "ABOUT_US_FOOTER": "كل قطرة دم تُحدث فرقًا. انضم إلينا في مهمتنا لتوفير حياة أفضل للجميع وضمان وصول الدم لكل من يحتاجه في كل لحظة.",
-    "QUICK_LINKS": "روابط سريعة",
-    "LEGAL_LINKS": "روابط قانونية",
-    "PRIVACY_POLICY": "حياة الخصوصية",
-    "TERMS_OF_USE": "الشروط والاحكام",
-    "CONTACT_US": "اتصل بنا",
-    "FOOTER_PHONE": "+962 7 9000 0000",
-    "FOOTER_LOCATION": "عمان، الأردن",
-    "FOOTER_COPYRIGHT": "© 2026 قطرة حياة. جميع الحقوق محفوظة."
+  "Gender-Keys": {
+    "MALE": "ذكر",
+    "FEMALE": "أنثى"
+  },
+  "Blood-Type-Status-Keys": {
+    "PROVISIONAL": "مؤقت",
+    "CONFIRMED": "مؤكد"
+  },
+  "Eligibility-Status-Keys": {
+    "ELIGIBLE": "مؤهل",
+    "TEMP_DEFERRED": "مؤجل مؤقتا",
+    "PERM_DEFERRED": "Permanently Deferred"
+  },
+  "Loading-Keys": {
+    "LOADING": "جار التحميل"
+  },
+  "Role-Keys": {
+    "ROLE_CITIZEN": "مواطن",
+    "ROLE_DOCTOR": "طبيب",
+    "ROLE_EMPLOYEE": "موظف",
+    "ROLE_BRANCH_MANAGER": "مدير فرع",
+    "ROLE_ADMIN": "مسؤول النظام"
+  },
+  "PAGINATION_KEYS": {
+    "SHOWING": "أظهر",
+    "TO": "إلى",
+    "OF": "من",
+    "RESULTS": "النتائج",
+    "PREVIOUS": "السابق",
+    "NEXT": "التالي",
+    "PAGE": "صفحة",
+    "PAGE_OF": "صفحة من"
+  },
+  "COMMON": {
+    "CANCEL": "إلغاء",
+    "CONFIRM": "تأكيد"
   },
   "Auth-Keys": "Auth-Keys",
   "Signup-Keys": {
@@ -98,14 +119,6 @@
     "INACTIVE_ACCOUNT": "هذا الحساب غير نشط. يرجى التواصل مع الدعم.",
     "GENERIC_ERROR_LOGIN": "حدث خطأ أثناء تسجيل الدخول. يرجى المحاولة مرة أخرى لاحقاً."
   },
-  "Marital-Status-Keys": {
-    "SINGLE": "أعزب / عزباء",
-    "MARRIED": "متزوج / متزوجة"
-  },
-  "Gender-Keys": {
-    "MALE": "ذكر",
-    "FEMALE": "أنثى"
-  },
   "ForgotPassword-Keys": {
     "TITLE": "نسيت كلمة المرور",
     "SUBTITLE": "أدخل البريد الإلكتروني وسنرسل رمز تحقق لإعادة تعيين كلمة المرور.",
@@ -150,6 +163,27 @@
     "PASSWORD_RESET_SESSION_EXPIRED": "انتهت صلاحية جلسة إعادة تعيين كلمة المرور.",
     "PASSWORD_RESET_FAILED": "فشلت عملية إعادة تعيين كلمة المرور. يرجى التحقق من متطلبات كلمة المرور.",
     "GENERIC_ERROR": "حدث خطأ أثناء إعادة تعيين كلمة المرور."
+  },
+  "Landing-Page-keys": "Landing-Page-keys",
+  "Landing-Header-Keys": {
+    "HOME": "الرئيسية",
+    "DONATION_REQUESTS": "طلبات التبرع",
+    "CAMPAIGNS": "الحملات",
+    "ABOUT_US": "من نحن",
+    "CONTACT_US": "اتصل بنا",
+    "LOGIN": "تسجيل الدخول",
+    "CREATE_ACCOUNT": "إنشاء حساب"
+  },
+  "Footer-Keys": {
+    "ABOUT_US_FOOTER": "كل قطرة دم تُحدث فرقًا. انضم إلينا في مهمتنا لتوفير حياة أفضل للجميع وضمان وصول الدم لكل من يحتاجه في كل لحظة.",
+    "QUICK_LINKS": "روابط سريعة",
+    "LEGAL_LINKS": "روابط قانونية",
+    "PRIVACY_POLICY": "حياة الخصوصية",
+    "TERMS_OF_USE": "الشروط والاحكام",
+    "CONTACT_US": "اتصل بنا",
+    "FOOTER_PHONE": "+962 7 9000 0000",
+    "FOOTER_LOCATION": "عمان، الأردن",
+    "FOOTER_COPYRIGHT": "© 2026 قطرة حياة. جميع الحقوق محفوظة."
   },
   "Admin-Keys": {
     "DASHBOARD": "لوحة التحكم",
@@ -237,29 +271,5 @@
     "FAILED_TO_ADD_STAFF": "فشلت عملية إضافة الموظف.",
     "FAILED_TO_PROMOTE_CITIZEN": "فشلت عملية ترقية المواطن إلى موظف.",
     "USER_ID_NOT_FOUND": "لم يتم العثور على رقم المستخدم الخاص بالمواطن."
-  },
-  "Loading-Keys": {
-    "LOADING": "جار التحميل"
-  },
-  "Role-Keys": {
-    "ROLE_CITIZEN": "مواطن",
-    "ROLE_DOCTOR": "طبيب",
-    "ROLE_EMPLOYEE": "موظف",
-    "ROLE_BRANCH_MANAGER": "مدير فرع",
-    "ROLE_ADMIN": "مسؤول النظام"
-  },
-  "PAGINATION_KEYS": {
-    "SHOWING": "أظهر",
-    "TO": "إلى",
-    "OF": "من",
-    "RESULTS": "النتائج",
-    "PREVIOUS": "السابق",
-    "NEXT": "التالي",
-    "PAGE": "صفحة",
-    "PAGE_OF": "صفحة من"
-  },
-  "COMMON": {
-    "CANCEL": "إلغاء",
-    "CONFIRM": "تأكيد"
   }
 }
