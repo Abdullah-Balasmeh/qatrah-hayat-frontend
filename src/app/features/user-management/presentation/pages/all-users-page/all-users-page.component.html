@@ -23,7 +23,7 @@
 ></app-users-filters>
 
     @if (store.errorMessage()) {
-      <app-alert-error [message]="store.errorMessage()!"></app-alert-error>
+      <app-alert-error [errorMessage]="store.errorMessage()!"></app-alert-error>
     }
 
     @if (store.loading()) {

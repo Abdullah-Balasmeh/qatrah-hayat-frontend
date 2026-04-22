@@ -6,6 +6,7 @@ export function mapLoginRequestModelToLoginRequestDto(
 ): LoginRequestDto {
   return {
     nationalId: request.nationalId.trim(),
-    password: request.password
+    password: request.password,
+    rememberMe: request.rememberMe
   };
 }

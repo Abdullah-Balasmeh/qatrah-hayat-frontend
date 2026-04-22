@@ -48,6 +48,7 @@ private readonly destroyRef = inject(DestroyRef);
       Validators.required,
       Validators.maxLength(64),
     ]),
+    rememberMe: this.fb.nonNullable.control(false),
   });
 
   onSubmit(): void {
@@ -78,6 +79,7 @@ private readonly destroyRef = inject(DestroyRef);
     this.loginForm.reset({
       nationalId: '',
       password: '',
+      rememberMe: false,
     });
   }
 }

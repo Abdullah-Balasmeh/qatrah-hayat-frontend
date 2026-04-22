@@ -8,6 +8,9 @@ export const API_ENDPOINTS = {
     register: `${API_BASE_URL}/Auth/register`,
     login: `${API_BASE_URL}/Auth/login`,
     me: `${API_BASE_URL}/Auth/me`,
+    forgotPassword: `${API_BASE_URL}/Auth/forgot-password`,
+    verifyResetOtp: `${API_BASE_URL}/Auth/verify-reset-otp`,
+    resetPassword: `${API_BASE_URL}/Auth/reset-password`,
   },
   civilStatus: {
     get: `${API_BASE_URL}/CivilStatus/{nationalId}`

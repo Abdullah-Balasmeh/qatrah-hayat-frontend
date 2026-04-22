@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormControl } from '@angular/forms';
@@ -11,6 +11,6 @@ import { CheckBoxInputComponent } from '../../../../../shared/ui/check-box-input
   styleUrl: './forget-password-and-remember-me.component.css'
 })
 export class ForgetPasswordAndRememberMeComponent {
-  rememberMeControl = new FormControl(false);
+ @Input({ required: true }) rememberMeControl!: FormControl<boolean>;
 
 }

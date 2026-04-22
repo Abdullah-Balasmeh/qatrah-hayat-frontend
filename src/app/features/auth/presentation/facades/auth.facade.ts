@@ -18,6 +18,10 @@ import { AuthUserModel } from '../../domain/models/auth-user.model';
 import { AuthRepo } from '../../domain/repositories/auth.repo';
 import { RegisterRequestModel } from '../../domain/models/register-request.model';
 import { RegisterResponseModel } from '../../domain/models/register-response.model';
+import { ForgotPasswordRequestModel } from '../../domain/models/forgot-password-request.model';
+import { ResetPasswordRequestModel } from '../../domain/models/reset-password-request.model';
+import { VerifyResetOtpRequestModel } from '../../domain/models/verify-reset-otp-request.model';
+import { VerifyResetOtpResponseModel } from '../../domain/models/verify-reset-otp-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +52,7 @@ export class AuthFacade {
     this.authStore.setError(null);
 
     return this.authRepository.login(request).pipe(
-      tap((authUser) => this.handleLoginSuccess(authUser)),
+      tap((authUser) => this.handleLoginSuccess(authUser, request.rememberMe)),
       tap((authUser) => this.redirectAfterCitizenLogin(authUser, returnUrl)),
       map(() => void 0),
       catchError((error: Failure) => {
@@ -81,7 +85,7 @@ loginStaff(
     this.authStore.setError(null);
 
     return this.authRepository.login(request).pipe(
-      tap((authUser) => this.handleLoginSuccess(authUser)),
+      tap((authUser) => this.handleLoginSuccess(authUser, request.rememberMe)),
       tap((authUser) => this.redirectAfterStaffLogin(authUser)),
       map(() => void 0),
       catchError((error: Failure) => {
@@ -108,6 +112,50 @@ loginStaff(
       this.router.navigate(['/auth/staff-login']);
     }
   }
+
+  forgotPassword(request: ForgotPasswordRequestModel): Observable<void> {
+  this.authStore.setLoading(true);
+  this.authStore.setError(null);
+
+  return this.authRepository.forgotPassword(request).pipe(
+    catchError((error: Failure) => {
+      const message = this.mapForgotPasswordErrorToMessage(error);
+      this.authStore.setError(message);
+      return throwError(() => new Error(message));
+    }),
+    finalize(() => this.authStore.setLoading(false))
+  );
+}
+
+verifyResetOtp(
+  request: VerifyResetOtpRequestModel
+): Observable<VerifyResetOtpResponseModel> {
+  this.authStore.setLoading(true);
+  this.authStore.setError(null);
+
+  return this.authRepository.verifyResetOtp(request).pipe(
+    catchError((error: Failure) => {
+      const message = this.mapVerifyOtpErrorToMessage(error);
+      this.authStore.setError(message);
+      return throwError(() => new Error(message));
+    }),
+    finalize(() => this.authStore.setLoading(false))
+  );
+}
+
+resetPassword(request: ResetPasswordRequestModel): Observable<void> {
+  this.authStore.setLoading(true);
+  this.authStore.setError(null);
+
+  return this.authRepository.resetPassword(request).pipe(
+    catchError((error: Failure) => {
+      const message = this.mapResetPasswordErrorToMessage(error);
+      this.authStore.setError(message);
+      return throwError(() => new Error(message));
+    }),
+    finalize(() => this.authStore.setLoading(false))
+  );
+}
 
 restoreSession(): Observable<boolean> {
   const token = this.authTokenService.getToken();
@@ -146,8 +194,8 @@ private clearSession(): void {
   this.authStore.clear();
 }
 
-  private handleLoginSuccess(authUser: AuthUserModel): void {
-    this.authTokenService.setToken(authUser.token);
+  private handleLoginSuccess(authUser: AuthUserModel, rememberMe: boolean): void {
+    this.authTokenService.setToken(authUser.token, rememberMe);
 
     const currentUser: CurrentUserModel = {
       userId: authUser.userId,
@@ -254,6 +302,53 @@ private mapRegisterErrorToMessage(error: Failure): string {
 
     default:
       return this.translate.instant('Signup-Keys.GENERIC_ERROR_SIGNUP');
+  }
+}
+private mapForgotPasswordErrorToMessage(error: Failure): string {
+  switch (error.code) {
+    case 'EMAIL_SENDING_FAILED':
+      return this.translate.instant('ForgotPassword-Keys.EMAIL_SENDING_FAILED');
+
+    default:
+      return this.translate.instant('ForgotPassword-Keys.GENERIC_ERROR');
+  }
+}
+
+private mapVerifyOtpErrorToMessage(error: Failure): string {
+  switch (error.code) {
+    case 'INVALID_OTP':
+      return this.translate.instant('ResetOtp-Keys.INVALID_OTP');
+
+    case 'OTP_EXPIRED':
+      return this.translate.instant('ResetOtp-Keys.OTP_EXPIRED');
+
+    case 'INVALID_OR_EXPIRED_OTP':
+      return this.translate.instant('ResetOtp-Keys.INVALID_OR_EXPIRED_OTP');
+
+    case 'OTP_TOO_MANY_ATTEMPTS':
+      return this.translate.instant('ResetOtp-Keys.OTP_TOO_MANY_ATTEMPTS');
+
+    default:
+      return this.translate.instant('ResetOtp-Keys.GENERIC_ERROR');
+  }
+}
+
+private mapResetPasswordErrorToMessage(error: Failure): string {
+  switch (error.code) {
+    case 'PASSWORD_CONFIRMATION_MISMATCH':
+      return this.translate.instant('ResetPassword-Keys.PASSWORDS_DO_NOT_MATCH');
+
+    case 'INVALID_PASSWORD_RESET_REQUEST':
+      return this.translate.instant('ResetPassword-Keys.INVALID_PASSWORD_RESET_REQUEST');
+
+    case 'PASSWORD_RESET_SESSION_EXPIRED':
+      return this.translate.instant('ResetPassword-Keys.PASSWORD_RESET_SESSION_EXPIRED');
+
+    case 'PASSWORD_RESET_FAILED':
+      return this.translate.instant('ResetPassword-Keys.PASSWORD_RESET_FAILED');
+
+    default:
+      return this.translate.instant('ResetPassword-Keys.GENERIC_ERROR');
   }
 }
 

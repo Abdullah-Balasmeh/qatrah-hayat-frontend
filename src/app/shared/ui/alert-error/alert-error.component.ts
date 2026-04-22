@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './alert-error.component.css'
 })
 export class AlertErrorComponent {
-  @Input() message!: string;
+  @Input() errorMessage!: string;
 }

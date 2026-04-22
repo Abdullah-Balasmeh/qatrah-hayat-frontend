@@ -53,7 +53,10 @@
       }
     }
     <!-- Forget Password and Remember Me -->
-    <app-forget-password-and-remember-me data-aos="fade-down" data-aos-delay="900"/>
+    <app-forget-password-and-remember-me
+      [rememberMeControl]="loginForm.controls.rememberMe"
+      data-aos="fade-down" data-aos-delay="900"
+    />
 
     @if (serverErrorMessage()) {
       <app-form-error-message [errorMessage]="serverErrorMessage()" />
