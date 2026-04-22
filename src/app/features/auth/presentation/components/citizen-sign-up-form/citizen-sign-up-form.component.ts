@@ -9,7 +9,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BloodTypeEnum } from '../../../../../core/enums/blood-type-enum';
 import { GenderEnum } from '../../../../../core/enums/gender-enum';
 import { MaritalStatusEnum } from '../../../../../core/enums/marital-status-enum';
-import { Failure, NotFoundFailure } from '../../../../../core/errors/failure';
+import { Failure } from '../../../../../core/errors/failure';
 
 import { matchFieldsValidator } from '../../../../../shared/validators/password-match.validator';
 import { formatDateForInput } from '../../../../../core/utils/helper/format.date.for.input.helper';
@@ -27,11 +27,13 @@ import { AppPrimaryButtonComponent } from "../../../../../shared/ui/app-primary-
 import { PasswordTextFieldComponent } from "../../../../../shared/ui/password-text-field/password-text-field.component";
 import { CheckBoxInputComponent } from "../../../../../shared/ui/check-box-input/check-box-input.component";
 import { MaritalStatusRadioGroupComponent } from "../marital-status-radio-group/marital-status-radio-group.component";
+import { AlertErrorComponent } from "../../../../../shared/ui/alert-error/alert-error.component";
+import { mapFetchCitizenErrorToMessage } from '../../../../../core/errors/register-error-to-message.mapper';
 
 @Component({
   selector: 'app-citizen-sign-up-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TranslateModule, TextFieldComponent, FormErrorMessageComponent, AppPrimaryButtonComponent, PasswordTextFieldComponent, CheckBoxInputComponent, MaritalStatusRadioGroupComponent],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule, TextFieldComponent, FormErrorMessageComponent, AppPrimaryButtonComponent, PasswordTextFieldComponent, CheckBoxInputComponent, MaritalStatusRadioGroupComponent, AlertErrorComponent],
   templateUrl: './citizen-sign-up-form.component.html',
   styleUrl: './citizen-sign-up-form.component.css'
 })
@@ -115,6 +117,9 @@ export class CitizenSignUpFormComponent {
     this.watchNationalIdChanges();
   }
 
+  /**
+   * Fetches citizen data based on the national ID.
+   */
   onFetchCitizenData(): void {
     this.civilStatusErrorMessage.set('');
     this.isCitizenVerified.set(false);
@@ -140,19 +145,15 @@ export class CitizenSignUpFormComponent {
           this.isCitizenVerified.set(true);
         },
         error: (error: Failure) => {
-          if (error instanceof NotFoundFailure) {
-            this.civilStatusErrorMessage.set(
-              this.translate.instant('National_ID_Not_Found')
-            );
-          } else {
-            this.civilStatusErrorMessage.set(
-              this.translate.instant('National_ID_Server_Error')
-            );
-          }
+          console.error(error);
+          this.civilStatusErrorMessage.set(mapFetchCitizenErrorToMessage(error, this.translate));
         }
       });
   }
 
+  /**
+   * Handles form submission.
+   */
   onSubmit(): void {
     this.civilStatusErrorMessage.set('');
     this.showSuccessMessage.set(false);
@@ -183,12 +184,15 @@ export class CitizenSignUpFormComponent {
             this.router.navigate(['/auth/login']);
           }, 2000);
         },
-        error: () => {
-          // no-op: facade already set translated error in store
+        error: (error: string) => {
+           console.error(error);
         }
       });
   }
 
+  /**
+   * Fills the form with citizen data from the response.
+   */
   private fillCitizenData(response: CitizenResponseModel): void {
     const bloodType = response.bloodType as BloodTypeEnum;
     const gender = response.gender as GenderEnum;
@@ -205,6 +209,9 @@ export class CitizenSignUpFormComponent {
     });
   }
 
+  /**
+   * Watches for changes in the national ID field and clears related data.
+   */
   private watchNationalIdChanges(): void {
     this.signUpForm.controls.nationalId.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -224,6 +231,9 @@ export class CitizenSignUpFormComponent {
       });
   }
 
+  /**
+   * Clears all form data and resets signals.
+   */
   private clearData(): void {
     this.signUpForm.reset({
       nationalId: '',

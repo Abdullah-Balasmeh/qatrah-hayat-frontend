@@ -33,6 +33,7 @@ import { UsersManagementFacade } from '../../facades/users-management.facade';
 import { CitizenLookupResponseModel } from '../../../domain/models/citizen-lookup-response.model';
 import { CreateStaffFromRegistryRequestModel } from '../../../domain/models/create-staff-from-registry-request.model';
 import { PromoteCitizenToStaffRequestModel } from '../../../domain/models/promote-citizen-to-staff-request.model';
+import { DropDownWithLabelComponent } from "../../../../../shared/ui/drop-down-with-label/drop-down-with-label.component";
 
 type StaffCreationMode = 'none' | 'createNewUser' | 'promoteExistingCitizen' | 'alreadyStaff';
 
@@ -46,8 +47,9 @@ type StaffCreationMode = 'none' | 'createNewUser' | 'promoteExistingCitizen' | '
     FormErrorMessageComponent,
     AppPrimaryButtonComponent,
     PasswordTextFieldComponent,
-    MaritalStatusRadioGroupComponent
-  ],
+    MaritalStatusRadioGroupComponent,
+    DropDownWithLabelComponent
+],
   templateUrl: './add-staff-form.component.html',
   styleUrl: './add-staff-form.component.css'
 })
@@ -59,22 +61,43 @@ export class AddStaffFormComponent {
   readonly facade = inject(UsersManagementFacade);
   readonly store = this.facade.store;
   readonly UserRole = UserRole;
+  readonly hospitalOptions = [
+  {
+    value: 1,
+    label: 'King Abdullah University Hospital'
+  },
+  {
+    value: 2,
+    label: 'Al Bashir Hospital'
+  }
+];
+
+readonly branchOptions = [
+  {
+    value: 1,
+    label: 'Irbid Branch'
+  },
+  {
+    value: 2,
+    label: 'Amman Branch'
+  }
+];
   readonly staffRoleOptions = [
     {
       value: UserRole.Doctor,
-      label: USER_ROLE_OPTIONS[UserRole.Doctor]
+      label: USER_ROLE_OPTIONS[UserRole.Doctor].label
     },
     {
       value: UserRole.Employee,
-      label: USER_ROLE_OPTIONS[UserRole.Employee]
+      label: USER_ROLE_OPTIONS[UserRole.Employee].label
     },
     {
       value: UserRole.BranchManager,
-      label: USER_ROLE_OPTIONS[UserRole.BranchManager]
+      label: USER_ROLE_OPTIONS[UserRole.BranchManager].label
     },
     {
       value: UserRole.Admin,
-      label: USER_ROLE_OPTIONS[UserRole.Admin]
+      label: USER_ROLE_OPTIONS[UserRole.Admin].label
     }
   ];
 
@@ -187,6 +210,27 @@ export class AddStaffFormComponent {
         }
       });
   }
+
+onStaffRoleChange(role: UserRole | null): void {
+  this.addStaffForm.controls.staffRole.setValue(role);
+  this.addStaffForm.controls.staffRole.markAsDirty();
+
+  this.addStaffForm.patchValue({
+    branchId: null,
+    hospitalId: null
+  });
+
+  this.applyLocationValidators();
+}
+  onHospitalChange(hospitalId: number | null): void {
+  this.addStaffForm.controls.hospitalId.setValue(hospitalId);
+  this.addStaffForm.controls.hospitalId.markAsDirty();
+}
+
+onBranchChange(branchId: number | null): void {
+  this.addStaffForm.controls.branchId.setValue(branchId);
+  this.addStaffForm.controls.branchId.markAsDirty();
+}
 
   onSubmit(): void {
     this.civilStatusErrorMessage.set('');
@@ -327,13 +371,13 @@ export class AddStaffFormComponent {
   private handleLookupError(error: Failure): void {
     if (error instanceof NotFoundFailure || error.code === 'NATIONAL_ID_NOT_FOUND') {
       this.civilStatusErrorMessage.set(
-        this.translate.instant('National_ID_Not_Found')
+        this.translate.instant('Signup-Keys.NATIONAL_ID_NOT_FOUND')
       );
       return;
     }
 
     this.civilStatusErrorMessage.set(
-      this.translate.instant('National_ID_Server_Error')
+      this.translate.instant('Signup-Keys.NATIONAL_ID_SERVER_ERROR')
     );
   }
 
@@ -445,54 +489,51 @@ export class AddStaffFormComponent {
     this.applyLocationValidators();
   }
 
-  private applyLocationValidators(): void {
-    const staffRole = this.addStaffForm.controls.staffRole.value;
+ private applyLocationValidators(): void {
+  const staffRole = this.addStaffForm.controls.staffRole.value;
 
-    const branchControl = this.addStaffForm.controls.branchId;
-    const hospitalControl = this.addStaffForm.controls.hospitalId;
+  const branchControl = this.addStaffForm.controls.branchId;
+  const hospitalControl = this.addStaffForm.controls.hospitalId;
 
-    branchControl.clearValidators();
-    hospitalControl.clearValidators();
+  branchControl.clearValidators();
+  hospitalControl.clearValidators();
 
-    if (staffRole === UserRole.Doctor) {
-      hospitalControl.setValidators([Validators.required]);
-      branchControl.setValue(null);
-    }
-
-    if (
-      staffRole === UserRole.Employee ||
-      staffRole === UserRole.BranchManager
-    ) {
-      branchControl.setValidators([Validators.required]);
-      hospitalControl.setValue(null);
-    }
-
-    if (staffRole === UserRole.Admin) {
-      branchControl.setValue(null);
-      hospitalControl.setValue(null);
-    }
-
-    branchControl.updateValueAndValidity();
-    hospitalControl.updateValueAndValidity();
+  if (staffRole === UserRole.Doctor) {
+    hospitalControl.setValidators([Validators.required]);
+    branchControl.setValue(null);
   }
 
-  private getBranchIdForRole(
-    staffRole: UserRole,
-    branchId: number | null
-  ): number | null {
-    return staffRole === UserRole.Employee || staffRole === UserRole.BranchManager
-      ? branchId
-      : null;
+  if (staffRole === UserRole.BranchManager) {
+    branchControl.setValidators([Validators.required]);
+    hospitalControl.setValue(null);
   }
 
-  private getHospitalIdForRole(
-    staffRole: UserRole,
-    hospitalId: number | null
-  ): number | null {
-    return staffRole === UserRole.Doctor
-      ? hospitalId
-      : null;
+  if (staffRole === UserRole.Employee || staffRole === UserRole.Admin) {
+    branchControl.setValue(null);
+    hospitalControl.setValue(null);
   }
+
+  branchControl.updateValueAndValidity();
+  hospitalControl.updateValueAndValidity();
+}
+
+private getBranchIdForRole(
+  staffRole: UserRole,
+  branchId: number | null
+): number | null {
+  return staffRole === UserRole.BranchManager
+    ? branchId
+    : null;
+}
+
+private getHospitalIdForRole(
+  staffRole: UserRole,
+  hospitalId: number | null
+): number | null {
+  return staffRole === UserRole.Doctor
+    ? hospitalId
+    : null;
+}
 
   clearData(): void {
     this.addStaffForm.reset({

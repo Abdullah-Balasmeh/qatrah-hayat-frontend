@@ -1,26 +1,101 @@
 {
-  "Landing-Page-keys": "Landing-Page-keys",
-  "Landing-Header-Keys": {
-    "HOME": "الرئيسية",
-    "DONATION_REQUESTS": "طلبات التبرع",
-    "CAMPAIGNS": "الحملات",
-    "ABOUT_US": "من نحن",
-    "CONTACT_US": "اتصل بنا",
-    "LOGIN": "تسجيل الدخول",
-    "CREATE_ACCOUNT": "إنشاء حساب"
+  "Shared-Keys": "Shared-Keys",
+  "Marital-Status-Keys": {
+    "SINGLE": "أعزب / عزباء",
+    "MARRIED": "متزوج / متزوجة"
   },
-  "Footer-Keys": {
-    "ABOUT_US_FOOTER": "كل قطرة دم تُحدث فرقًا. انضم إلينا في مهمتنا لتوفير حياة أفضل للجميع وضمان وصول الدم لكل من يحتاجه في كل لحظة.",
-    "QUICK_LINKS": "روابط سريعة",
-    "LEGAL_LINKS": "روابط قانونية",
-    "PRIVACY_POLICY": "حياة الخصوصية",
-    "TERMS_OF_USE": "الشروط والاحكام",
-    "CONTACT_US": "اتصل بنا",
-    "FOOTER_PHONE": "+962 7 9000 0000",
-    "FOOTER_LOCATION": "عمان، الأردن",
-    "FOOTER_COPYRIGHT": "© 2026 قطرة حياة. جميع الحقوق محفوظة."
+  "Gender-Keys": {
+    "MALE": "ذكر",
+    "FEMALE": "أنثى"
+  },
+  "Blood-Type-Status-Keys": {
+    "PROVISIONAL": "مؤقت",
+    "CONFIRMED": "مؤكد"
+  },
+  "Eligibility-Status-Keys": {
+    "ELIGIBLE": "مؤهل",
+    "TEMP_DEFERRED": "مؤجل مؤقتا",
+    "PERM_DEFERRED": "Permanently Deferred"
+  },
+  "Loading-Keys": {
+    "LOADING": "جار التحميل"
+  },
+  "Role-Keys": {
+    "ROLE_CITIZEN": "مواطن",
+    "ROLE_DOCTOR": "طبيب",
+    "ROLE_EMPLOYEE": "موظف",
+    "ROLE_BRANCH_MANAGER": "مدير فرع",
+    "ROLE_ADMIN": "مسؤول النظام"
+  },
+  "PAGINATION_KEYS": {
+    "SHOWING": "أظهر",
+    "TO": "إلى",
+    "OF": "من",
+    "RESULTS": "النتائج",
+    "PREVIOUS": "السابق",
+    "NEXT": "التالي",
+    "PAGE": "صفحة",
+    "PAGE_OF": "صفحة من"
+  },
+  "COMMON": {
+    "CANCEL": "إلغاء",
+    "CONFIRM": "تأكيد"
   },
   "Auth-Keys": "Auth-Keys",
+  "Signup-Keys": {
+    "SIGNUP_VISUAL_TITLE": "ابدأ رحلتك مع قطرة حياة",
+    "SIGNUP_VISUAL_SUBTITLE": "أنشئ حسابك الآن وانضم إلى مجتمع يساهم في دعم المحتاجين للدم من خلال منصة آمنة ومنظمة.",
+    "SIGNUP_VISUAL_FEATURE_1": "إنشاء حساب سريع وسهل",
+    "SIGNUP_VISUAL_FEATURE_2": "بيانات آمنة ومحمية",
+    "SIGNUP_VISUAL_FEATURE_3": "ساهم في إنقاذ حياة الآخرين",
+    "SIGNUP_PAGE_TITLE": "إنشاء حساب",
+    "SIGNUP_PAGE_SUBTITLE": "أنشئ حسابًا لبدء رحلتك معنا.",
+    "NATIONAL_REGISTRY_VERIFICATION": "التحقق من السجل الوطني",
+    "NATIONAL_ID_PLACEHOLDER": "الرقم الوطني...",
+    "NATIONAL_ID_IS_REQUIRED": "الرقم الوطني مطلوب",
+    "NATIONAL_ID_MUST_BE_10_DIGITS": "يجب أن يتكون الرقم الوطني من 10 أرقام",
+    "NATIONAL_ID_NOT_FOUND": "الرقم الوطني غير موجود",
+    "NATIONAL_ID_SERVER_ERROR": "حدث خطأ أثناء جلب بيانات الرقم الوطني. يرجى المحاولة مرة أخرى لاحقًا.",
+    "BRING_BTN": "إحضار",
+    "PERSONAL_INFORMATION": "المعلومات الشخصية",
+    "FULL_NAME_AR_PLACEHOLDER": "الاسم الكامل باللغة العربية...",
+    "FULL_NAME_EN_PLACEHOLDER": "الاسم الكامل باللغة الإنجليزية...",
+    "DATE_OF_BIRTH_PLACEHOLDER": "تاريخ الميلاد...",
+    "BLOOD_TYPE_PLACEHOLDER": "فصيلة الدم...",
+    "GENDER_PLACEHOLDER": "الجنس...",
+    "MARITAL_STATUS_IS_REQUIRED": "الحالة الاجتماعية مطلوبة",
+    "EMAIL_PLACEHOLDER": "البريد الإلكتروني...",
+    "EMAIL_IS_REQUIRED": "البريد الإلكتروني مطلوب",
+    "EMAIL_MUST_BE_VALID": "يجب إدخال بريد إلكتروني صحيح",
+    "PHONE_PLACEHOLDER": "رقم الهاتف...",
+    "PHONE_IS_REQUIRED": "رقم الهاتف مطلوب",
+    "PHONE_MUST_BE_10_DIGITS": "يجب أن يتكون رقم الهاتف من 10 أرقام",
+    "ADDRESS_PLACEHOLDER": "العنوان...",
+    "JOB_PLACEHOLDER": "المسمى الوظيفي...",
+    "SECURITY": "أمان الحساب",
+    "PASSWORD_PLACEHOLDER": "كلمة المرور...",
+    "PASSWORD_IS_REQUIRED": "كلمة المرور مطلوبة",
+    "CONFIRM_PASSWORD_PLACEHOLDER": "تأكيد كلمة المرور...",
+    "CONFIRM_PASSWORD_IS_REQUIRED": "تأكيد كلمة المرور مطلوب",
+    "PASSWORD_STRENGTH_ERROR": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل، وأن تحتوي على حرف كبير واحد على الأقل، ورقم، ورمز خاص",
+    "CONFIRM_PASSWORD_MUST_MATCH": "يجب أن تطابق كلمة تأكيد المرور كلمة المرور",
+    "AGREEMENTS": "الإقرارات والموافقات",
+    "I_AGREE": "أوافق على",
+    "TERMS_AND_PRIVACY": "الشروط والأحكام وسياسة الخصوصية",
+    "I_CONFIRM": "أقر بصحة جميع المعلومات التي تم إدخالها.",
+    "YOU_MUST_AGREE_TO_TERMS_AND_CONDITIONS": "يجب الموافقة على الشروط والأحكام",
+    "YOU_MUST_CONFIRM_ACCURACY_OF_ALL_INFORMATION_ENTERED": "يجب تأكيد صحة جميع المعلومات التي تم إدخالها",
+    "PHONE_ALREADY_REGISTERED": "رقم الهاتف مسجل بالفعل",
+    "GENERIC_ERROR_SIGNUP": "حدث خطأ أثناء إنشاء الحساب. يرجى المحاولة مرة أخرى لاحقًا.",
+    "ACCOUNT_CREATED_SUCCESSFULLY": "تم إنشاء حسابك بنجاح.",
+    "YOU_CAN_LOGIN_NOW": "يمكنك الآن تسجيل الدخول باستخدام بياناتك.",
+    "SIGNUP_BUTTON": "إنشاء حساب",
+    "NON_JORDANIAN_CITIZEN": "يمكن للمواطنين الأردنيين فقط التسجيل",
+    "EMAIL_ALREADY_REGISTERED": "البريد الإلكتروني مسجل بالفعل",
+    "NATIONAL_ID_ALREADY_REGISTERED": "الرقم الوطني مسجل بالفعل",
+    "SIGNUP_PAGE_FOOTER_TEXT": "لديك حساب بالفعل؟",
+    "SIGNUP_PAGE_FOOTER_LINK_TEXT": "تسجيل الدخول"
+  },
   "Login-Keys": {
     "LOGIN_VISUAL_TITLE": "معًا ننقذ حياة",
     "LOGIN_VISUAL_SUBTITLE": "سجّل دخولك للوصول إلى حسابك، متابعة طلبات التبرع، والمساهمة في خدمة المحتاجين للدم بسهولة وأمان.",
@@ -44,64 +119,71 @@
     "INACTIVE_ACCOUNT": "هذا الحساب غير نشط. يرجى التواصل مع الدعم.",
     "GENERIC_ERROR_LOGIN": "حدث خطأ أثناء تسجيل الدخول. يرجى المحاولة مرة أخرى لاحقاً."
   },
-  "Marital-Status-Keys": {
-    "SINGLE": "أعزب / عزباء",
-    "MARRIED": "متزوج / متزوجة"
+  "ForgotPassword-Keys": {
+    "TITLE": "نسيت كلمة المرور",
+    "SUBTITLE": "أدخل البريد الإلكتروني وسنرسل رمز تحقق لإعادة تعيين كلمة المرور.",
+    "EMAIL_PLACEHOLDER": "أدخل البريد الإلكتروني",
+    "EMAIL_IS_REQUIRED": "البريد الإلكتروني مطلوب.",
+    "EMAIL_IS_INVALID": "يرجى إدخال بريد إلكتروني صحيح.",
+    "SEND_OTP": "إرسال رمز التحقق",
+    "BACK_TO_LOGIN": "العودة إلى تسجيل الدخول",
+    "EMAIL_SENDING_FAILED": "لم يتم إرسال رمز التحقق. يرجى التحقق من بريدك الإلكتروني المدخل أو المحاولة مرة أخرى.",
+    "GENERIC_ERROR": "حدث خطأ. يرجى المحاولة مرة أخرى."
   },
-  "Gender-Keys": {
-    "MALE": "ذكر",
-    "FEMALE": "أنثى"
+  "ResetOtp-Keys": {
+    "TITLE": "التحقق من الرمز",
+    "SUBTITLE": "أدخل رمز التحقق المكوّن من 6 أرقام والمُرسل إلى بريدك الإلكتروني.",
+    "OTP_PLACEHOLDER": "أدخل رمز التحقق",
+    "OTP_IS_REQUIRED": "رمز التحقق مطلوب.",
+    "OTP_MUST_BE_6_DIGITS": "يجب أن يتكون رمز التحقق من 6 أرقام.",
+    "VERIFY": "تحقق من الرمز",
+    "BACK_TO_EMAIL_STEP": "تغيير البريد الإلكتروني",
+    "INVALID_OTP": "رمز التحقق غير صحيح.",
+    "OTP_EXPIRED": "انتهت صلاحية رمز التحقق.",
+    "INVALID_OR_EXPIRED_OTP": "رمز التحقق غير صحيح أو منتهي الصلاحية.",
+    "OTP_TOO_MANY_ATTEMPTS": "تم إدخال الرمز بشكل خاطئ عدة مرات. يرجى طلب رمز جديد.",
+    "GENERIC_ERROR": "حدث خطأ أثناء التحقق من الرمز.",
+    "RESEND_CODE_TIMER": "إعادة إرسال الرمز في",
+    "SECONDS": "ثواني",
+    "DID_NOT_RECEIVE_CODE": "لم يصلك الرمز؟",
+    "RESEND_CODE": "إعادة إرسال الرمز"
   },
-  "Signup-Keys": {
-    "SIGNUP_VISUAL_TITLE": "ابدأ رحلتك مع قطرة حياة",
-    "SIGNUP_VISUAL_SUBTITLE": "أنشئ حسابك الآن وانضم إلى مجتمع يساهم في دعم المحتاجين للدم بطريقة منظمة وآمنة وسهلة الاستخدام.",
-    "SIGNUP_VISUAL_FEATURE_1": "إنشاء حساب سريع وسهل",
-    "SIGNUP_VISUAL_FEATURE_2": "حماية وأمان لبياناتك",
-    "SIGNUP_VISUAL_FEATURE_3": "المساهمة في إنقاذ حياة الآخرين",
-    "SIGNUP_PAGE_TITLE": "إنشاء حساب جديد",
-    "SIGNUP_PAGE_SUBTITLE": "إنشاء حساب جديد لبدء مشاركتك معنا.",
-    "NATIONAL_REGISTRY_VERIFICATION": "التحقق من السجل الوطني",
-    "NATIONAL_ID_PLACEHOLDER": "الرقم الوطني...",
-    "NATIONAL_ID_IS_REQUIRED": "الرقم الوطني مطلوب",
-    "NATIONAL_ID_MUST_BE_10_DIGITS": "الرقم الوطني يجب أن يكون 10 أرقام",
-    "BRING_BTN": "احضار",
-    "PERSONAL_INFORMATION": "المعلومات الشخصية",
-    "FULL_NAME_AR_PLACEHOLDER": "الاسم الكامل (عربي)...",
-    "FULL_NAME_EN_PLACEHOLDER": "الاسم الكامل (إنجليزي)...",
-    "DATE_OF_BIRTH_PLACEHOLDER": "تاريخ الميلاد...",
-    "BLOOD_TYPE_PLACEHOLDER": "فصيلة الدم...",
-    "GENDER_PLACEHOLDER": "الجنس...",
-    "MARITAL_STATUS_IS_REQUIRED": "الحالة الاجتماعية مطلوبة",
-    "EMAIL_PLACEHOLDER": "البريد الإلكتروني...",
-    "EMAIL_IS_REQUIRED": "البريد الإلكتروني مطلوب",
-    "EMAIL_MUST_BE_VALID": "البريد الإلكتروني يجب أن يكون صحيحًا",
-    "PHONE_PLACEHOLDER": "رقم الهاتف...",
-    "PHONE_IS_REQUIRED": "رقم الهاتف مطلوب",
-    "PHONE_MUST_BE_10_DIGITS": "رقم الهاتف يجب أن يكون 10 أرقام",
-    "ADDRESS_PLACEHOLDER": "العنوان...",
-    "JOB_PLACEHOLDER": "المسمى الوظيفي...",
-    "SECURITY": "أمان الحساب",
-    "PASSWORD_PLACEHOLDER": "كلمة المرور...",
-    "PASSWORD_IS_REQUIRED": "كلمة المرور مطلوبة",
-    "CONFIRM_PASSWORD_PLACEHOLDER": "تأكيد كلمة المرور...",
-    "CONFIRM_PASSWORD_IS_REQUIRED": "تأكيد كلمة المرور مطلوبة",
-    "PASSWORD_STRENGTH_ERROR": "كلمة المرور يجب أن تكون 8 أحرف على الأقل وتحتوي على حرف كبير ورقم وحرف خاص",
-    "CONFIRM_PASSWORD_MUST_MATCH": "تأكيد كلمة المرور يجب أن يطابق كلمة المرور",
-    "AGREEMENTS": "الإقرارات والتعهدات",
-    "I_AGREE": "أوافق على",
-    "TERMS_AND_PRIVACY": "الشروط والأحكام وسياسة الخصوصية",
-    "I_CONFIRM": "أقر وأتعهد بصحة جميع المعلومات المدخلة.",
-    "YOU_MUST_AGREE_TO_TERMS_AND_CONDITIONS": "يجب الموافقة على الشروط والأحكام",
-    "YOU_MUST_CONFIRM_ACCURACY_OF_ALL_INFORMATION_ENTERED": "يجب تأكيد صحة جميع المعلومات المدخلة",
-    "NATIONAL_ID_ALREADY_EXISTS": "الرقم الوطني موجود بالفعل",
-    "EMAIL_ALREADY_EXISTS": "البريد الإلكتروني موجود بالفعل",
-    "PHONE_ALREADY_EXISTS": "رقم الهاتف موجود بالفعل",
-    "GENERIC_ERROR_SIGNUP": "حدث خطأ أثناء إنشاء الحساب. يرجى المحاولة مرة أخرى لاحقًا.",
-    "ACCOUNT_CREATED_SUCCESSFULLY": "تم إنشاء حسابك بنجاح.",
-    "YOU_CAN_LOGIN_NOW": "يمكنك الآن تسجيل الدخول باستخدام بيانات الاعتماد الخاصة بك.",
-    "SIGNUP_BUTTON": "إنشاء حساب",
-    "SIGNUP_PAGE_FOOTER_TEXT": "لديك حساب بالفعل؟",
-    "SIGNUP_PAGE_FOOTER_LINK_TEXT": "تسجيل الدخول"
+  "ResetPassword-Keys": {
+    "TITLE": "إعادة تعيين كلمة المرور",
+    "SUBTITLE": "أدخل كلمة المرور الجديدة وقم بتأكيدها.",
+    "NEW_PASSWORD_PLACEHOLDER": "كلمة المرور الجديدة",
+    "CONFIRM_NEW_PASSWORD_PLACEHOLDER": "تأكيد كلمة المرور الجديدة",
+    "NEW_PASSWORD_IS_REQUIRED": "كلمة المرور الجديدة مطلوبة.",
+    "CONFIRM_NEW_PASSWORD_IS_REQUIRED": "تأكيد كلمة المرور مطلوب.",
+    "PASSWORD_MIN_LENGTH": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",
+    "PASSWORDS_DO_NOT_MATCH": "كلمتا المرور غير متطابقتين.",
+    "RESET_PASSWORD": "إعادة تعيين كلمة المرور",
+    "BACK_TO_LOGIN": "العودة إلى تسجيل الدخول",
+    "INVALID_PASSWORD_RESET_REQUEST": "طلب إعادة تعيين كلمة المرور غير صالح.",
+    "PASSWORD_RESET_SESSION_EXPIRED": "انتهت صلاحية جلسة إعادة تعيين كلمة المرور.",
+    "PASSWORD_RESET_FAILED": "فشلت عملية إعادة تعيين كلمة المرور. يرجى التحقق من متطلبات كلمة المرور.",
+    "GENERIC_ERROR": "حدث خطأ أثناء إعادة تعيين كلمة المرور."
+  },
+  "Landing-Page-keys": "Landing-Page-keys",
+  "Landing-Header-Keys": {
+    "HOME": "الرئيسية",
+    "DONATION_REQUESTS": "طلبات التبرع",
+    "CAMPAIGNS": "الحملات",
+    "ABOUT_US": "من نحن",
+    "CONTACT_US": "اتصل بنا",
+    "LOGIN": "تسجيل الدخول",
+    "CREATE_ACCOUNT": "إنشاء حساب"
+  },
+  "Footer-Keys": {
+    "ABOUT_US_FOOTER": "كل قطرة دم تُحدث فرقًا. انضم إلينا في مهمتنا لتوفير حياة أفضل للجميع وضمان وصول الدم لكل من يحتاجه في كل لحظة.",
+    "QUICK_LINKS": "روابط سريعة",
+    "LEGAL_LINKS": "روابط قانونية",
+    "PRIVACY_POLICY": "حياة الخصوصية",
+    "TERMS_OF_USE": "الشروط والاحكام",
+    "CONTACT_US": "اتصل بنا",
+    "FOOTER_PHONE": "+962 7 9000 0000",
+    "FOOTER_LOCATION": "عمان، الأردن",
+    "FOOTER_COPYRIGHT": "© 2026 قطرة حياة. جميع الحقوق محفوظة."
   },
   "Admin-Keys": {
     "DASHBOARD": "لوحة التحكم",
@@ -171,6 +253,7 @@
     "BACK_TO_USERS": "العودة إلى المستخدمين",
     "NEW_USER_STAFF_CREATION_MESSAGE": "هذا الرقم الوطني لا يملك حسابًا في النظام. سيتم إنشاء حساب مواطن جديد مع إضافة الدور الوظيفي.",
     "EXISTING_CITIZEN_PROMOTION_MESSAGE": "هذا المواطن لديه حساب مسبقًا في النظام. سيتم فقط إضافة الدور الوظيفي وربطه بالفرع أو المستشفى.",
+    "EMPLOYEE_DOES_NOT_REQUIRE_LOCATION": "الموظف لا يحتاج إلى ربطه بفرع أو مستشفى.",
     "USER_ALREADY_STAFF": "هذا المستخدم موظف مسبقًا ولا يمكن إضافته مرة أخرى.",
     "ACCOUNT_INFORMATION": "معلومات الحساب",
     "STAFF_INFORMATION": "المعلومات الوظيفية",
@@ -188,29 +271,5 @@
     "FAILED_TO_ADD_STAFF": "فشلت عملية إضافة الموظف.",
     "FAILED_TO_PROMOTE_CITIZEN": "فشلت عملية ترقية المواطن إلى موظف.",
     "USER_ID_NOT_FOUND": "لم يتم العثور على رقم المستخدم الخاص بالمواطن."
-  },
-  "Loading-Keys": {
-    "LOADING": "جار التحميل"
-  },
-  "Role-Keys": {
-    "ROLE_CITIZEN": "مواطن",
-    "ROLE_DOCTOR": "طبيب",
-    "ROLE_EMPLOYEE": "موظف",
-    "ROLE_BRANCH_MANAGER": "مدير فرع",
-    "ROLE_ADMIN": "مسؤول النظام"
-  },
-  "PAGINATION_KEYS": {
-    "SHOWING": "أظهر",
-    "TO": "إلى",
-    "OF": "من",
-    "RESULTS": "النتائج",
-    "PREVIOUS": "السابق",
-    "NEXT": "التالي",
-    "PAGE": "صفحة",
-    "PAGE_OF": "صفحة من"
-  },
-  "COMMON": {
-    "CANCEL": "إلغاء",
-    "CONFIRM": "تأكيد"
   }
 }

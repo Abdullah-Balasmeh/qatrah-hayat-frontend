@@ -37,7 +37,7 @@
               }
             }
             @if (civilStatusErrorMessage()) {
-              <app-form-error-message
+              <app-alert-error
                 [errorMessage]="civilStatusErrorMessage()"
               />
             }
@@ -332,7 +332,7 @@
 
     <div class="submit-wrapper" data-aos="fade-up" data-aos-delay="2200">
       @if (serverErrorMessage()) {
-        <app-form-error-message [errorMessage]="serverErrorMessage()" />
+        <app-alert-error [errorMessage]="serverErrorMessage()!" />
       }
       @if (showSuccessMessage()) {
         <div class="success-message" role="alert">

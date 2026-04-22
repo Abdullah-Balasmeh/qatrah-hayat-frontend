@@ -1,0 +1,91 @@
+<div class="forgot-password-page">
+  <div class="auth-container">
+    <app-auth-container-heading
+      title="{{ 'ResetOtp-Keys.TITLE' | translate }}"
+      subtitle="{{ 'ResetOtp-Keys.SUBTITLE' | translate }}"
+    ></app-auth-container-heading>
+
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+      class="form-container py-5 px-4"
+    >
+      <app-text-field
+        [control]="form.controls.otp"
+        type="text"
+        placeholder="{{ 'ResetOtp-Keys.OTP_PLACEHOLDER' | translate }}"
+        prefixIcon="fas fa-shield-halved"
+        autocomplete="one-time-code"
+        inputId="otp"
+        maxLength="6"
+        [isNumeric]="true"
+      />
+
+      @if (form.controls.otp.touched || form.controls.otp.dirty) {
+        @if (form.controls.otp.hasError("required")) {
+          <app-form-error-message
+            [errorMessage]="'ResetOtp-Keys.OTP_IS_REQUIRED' | translate"
+          />
+        } @else if (
+          form.controls.otp.hasError("minlength") ||
+          form.controls.otp.hasError("maxlength") ||
+          form.controls.otp.hasError("pattern")
+        ) {
+          <app-form-error-message
+            [errorMessage]="'ResetOtp-Keys.OTP_MUST_BE_6_DIGITS' | translate"
+          />
+        }
+      }
+
+      @if (serverErrorMessage()) {
+        <app-form-error-message [errorMessage]="serverErrorMessage()" />
+      }
+
+      <app-primary-button
+        label="{{ 'ResetOtp-Keys.VERIFY' | translate }}"
+        type="submit"
+        [disabled]="isLoading()"
+        [isLoading]="isLoading()"
+      />
+
+      @if (!canResendOtp()) {
+        <div class="resend-code-timer">
+          <span class="timer-text">
+            {{ "ResetOtp-Keys.RESEND_CODE_TIMER" | translate }}
+          </span>
+
+          <span class="timer-counter">
+            {{ resendSeconds() }}
+          </span>
+
+          <span class="timer-text">
+            {{ "ResetOtp-Keys.SECONDS" | translate }}
+          </span>
+        </div>
+      }
+
+      @if(canResendOtp()){
+        <div class="resend-code">
+        <span class="timer-text">
+          {{ "ResetOtp-Keys.DID_NOT_RECEIVE_CODE" | translate }}
+        </span>
+
+        <button
+          type="button"
+          class="resend-text"
+          [disabled]="!canResendOtp() || isLoading()"
+          (click)="resendOtp()"
+        >
+          {{ "ResetOtp-Keys.RESEND_CODE" | translate }}
+        </button>
+      </div>
+      }
+
+      <div class="container-footer-link">
+        <a routerLink="/auth/forgot-password">
+          {{ "ResetOtp-Keys.BACK_TO_EMAIL_STEP" | translate }}
+        </a>
+      </div>
+    </form>
+  </div>
+</div>

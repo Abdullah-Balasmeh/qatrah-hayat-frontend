@@ -18,6 +18,12 @@ import { AuthUserModel } from '../../domain/models/auth-user.model';
 import { AuthRepo } from '../../domain/repositories/auth.repo';
 import { RegisterRequestModel } from '../../domain/models/register-request.model';
 import { RegisterResponseModel } from '../../domain/models/register-response.model';
+import { ForgotPasswordRequestModel } from '../../domain/models/forgot-password-request.model';
+import { ResetPasswordRequestModel } from '../../domain/models/reset-password-request.model';
+import { VerifyResetOtpRequestModel } from '../../domain/models/verify-reset-otp-request.model';
+import { VerifyResetOtpResponseModel } from '../../domain/models/verify-reset-otp-response.model';
+import { mapRegisterErrorToMessage } from '../../../../core/errors/register-error-to-message.mapper';
+import { mapForgotPasswordErrorToMessage, mapLoginErrorToMessage } from '../../../../core/errors/login-error-to-message.mapper';
 
 @Injectable({
   providedIn: 'root'
@@ -37,28 +43,9 @@ export class AuthFacade {
   readonly loading = this.authStore.loading;
   readonly error = this.authStore.error;
 
-   hasRole(roles: UserRole[]): boolean {
-    return this.authStore.hasRole(roles);
-  }
-  loginCitizen(
-    request: LoginRequestModel,
-    returnUrl: string | null
-  ): Observable<void> {
-    this.authStore.setLoading(true);
-    this.authStore.setError(null);
-
-    return this.authRepository.login(request).pipe(
-      tap((authUser) => this.handleLoginSuccess(authUser)),
-      tap((authUser) => this.redirectAfterCitizenLogin(authUser, returnUrl)),
-      map(() => void 0),
-      catchError((error: Failure) => {
-        const message = this.mapLoginErrorToMessage(error);
-        this.authStore.setError(message);
-        return throwError(() => new Error(message));
-      }),
-      finalize(() => this.authStore.setLoading(false))
-    );
-  }
+   /**
+   * Registers a citizen.
+   */
   registerCitizen(
   request: RegisterRequestModel
 ): Observable<RegisterResponseModel> {
@@ -67,25 +54,35 @@ export class AuthFacade {
 
   return this.authRepository.register(request).pipe(
     catchError((error: Failure) => {
-      const message = this.mapRegisterErrorToMessage(error);
+      const message = mapRegisterErrorToMessage(error , this.translate);
       this.authStore.setError(message);
       return throwError(() => new Error(message));
     }),
     finalize(() => this.authStore.setLoading(false))
   );
 }
-loginStaff(
-    request: LoginRequestModel
+  /**
+   * Checks if the current user has any of the specified roles.
+   */
+   hasRole(roles: UserRole[]): boolean {
+    return this.authStore.hasRole(roles);
+  }
+  /**
+   * Logs in a citizen.
+   */
+  loginCitizen(
+    request: LoginRequestModel,
+    returnUrl: string | null
   ): Observable<void> {
     this.authStore.setLoading(true);
     this.authStore.setError(null);
 
     return this.authRepository.login(request).pipe(
-      tap((authUser) => this.handleLoginSuccess(authUser)),
-      tap((authUser) => this.redirectAfterStaffLogin(authUser)),
+      tap((authUser) => this.handleLoginSuccess(authUser, request.rememberMe)),
+      tap((authUser) => this.redirectAfterCitizenLogin(authUser, returnUrl)),
       map(() => void 0),
       catchError((error: Failure) => {
-        const message = this.mapLoginErrorToMessage(error);
+        const message = mapLoginErrorToMessage(error, this.translate);
         this.authStore.setError(message);
         return throwError(() => new Error(message));
       }),
@@ -93,7 +90,30 @@ loginStaff(
     );
   }
 
+  /**
+   * Logs in a staff member.
+   */
+loginStaff(
+    request: LoginRequestModel
+  ): Observable<void> {
+    this.authStore.setLoading(true);
+    this.authStore.setError(null);
 
+    return this.authRepository.login(request).pipe(
+      tap((authUser) => this.handleLoginSuccess(authUser, request.rememberMe)),
+      tap((authUser) => this.redirectAfterStaffLogin(authUser)),
+      map(() => void 0),
+      catchError((error: Failure) => {
+        const message = mapLoginErrorToMessage(error , this.translate);
+        this.authStore.setError(message);
+        return throwError(() => new Error(message));
+      }),
+      finalize(() => this.authStore.setLoading(false))
+    );
+  }
+  /**
+   * Logs out a citizen.
+   */
   logoutCitizen(redirectToLogin = true): void {
   this.clearSession();
 
@@ -108,6 +128,52 @@ loginStaff(
       this.router.navigate(['/auth/staff-login']);
     }
   }
+  /**
+   * Sends a password reset email.
+   */
+  forgotPassword(request: ForgotPasswordRequestModel): Observable<void> {
+  this.authStore.setLoading(true);
+  this.authStore.setError(null);
+
+  return this.authRepository.forgotPassword(request).pipe(
+    catchError((error: Failure) => {
+      const message = mapForgotPasswordErrorToMessage(error , this.translate);
+      this.authStore.setError(message);
+      return throwError(() => new Error(message));
+    }),
+    finalize(() => this.authStore.setLoading(false))
+  );
+}
+
+verifyResetOtp(
+  request: VerifyResetOtpRequestModel
+): Observable<VerifyResetOtpResponseModel> {
+  this.authStore.setLoading(true);
+  this.authStore.setError(null);
+
+  return this.authRepository.verifyResetOtp(request).pipe(
+    catchError((error: Failure) => {
+      const message = this.mapVerifyOtpErrorToMessage(error);
+      this.authStore.setError(message);
+      return throwError(() => new Error(message));
+    }),
+    finalize(() => this.authStore.setLoading(false))
+  );
+}
+
+resetPassword(request: ResetPasswordRequestModel): Observable<void> {
+  this.authStore.setLoading(true);
+  this.authStore.setError(null);
+
+  return this.authRepository.resetPassword(request).pipe(
+    catchError((error: Failure) => {
+      const message = this.mapResetPasswordErrorToMessage(error);
+      this.authStore.setError(message);
+      return throwError(() => new Error(message));
+    }),
+    finalize(() => this.authStore.setLoading(false))
+  );
+}
 
 restoreSession(): Observable<boolean> {
   const token = this.authTokenService.getToken();
@@ -146,8 +212,8 @@ private clearSession(): void {
   this.authStore.clear();
 }
 
-  private handleLoginSuccess(authUser: AuthUserModel): void {
-    this.authTokenService.setToken(authUser.token);
+  private handleLoginSuccess(authUser: AuthUserModel, rememberMe: boolean): void {
+    this.authTokenService.setToken(authUser.token, rememberMe);
 
     const currentUser: CurrentUserModel = {
       userId: authUser.userId,
@@ -220,40 +286,46 @@ private redirectAfterStaffLogin(authUser: AuthUserModel): void {
    this.router.navigateByUrl('/unauthorized', { replaceUrl: true });
 }
 
-private mapLoginErrorToMessage(error: Failure): string {
-  switch (error.code) {
-    case 'AUTH_INVALID_CREDENTIALS':
-      return this.translate.instant('Login-Keys.INVALID_CREDENTIALS');
 
-    case 'AUTH_ACCOUNT_INACTIVE':
-      return this.translate.instant('Login-Keys.INACTIVE_ACCOUNT');
+
+
+
+
+private mapVerifyOtpErrorToMessage(error: Failure): string {
+  switch (error.code) {
+    case 'INVALID_OTP':
+      return this.translate.instant('ResetOtp-Keys.INVALID_OTP');
+
+    case 'OTP_EXPIRED':
+      return this.translate.instant('ResetOtp-Keys.OTP_EXPIRED');
+
+    case 'INVALID_OR_EXPIRED_OTP':
+      return this.translate.instant('ResetOtp-Keys.INVALID_OR_EXPIRED_OTP');
+
+    case 'OTP_TOO_MANY_ATTEMPTS':
+      return this.translate.instant('ResetOtp-Keys.OTP_TOO_MANY_ATTEMPTS');
 
     default:
-      return this.translate.instant('Login-Keys.GENERIC_ERROR_LOGIN');
+      return this.translate.instant('ResetOtp-Keys.GENERIC_ERROR');
   }
 }
 
-private mapRegisterErrorToMessage(error: Failure): string {
+private mapResetPasswordErrorToMessage(error: Failure): string {
   switch (error.code) {
-    case 'NON_JORDANIAN_CITIZEN':
-      return this.translate.instant('Only_Jordanian_citizens_can_register');
+    case 'PASSWORD_CONFIRMATION_MISMATCH':
+      return this.translate.instant('ResetPassword-Keys.PASSWORDS_DO_NOT_MATCH');
 
-    case 'EMAIL_ALREADY_REGISTERED':
-      return this.translate.instant('Email_is_already_registered');
+    case 'INVALID_PASSWORD_RESET_REQUEST':
+      return this.translate.instant('ResetPassword-Keys.INVALID_PASSWORD_RESET_REQUEST');
 
-    case 'NATIONAL_ID_ALREADY_REGISTERED':
-      return this.translate.instant('National_ID_is_already_registered');
+    case 'PASSWORD_RESET_SESSION_EXPIRED':
+      return this.translate.instant('ResetPassword-Keys.PASSWORD_RESET_SESSION_EXPIRED');
 
-    case 'NATIONAL_ID_NOT_FOUND':
-      return this.translate.instant('National_ID_Not_Found');
-
-    case 'VALIDATION_ERROR':
-    case 'REGISTRATION_FAILED':
-    case 'ROLE_ASSIGNMENT_FAILED':
-      return this.translate.instant('Generic_Error_Signup');
+    case 'PASSWORD_RESET_FAILED':
+      return this.translate.instant('ResetPassword-Keys.PASSWORD_RESET_FAILED');
 
     default:
-      return this.translate.instant('Generic_Error_Signup');
+      return this.translate.instant('ResetPassword-Keys.GENERIC_ERROR');
   }
 }
 

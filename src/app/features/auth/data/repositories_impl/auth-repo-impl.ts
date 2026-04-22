@@ -14,6 +14,10 @@ import { mapCurrentUserDtoToCurrentUserModel } from '../mappers/current-user-dto
 import { mapRegisterRequestModelToRegisterRequestDto } from '../mappers/register-request-model-to-register-request-dto.mapper';
 import { RegisterResponseModel } from '../../domain/models/register-response.model';
 import { mapRegisterResponseDtoToRegisterResponseModel } from '../mappers/register-response-dto-to-register-response-model';
+import { ForgotPasswordRequestModel } from '../../domain/models/forgot-password-request.model';
+import { ResetPasswordRequestModel } from '../../domain/models/reset-password-request.model';
+import { VerifyResetOtpRequestModel } from '../../domain/models/verify-reset-otp-request.model';
+import { VerifyResetOtpResponseModel } from '../../domain/models/verify-reset-otp-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,4 +46,27 @@ export class AuthRepositoryImpl implements AuthRepo {
       map(mapCurrentUserDtoToCurrentUserModel)
     );
   }
+
+  forgotPassword(request: ForgotPasswordRequestModel): Observable<void> {
+  return this.api.forgotPassword(request).pipe(
+    map(() => void 0)
+  );
+}
+
+verifyResetOtp(
+  request: VerifyResetOtpRequestModel
+): Observable<VerifyResetOtpResponseModel> {
+  return this.api.verifyResetOtp(request).pipe(
+    map((response) => ({
+      resetSessionToken: response.resetSessionToken,
+      message: response.message,
+    }))
+  );
+}
+
+resetPassword(request: ResetPasswordRequestModel): Observable<void> {
+  return this.api.resetPassword(request).pipe(
+    map(() => void 0)
+  );
+}
 }
