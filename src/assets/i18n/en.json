@@ -127,7 +127,7 @@
     "EMAIL_IS_INVALID": "Please enter a valid email address.",
     "SEND_OTP": "Send verification code",
     "BACK_TO_LOGIN": "Back to login",
-    "EMAIL_SENDING_FAILED": "Failed to send verification code. Please try again.",
+    "EMAIL_SENDING_FAILED": "The verification code was not sent. Please check your entered email address or try again.",
     "GENERIC_ERROR": "Something went wrong. Please try again."
   },
   "ResetOtp-Keys": {

@@ -13,3 +13,14 @@ export function mapLoginErrorToMessage(error: Failure,translate : TranslateServi
       return translate.instant('Login-Keys.GENERIC_ERROR_LOGIN');
   }
 }
+
+
+export function mapForgotPasswordErrorToMessage(error: Failure , translate : TranslateService): string {
+  switch (error.code) {
+    case 'EMAIL_SENDING_FAILED':
+      return translate.instant('ForgotPassword-Keys.EMAIL_SENDING_FAILED');
+
+    default:
+      return translate.instant('ForgotPassword-Keys.GENERIC_ERROR');
+  }
+}

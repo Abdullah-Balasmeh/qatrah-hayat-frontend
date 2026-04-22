@@ -23,7 +23,7 @@ import { ResetPasswordRequestModel } from '../../domain/models/reset-password-re
 import { VerifyResetOtpRequestModel } from '../../domain/models/verify-reset-otp-request.model';
 import { VerifyResetOtpResponseModel } from '../../domain/models/verify-reset-otp-response.model';
 import { mapRegisterErrorToMessage } from '../../../../core/errors/register-error-to-message.mapper';
-import { mapLoginErrorToMessage } from '../../../../core/errors/login-error-to-message.mapper';
+import { mapForgotPasswordErrorToMessage, mapLoginErrorToMessage } from '../../../../core/errors/login-error-to-message.mapper';
 
 @Injectable({
   providedIn: 'root'
@@ -137,7 +137,7 @@ loginStaff(
 
   return this.authRepository.forgotPassword(request).pipe(
     catchError((error: Failure) => {
-      const message = this.mapForgotPasswordErrorToMessage(error);
+      const message = mapForgotPasswordErrorToMessage(error , this.translate);
       this.authStore.setError(message);
       return throwError(() => new Error(message));
     }),
@@ -289,15 +289,7 @@ private redirectAfterStaffLogin(authUser: AuthUserModel): void {
 
 
 
-private mapForgotPasswordErrorToMessage(error: Failure): string {
-  switch (error.code) {
-    case 'EMAIL_SENDING_FAILED':
-      return this.translate.instant('ForgotPassword-Keys.EMAIL_SENDING_FAILED');
 
-    default:
-      return this.translate.instant('ForgotPassword-Keys.GENERIC_ERROR');
-  }
-}
 
 private mapVerifyOtpErrorToMessage(error: Failure): string {
   switch (error.code) {
