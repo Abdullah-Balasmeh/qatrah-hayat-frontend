@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ForgetPasswordAndRememberMeComponent } from '../forget-password-and-remember-me/forget-password-and-remember-me.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AuthFacade } from '../../facades/auth.facade';
+import { AlertErrorComponent } from "../../../../../shared/ui/alert-error/alert-error.component";
 
 
 @Component({
@@ -26,7 +27,8 @@ import { AuthFacade } from '../../facades/auth.facade';
     PasswordTextFieldComponent,
     TextFieldComponent,
     ForgetPasswordAndRememberMeComponent,
-  ],
+    AlertErrorComponent
+],
   templateUrl: './citizen-login-form.component.html',
   styleUrl: './citizen-login-form.component.css',
 })

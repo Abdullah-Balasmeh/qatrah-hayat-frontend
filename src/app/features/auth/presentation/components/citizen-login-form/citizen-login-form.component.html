@@ -58,7 +58,7 @@
     data-aos="fade-down" data-aos-delay="900"/>
 
     @if (serverErrorMessage()) {
-      <app-form-error-message [errorMessage]="serverErrorMessage()" />
+      <app-alert-error [errorMessage]="serverErrorMessage()!" />
     }
 
     <!-- Submit Button -->
