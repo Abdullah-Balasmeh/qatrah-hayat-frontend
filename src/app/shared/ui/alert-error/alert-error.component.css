@@ -8,6 +8,7 @@
   border-radius: 1rem;
   padding: 1rem;
   font-weight: var(--font-weight-semi-bold);
+  margin-bottom: 1rem;
 }
 .alert-error-message p {
   margin: 0;

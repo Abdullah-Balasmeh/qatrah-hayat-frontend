@@ -17,6 +17,7 @@ import { FormErrorMessageComponent } from '../../../../../shared/ui/form-error-m
 import { TextFieldComponent } from '../../../../../shared/ui/text-field/text-field.component';
 import { AuthFacade } from '../../facades/auth.facade';
 import { AuthContainerHeadingComponent } from '../../components/auth-container-heading/auth-container-heading.component';
+import { LanguageService } from '../../../../../core/services/language.service';
 
 @Component({
   selector: 'app-verify-reset-otp-page',
@@ -40,6 +41,7 @@ export class VerifyOTPPageComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly langService = inject(LanguageService);
 
   private readonly resendCooldownSeconds = 59;
   private countdownSubscription?: Subscription;
@@ -54,6 +56,7 @@ export class VerifyOTPPageComponent {
   readonly canResendOtp = computed(() => {
     return this.resendSeconds() === 60 && !this.isLoading();
   });
+  readonly isArabic = computed(() => this.langService.currentLang === 'ar');
 
   readonly form = this.fb.group({
     otp: this.fb.nonNullable.control('', [
@@ -85,7 +88,7 @@ export class VerifyOTPPageComponent {
     }
 
     this.authFacade
-      .forgotPassword({ email: this.email })
+      .forgotPassword({ email: this.email , isArabic: this.isArabic()})
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: () => {

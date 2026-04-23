@@ -23,7 +23,7 @@ import { ResetPasswordRequestModel } from '../../domain/models/reset-password-re
 import { VerifyResetOtpRequestModel } from '../../domain/models/verify-reset-otp-request.model';
 import { VerifyResetOtpResponseModel } from '../../domain/models/verify-reset-otp-response.model';
 import { mapRegisterErrorToMessage } from '../../../../core/errors/register-error-to-message.mapper';
-import { mapForgotPasswordErrorToMessage, mapLoginErrorToMessage } from '../../../../core/errors/login-error-to-message.mapper';
+import { mapForgotPasswordErrorToMessage, mapLoginErrorToMessage, mapResetPasswordErrorToMessage, mapVerifyOtpErrorToMessage } from '../../../../core/errors/login-error-to-message.mapper';
 
 @Injectable({
   providedIn: 'root'
@@ -153,7 +153,7 @@ verifyResetOtp(
 
   return this.authRepository.verifyResetOtp(request).pipe(
     catchError((error: Failure) => {
-      const message = this.mapVerifyOtpErrorToMessage(error);
+      const message = mapVerifyOtpErrorToMessage(error , this.translate);
       this.authStore.setError(message);
       return throwError(() => new Error(message));
     }),
@@ -167,7 +167,7 @@ resetPassword(request: ResetPasswordRequestModel): Observable<void> {
 
   return this.authRepository.resetPassword(request).pipe(
     catchError((error: Failure) => {
-      const message = this.mapResetPasswordErrorToMessage(error);
+      const message = mapResetPasswordErrorToMessage(error , this.translate);
       this.authStore.setError(message);
       return throwError(() => new Error(message));
     }),
@@ -284,49 +284,6 @@ private redirectAfterStaffLogin(authUser: AuthUserModel): void {
     return;
   }
    this.router.navigateByUrl('/unauthorized', { replaceUrl: true });
-}
-
-
-
-
-
-
-private mapVerifyOtpErrorToMessage(error: Failure): string {
-  switch (error.code) {
-    case 'INVALID_OTP':
-      return this.translate.instant('ResetOtp-Keys.INVALID_OTP');
-
-    case 'OTP_EXPIRED':
-      return this.translate.instant('ResetOtp-Keys.OTP_EXPIRED');
-
-    case 'INVALID_OR_EXPIRED_OTP':
-      return this.translate.instant('ResetOtp-Keys.INVALID_OR_EXPIRED_OTP');
-
-    case 'OTP_TOO_MANY_ATTEMPTS':
-      return this.translate.instant('ResetOtp-Keys.OTP_TOO_MANY_ATTEMPTS');
-
-    default:
-      return this.translate.instant('ResetOtp-Keys.GENERIC_ERROR');
-  }
-}
-
-private mapResetPasswordErrorToMessage(error: Failure): string {
-  switch (error.code) {
-    case 'PASSWORD_CONFIRMATION_MISMATCH':
-      return this.translate.instant('ResetPassword-Keys.PASSWORDS_DO_NOT_MATCH');
-
-    case 'INVALID_PASSWORD_RESET_REQUEST':
-      return this.translate.instant('ResetPassword-Keys.INVALID_PASSWORD_RESET_REQUEST');
-
-    case 'PASSWORD_RESET_SESSION_EXPIRED':
-      return this.translate.instant('ResetPassword-Keys.PASSWORD_RESET_SESSION_EXPIRED');
-
-    case 'PASSWORD_RESET_FAILED':
-      return this.translate.instant('ResetPassword-Keys.PASSWORD_RESET_FAILED');
-
-    default:
-      return this.translate.instant('ResetPassword-Keys.GENERIC_ERROR');
-  }
 }
 
 }

@@ -117,7 +117,8 @@
     "LOGIN_PAGE_FOOTER_LINK_TEXT": "Create Account",
     "INVALID_CREDENTIALS": "Invalid National ID or Password.",
     "INACTIVE_ACCOUNT": "This account is inactive. Please contact support.",
-    "GENERIC_ERROR_LOGIN": "An error occurred while logging in. Please try again later."
+    "GENERIC_ERROR_LOGIN": "An error occurred while logging in. Please try again later.",
+    "USER_NOT_FOUND": "User not found."
   },
   "ForgotPassword-Keys": {
     "TITLE": "Forgot password",
