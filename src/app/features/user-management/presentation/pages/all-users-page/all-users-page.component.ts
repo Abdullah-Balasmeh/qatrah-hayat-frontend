@@ -74,21 +74,26 @@ export class AllUsersPageComponent implements OnInit {
     return Math.min(possibleTo, this.store.totalCount());
   });
 
-  readonly lastUpdateLabel = computed(() => {
-    const lastUpdate = this.store.lastUpdate();
+readonly lastUpdateLabel = computed(() => {
+  const lastUpdate = this.store.lastUpdate();
 
-    if (!lastUpdate) {
-      return '—';
-    }
+  if (!lastUpdate) {
+    return '—';
+  }
 
-    return new Date(lastUpdate).toLocaleString([], {
-      year: 'numeric',
-      month: 'short',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
+  const normalizedDate = lastUpdate.endsWith('Z')
+    ? lastUpdate
+    : `${lastUpdate}Z`;
+
+  return new Date(normalizedDate).toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
   });
+});
 
   readonly selectedStatus = computed<UserStatusFilter>(() => {
     const isActive = this.store.isActive();
