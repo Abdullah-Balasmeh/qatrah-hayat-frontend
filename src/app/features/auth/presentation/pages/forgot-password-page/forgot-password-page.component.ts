@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -11,6 +11,7 @@ import { TextFieldComponent } from '../../../../../shared/ui/text-field/text-fie
 import { AuthFacade } from '../../facades/auth.facade';
 import { AuthContainerHeadingComponent } from "../../components/auth-container-heading/auth-container-heading.component";
 import { AlertErrorComponent } from "../../../../../shared/ui/alert-error/alert-error.component";
+import { LanguageService } from '../../../../../core/services/language.service';
 
 @Component({
   selector: 'app-forgot-password-page',
@@ -34,9 +35,10 @@ export class ForgotPasswordPageComponent {
   private readonly authFacade = inject(AuthFacade);
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
-
+  private readonly langService = inject(LanguageService);
   readonly isLoading = this.authFacade.loading;
   readonly serverErrorMessage = this.authFacade.error;
+  readonly isArabic = computed(() => this.langService.currentLang === 'ar');
 
   readonly form = this.fb.group({
     email: this.fb.nonNullable.control('', [
@@ -56,7 +58,7 @@ export class ForgotPasswordPageComponent {
     const email = this.form.controls.email.value.trim();
 
     this.authFacade
-      .forgotPassword({ email })
+      .forgotPassword({ email , isArabic: this.isArabic()})
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: () => {
