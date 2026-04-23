@@ -11,7 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class RoleBadgeComponent {
  readonly role = input.required<UserRole>();
 
-  get roleTranslationKey(): string {
-    return USER_ROLE_OPTIONS[this.role()].label;
+   get roleTranslationKey(): string {
+    return USER_ROLE_OPTIONS[this.role()] ?? 'Role-Keys.UNKNOWN_ROLE';
   }
 }
