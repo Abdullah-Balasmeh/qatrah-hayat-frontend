@@ -85,19 +85,19 @@ readonly branchOptions = [
   readonly staffRoleOptions = [
     {
       value: UserRole.Doctor,
-      label: USER_ROLE_OPTIONS[UserRole.Doctor].label
+      label: USER_ROLE_OPTIONS[UserRole.Doctor]
     },
     {
       value: UserRole.Employee,
-      label: USER_ROLE_OPTIONS[UserRole.Employee].label
+      label: USER_ROLE_OPTIONS[UserRole.Employee]
     },
     {
       value: UserRole.BranchManager,
-      label: USER_ROLE_OPTIONS[UserRole.BranchManager].label
+      label: USER_ROLE_OPTIONS[UserRole.BranchManager]
     },
     {
       value: UserRole.Admin,
-      label: USER_ROLE_OPTIONS[UserRole.Admin].label
+      label: USER_ROLE_OPTIONS[UserRole.Admin]
     }
   ];
 
