@@ -1,0 +1,35 @@
+<section class="hero">
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content container">
+    <div class="hero-text text-center">
+      <h1 class="hero-title" data-aos="fade-down" data-aos-delay="150">
+        {{ "HERO_TITLE" | translate }}
+      </h1>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="300">
+        {{ "HERO_SUBTITLE" | translate }}
+      </p>
+
+      <div class="hero-actions">
+        <button
+          class="qh-primary-btn"
+          data-aos="zoom-in"
+          data-aos-delay="450"
+          routerLink="/auth/sign-up"
+        >
+          {{ "JOIN_AS_DONOR" | translate }}
+        </button>
+
+        <button
+          class="hero-btn-secondary"
+          data-aos="zoom-in"
+          data-aos-delay="450"
+          routerLink="/auth/login"
+        >
+          {{ "Request_Blood" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
