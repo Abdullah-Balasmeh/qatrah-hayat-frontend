@@ -56,6 +56,11 @@ export const routes: Routes = [
         path: 'users',
         loadChildren: () =>
           import('./features/user-management/user-management.routes').then(r => r.USER_MANAGEMENT_ROUTES)
+      },
+      {
+        path: 'branches',
+        loadChildren: () =>
+          import('./features/branch-management/branch-management.routes').then(r => r.BRANCH_MANAGEMENT_ROUTES)
       }
     ]
   },

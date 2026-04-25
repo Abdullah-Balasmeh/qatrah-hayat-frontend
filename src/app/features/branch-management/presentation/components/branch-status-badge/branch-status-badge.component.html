@@ -1,0 +1,4 @@
+<span class="status-badge" [class.active]="isActive()" [class.inactive]="!isActive()">
+  <span class="status-dot"></span>
+  {{ isActive() ? ('Admin-Keys.ACTIVE' | translate) : ('Admin-Keys.INACTIVE' | translate) }}
+</span>

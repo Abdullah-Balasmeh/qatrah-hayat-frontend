@@ -1,0 +1,29 @@
+<div class="stats-grid">
+  <app-stat-card
+    [title]="'Branches-Management-Keys.TOTAL_BRANCHES' | translate"
+    [value]="totalBranches()"
+    [icon]="'fa-solid fa-building-user'"
+    [colorClass]="'icon-gold'"
+  ></app-stat-card>
+
+  <app-stat-card
+    [title]="'Branches-Management-Keys.TOTAL_ACTIVE_BRANCHES' | translate"
+    [value]="totalActiveBranches()"
+    [icon]="'fa-solid fa-building-circle-check'"
+    [colorClass]="'icon-navy'"
+  ></app-stat-card>
+
+  <app-stat-card
+    [title]="'Branches-Management-Keys.TOTAL_INACTIVE_BRANCHES' | translate"
+    [value]="totalInactiveBranches()"
+    [icon]="'fa-solid fa-building-circle-xmark'"
+    [colorClass]="'icon-pink'"
+  ></app-stat-card>
+
+  <app-stat-card
+    [title]="'Branches-Management-Keys.LAST_UPDATE' | translate"
+    [value]="lastUpdate()"
+    [icon]="'fa-solid fa-clock-rotate-left'"
+    [colorClass]="'icon-green'"
+  ></app-stat-card>
+</div>

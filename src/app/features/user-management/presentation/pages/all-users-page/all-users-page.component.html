@@ -49,7 +49,7 @@
       }
     }
 
-    <app-users-pagination
+    <app-pagination
       [shownFrom]="shownFrom()"
       [shownTo]="shownTo()"
       [totalCount]="store.totalCount()"
@@ -57,7 +57,7 @@
       [totalPages]="store.totalPages()"
       (previousClicked)="previousPage()"
       (nextClicked)="nextPage()"
-    ></app-users-pagination>
+    ></app-pagination>
   </div>
   <app-confirmation-modal
   [isOpen]="isConfirmationModalOpen()"

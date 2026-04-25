@@ -1,0 +1,26 @@
+.branches-management-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem;
+  background: var(--surface-ground);
+}
+
+.content-card {
+  background-color: var(--surface-card);
+  border-radius: 1.5rem;
+  box-shadow: var(--box-shadow-card);
+  padding: 1.3rem;
+}
+
+
+@media (max-width: 992px) {
+  .branches-management-page {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-card {
+    padding: 1rem;
+  }
+}

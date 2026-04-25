@@ -499,12 +499,14 @@ onBranchChange(branchId: number | null): void {
   hospitalControl.clearValidators();
 
   if (staffRole === UserRole.Doctor) {
-    hospitalControl.setValidators([Validators.required]);
+    // hospitalControl.setValidators([Validators.required]);
+     hospitalControl.setValidators(null);
     branchControl.setValue(null);
   }
 
   if (staffRole === UserRole.BranchManager) {
-    branchControl.setValidators([Validators.required]);
+    // branchControl.setValidators([Validators.required]);
+    branchControl.setValidators(null);
     hospitalControl.setValue(null);
   }
 
