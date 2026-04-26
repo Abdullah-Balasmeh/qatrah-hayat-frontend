@@ -1,0 +1,13 @@
+<span
+  class="status-badge"
+  [class.active]="isActive()"
+  [class.inactive]="!isActive()"
+>
+  <span class="dot"></span>
+
+  @if (isActive()) {
+    {{ 'COMMON.ACTIVE' | translate }}
+  } @else {
+    {{ 'COMMON.INACTIVE' | translate }}
+  }
+</span>

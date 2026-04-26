@@ -1,0 +1,29 @@
+.hospitals-management-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem;
+  background: var(--surface-ground);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.content-card {
+  background-color: var(--surface-card);
+  border-radius: 1.5rem;
+  box-shadow: var(--box-shadow-card);
+  padding: 1.3rem;
+}
+
+@media (max-width: 992px) {
+  .hospitals-management-page {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-card {
+    padding: 1rem;
+  }
+}

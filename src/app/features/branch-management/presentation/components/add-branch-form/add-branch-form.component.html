@@ -1,0 +1,310 @@
+<div class="form-container">
+  <form [formGroup]="addBranchForm" (ngSubmit)="onSubmit()" novalidate>
+
+    <!-- Section 1: Basic Information -->
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Add-Branch-Keys.BRANCH_BASIC_INFORMATION' | translate }}
+      </h5>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="addBranchForm.controls.branchNameAr"
+            type="text"
+            [placeholder]="'Add-Branch-Keys.BRANCH_NAME_AR_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-building"
+            inputId="branchNameAr"
+          />
+
+          <div class="field-error-space">
+            @if (
+              addBranchForm.controls.branchNameAr.touched ||
+              addBranchForm.controls.branchNameAr.dirty
+            ) {
+              @if (addBranchForm.controls.branchNameAr.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Add-Branch-Keys.BRANCH_NAME_AR_REQUIRED' | translate"
+                />
+              } @else if (addBranchForm.controls.branchNameAr.hasError('maxlength')) {
+                <app-form-error-message
+                  [errorMessage]="'Add-Branch-Keys.BRANCH_NAME_MAX_LENGTH' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="addBranchForm.controls.branchNameEn"
+            type="text"
+            [placeholder]="'Add-Branch-Keys.BRANCH_NAME_EN_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-building"
+            inputId="branchNameEn"
+          />
+
+          <div class="field-error-space">
+            @if (
+              addBranchForm.controls.branchNameEn.touched ||
+              addBranchForm.controls.branchNameEn.dirty
+            ) {
+              @if (addBranchForm.controls.branchNameEn.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Add-Branch-Keys.BRANCH_NAME_EN_REQUIRED' | translate"
+                />
+              } @else if (addBranchForm.controls.branchNameEn.hasError('maxlength')) {
+                <app-form-error-message
+                  [errorMessage]="'Add-Branch-Keys.BRANCH_NAME_MAX_LENGTH' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Address Information -->
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Add-Branch-Keys.BRANCH_ADDRESS_INFORMATION' | translate }}
+      </h5>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="addBranchForm.controls.addressAr"
+            type="text"
+            [placeholder]="'Add-Branch-Keys.BRANCH_ADDRESS_AR_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-location-dot"
+            inputId="addressAr"
+          />
+
+          <div class="field-error-space">
+            @if (
+              addBranchForm.controls.addressAr.touched ||
+              addBranchForm.controls.addressAr.dirty
+            ) {
+              @if (addBranchForm.controls.addressAr.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Add-Branch-Keys.BRANCH_ADDRESS_AR_REQUIRED' | translate"
+                />
+              } @else if (addBranchForm.controls.addressAr.hasError('maxlength')) {
+                <app-form-error-message
+                  [errorMessage]="'Add-Branch-Keys.BRANCH_ADDRESS_MAX_LENGTH' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="addBranchForm.controls.addressEn"
+            type="text"
+            [placeholder]="'Add-Branch-Keys.BRANCH_ADDRESS_EN_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-location-dot"
+            inputId="addressEn"
+          />
+
+          <div class="field-error-space">
+            @if (
+              addBranchForm.controls.addressEn.touched ||
+              addBranchForm.controls.addressEn.dirty
+            ) {
+              @if (addBranchForm.controls.addressEn.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Add-Branch-Keys.BRANCH_ADDRESS_EN_REQUIRED' | translate"
+                />
+              } @else if (addBranchForm.controls.addressEn.hasError('maxlength')) {
+                <app-form-error-message
+                  [errorMessage]="'Add-Branch-Keys.BRANCH_ADDRESS_MAX_LENGTH' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Manager Information -->
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Add-Branch-Keys.BRANCH_MANAGER_INFORMATION' | translate }}
+      </h5>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <app-drop-down-with-label
+            [options]="managerOptions()"
+            [selectedValue]="addBranchForm.controls.managerUserId.value"
+            [placeholder]="'Add-Branch-Keys.SELECT_BRANCH_MANAGER' | translate"
+            [translateLabels]="false"
+            (valueChanged)="onManagerChange($event)"
+          />
+
+          <div class="field-error-space">
+            @if (
+              addBranchForm.controls.managerUserId.touched ||
+              addBranchForm.controls.managerUserId.dirty
+            ) {
+              @if (addBranchForm.controls.managerUserId.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Add-Branch-Keys.BRANCH_MANAGER_REQUIRED' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Location Information -->
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Add-Branch-Keys.BRANCH_LOCATION_INFORMATION' | translate }}
+      </h5>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="addBranchForm.controls.gpsLat"
+            type="number"
+            [placeholder]="'Add-Branch-Keys.GPS_LAT_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-map-pin"
+            inputId="gpsLat"
+          />
+
+          <div class="field-error-space">
+            @if (
+              addBranchForm.controls.gpsLat.touched ||
+              addBranchForm.controls.gpsLat.dirty
+            ) {
+              @if (addBranchForm.controls.gpsLat.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Add-Branch-Keys.GPS_LAT_REQUIRED' | translate"
+                />
+              } @else if (
+                addBranchForm.controls.gpsLat.hasError('min') ||
+                addBranchForm.controls.gpsLat.hasError('max')
+              ) {
+                <app-form-error-message
+                  [errorMessage]="'Add-Branches-Keys.GPS_LAT_INVALID' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="addBranchForm.controls.gpsLng"
+            type="number"
+            [placeholder]="'Add-Branch-Keys.GPS_LNG_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-map-location-dot"
+            inputId="gpsLng"
+          />
+
+          <div class="field-error-space">
+            @if (
+              addBranchForm.controls.gpsLng.touched ||
+              addBranchForm.controls.gpsLng.dirty
+            ) {
+              @if (addBranchForm.controls.gpsLng.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Add-Branch-Keys.GPS_LNG_REQUIRED' | translate"
+                />
+              } @else if (
+                addBranchForm.controls.gpsLng.hasError('min') ||
+                addBranchForm.controls.gpsLng.hasError('max')
+              ) {
+                <app-form-error-message
+                  [errorMessage]="'Add-Branch-Keys.GPS_LNG_INVALID' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Contact Information -->
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Add-Branch-Keys.BRANCH_CONTACT_INFORMATION' | translate }}
+      </h5>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="addBranchForm.controls.email"
+            type="email"
+            [placeholder]="'Add-Branch-Keys.BRANCH_EMAIL_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-envelope"
+            inputId="email"
+          />
+
+          <div class="field-error-space">
+            @if (
+              addBranchForm.controls.email.touched ||
+              addBranchForm.controls.email.dirty
+            ) {
+              @if (addBranchForm.controls.email.hasError('email')) {
+                <app-form-error-message
+                  [errorMessage]="'Add-Branch-Keys.BRANCH_EMAIL_INVALID' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="addBranchForm.controls.phone"
+            type="text"
+            [placeholder]="'Add-Branch-Keys.BRANCH_PHONE_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-phone"
+            inputId="phone"
+            maxLength="10"
+            [isNumeric]="true"
+          />
+
+          <div class="field-error-space">
+            @if (
+              addBranchForm.controls.phone.touched ||
+              addBranchForm.controls.phone.dirty
+            ) {
+              @if (addBranchForm.controls.phone.hasError('pattern')) {
+                <app-form-error-message
+                  [errorMessage]="'Add-Branch-Keys.BRANCH_PHONE_INVALID' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-wrapper">
+      @if (store.errorMessage()) {
+        <app-form-error-message [errorMessage]="store.errorMessage()!" />
+      }
+
+      @if (showSuccessMessage()) {
+        <div class="success-message" role="alert">
+          <strong>
+            {{ 'Add-Branch-Keys.BRANCH_ADDED_SUCCESSFULLY' | translate }}
+          </strong>
+        </div>
+      }
+
+      <app-primary-button
+        [label]="'Add-Branch-Keys.ADD_BRANCH' | translate"
+        type="submit"
+        [disabled]="store.isActionLoading()"
+        [isLoading]="store.isActionLoading()"
+      />
+    </div>
+  </form>
+</div>

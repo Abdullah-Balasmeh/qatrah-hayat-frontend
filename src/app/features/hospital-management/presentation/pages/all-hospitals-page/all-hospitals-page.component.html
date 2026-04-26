@@ -1,0 +1,56 @@
+<section class="hospitals-management-page">
+  <app-hospitals-page-header></app-hospitals-page-header>
+
+  <app-hospitals-statistics-section
+    [totalHospitals]="store.totalHospitals()"
+    [totalActiveHospitals]="store.totalActiveHospitals()"
+    [totalInactiveHospitals]="store.totalInactiveHospitals()"
+    [lastUpdate]="store.lastUpdate()"
+  ></app-hospitals-statistics-section>
+
+  <div class="content-card">
+    <app-hospitals-filters
+      [searchValue]="store.searchValue()"
+      [selectedStatus]="store.selectedStatus()"
+      (searchValueChanged)="onSearchValueChange($event)"
+      (searchSubmitted)="onSearch()"
+      (statusChanged)="onStatusChange($event)"
+    ></app-hospitals-filters>
+
+    @if (store.errorMessage()) {
+      <app-alert-error [errorMessage]="store.errorMessage()!"></app-alert-error>
+    }
+
+    @if (store.isLoading()) {
+      <app-loading></app-loading>
+    } @else {
+      <app-hospitals-table
+        [hospitals]="store.hospitals()"
+        (activateClicked)="openActivateConfirmation($event)"
+        (deactivateClicked)="openDeactivateConfirmation($event)"
+        (deleteClicked)="openDeleteConfirmation($event)"
+      ></app-hospitals-table>
+    }
+
+    <app-pagination
+      [shownFrom]="store.shownFrom()"
+      [shownTo]="store.shownTo()"
+      [totalCount]="store.totalCount()"
+      [pageNumber]="store.pageNumber()"
+      [totalPages]="store.totalPages()"
+      (previousClicked)="previousPage()"
+      (nextClicked)="nextPage()"
+    ></app-pagination>
+  </div>
+
+  <app-confirmation-modal
+    [isOpen]="store.isConfirmationModalOpen()"
+    [type]="store.confirmationModalType()"
+    [title]="store.confirmationModalTitle() | translate"
+    [message]="store.confirmationModalMessage() | translate"
+    [confirmText]="store.confirmationModalConfirmText() | translate"
+    [cancelText]="'COMMON.CANCEL' | translate"
+    (confirmed)="confirmHospitalAction()"
+    (cancelled)="closeConfirmationModal()"
+  ></app-confirmation-modal>
+</section>

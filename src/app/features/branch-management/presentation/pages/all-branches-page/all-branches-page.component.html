@@ -1,0 +1,56 @@
+<section class="branches-management-page">
+  <app-branches-page-header></app-branches-page-header>
+
+  <app-branches-statistics-section
+    [totalBranches]="store.totalBranches()"
+    [totalActiveBranches]="store.totalActiveBranches()"
+    [totalInactiveBranches]="store.totalInactiveBranches()"
+    [lastUpdate]="lastUpdateLabel()"
+  ></app-branches-statistics-section>
+
+  <div class="content-card">
+    <app-branches-filters
+      [searchValue]="store.searchValue()"
+      [selectedStatus]="store.selectedStatus()"
+      (searchValueChanged)="onSearchValueChange($event)"
+      (searchSubmitted)="onSearch()"
+      (statusChanged)="onStatusChange($event)"
+    ></app-branches-filters>
+
+    @if (store.errorMessage()) {
+      <app-alert-error [errorMessage]="store.errorMessage()!"></app-alert-error>
+    }
+
+    @if (store.isLoading()) {
+      <app-loading></app-loading>
+    } @else {
+      <app-branches-table
+        [branches]="store.branches()"
+        (activateClicked)="openActivateConfirmation($event)"
+        (deactivateClicked)="openDeactivateConfirmation($event)"
+        (deleteClicked)="openDeleteConfirmation($event)"
+      ></app-branches-table>
+    }
+
+    <app-pagination
+      [shownFrom]="store.shownFrom()"
+      [shownTo]="store.shownTo()"
+      [totalCount]="store.totalCount()"
+      [pageNumber]="store.pageNumber()"
+      [totalPages]="store.totalPages()"
+      (previousClicked)="previousPage()"
+      (nextClicked)="nextPage()"
+    ></app-pagination>
+  </div>
+
+  <app-confirmation-modal
+    [isOpen]="store.isConfirmationModalOpen()"
+    [type]="store.confirmationModalType()"
+    [title]="store.confirmationModalTitle() | translate"
+    [message]="store.confirmationModalMessage() | translate"
+    [confirmText]="store.confirmationModalConfirmText() | translate"
+    [cancelText]="'COMMON.CANCEL' | translate"
+    (confirmed)="confirmBranchAction()"
+    (cancelled)="closeConfirmationModal()"
+  ></app-confirmation-modal>
+</section>

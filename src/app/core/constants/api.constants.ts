@@ -36,4 +36,27 @@ export const API_ENDPOINTS = {
     promoteCitizenToStaffEndpoint: `${API_BASE_URL}/users-management/citizens/{userId}/promote-to-staff`
   },
 
+  branchManagement: {
+    getAllBranchesEndpoint: `${API_BASE_URL}/branches-management`,
+    getBranchByIdEndpoint: `${API_BASE_URL}/branches-management/{branchId}`,
+    getBranchesStatisticsEndpoint: `${API_BASE_URL}/branches-management/statistics`,
+     getAvailableBranchManagersEndpoint: `${API_BASE_URL}/branches-management/available-managers`,
+    addBranchEndpoint: `${API_BASE_URL}/branches-management`,
+    updateBranchEndpoint: `${API_BASE_URL}/branches-management/{branchId}`,
+    softDeleteBranchEndpoint: `${API_BASE_URL}/branches-management/{branchId}`,
+    activateBranchEndpoint: `${API_BASE_URL}/branches-management/{branchId}/activate`,
+    deactivateBranchEndpoint: `${API_BASE_URL}/branches-management/{branchId}/deactivate`,
+  },
+  hospitalManagement: {
+    getAllHospitalsEndpoint: `${API_BASE_URL}/hospital-management`,
+    getHospitalByIdEndpoint: `${API_BASE_URL}/hospital-management/{hospitalId}`,
+    getHospitalsStatisticsEndpoint: `${API_BASE_URL}/hospital-management/statistics`,
+     getAvailableDoctorsEndpoint: `${API_BASE_URL}/hospital-management/available-doctors`,
+    addHospitalEndpoint: `${API_BASE_URL}/hospital-management`,
+    updateHospitalEndpoint: `${API_BASE_URL}/hospital-management/{hospitalId}`,
+    softDeleteHospitalEndpoint: `${API_BASE_URL}/hospital-management/{hospitalId}`,
+    activateHospitalEndpoint: `${API_BASE_URL}/hospital-management/{hospitalId}/activate`,
+    deactivateHospitalEndpoint: `${API_BASE_URL}/hospital-management/{hospitalId}/deactivate`,
+  },
+
 };

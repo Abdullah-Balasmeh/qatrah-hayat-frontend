@@ -1,0 +1,135 @@
+<div class="table-wrapper">
+  <table class="users-table">
+    <thead>
+      <tr>
+        <th>{{ 'Branches-Management-Keys.BRANCH_NAME' | translate }}</th>
+        <th>{{ 'Branches-Management-Keys.BRANCH_ADDRESS' | translate }}</th>
+        <th>{{ 'Branches-Management-Keys.BRANCH_MANAGER' | translate }}</th>
+        <th>{{ 'Branches-Management-Keys.BRANCH_CONTACT' | translate }}</th>
+        <th>{{ 'Branches-Management-Keys.BRANCH_STATUS' | translate }}</th>
+        <th class="actions-header">
+          {{ 'Branches-Management-Keys.BRANCH_ACTION' | translate }}
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (branch of branches(); track branch.id) {
+        <tr>
+          <td [attr.data-label]="'Branches-Management-Keys.BRANCH_NAME' | translate">
+            <div class="user-cell">
+              <div class="user-info">
+                <strong>
+                  {{ isArabic() ? branch.branchNameAr : branch.branchNameEn }}
+                </strong>
+
+                <span>
+                  {{ isArabic() ? branch.branchNameEn : branch.branchNameAr }}
+                </span>
+              </div>
+            </div>
+          </td>
+
+          <td [attr.data-label]="'Branches-Management-Keys.BRANCH_ADDRESS' | translate">
+            <div class="stacked-text">
+              <span>
+                {{ isArabic() ? branch.addressAr : branch.addressEn }}
+              </span>
+
+              <small>
+                {{ isArabic() ? branch.addressEn : branch.addressAr }}
+              </small>
+            </div>
+          </td>
+
+          <td [attr.data-label]="'Branches-Management-Keys.BRANCH_MANAGER' | translate">
+            <div class="stacked-text">
+              <span>
+                {{ isArabic() ? branch.managerFullNameAr : branch.managerFullNameEn }}
+              </span>
+
+              <small>
+                {{ isArabic() ? branch.managerFullNameEn : branch.managerFullNameAr }}
+              </small>
+            </div>
+          </td>
+
+          <td [attr.data-label]="'Branches-Management-Keys.BRANCH_CONTACT' | translate">
+            <div class="stacked-text">
+              <span>
+                {{ branch.email || ('COMMON.NOT_AVAILABLE' | translate) }}
+              </span>
+
+              <small>
+                {{ branch.phone || ('COMMON.NOT_AVAILABLE' | translate) }}
+              </small>
+            </div>
+          </td>
+
+          <td [attr.data-label]="'Branches-Management-Keys.BRANCH_STATUS' | translate">
+            <app-branch-status-badge [isActive]="branch.isActive"></app-branch-status-badge>
+          </td>
+
+          <td [attr.data-label]="'Branches-Management-Keys.BRANCH_ACTION' | translate">
+            <div class="actions">
+              <a
+                class="icon-btn view"
+                [routerLink]="[branch.id]"
+                [title]="'COMMON.VIEW' | translate"
+              >
+                <i class="fa-solid fa-eye"></i>
+              </a>
+
+              <a
+                class="icon-btn edit"
+                [routerLink]="[branch.id, 'edit']"
+                [title]="'COMMON.EDIT' | translate"
+              >
+                <i class="fa-solid fa-pen-to-square"></i>
+              </a>
+
+              @if (branch.isActive) {
+                <button
+                  type="button"
+                  class="icon-btn deactivate"
+                  [title]="'COMMON.DEACTIVATE' | translate"
+                  (click)="deactivateClicked.emit(branch.id)"
+                >
+                  <i class="fa-solid fa-ban"></i>
+                </button>
+              } @else {
+                <button
+                  type="button"
+                  class="icon-btn activate"
+                  [title]="'COMMON.ACTIVATE' | translate"
+                  (click)="activateClicked.emit(branch.id)"
+                >
+                  <i class="fa-solid fa-circle-check"></i>
+                </button>
+              }
+
+              <button
+                type="button"
+                class="icon-btn delete"
+                [title]="'COMMON.DELETE' | translate"
+                (click)="deleteClicked.emit(branch.id)"
+              >
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      } @empty {
+        <tr class="empty-tr">
+          <td colspan="6">
+            <div class="empty-state">
+              <i class="fa-solid fa-building-circle-xmark"></i>
+              <h3>{{ 'Branches-Management-Keys.NO_BRANCH_FOUND' | translate }}</h3>
+              <p>{{ 'Branches-Management-Keys.NOT_FOUND_DESCRIPTION' | translate }}</p>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

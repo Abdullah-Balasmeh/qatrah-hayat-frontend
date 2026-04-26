@@ -2,7 +2,7 @@ import { Component, input, output } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-users-pagination',
+  selector: 'app-pagination',
   imports: [TranslateModule],
   templateUrl: './users-pagination.component.html',
   styleUrl: './users-pagination.component.css'
