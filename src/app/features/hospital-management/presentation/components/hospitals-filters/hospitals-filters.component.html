@@ -1,0 +1,22 @@
+<div class="filters-row">
+  <div class="search-bar">
+    <app-search-bar
+      class="search-control"
+      [searchValue]="searchValue()"
+      (searchValueChange)="onSearchValueChange($event)"
+      (searchSubmitted)="onSearch()"
+      inputId="hospitals-search"
+      autocomplete="off"
+      [placeholder]="'Hospitals-Management-Keys.SEARCH_PLACEHOLDER' | translate"
+    ></app-search-bar>
+  </div>
+
+  <app-filter-button
+    [options]="statusOptions"
+    [selectedValue]="selectedStatus()"
+    [placeholder]="'Hospitals-Management-Keys.STATUS_FILTER'"
+    [prefixIcon]="'fa-solid fa-filter'"
+    [translateLabels]="true"
+    (valueChanged)="onStatusChange($event)"
+  ></app-filter-button>
+</div>

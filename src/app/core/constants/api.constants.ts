@@ -47,5 +47,16 @@ export const API_ENDPOINTS = {
     activateBranchEndpoint: `${API_BASE_URL}/branches-management/{branchId}/activate`,
     deactivateBranchEndpoint: `${API_BASE_URL}/branches-management/{branchId}/deactivate`,
   },
+  hospitalManagement: {
+    getAllHospitalsEndpoint: `${API_BASE_URL}/hospital-management`,
+    getHospitalByIdEndpoint: `${API_BASE_URL}/hospital-management/{hospitalId}`,
+    getHospitalsStatisticsEndpoint: `${API_BASE_URL}/hospital-management/statistics`,
+     getAvailableDoctorsEndpoint: `${API_BASE_URL}/hospital-management/available-doctors`,
+    addHospitalEndpoint: `${API_BASE_URL}/hospital-management`,
+    updateHospitalEndpoint: `${API_BASE_URL}/hospital-management/{hospitalId}`,
+    softDeleteHospitalEndpoint: `${API_BASE_URL}/hospital-management/{hospitalId}`,
+    activateHospitalEndpoint: `${API_BASE_URL}/hospital-management/{hospitalId}/activate`,
+    deactivateHospitalEndpoint: `${API_BASE_URL}/hospital-management/{hospitalId}/deactivate`,
+  },
 
 };

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, computed, inject } from '@angular/core';
 
 import { BranchesPageHeaderComponent } from '../../components/branches-page-header/branches-page-header.component';
 import { BranchesStatisticsSectionComponent } from '../../components/branches-statistics-section/branches-statistics-section.component';
@@ -40,6 +40,27 @@ export class AllBranchesPageComponent implements OnInit {
   ngOnInit(): void {
     this.facade.loadInitialData();
   }
+
+readonly lastUpdateLabel = computed(() => {
+  const lastUpdate = this.store.lastUpdate();
+
+  if (!lastUpdate) {
+    return '—';
+  }
+
+  const normalizedDate = lastUpdate.endsWith('Z')
+    ? lastUpdate
+    : `${lastUpdate}Z`;
+
+  return new Date(normalizedDate).toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  });
+});
 
   onSearchValueChange(value: string): void {
     this.facade.updateSearchValue(value);

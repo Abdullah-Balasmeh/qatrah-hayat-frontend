@@ -1,21 +1,21 @@
-<section class="branches-management-page">
-  <app-branches-page-header></app-branches-page-header>
+<section class="hospitals-management-page">
+  <app-hospitals-page-header></app-hospitals-page-header>
 
-  <app-branches-statistics-section
-    [totalBranches]="store.totalBranches()"
-    [totalActiveBranches]="store.totalActiveBranches()"
-    [totalInactiveBranches]="store.totalInactiveBranches()"
-    [lastUpdate]="lastUpdateLabel()"
-  ></app-branches-statistics-section>
+  <app-hospitals-statistics-section
+    [totalHospitals]="store.totalHospitals()"
+    [totalActiveHospitals]="store.totalActiveHospitals()"
+    [totalInactiveHospitals]="store.totalInactiveHospitals()"
+    [lastUpdate]="store.lastUpdate()"
+  ></app-hospitals-statistics-section>
 
   <div class="content-card">
-    <app-branches-filters
+    <app-hospitals-filters
       [searchValue]="store.searchValue()"
       [selectedStatus]="store.selectedStatus()"
       (searchValueChanged)="onSearchValueChange($event)"
       (searchSubmitted)="onSearch()"
       (statusChanged)="onStatusChange($event)"
-    ></app-branches-filters>
+    ></app-hospitals-filters>
 
     @if (store.errorMessage()) {
       <app-alert-error [errorMessage]="store.errorMessage()!"></app-alert-error>
@@ -24,12 +24,12 @@
     @if (store.isLoading()) {
       <app-loading></app-loading>
     } @else {
-      <app-branches-table
-        [branches]="store.branches()"
+      <app-hospitals-table
+        [hospitals]="store.hospitals()"
         (activateClicked)="openActivateConfirmation($event)"
         (deactivateClicked)="openDeactivateConfirmation($event)"
         (deleteClicked)="openDeleteConfirmation($event)"
-      ></app-branches-table>
+      ></app-hospitals-table>
     }
 
     <app-pagination
@@ -50,7 +50,7 @@
     [message]="store.confirmationModalMessage() | translate"
     [confirmText]="store.confirmationModalConfirmText() | translate"
     [cancelText]="'COMMON.CANCEL' | translate"
-    (confirmed)="confirmBranchAction()"
+    (confirmed)="confirmHospitalAction()"
     (cancelled)="closeConfirmationModal()"
   ></app-confirmation-modal>
 </section>

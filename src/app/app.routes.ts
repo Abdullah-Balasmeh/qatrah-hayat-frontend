@@ -61,6 +61,11 @@ export const routes: Routes = [
         path: 'branches',
         loadChildren: () =>
           import('./features/branch-management/branch-management.routes').then(r => r.BRANCH_MANAGEMENT_ROUTES)
+      },
+      {
+        path: 'hospitals',
+        loadChildren: () =>
+          import('./features/hospital-management/hospital-management.routes').then(r => r.HOSPITAL_MANAGEMENT_ROUTES)
       }
     ]
   },
