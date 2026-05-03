@@ -4,7 +4,11 @@
         langService.currentLang == 'en'
           ? 'assets/images/Qatrah_Hayat_logo_footer.svg'
           : 'assets/images/Qatrah_Hayat_logo_ar_footer.svg'
-      }}" alt="Logo" width="125" class="me-2" />
+      }}"
+      [attr.alt]="'Accessibility-Keys.LOGO' | translate"
+      width="125"
+      class="me-2"
+    />
   </a>
   <h2 class="container-heading-title" data-aos="fade-left" data-aos-delay="300">
     {{ title }}

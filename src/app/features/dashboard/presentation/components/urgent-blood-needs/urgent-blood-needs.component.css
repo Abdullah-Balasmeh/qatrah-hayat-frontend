@@ -1,0 +1,223 @@
+:host {
+  display: block;
+}
+
+.urgent-needs-section {
+  width: 100%;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.section-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--secondary-color);
+}
+
+.view-all-btn {
+  border: none;
+  background: transparent;
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+
+.view-all-btn:hover {
+  opacity: 0.8;
+}
+
+.needs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.need-card {
+  width: 100%;
+  min-height: 140px;
+  background: #ffffff;
+  border-radius: 2rem;
+  padding: 1.35rem 1.6rem;
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.05),
+    0 2px 8px rgba(15, 23, 42, 0.04);
+  display: grid;
+  grid-template-columns: 110px 1fr 130px;
+  align-items: center;
+  column-gap: 1.5rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.need-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 16px 35px rgba(15, 23, 42, 0.08),
+    0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+.need-card__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.need-card__content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.need-card__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.donate-btn {
+  min-width: 120px;
+  height: 48px;
+  border: none;
+  border-radius: 1rem;
+  background: #e10600;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.donate-btn:hover {
+  background: #c60000;
+  transform: translateY(-1px);
+}
+
+.hospital-name {
+  margin: 0 0 0.65rem;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1f2937;
+  line-height: 1.2;
+}
+
+.need-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #7c8aa5;
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.meta-item i {
+  color: #97a3b8;
+  font-size: 0.95rem;
+}
+
+.blood-type-box {
+  width: 92px;
+  height: 92px;
+  border-radius: 1.35rem;
+  background: #f9e1e1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.blood-type {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #c62020;
+  margin-bottom: 0.35rem;
+}
+
+.blood-need-label {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #dc2626;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .need-card {
+    grid-template-columns: 90px 1fr 110px;
+    padding: 1.2rem 1.25rem;
+    column-gap: 1rem;
+  }
+
+  .hospital-name {
+    font-size: 1.6rem;
+  }
+
+  .blood-type-box {
+    width: 82px;
+    height: 82px;
+  }
+
+  .blood-type {
+    font-size: 1.7rem;
+  }
+
+  .donate-btn {
+    min-width: 104px;
+    height: 44px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .need-card {
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+    text-align: center;
+  }
+
+  .need-card__badge,
+  .need-card__content,
+  .need-card__action {
+    justify-content: center;
+  }
+
+  .need-card__content {
+    align-items: center;
+  }
+
+  .need-meta {
+    justify-content: center;
+  }
+
+  .hospital-name {
+    font-size: 1.4rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+}

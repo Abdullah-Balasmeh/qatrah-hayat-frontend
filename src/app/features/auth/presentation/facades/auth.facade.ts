@@ -230,7 +230,7 @@ private clearSession(): void {
     };
 
     this.authStore.setCurrentUser(currentUser);
-    this.authUserStorageService.setUser(currentUser);
+    this.authUserStorageService.setUser(currentUser, rememberMe);
   }
 
   private redirectAfterCitizenLogin(

@@ -1,0 +1,46 @@
+<section class="hero">
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content container">
+    <div class="user-name" data-aos="fade-down" data-aos-delay="100">
+      <p>
+        {{ "welcome_message" | translate }}
+        <span>
+          {{
+            isArabic
+              ? getUserNameTwoPart(authStore.currentUser()?.fullNameAr)
+              : getUserNameTwoPart(authStore.currentUser()?.fullNameEn)
+          }}</span
+        >
+      </p>
+    </div>
+    <div class="hero-text text-center">
+      <h1 class="hero-title" data-aos="fade-down" data-aos-delay="150">
+        {{ "HERO_TITLE" | translate }}
+      </h1>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="300">
+        {{ "HERO_SUBTITLE" | translate }}
+      </p>
+
+      <div class="hero-actions">
+        <button
+          class="qh-primary-btn"
+          data-aos="zoom-in"
+          data-aos-delay="450"
+          routerLink="/user-auth/signup"
+        >
+          {{ "Start_Donation" | translate }}
+        </button>
+
+        <button
+          class="btn hero-btn-secondary"
+          data-aos="zoom-in"
+          data-aos-delay="450"
+          routerLink="/user-auth/login"
+        >
+          {{ "Create_Blood_Request" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
