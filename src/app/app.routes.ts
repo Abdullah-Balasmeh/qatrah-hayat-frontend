@@ -91,10 +91,15 @@ export const routes: Routes = [
           import('./features/dashboard/presentation/pages/user-dashboard/user-dashboard.component')
             .then(c => c.UserDashboardComponent),
       },
-            {
+      {
         path: 'donate',
         loadComponent: () => import('./features/donation/presentation/pages/donate-page/donate-page.component')
           .then(c => c.DonatePageComponent)
+      },
+      {
+        path: 'screening',
+        loadChildren: () =>
+          import('./features/screening/screening.routes').then(r => r.SCREENING_ROUTES)
       },
 
       // {
@@ -140,6 +145,7 @@ export const routes: Routes = [
 
     ]
 },
+
 
   {
     path: '404',

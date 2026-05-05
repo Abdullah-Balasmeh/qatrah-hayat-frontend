@@ -21,6 +21,7 @@ description: "Task list template for feature implementation"
 ## Path Conventions
 
 - Angular app lives at repository root.
+- Tasks MUST be frontend-only and MUST NOT create backend controllers, services, entities, migrations, or API contract changes.
 - Feature code lives under `src/app/features/[feature-name]/`.
 - Shared reusable UI lives under `src/app/shared/`.
 - App-wide services, constants, guards, interceptors, enums, and utilities live under `src/app/core/`.
@@ -48,11 +49,11 @@ description: "Task list template for feature implementation"
 
 ## Phase 1: Setup (Shared Infrastructure)
 
-**Purpose**: Project initialization and basic structure
+**Purpose**: Frontend feature structure and existing Angular setup alignment
 
-- [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize [language] project with [framework] dependencies
-- [ ] T003 [P] Configure linting and formatting tools
+- [ ] T001 Create frontend feature structure per implementation plan under `src/app/features/[feature-name]/`
+- [ ] T002 Confirm no backend files or package additions are required
+- [ ] T003 [P] Identify existing shared UI/core utilities to reuse
 
 ---
 
@@ -93,7 +94,7 @@ Examples of foundational tasks (adjust based on your feature):
 ### Implementation for User Story 1
 
 - [ ] T014 [P] [US1] Create/extend page component in `src/app/features/[feature-name]/presentation/pages/[page-name]/`
-- [ ] T015 [P] [US1] Create/extend UI component in `src/app/features/[feature-name]/presentation/components/[component-name]/`
+- [ ] T015 [P] [US1] Create/extend reusable input/output UI component in `src/app/features/[feature-name]/presentation/components/[component-name]/`
 - [ ] T016 [US1] Implement typed reactive form/view-model in `src/app/features/[feature-name]/presentation/view-models/`
 - [ ] T017 [US1] Add meaningful facade action and store state updates in `src/app/features/[feature-name]/presentation/`
 - [ ] T018 [US1] Add validation and localized error/success display
@@ -154,16 +155,16 @@ Examples of foundational tasks (adjust based on your feature):
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] TXXX [P] Documentation updates in docs/
+- [ ] TXXX [P] Frontend documentation updates, if requested
 - [ ] TXXX Code cleanup and refactoring
 - [ ] TXXX Performance optimization across all stories
 - [ ] TXXX [P] Additional unit tests if requested, colocated with the relevant Angular files
-- [ ] TXXX Security hardening
 - [ ] TXXX Verify DTOs do not leak into pages/components
 - [ ] TXXX Verify data layer does not import from presentation
 - [ ] TXXX Verify stores do not perform HTTP calls or inject API services
 - [ ] TXXX Verify translation keys exist in both Arabic and English files
 - [ ] TXXX Verify RTL/LTR behavior for affected pages/components
+- [ ] TXXX Verify no backend files changed
 - [ ] TXXX Run quickstart.md validation
 
 ---
@@ -191,6 +192,7 @@ Examples of foundational tasks (adjust based on your feature):
 - Domain models and DTOs before mappers/repositories
 - API services and repository implementations before dependent facade actions
 - Facade/store flow before page/component integration
+- Reusable components before repeated page-level markup grows large
 - Core implementation before localization and polish verification
 - Story complete before moving to next priority
 

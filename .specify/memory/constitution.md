@@ -17,7 +17,6 @@ Templates requiring updates:
 - ✅ .specify/templates/tasks-template.md
 - ✅ .specify/templates/commands/*.md (directory not present)
 - ✅ AGENTS.md
-- ✅ src/app/features/AGENTS.md
 Follow-up TODOs: none
 -->
 # Qatrah Hayat Constitution
@@ -31,6 +30,10 @@ reference for structure and naming. Features MUST follow the
 business models, or UI state. Auth is a reference for architecture, not a
 source for copying login, password, OTP, token, session, role redirect, or
 guard-specific business logic.
+
+Documented Auth exceptions, including presentation imports from Auth data
+mappers, direct service injection in `CitizenSignUpFormComponent`, and
+cross-feature imports from `AuthFacade`, MUST NOT be repeated in new features.
 
 Rationale: A shared feature shape keeps the Angular codebase predictable while
 preventing Auth-specific behavior from leaking into unrelated domains.
@@ -73,8 +76,10 @@ flows testable and limits accidental coupling.
 ### V. Minimal, Verified Change
 Changes MUST stay scoped to the requested behavior and existing project
 patterns. Contributors MUST NOT add packages, modify Auth, run destructive
-commands, or rewrite unrelated code unless the user explicitly approves that
-work. Relevant Angular build or test commands SHOULD be run when practical.
+commands, modify backend code, or rewrite unrelated code unless the user
+explicitly approves that work. Backend APIs are external contracts and MUST be
+documented as frontend assumptions rather than implemented here. Relevant
+Angular build or test commands SHOULD be run when practical.
 For UI work, verification MUST include Arabic and English text coverage and
 RTL/LTR layout behavior. If verification cannot be run, the limitation MUST be
 reported.
@@ -98,6 +103,11 @@ SHOULD map form values to domain request models in presentation or facade code.
 The existing Auth form-value mapper under `data/mappers` is a legacy exception
 and MUST NOT be repeated.
 
+Pages SHOULD stay thin and compose reusable components. Long tables, filters,
+cards, forms, status badges, action menus, empty states, and error states
+SHOULD be split into reusable components that receive inputs, emit outputs, and
+do not call APIs directly.
+
 ## Development Workflow and Quality Gates
 
 Specs, plans, and task lists MUST account for the Auth-guided feature
@@ -117,8 +127,8 @@ coverage, and layout direction behavior, or report exactly what was not run.
 ## Governance
 
 This constitution supersedes conflicting feature-level preferences and
-templates. Runtime guidance in `AGENTS.md`, `src/app/features/AGENTS.md`, and
-`docs/auth-feature-reference.md` MUST stay aligned with these principles.
+templates. Runtime guidance in the root `AGENTS.md` MUST stay aligned with
+these principles.
 
 Amendments require an explicit constitution update, a Sync Impact Report, and
 review of dependent Spec Kit templates and runtime guidance files. Versioning
@@ -130,4 +140,4 @@ Every plan and review MUST include a constitution check. Any intentional
 violation MUST be documented with the reason, the rejected simpler alternative,
 and the follow-up needed to return to compliance.
 
-**Version**: 1.0.0 | **Ratified**: 2026-05-03 | **Last Amended**: 2026-05-03
+**Version**: 1.0.1 | **Ratified**: 2026-05-03 | **Last Amended**: 2026-05-03

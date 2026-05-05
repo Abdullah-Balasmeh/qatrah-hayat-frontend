@@ -1,0 +1,53 @@
+<section class="screening-page">
+  <app-screening-intro-header
+    [sessionType]="facade.context()?.sessionType ?? null"
+  />
+
+  <div class="screening-page__content">
+    @if (facade.loading()) {
+      <app-screening-state-message state="loading" />
+    } @else {
+      @if (facade.error(); as errorMessage) {
+        <app-screening-state-message
+          [state]="stateMessageType()"
+          [messageKey]="errorMessage"
+        />
+      }
+
+      @if (facade.resultMessageVisible()) {
+        <app-screening-result-message
+          [result]="facade.result()"
+          (continueToDashboard)="onContinueToDashboard()"
+        />
+      } @else {
+        @if (screeningForm(); as form) {
+          <form class="screening-page__form" [formGroup]="form">
+            @if (answers(); as answerControls) {
+              <app-screening-question-list
+                [questions]="facade.questions()"
+                [answers]="answerControls"
+                [language]="currentLanguage()"
+              />
+            }
+
+            <app-screening-confirmation
+              [control]="form.controls.iConfirm"
+              [showError]="showConfirmationError()"
+            />
+          </form>
+
+          <app-screening-action-buttons
+            [canSubmit]="!facade.submitting()"
+            [isSubmitting]="facade.submitting()"
+            (submitScreening)="onSubmit()"
+          />
+        } @else if (showEmptyState()) {
+          <app-screening-state-message
+            state="empty"
+            messageKey="Screening-Keys.EMPTY.NO_QUESTIONS"
+          />
+        }
+      }
+    }
+  </div>
+</section>

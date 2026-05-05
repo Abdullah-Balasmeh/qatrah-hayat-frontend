@@ -1,0 +1,15 @@
+<section class="screening-state-message" [class.screening-state-message--error]="state === 'error' || state === 'invalid'">
+  @if (state === 'loading') {
+    <app-loading />
+  } @else {
+    <p>{{ messageKey | translate }}</p>
+
+    @if (actionLabelKey !== null) {
+      <app-primary-button
+        type="button"
+        [label]="actionLabelKey | translate"
+        (buttonClick)="onAction()"
+      />
+    }
+  }
+</section>

@@ -462,5 +462,50 @@
     "CAMPAIGN_BADGE": "Campaign",
     "SECTION_TITLE": "Donate Blood, Save Lives",
     "SECTION_DESC": "Choose the type of donation that suits you and contribute to saving lives."
+  },
+  "Screening-Keys": {
+    "ACTIONS": {
+      "SUBMIT": "Submit",
+      "CONTINUE": "Continue"
+    },
+    "TITLE": {
+      "REGISTRATION": "Complete Your Health Profile",
+      "PRE_DONATION": "Pre-Donation Health Check"
+    },
+    "ANSWERS": {
+      "YES": "Yes",
+      "NO": "No"
+    },
+    "CONFIRMATION": {
+      "ACCURACY": "I acknowledge and attest to the accuracy of all information entered."
+    },
+    "FIELDS": {
+      "ADDITIONAL_TEXT": "Additional details...",
+      "CONDITIONAL_DATE": "Date..."
+    },
+    "RESULT": {
+      "NEXT_ELIGIBLE_DATE": "Next eligible date",
+      "DEFERRAL_REASON": "Deferral reason",
+      "INELIGIBLE": "Ineligible for donation",
+      "DEFERRED": "Temporarily deferred"
+    },
+    "EMPTY": {
+      "NO_QUESTIONS": "No screening questions available."
+    },
+    "VALIDATION": {
+      "CONFIRMATION_REQUIRED": "You must confirm the accuracy of all information entered.",
+      "ANSWER_REQUIRED": "You must select Yes or No.",
+      "ADDITIONAL_TEXT_REQUIRED": "This field is required.",
+      "ADDITIONAL_TEXT_MAX_LENGTH": "Must not exceed 500 characters.",
+      "DATE_REQUIRED": "Date is required.",
+      "DATE_INVALID": "Please enter a valid date.",
+      "DATE_FUTURE": "Date cannot be in the future."
+    },
+    "ERRORS": {
+      "INVALID_SESSION_CONTEXT": "Invalid session context.",
+      "INVALID_DONATION_CONTEXT": "Invalid donation context.",
+      "LOAD_FAILED": "Failed to load screening questions. Please try again later.",
+      "SUBMIT_FAILED": "Failed to submit screening questions. Please try again later."
+    }
   }
 }

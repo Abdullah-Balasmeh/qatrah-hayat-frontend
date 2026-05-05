@@ -462,5 +462,50 @@
     "CAMPAIGN_BADGE": "حملة",
     "SECTION_TITLE": "تبرع بالدم، أنقذ حياة",
     "SECTION_DESC": "اختر نوع التبرع الذي يناسبك وساهم في إنقاذ حياة الآخرين."
+  },
+  "Screening-Keys": {
+    "ACTIONS": {
+      "SUBMIT": "تقديم",
+      "CONTINUE": "متابعة"
+    },
+    "TITLE": {
+      "REGISTRATION": "استكمال الملف الصحي",
+      "PRE_DONATION": "فحص الأهلية قبل التبرع"
+    },
+    "ANSWERS": {
+      "YES": "نعم",
+      "NO": "لا"
+    },
+    "CONFIRMATION": {
+      "ACCURACY": "أقر بصحة جميع المعلومات التي تم إدخالها."
+    },
+    "FIELDS": {
+      "ADDITIONAL_TEXT": "تفاصيل إضافية...",
+      "CONDITIONAL_DATE": "التاريخ..."
+    },
+    "RESULT": {
+      "NEXT_ELIGIBLE_DATE": "تاريخ الأهلية القادم",
+      "DEFERRAL_REASON": "سبب التأجيل",
+      "INELIGIBLE": "غير مؤهل للتبرع",
+      "DEFERRED": "مؤجل مؤقتاً"
+    },
+    "EMPTY": {
+      "NO_QUESTIONS": "لا توجد أسئلة فحص متاحة."
+    },
+    "VALIDATION": {
+      "CONFIRMATION_REQUIRED": "يجب تأكيد صحة جميع المعلومات التي تم إدخالها.",
+      "ANSWER_REQUIRED": "يجب اختيار نعم أو لا.",
+      "ADDITIONAL_TEXT_REQUIRED": "هذا الحقل مطلوب.",
+      "ADDITIONAL_TEXT_MAX_LENGTH": "يجب ألا يتجاوز 500 حرف.",
+      "DATE_REQUIRED": "التاريخ مطلوب.",
+      "DATE_INVALID": "يرجى إدخال تاريخ صحيح.",
+      "DATE_FUTURE": "لا يمكن أن يكون التاريخ في المستقبل."
+    },
+    "ERRORS": {
+      "INVALID_SESSION_CONTEXT": "سياق الجلسة غير صالح.",
+      "INVALID_DONATION_CONTEXT": "سياق التبرع غير صالح.",
+      "LOAD_FAILED": "فشل تحميل أسئلة الفحص. يرجى المحاولة مرة أخرى لاحقًا.",
+      "SUBMIT_FAILED": "فشل في تقديم أسئلة الفحص. يرجى المحاولة مرة أخرى لاحقًا."
+    }
   }
 }

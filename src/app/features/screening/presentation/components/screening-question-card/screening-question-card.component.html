@@ -1,0 +1,81 @@
+<section class="screening-question-card" [formGroup]="answerGroup">
+  <div class="screening-question-card__header">
+    <span class="screening-question-card__number">{{ questionNumber }}</span>
+
+    <p class="screening-question-card__question">
+      {{ questionText }}
+    </p>
+  </div>
+
+  <div class="screening-question-card__answers">
+    <label
+      class="screening-question-card__answer"
+      [class.screening-question-card__answer--selected]="answerGroup.controls.answer.value === true"
+    >
+      <span>{{ yesKey | translate }}</span>
+      <input
+        type="radio"
+        [name]="'screening-question-' + question.id"
+        [checked]="answerGroup.controls.answer.value === true"
+        (change)="onAnswerChange(true)"
+      />
+    </label>
+
+    <label
+      class="screening-question-card__answer"
+      [class.screening-question-card__answer--selected]="answerGroup.controls.answer.value === false"
+    >
+      <span>{{ noKey | translate }}</span>
+      <input
+        type="radio"
+        [name]="'screening-question-' + question.id"
+        [checked]="answerGroup.controls.answer.value === false"
+        (change)="onAnswerChange(false)"
+      />
+    </label>
+  </div>
+  @if (errorMessageForAnswer(); as errorKey) {
+    <div style="padding-inline-start: 2.95rem;">
+      <app-form-error-message [errorMessage]="errorKey | translate" />
+    </div>
+  }
+
+
+
+  @if (shouldShowAdditionalText) {
+    <div class="screening-question-card__field">
+      <label class="screening-question-card__field-label">
+        {{ additionalTextLabel || (additionalTextFallbackKey | translate) }}
+      </label>
+
+      <app-text-field
+        [control]="answerGroup.controls.additionalText"
+        type="text"
+        prefixIcon="fas fa-info-circle"
+        maxLength="500"
+        [placeholder]="additionalTextLabel || (additionalTextFallbackKey | translate)"
+      />
+
+      @if (errorMessageForAdditionalText(); as errorKey) {
+        <app-form-error-message [errorMessage]="errorKey | translate" />
+      }
+    </div>
+  }
+
+  @if (shouldShowConditionalDate) {
+    <div class="screening-question-card__field">
+      <label class="screening-question-card__field-label">
+        {{ conditionalDateLabel || (conditionalDateFallbackKey | translate) }}
+      </label>
+
+      <app-date-text-field
+        [control]="answerGroup.controls.conditionalDateValue"
+        [placeholder]="conditionalDateLabel || (conditionalDateFallbackKey | translate)"
+      />
+
+      @if (errorMessageForConditionalDate(); as errorKey) {
+        <app-form-error-message [errorMessage]="errorKey | translate" />
+      }
+    </div>
+  }
+</section>

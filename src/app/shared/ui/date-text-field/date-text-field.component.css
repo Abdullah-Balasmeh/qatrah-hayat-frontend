@@ -1,0 +1,36 @@
+.date-field {
+  position: relative;
+}
+
+.date-input {
+  min-width: 0;
+}
+
+/* hide native calendar icon so only your custom suffix icon appears */
+.date-input.date-mode::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+.date-input.date-mode::-webkit-inner-spin-button,
+.date-input.date-mode::-webkit-clear-button {
+  display: none;
+}
+
+.date-input.date-mode {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* keep button same visual behavior as shared style */
+.suffix-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+:host-context([dir='rtl']) .date-input.date-mode {
+  direction: ltr;
+  text-align: right;
+}

@@ -1,0 +1,25 @@
+@if (result !== null) {
+  <section class="screening-result-message">
+    <p class="screening-result-message__summary">{{ messageKey | translate }}</p>
+
+    @if (result.nextEligibleDate) {
+      <p class="screening-result-message__detail">
+        <span>{{ nextEligibleDateKey | translate }}</span>
+        <strong>{{ result.nextEligibleDate }}</strong>
+      </p>
+    }
+
+    @if (result.deferralReason) {
+      <p class="screening-result-message__detail">
+        <span>{{ deferralReasonKey | translate }}</span>
+        <strong>{{ result.deferralReason }}</strong>
+      </p>
+    }
+
+    <app-primary-button
+      type="button"
+      [label]="continueKey | translate"
+      (buttonClick)="onContinue()"
+    />
+  </section>
+}

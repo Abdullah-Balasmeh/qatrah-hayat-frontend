@@ -97,11 +97,17 @@
 
 ### Localization Requirements *(mandatory for user-facing UI)*
 
-- **L10N-001**: All user-facing labels, buttons, placeholders, table headers, validation messages, empty states, success messages, and error messages MUST use translation keys.
+- **L10N-001**: All user-facing labels, buttons, placeholders, table headers, validation messages, empty states, success messages, error messages, dialogs, alt text, and aria labels MUST use translation keys.
 - **L10N-002**: Translation keys MUST be added to both `src/assets/i18n/ar.json` and `src/assets/i18n/en.json`.
 - **L10N-003**: Arabic and English translation key structures MUST remain aligned.
 - **L10N-004**: UI behavior MUST be valid in both RTL and LTR layouts.
 - **L10N-005**: Logic MUST use enums/constants and MUST NOT depend on Arabic or English display strings.
+
+### Frontend API Contract Assumptions *(include if feature integrates with APIs)*
+
+- **API-001**: Backend APIs are external contracts; this feature MUST NOT require backend implementation tasks.
+- **API-002**: [Document assumed endpoint, request shape, response shape, error shape, and any open questions.]
+- **API-003**: [Document fallback behavior when the API is unavailable or returns validation/errors.]
 
 ### Key Entities *(include if feature involves data)*
 
@@ -134,3 +140,4 @@
 - [Assumption about scope boundaries, e.g., "Mobile support is out of scope for v1"]
 - [Assumption about data/environment, e.g., "Existing authentication system will be reused"]
 - [Dependency on existing system/service, e.g., "Requires access to the existing user profile API"]
+- [Frontend-only boundary, e.g., "Backend API changes are out of scope and any API gaps must be documented as assumptions"]

@@ -1,0 +1,11 @@
+<div class="screening-question-list">
+  @for (question of questions; track question.id; let index = $index) {
+    <app-screening-question-card
+      [question]="question"
+      [answerGroup]="answers.controls[index]"
+      [questionNumber]="index + 1"
+      [language]="language"
+      (answerChange)="onAnswerChange(question, $event)"
+    />
+  }
+</div>
