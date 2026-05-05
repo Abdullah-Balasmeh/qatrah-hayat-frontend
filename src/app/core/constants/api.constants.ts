@@ -5,7 +5,7 @@ export const API_BASE_URL = environment.apiBaseUrl;
 
 export const API_ENDPOINTS = {
   auth: {
-    register: `${API_BASE_URL}/Auth/register`,
+    register: `${API_BASE_URL}/Auth/registerCitizen`,
     login: `${API_BASE_URL}/Auth/login`,
     me: `${API_BASE_URL}/Auth/me`,
     forgotPassword: `${API_BASE_URL}/Auth/forgot-password`,
