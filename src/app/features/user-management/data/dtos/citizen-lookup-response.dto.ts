@@ -1,7 +1,7 @@
 import { BloodTypeEnum } from '../../../../core/enums/blood-type-enum';
 import { GenderEnum } from '../../../../core/enums/gender-enum';
 
-export interface CitizenLookupResponseModel {
+export interface CitizenLookupResponseDto {
   nationalId: string;
   fullNameAr: string;
   fullNameEn: string;

@@ -1,7 +1,7 @@
 import { UserRole } from "../../../../core/enums/user-role.enum";
 
 
-export interface UpdateStaffRequestModel {
+export interface UpdateStaffModel {
   email: string;
   phoneNumber: string;
   staffRole: UserRole;

@@ -1,7 +1,7 @@
 import { MaritalStatusEnum } from '../../../../core/enums/marital-status-enum';
 import { UserRole } from '../../../../core/enums/user-role.enum';
 
-export interface CreateStaffFromRegistryRequestModel {
+export interface CreateStaffFromRegistryModel {
   nationalId: string;
   email: string;
   phoneNumber: string;

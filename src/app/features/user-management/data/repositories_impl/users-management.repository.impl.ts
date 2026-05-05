@@ -1,19 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 import { UsersManagementRepository } from '../../domain/repositories/users-management.repository';
 import { UsersManagementApiService } from '../services/users-management-api.service';
 
-import { StaffInfoResponseModel } from '../../domain/models/staff-info-response.model';
-import { CitizenInfoResponseModel } from '../../domain/models/citizen-info-response.model';
+import { StaffInfoModel } from '../../domain/models/staff-info.model';
+import { CitizenInfoModel } from '../../domain/models/citizen-info.model';
 import { UserManagementQueryModel } from '../../domain/models/user-management-query.model';
-import { UpdateStaffRequestModel } from '../../domain/models/update-staff-request.model';
-import { UpdateCitizenRequestModel } from '../../domain/models/update-citizen-request.model';
+import { UpdateStaffModel } from '../../domain/models/update-staff.model';
+import { UpdateCitizenModel } from '../../domain/models/update-citizen.model';
 import { PagedResultModel } from '../../../../core/models/paged-result.model';
-import { UsersStatisticsResponseModel } from '../../domain/models/users-statistics-response.model';
-import { CitizenLookupResponseModel } from '../../domain/models/citizen-lookup-response.model';
-import { CreateStaffFromRegistryRequestModel } from '../../domain/models/create-staff-from-registry-request.model';
-import { PromoteCitizenToStaffRequestModel } from '../../domain/models/promote-citizen-to-staff-request.model';
+import { UsersStatisticsModel } from '../../domain/models/users-statistics.model';
+import { CitizenLookupModel } from '../../domain/models/citizen-lookup.model';
+import { CreateStaffFromRegistryModel } from '../../domain/models/create-staff-from-registry.model';
+import { PromoteCitizenToStaffModel } from '../../domain/models/promote-citizen-to-staff.model';
+
+import { mapPagedResultDtoToModel } from '../mappers/paged-result.mapper';
+import { mapStaffInfoResponseDtoToModel } from '../mappers/staff-info.mapper';
+import { mapCitizenInfoResponseDtoToModel } from '../mappers/citizen-info.mapper';
+import { mapCitizenLookupResponseDtoToModel } from '../mappers/citizen-lookup.mapper';
+import { mapUsersStatisticsResponseDtoToModel } from '../mappers/users-statistics.mapper';
+
+import { mapCreateStaffFromRegistryModelToDto } from '../mappers/create-staff-from-registry-request.mapper';
+import { mapPromoteCitizenToStaffModelToDto } from '../mappers/promote-citizen-to-staff-request.mapper';
+import { mapUpdateStaffModelToDto } from '../mappers/update-staff-request.mapper';
+import { mapUpdateCitizenModelToDto } from '../mappers/update-citizen-request.mapper';
 
 @Injectable({
   providedIn: 'root'
@@ -25,55 +36,85 @@ export class UsersManagementRepositoryImpl extends UsersManagementRepository {
 
   override getAllStaffUsers(
     query: UserManagementQueryModel
-  ): Observable<PagedResultModel<StaffInfoResponseModel>> {
-    return this.apiService.getAllStaffUsers(query);
+  ): Observable<PagedResultModel<StaffInfoModel>> {
+    return this.apiService.getAllStaffUsers(query).pipe(
+      map(dto =>
+        mapPagedResultDtoToModel(dto, mapStaffInfoResponseDtoToModel)
+      )
+    );
   }
 
-  override getStaffById(userId: number): Observable<StaffInfoResponseModel> {
-    return this.apiService.getStaffById(userId);
+  override getStaffById(userId: number): Observable<StaffInfoModel> {
+    return this.apiService.getStaffById(userId).pipe(
+      map(dto => mapStaffInfoResponseDtoToModel(dto))
+    );
   }
 
   override lookupCitizenByNationalId(
     nationalId: string
-  ): Observable<CitizenLookupResponseModel> {
-    return this.apiService.lookupCitizenByNationalId(nationalId);
+  ): Observable<CitizenLookupModel> {
+    return this.apiService.lookupCitizenByNationalId(nationalId).pipe(
+      map(dto => mapCitizenLookupResponseDtoToModel(dto))
+    );
   }
 
   override createStaffFromNationalRegistry(
-    request: CreateStaffFromRegistryRequestModel
-  ): Observable<StaffInfoResponseModel> {
-    return this.apiService.createStaffFromNationalRegistry(request);
+    request: CreateStaffFromRegistryModel
+  ): Observable<StaffInfoModel> {
+    const dto = mapCreateStaffFromRegistryModelToDto(request);
+
+    return this.apiService.createStaffFromNationalRegistry(dto).pipe(
+      map(responseDto => mapStaffInfoResponseDtoToModel(responseDto))
+    );
   }
 
   override promoteCitizenToStaff(
     userId: number,
-    request: PromoteCitizenToStaffRequestModel
-  ): Observable<StaffInfoResponseModel> {
-    return this.apiService.promoteCitizenToStaff(userId, request);
+    request: PromoteCitizenToStaffModel
+  ): Observable<StaffInfoModel> {
+    const dto = mapPromoteCitizenToStaffModelToDto(request);
+
+    return this.apiService.promoteCitizenToStaff(userId, dto).pipe(
+      map(responseDto => mapStaffInfoResponseDtoToModel(responseDto))
+    );
   }
 
   override updateStaff(
     userId: number,
-    request: UpdateStaffRequestModel
-  ): Observable<StaffInfoResponseModel> {
-    return this.apiService.updateStaff(userId, request);
+    request: UpdateStaffModel
+  ): Observable<StaffInfoModel> {
+    const dto = mapUpdateStaffModelToDto(request);
+
+    return this.apiService.updateStaff(userId, dto).pipe(
+      map(responseDto => mapStaffInfoResponseDtoToModel(responseDto))
+    );
   }
 
   override getAllCitizenUsers(
     query: UserManagementQueryModel
-  ): Observable<PagedResultModel<CitizenInfoResponseModel>> {
-    return this.apiService.getAllCitizenUsers(query);
+  ): Observable<PagedResultModel<CitizenInfoModel>> {
+    return this.apiService.getAllCitizenUsers(query).pipe(
+      map(dto =>
+        mapPagedResultDtoToModel(dto, mapCitizenInfoResponseDtoToModel)
+      )
+    );
   }
 
-  override getCitizenById(userId: number): Observable<CitizenInfoResponseModel> {
-    return this.apiService.getCitizenById(userId);
+  override getCitizenById(userId: number): Observable<CitizenInfoModel> {
+    return this.apiService.getCitizenById(userId).pipe(
+      map(dto => mapCitizenInfoResponseDtoToModel(dto))
+    );
   }
 
   override updateCitizen(
     userId: number,
-    request: UpdateCitizenRequestModel
-  ): Observable<CitizenInfoResponseModel> {
-    return this.apiService.updateCitizen(userId, request);
+    request: UpdateCitizenModel
+  ): Observable<CitizenInfoModel> {
+    const dto = mapUpdateCitizenModelToDto(request);
+
+    return this.apiService.updateCitizen(userId, dto).pipe(
+      map(responseDto => mapCitizenInfoResponseDtoToModel(responseDto))
+    );
   }
 
   override activateUser(userId: number): Observable<void> {
@@ -88,7 +129,10 @@ export class UsersManagementRepositoryImpl extends UsersManagementRepository {
     return this.apiService.softDeleteUser(userId);
   }
 
-  override getUsersStatistics(): Observable<UsersStatisticsResponseModel> {
-    return this.apiService.getUsersStatistics();
+  override getUsersStatistics(): Observable<UsersStatisticsModel> {
+    return this.apiService.getUsersStatistics().pipe(
+      map(dto => mapUsersStatisticsResponseDtoToModel(dto))
+    );
   }
 }
+

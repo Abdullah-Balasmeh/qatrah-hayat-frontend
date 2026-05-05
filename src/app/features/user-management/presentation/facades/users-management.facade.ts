@@ -8,10 +8,10 @@ import {
 import { UserManagementQueryModel } from '../../domain/models/user-management-query.model';
 import { UsersManagementRepositoryImpl } from '../../data/repositories_impl/users-management.repository.impl';
 import { Router } from '@angular/router';
-import { CreateStaffFromRegistryRequestModel } from '../../domain/models/create-staff-from-registry-request.model';
-import { PromoteCitizenToStaffRequestModel } from '../../domain/models/promote-citizen-to-staff-request.model';
-import { StaffInfoResponseModel } from '../../domain/models/staff-info-response.model';
-import { CitizenLookupResponseModel } from '../../domain/models/citizen-lookup-response.model';
+import { CreateStaffFromRegistryModel } from '../../domain/models/create-staff-from-registry.model';
+import { PromoteCitizenToStaffModel } from '../../domain/models/promote-citizen-to-staff.model';
+import { StaffInfoModel } from '../../domain/models/staff-info.model';
+import { CitizenLookupModel } from '../../domain/models/citizen-lookup.model';
 
 @Injectable({
   providedIn: 'root',
@@ -52,7 +52,7 @@ export class UsersManagementFacade {
 
   lookupCitizenByNationalId(
     nationalId: string
-  ): Observable<CitizenLookupResponseModel> {
+  ): Observable<CitizenLookupModel> {
     this.store.loading.set(true);
     this.store.errorMessage.set(null);
 
@@ -62,8 +62,8 @@ export class UsersManagementFacade {
   }
 
   createStaffFromNationalRegistry(
-    request: CreateStaffFromRegistryRequestModel
-  ): Observable<StaffInfoResponseModel> {
+    request: CreateStaffFromRegistryModel
+  ): Observable<StaffInfoModel> {
     this.store.loading.set(true);
     this.store.errorMessage.set(null);
 
@@ -74,8 +74,8 @@ export class UsersManagementFacade {
 
   promoteCitizenToStaff(
     userId: number,
-    request: PromoteCitizenToStaffRequestModel
-  ): Observable<StaffInfoResponseModel> {
+    request: PromoteCitizenToStaffModel
+  ): Observable<StaffInfoModel> {
     this.store.loading.set(true);
     this.store.errorMessage.set(null);
 
@@ -85,7 +85,6 @@ export class UsersManagementFacade {
   }
 
   navigateToUsersManagement(): void {
-    this.loadUsersStatistics();
     this.router.navigate(['/admin/users']);
   }
 

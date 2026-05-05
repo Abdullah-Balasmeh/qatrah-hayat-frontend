@@ -30,9 +30,9 @@ import {
   UserRole
 } from '../../../../../core/enums/user-role.enum';
 import { UsersManagementFacade } from '../../facades/users-management.facade';
-import { CitizenLookupResponseModel } from '../../../domain/models/citizen-lookup-response.model';
-import { CreateStaffFromRegistryRequestModel } from '../../../domain/models/create-staff-from-registry-request.model';
-import { PromoteCitizenToStaffRequestModel } from '../../../domain/models/promote-citizen-to-staff-request.model';
+import { CitizenLookupModel } from '../../../domain/models/citizen-lookup.model';
+import { CreateStaffFromRegistryModel } from '../../../domain/models/create-staff-from-registry.model';
+import { PromoteCitizenToStaffModel } from '../../../domain/models/promote-citizen-to-staff.model';
 import { DropDownWithLabelComponent } from "../../../../../shared/ui/drop-down-with-label/drop-down-with-label.component";
 
 type StaffCreationMode = 'none' | 'createNewUser' | 'promoteExistingCitizen' | 'alreadyStaff';
@@ -198,7 +198,7 @@ readonly branchOptions = [
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe({
-        next: (response: CitizenLookupResponseModel) => {
+        next: (response: CitizenLookupModel) => {
           this.isFetchingCitizenData.set(false);
 
           this.fillCitizenData(response);
@@ -279,7 +279,7 @@ onBranchChange(branchId: number | null): void {
       return;
     }
 
-    const request: CreateStaffFromRegistryRequestModel = {
+    const request: CreateStaffFromRegistryModel = {
       nationalId: formValue.nationalId.trim(),
       email: formValue.email.trim(),
       phoneNumber: formValue.phoneNumber.trim(),
@@ -322,7 +322,7 @@ onBranchChange(branchId: number | null): void {
       return;
     }
 
-    const request: PromoteCitizenToStaffRequestModel = {
+    const request: PromoteCitizenToStaffModel = {
       staffRole: formValue.staffRole,
       branchId: this.getBranchIdForRole(formValue.staffRole, formValue.branchId),
       hospitalId: this.getHospitalIdForRole(formValue.staffRole, formValue.hospitalId),
@@ -343,7 +343,7 @@ onBranchChange(branchId: number | null): void {
       });
   }
 
-  private handleLookupResult(response: CitizenLookupResponseModel): void {
+  private handleLookupResult(response: CitizenLookupModel): void {
     this.isCitizenVerified.set(true);
     this.selectedCitizenUserId.set(response.userId);
 
@@ -381,7 +381,7 @@ onBranchChange(branchId: number | null): void {
     );
   }
 
-  private fillCitizenData(response: CitizenLookupResponseModel): void {
+  private fillCitizenData(response: CitizenLookupModel): void {
     const bloodType = response.bloodType as BloodTypeEnum;
     const gender = response.gender as GenderEnum;
 

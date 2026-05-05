@@ -4,7 +4,7 @@ import { MaritalStatusEnum } from "../../../../core/enums/marital-status-enum";
 import { BaseUserInfoModel } from "../../../../core/models/base-user-info.model";
 
 
-export interface CitizenInfoResponseModel extends BaseUserInfoModel {
+export interface CitizenInfoModel extends BaseUserInfoModel {
   maritalStatus: MaritalStatusEnum;
   jobTitle?: string | null;
   address?: string | null;

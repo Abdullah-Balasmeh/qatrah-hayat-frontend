@@ -1,7 +1,7 @@
 import { BaseUserInfoModel } from "../../../../core/models/base-user-info.model";
 
 
-export interface StaffInfoResponseModel extends BaseUserInfoModel {
+export interface StaffInfoModel extends BaseUserInfoModel {
   hospitalNameAr?: string | null;
   hospitalNameEn?: string | null;
   branchNameAr?: string | null;

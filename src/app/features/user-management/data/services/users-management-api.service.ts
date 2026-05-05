@@ -2,19 +2,19 @@ import { HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { StaffInfoResponseModel } from '../../domain/models/staff-info-response.model';
-import { CitizenInfoResponseModel } from '../../domain/models/citizen-info-response.model';
+import { StaffInfoModel } from '../../domain/models/staff-info.model';
+import { CitizenInfoModel } from '../../domain/models/citizen-info.model';
 import { UserManagementQueryModel } from '../../domain/models/user-management-query.model';
-import { UpdateStaffRequestModel } from '../../domain/models/update-staff-request.model';
-import { UpdateCitizenRequestModel } from '../../domain/models/update-citizen-request.model';
+import { UpdateStaffModel } from '../../domain/models/update-staff.model';
+import { UpdateCitizenModel } from '../../domain/models/update-citizen.model';
 
 import { PagedResultModel } from '../../../../core/models/paged-result.model';
 import { ApiService } from '../../../../core/services/api.service';
 import { API_ENDPOINTS } from '../../../../core/constants/api.constants';
-import { UsersStatisticsResponseModel } from '../../domain/models/users-statistics-response.model';
-import { CitizenLookupResponseModel } from '../../domain/models/citizen-lookup-response.model';
-import { CreateStaffFromRegistryRequestModel } from '../../domain/models/create-staff-from-registry-request.model';
-import { PromoteCitizenToStaffRequestModel } from '../../domain/models/promote-citizen-to-staff-request.model';
+import { UsersStatisticsModel } from '../../domain/models/users-statistics.model';
+import { CitizenLookupModel } from '../../domain/models/citizen-lookup.model';
+import { CreateStaffFromRegistryModel } from '../../domain/models/create-staff-from-registry.model';
+import { PromoteCitizenToStaffModel } from '../../domain/models/promote-citizen-to-staff.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +26,8 @@ export class UsersManagementApiService {
 
   getAllStaffUsers(
     query: UserManagementQueryModel
-  ): Observable<PagedResultModel<StaffInfoResponseModel>> {
-    return this.api.get<PagedResultModel<StaffInfoResponseModel>>(
+  ): Observable<PagedResultModel<StaffInfoModel>> {
+    return this.api.get<PagedResultModel<StaffInfoModel>>(
       this.endpoints.getAllStaffUsersEndpoint,
       {
         params: this.buildQueryParams(query)
@@ -35,29 +35,29 @@ export class UsersManagementApiService {
     );
   }
 
-  getStaffById(userId: number): Observable<StaffInfoResponseModel> {
+  getStaffById(userId: number): Observable<StaffInfoModel> {
     const url = this.buildUserUrl(this.endpoints.getStaffByIdEndpoint, userId);
 
-    return this.api.get<StaffInfoResponseModel>(url);
+    return this.api.get<StaffInfoModel>(url);
   }
 
   lookupCitizenByNationalId(
     nationalId: string
-  ): Observable<CitizenLookupResponseModel> {
+  ): Observable<CitizenLookupModel> {
     const url = this.endpoints.lookupCitizenEndpoint.replace(
       '{nationalId}',
       nationalId
     );
 
-    return this.api.get<CitizenLookupResponseModel>(url);
+    return this.api.get<CitizenLookupModel>(url);
   }
 
   createStaffFromNationalRegistry(
-    request: CreateStaffFromRegistryRequestModel
-  ): Observable<StaffInfoResponseModel> {
+    request: CreateStaffFromRegistryModel
+  ): Observable<StaffInfoModel> {
     return this.api.post<
-      CreateStaffFromRegistryRequestModel,
-      StaffInfoResponseModel
+      CreateStaffFromRegistryModel,
+      StaffInfoModel
     >(
       this.endpoints.createStaffFromNationalRegistryEndpoint,
       request
@@ -66,16 +66,16 @@ export class UsersManagementApiService {
 
   promoteCitizenToStaff(
     userId: number,
-    request: PromoteCitizenToStaffRequestModel
-  ): Observable<StaffInfoResponseModel> {
+    request: PromoteCitizenToStaffModel
+  ): Observable<StaffInfoModel> {
     const url = this.buildUserUrl(
       this.endpoints.promoteCitizenToStaffEndpoint,
       userId
     );
 
     return this.api.post<
-      PromoteCitizenToStaffRequestModel,
-      StaffInfoResponseModel
+      PromoteCitizenToStaffModel,
+      StaffInfoModel
     >(
       url,
       request
@@ -84,11 +84,11 @@ export class UsersManagementApiService {
 
   updateStaff(
     userId: number,
-    request: UpdateStaffRequestModel
-  ): Observable<StaffInfoResponseModel> {
+    request: UpdateStaffModel
+  ): Observable<StaffInfoModel> {
     const url = this.buildUserUrl(this.endpoints.updateStaffEndpoint, userId);
 
-    return this.api.put<UpdateStaffRequestModel, StaffInfoResponseModel>(
+    return this.api.put<UpdateStaffModel, StaffInfoModel>(
       url,
       request
     );
@@ -96,8 +96,8 @@ export class UsersManagementApiService {
 
   getAllCitizenUsers(
     query: UserManagementQueryModel
-  ): Observable<PagedResultModel<CitizenInfoResponseModel>> {
-    return this.api.get<PagedResultModel<CitizenInfoResponseModel>>(
+  ): Observable<PagedResultModel<CitizenInfoModel>> {
+    return this.api.get<PagedResultModel<CitizenInfoModel>>(
       this.endpoints.getAllCitizenUsersEndpoint,
       {
         params: this.buildQueryParams(query)
@@ -105,19 +105,19 @@ export class UsersManagementApiService {
     );
   }
 
-  getCitizenById(userId: number): Observable<CitizenInfoResponseModel> {
+  getCitizenById(userId: number): Observable<CitizenInfoModel> {
     const url = this.buildUserUrl(this.endpoints.getCitizenByIdEndpoint, userId);
 
-    return this.api.get<CitizenInfoResponseModel>(url);
+    return this.api.get<CitizenInfoModel>(url);
   }
 
   updateCitizen(
     userId: number,
-    request: UpdateCitizenRequestModel
-  ): Observable<CitizenInfoResponseModel> {
+    request: UpdateCitizenModel
+  ): Observable<CitizenInfoModel> {
     const url = this.buildUserUrl(this.endpoints.updateCitizenEndpoint, userId);
 
-    return this.api.put<UpdateCitizenRequestModel, CitizenInfoResponseModel>(
+    return this.api.put<UpdateCitizenModel, CitizenInfoModel>(
       url,
       request
     );
@@ -141,8 +141,8 @@ export class UsersManagementApiService {
     return this.api.delete<void>(url);
   }
 
-  getUsersStatistics(): Observable<UsersStatisticsResponseModel> {
-    return this.api.get<UsersStatisticsResponseModel>(
+  getUsersStatistics(): Observable<UsersStatisticsModel> {
+    return this.api.get<UsersStatisticsModel>(
       this.endpoints.getUsersStatisticsEndpoint
     );
   }

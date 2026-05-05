@@ -1,6 +1,6 @@
 import { LanguageService } from './../../../../../core/services/language.service';
 import { Component, computed, inject, input, output, signal } from '@angular/core';
-import { StaffInfoResponseModel } from '../../../domain/models/staff-info-response.model';
+import { StaffInfoModel } from '../../../domain/models/staff-info.model';
 import { RouterLink } from '@angular/router';
 import { RoleBadgeComponent } from '../role-badge/role-badge.component';
 import { UserStatusBadgeComponent } from '../user-status-badge/user-status-badge.component';
@@ -14,7 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './staff-users-table.component.css'
 })
 export class StaffUsersTableComponent {
-  readonly users = input.required<StaffInfoResponseModel[]>();
+  readonly users = input.required<StaffInfoModel[]>();
   readonly languageService = inject(LanguageService);
 
   readonly isArabic = computed(() => {

@@ -1,7 +1,7 @@
 import { Component, computed, inject, input, output } from '@angular/core';
 import { UserRole } from '../../../../../core/enums/user-role.enum';
 import { LanguageService } from '../../../../../core/services/language.service';
-import { StaffInfoResponseModel } from '../../../../user-management/domain/models/staff-info-response.model';
+import { StaffInfoModel } from '../../../../user-management/domain/models/staff-info.model';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { RoleBadgeComponent } from '../../../../user-management/presentation/components/role-badge/role-badge.component';

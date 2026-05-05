@@ -1,5 +1,5 @@
 import { Component, computed, inject, input, output } from '@angular/core';
-import { CitizenInfoResponseModel } from '../../../domain/models/citizen-info-response.model';
+import { CitizenInfoModel } from '../../../domain/models/citizen-info.model';
 import { UserStatusBadgeComponent } from '../user-status-badge/user-status-badge.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
@@ -15,7 +15,7 @@ import { LanguageService } from '../../../../../core/services/language.service';
   styleUrl: './citizen-users-table.component.css'
 })
 export class CitizenUsersTableComponent {
-readonly users = input.required<CitizenInfoResponseModel[]>();
+readonly users = input.required<CitizenInfoModel[]>();
 
   readonly bloodTypeLabels = input.required<
     { value: BloodTypeEnum; label: string }[]

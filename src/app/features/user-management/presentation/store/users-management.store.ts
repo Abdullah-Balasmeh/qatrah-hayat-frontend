@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
-import { StaffInfoResponseModel } from '../../domain/models/staff-info-response.model';
-import { CitizenInfoResponseModel } from '../../domain/models/citizen-info-response.model';
-import { UsersStatisticsResponseModel } from '../../domain/models/users-statistics-response.model';
+import { StaffInfoModel } from '../../domain/models/staff-info.model';
+import { CitizenInfoModel } from '../../domain/models/citizen-info.model';
+import { UsersStatisticsModel } from '../../domain/models/users-statistics.model';
 
 export type UsersTabType = 'staff' | 'citizens';
 
@@ -11,8 +11,8 @@ export type UsersTabType = 'staff' | 'citizens';
 export class UsersManagementStore {
   readonly selectedTab = signal<UsersTabType>('staff');
 
-  readonly staffUsers = signal<StaffInfoResponseModel[]>([]);
-  readonly citizenUsers = signal<CitizenInfoResponseModel[]>([]);
+  readonly staffUsers = signal<StaffInfoModel[]>([]);
+  readonly citizenUsers = signal<CitizenInfoModel[]>([]);
   readonly totalUsers = signal(0);
 readonly totalStaff = signal(0);
 readonly totalCitizens = signal(0);
@@ -35,7 +35,7 @@ readonly lastUpdate = signal<string | null>(null);
     this.totalCount.set(totalCount);
     this.totalPages.set(totalPages);
   }
-  setStatistics(statistics: UsersStatisticsResponseModel): void {
+  setStatistics(statistics: UsersStatisticsModel): void {
   this.totalUsers.set(statistics.totalUsers);
   this.totalStaff.set(statistics.totalStaff);
   this.totalCitizens.set(statistics.totalCitizens);

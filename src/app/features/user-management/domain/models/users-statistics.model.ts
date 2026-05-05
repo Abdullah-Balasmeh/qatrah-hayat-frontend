@@ -1,4 +1,4 @@
-export interface UsersStatisticsResponseModel {
+export interface UsersStatisticsModel {
   totalUsers: number;
   totalStaff: number;
   totalCitizens: number;

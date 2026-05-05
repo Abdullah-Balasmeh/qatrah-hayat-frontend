@@ -1,51 +1,51 @@
 import { Observable } from 'rxjs';
 
-import { StaffInfoResponseModel } from '../models/staff-info-response.model';
-import { CitizenInfoResponseModel } from '../models/citizen-info-response.model';
+import { StaffInfoModel } from '../models/staff-info.model';
+import { CitizenInfoModel } from '../models/citizen-info.model';
 import { UserManagementQueryModel } from '../models/user-management-query.model';
-import { UpdateStaffRequestModel } from '../models/update-staff-request.model';
-import { UpdateCitizenRequestModel } from '../models/update-citizen-request.model';
+import { UpdateStaffModel } from '../models/update-staff.model';
+import { UpdateCitizenModel } from '../models/update-citizen.model';
 import { PagedResultModel } from '../../../../core/models/paged-result.model';
-import { UsersStatisticsResponseModel } from '../models/users-statistics-response.model';
-import { CitizenLookupResponseModel } from '../models/citizen-lookup-response.model';
-import { CreateStaffFromRegistryRequestModel } from '../models/create-staff-from-registry-request.model';
-import { PromoteCitizenToStaffRequestModel } from '../models/promote-citizen-to-staff-request.model';
+import { UsersStatisticsModel } from '../models/users-statistics.model';
+import { CitizenLookupModel } from '../models/citizen-lookup.model';
+import { CreateStaffFromRegistryModel } from '../models/create-staff-from-registry.model';
+import { PromoteCitizenToStaffModel } from '../models/promote-citizen-to-staff.model';
 
 export abstract class UsersManagementRepository {
   abstract getAllStaffUsers(
     query: UserManagementQueryModel
-  ): Observable<PagedResultModel<StaffInfoResponseModel>>;
+  ): Observable<PagedResultModel<StaffInfoModel>>;
 
-  abstract getStaffById(userId: number): Observable<StaffInfoResponseModel>;
+  abstract getStaffById(userId: number): Observable<StaffInfoModel>;
 
   abstract lookupCitizenByNationalId(
     nationalId: string
-  ): Observable<CitizenLookupResponseModel>;
+  ): Observable<CitizenLookupModel>;
 
   abstract createStaffFromNationalRegistry(
-    request: CreateStaffFromRegistryRequestModel
-  ): Observable<StaffInfoResponseModel>;
+    request: CreateStaffFromRegistryModel
+  ): Observable<StaffInfoModel>;
 
   abstract promoteCitizenToStaff(
     userId: number,
-    request: PromoteCitizenToStaffRequestModel
-  ): Observable<StaffInfoResponseModel>;
+    request: PromoteCitizenToStaffModel
+  ): Observable<StaffInfoModel>;
 
   abstract updateStaff(
     userId: number,
-    request: UpdateStaffRequestModel
-  ): Observable<StaffInfoResponseModel>;
+    request: UpdateStaffModel
+  ): Observable<StaffInfoModel>;
 
   abstract getAllCitizenUsers(
     query: UserManagementQueryModel
-  ): Observable<PagedResultModel<CitizenInfoResponseModel>>;
+  ): Observable<PagedResultModel<CitizenInfoModel>>;
 
-  abstract getCitizenById(userId: number): Observable<CitizenInfoResponseModel>;
+  abstract getCitizenById(userId: number): Observable<CitizenInfoModel>;
 
   abstract updateCitizen(
     userId: number,
-    request: UpdateCitizenRequestModel
-  ): Observable<CitizenInfoResponseModel>;
+    request: UpdateCitizenModel
+  ): Observable<CitizenInfoModel>;
 
   abstract activateUser(userId: number): Observable<void>;
 
@@ -53,5 +53,5 @@ export abstract class UsersManagementRepository {
 
   abstract softDeleteUser(userId: number): Observable<void>;
 
-  abstract getUsersStatistics(): Observable<UsersStatisticsResponseModel>;
+  abstract getUsersStatistics(): Observable<UsersStatisticsModel>;
 }
