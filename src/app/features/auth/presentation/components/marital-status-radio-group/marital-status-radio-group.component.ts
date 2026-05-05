@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { AbstractControl, } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { MaritalStatusEnum } from '../../../../../core/enums/marital-status-enum';
 
 @Component({
   selector: 'app-marital-status-radio-group',
@@ -11,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './marital-status-radio-group.component.css'
 })
 export class MaritalStatusRadioGroupComponent {
+  readonly maritalStatusEnum = MaritalStatusEnum;
   selectedValue: number | null = null;
   @Input() control!: AbstractControl;
   onSelectionChange(value: number): void {

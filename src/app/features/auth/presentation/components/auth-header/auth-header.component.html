@@ -14,7 +14,7 @@
               ? 'assets/images/Qatrah_Hayat_logo_ar.svg'
               : 'assets/images/Qatrah_Hayat_logo.svg'
           "
-          alt="Qatrah Hayat Logo"
+          [attr.alt]="'Accessibility-Keys.QATRAH_HAYAT_LOGO' | translate"
           class="header-logo"
         />
       </a>
@@ -27,7 +27,7 @@
         data-bs-target="#mainNavbar"
         aria-controls="mainNavbar"
         aria-expanded="false"
-        aria-label="Toggle navigation"
+        [attr.aria-label]="'Accessibility-Keys.TOGGLE_NAVIGATION' | translate"
         data-aos="fade-down"
         data-aos-delay="120"
       >

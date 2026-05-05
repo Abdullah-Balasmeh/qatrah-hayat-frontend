@@ -1,6 +1,7 @@
 {
   "Shared-Keys": "Shared-Keys",
   "Marital-Status-Keys": {
+    "SINGLE": "Single",
     "SINGLE_MALE": "Single",
     "MARRIED": "Married"
   },
@@ -50,6 +51,11 @@
     "NOT_AVAILABLE": "N/A"
   },
   "Auth-Keys": "Auth-Keys",
+  "Accessibility-Keys": {
+    "QATRAH_HAYAT_LOGO": "Qatrah Hayat Logo",
+    "LOGO": "Logo",
+    "TOGGLE_NAVIGATION": "Toggle navigation"
+  },
   "Signup-Keys": {
     "SIGNUP_VISUAL_TITLE": "Start Your Journey with Qatrah Hayat",
     "SIGNUP_VISUAL_SUBTITLE": "Create your account now and join a community that helps support people in need of blood through a safe and well-organized platform.",
@@ -343,6 +349,7 @@
     "BRANCH_ADDED_SUCCESSFULLY": "Branch added successfully."
   },
   "Hospitals-Management-Keys": {
+    "PAGE_BADGE": "Management",
     "TITLE": "Hospital Management",
     "DESCRIPTION": "Manage hospitals, monitor their status, and organize them by branch.",
     "ADD_HOSPITAL": "Add Hospital",
@@ -398,5 +405,107 @@
     "HOSPITAL_ADDRESS_MAX_LENGTH": "Hospital address must not exceed 500 characters.",
     "BRANCH_REQUIRED": "Branch is required.",
     "HOSPITAL_ADDED_SUCCESSFULLY": "Hospital added successfully."
+  },
+  "User-Keys": {
+    "MAIN": "Main",
+    "DASHBOARD": "Dashboard",
+    "MY_PROFILE": "My Profile",
+    "EligibilityStatus": "Eligibility Status",
+    "Donation": "Donation",
+    "DonateBlood": "Donate Blood",
+    "MY_DONATIONS": "My Donations",
+    "REQUESTS": "Requests",
+    "MY_REQUESTS": "My Requests",
+    "Services": "Services",
+    "SETTINGS": "Settings",
+    "LOGOUT": "Logout",
+    "BLOOD_REQUEST": "Blood Request",
+    "CAMPAIGNS": "Blood Campaigns",
+    "NOTIFICATIONS": "Notifications",
+    "Create_Blood_Request": "Create Blood Request"
+  },
+  "welcome_message": "Welcome back, ",
+  "Start_Donation": "Start Donation",
+  "Create_Blood_Request": "Create Blood Request",
+  "HERO_TITLE": "Donate Blood. Give Hope.",
+  "HERO_SUBTITLE": "One donation can save multiple lives. Be the reason someone gets a second chance today.",
+  "JOIN_AS_DONOR": "Register as a Donor",
+  "Request_Blood": "Request Blood",
+  "VIEW_ALL": "View All",
+  "Unread": "Unread",
+  "Active_Requests": "Active Requests",
+  "Current_Status": "Current Status",
+  "Total_Donations": "Total Donations",
+  "EligibilityStatusOpts": {
+    "Eligible": "Eligible",
+    "TempDeferred": "Temp Deferred",
+    "PermDeferred": "Perm Deferred"
+  },
+  "USER_DASHBOARD": {
+    "URGENT_BLOOD_NEEDS": {
+      "TITLE": "Urgent Blood Needs",
+      "DONATE": "Donate",
+      "NEED": "NEED",
+      "BLOOD_TYPE": "Blood Type"
+    }
+  },
+  "DONATE_PAGE": {
+    "PRIVATE_DONATION": "Donate to a Specific Patient",
+    "PRIVATE_DONATION_DESC": "Direct your donation to a specific patient or case using the approved medical number or beneficiary details.",
+    "GENERAL_DONATION": "Donate to General Blood Stock",
+    "GENERAL_DONATION_DESC": "Support the available blood stock to help patients based on urgency and actual need.",
+    "CAMPAIGN_DONATION": "Donate Through a Campaign",
+    "CAMPAIGN_DONATION_DESC": "Join an active donation campaign and support organized humanitarian initiatives at scheduled locations and times.",
+    "DONATE_NOW": "Donate Now",
+    "PRIVATE_BADGE": "Specific",
+    "GENERAL_BADGE": "General",
+    "CAMPAIGN_BADGE": "Campaign",
+    "SECTION_TITLE": "Donate Blood, Save Lives",
+    "SECTION_DESC": "Choose the type of donation that suits you and contribute to saving lives."
+  },
+  "Screening-Keys": {
+    "ACTIONS": {
+      "SUBMIT": "Submit",
+      "CONTINUE": "Continue"
+    },
+    "TITLE": {
+      "REGISTRATION": "Complete Your Health Profile",
+      "PRE_DONATION": "Pre-Donation Health Check"
+    },
+    "ANSWERS": {
+      "YES": "Yes",
+      "NO": "No"
+    },
+    "CONFIRMATION": {
+      "ACCURACY": "I acknowledge and attest to the accuracy of all information entered."
+    },
+    "FIELDS": {
+      "ADDITIONAL_TEXT": "Additional details...",
+      "CONDITIONAL_DATE": "Date..."
+    },
+    "RESULT": {
+      "NEXT_ELIGIBLE_DATE": "Next eligible date",
+      "DEFERRAL_REASON": "Deferral reason",
+      "INELIGIBLE": "Ineligible for donation",
+      "DEFERRED": "Temporarily deferred"
+    },
+    "EMPTY": {
+      "NO_QUESTIONS": "No screening questions available."
+    },
+    "VALIDATION": {
+      "CONFIRMATION_REQUIRED": "You must confirm the accuracy of all information entered.",
+      "ANSWER_REQUIRED": "You must select Yes or No.",
+      "ADDITIONAL_TEXT_REQUIRED": "This field is required.",
+      "ADDITIONAL_TEXT_MAX_LENGTH": "Must not exceed 500 characters.",
+      "DATE_REQUIRED": "Date is required.",
+      "DATE_INVALID": "Please enter a valid date.",
+      "DATE_FUTURE": "Date cannot be in the future."
+    },
+    "ERRORS": {
+      "INVALID_SESSION_CONTEXT": "Invalid session context.",
+      "INVALID_DONATION_CONTEXT": "Invalid donation context.",
+      "LOAD_FAILED": "Failed to load screening questions. Please try again later.",
+      "SUBMIT_FAILED": "Failed to submit screening questions. Please try again later."
+    }
   }
 }

@@ -1,0 +1,16 @@
+.screening-action-buttons {
+  display: block;
+  margin-top: 0.35rem;
+}
+
+.screening-action-buttons app-primary-button {
+  display: block;
+  width: 100%;
+}
+
+.screening-action-buttons ::ng-deep button {
+  width: 100%;
+  min-height: 3.2rem;
+  border-radius: 999px;
+  font-weight: 700;
+}

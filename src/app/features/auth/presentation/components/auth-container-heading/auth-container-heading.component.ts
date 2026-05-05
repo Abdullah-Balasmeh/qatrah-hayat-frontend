@@ -1,9 +1,10 @@
 import { Component, inject, Input } from '@angular/core';
 import { LanguageService } from '../../../../../core/services/language.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-auth-container-heading',
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './auth-container-heading.component.html',
   styleUrl: './auth-container-heading.component.css'
 })

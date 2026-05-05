@@ -1,0 +1,5 @@
+<app-check-box-input [control]="control" inputId="iConfirm" label="{{ labelKey | translate }}" name="iConfirm" />
+
+@if (control.touched && control.invalid) {
+<app-form-error-message [errorMessage]="errorKey | translate" />
+}

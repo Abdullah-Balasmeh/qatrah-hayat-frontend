@@ -2,7 +2,7 @@
   <div class="radio-options">
     <label
       class="radio-card"
-      [class.selected]="selectedValue == 1"
+      [class.selected]="selectedValue == maritalStatusEnum.Single"
       for="maritalStatusSingle"
     >
       <input
@@ -10,8 +10,8 @@
         id="maritalStatusSingle"
         name="maritalStatus"
         value="single"
-        [checked]="selectedValue == 1"
-        (change)="onSelectionChange(1)"
+        [checked]="selectedValue == maritalStatusEnum.Single"
+        (change)="onSelectionChange(maritalStatusEnum.Single)"
       />
       <span class="radio-custom"></span>
       <span class="radio-text">
@@ -21,7 +21,7 @@
 
     <label
       class="radio-card"
-      [class.selected]="selectedValue == 2"
+      [class.selected]="selectedValue == maritalStatusEnum.Married"
       for="maritalStatusMarried"
     >
       <input
@@ -29,8 +29,8 @@
         id="maritalStatusMarried"
         name="maritalStatus"
         value="married"
-        [checked]="selectedValue == 2"
-        (change)="onSelectionChange(2)"
+        [checked]="selectedValue == maritalStatusEnum.Married"
+        (change)="onSelectionChange(maritalStatusEnum.Married)"
       />
       <span class="radio-custom"></span>
       <span class="radio-text">

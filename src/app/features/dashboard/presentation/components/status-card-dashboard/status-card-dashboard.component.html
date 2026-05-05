@@ -1,0 +1,17 @@
+<section class="stats-section mt-5">
+  <div class="stats-grid">
+    <article class="stat-card" *ngFor="let stat of stats">
+      <div [class]="stat.iconWrapperClass">
+        <i [class]="stat.iconClass"></i>
+      </div>
+
+      <h3 class="stat-value" [ngClass]="stat.valueClass">
+        {{ stat.value }}
+      </h3>
+
+      <p class="stat-title">
+        {{ stat.title }}
+      </p>
+    </article>
+  </div>
+</section>

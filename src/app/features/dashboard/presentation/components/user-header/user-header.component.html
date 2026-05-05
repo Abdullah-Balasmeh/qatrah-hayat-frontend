@@ -1,0 +1,91 @@
+<nav class="navbar">
+  <div class="container-fluid user-header-container">
+    <!-- Left / Start -->
+    <div class="header-side d-flex align-items-center gap-2">
+      <button
+        class="btn sidebar-toggle-btn"
+        type="button"
+        (click)="toggleSidebar()"
+        aria-label="Toggle sidebar"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <button
+        class="btn lang-btn"
+        (click)="toggleLanguage()"
+        data-aos="zoom-in-right"
+        data-aos-delay="650"
+      >
+        <div class="fas fa-globe">
+          <span class="lang-letter">{{
+            langService.currentLang === "en" ? "ar" : "en"
+          }}</span>
+        </div>
+      </button>
+
+      <div
+        class="d-none d-md-block notification-btn"
+        data-aos="zoom-in-right"
+        data-aos-delay="600"
+      >
+        <app-notification-button></app-notification-button>
+      </div>
+    </div>
+
+    <!-- Center -->
+    <ul class="header-nav d-none d-lg-flex">
+      <li data-aos="zoom-in-left" data-aos-delay="300">
+        <a
+          class="nav-link"
+          routerLink="/user/dashboard"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          {{ "HOME" | translate }}
+        </a>
+      </li>
+      <li data-aos="zoom-in-left" data-aos-delay="400">
+        <a class="nav-link" routerLink="/user/donate" routerLinkActive="active">
+          {{ "DonateBlood" | translate }}
+        </a>
+      </li>
+      <li data-aos="zoom-in-left" data-aos-delay="350">
+        <a
+          class="nav-link"
+          routerLink="/user/requests"
+          routerLinkActive="active"
+        >
+          {{ "BLOOD_REQUEST" | translate }}
+        </a>
+      </li>
+      <li data-aos="zoom-in-left" data-aos-delay="400">
+        <a
+          class="nav-link"
+          routerLink="/user/campaigns"
+          routerLinkActive="active"
+        >
+          {{ "CAMPAIGNS" | translate }}
+        </a>
+      </li>
+    </ul>
+
+    <!-- Right / End -->
+    <a
+      class="navbar-brand d-flex align-items-center m-0"
+      routerLink="/user/dashboard"
+      data-aos="zoom-in-left"
+      data-aos-delay="150"
+    >
+      <img
+        src="{{
+          langService.currentLang == 'en'
+            ? 'assets/images/Qatrah_Hayat_logo.svg'
+            : 'assets/images/Qatrah_Hayat_logo_ar.svg'
+        }}"
+        alt="Logo"
+        width="125"
+      />
+    </a>
+  </div>
+</nav>

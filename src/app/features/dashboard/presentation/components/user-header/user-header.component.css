@@ -1,0 +1,148 @@
+.user-header-container {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  min-height: 80px;
+}
+
+.header-side {
+  min-width: 0;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-nav .nav-link {
+  position: relative;
+  display: inline-block;
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.header-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  bottom: -6px;
+  width: 0;
+  height: 3px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.header-nav .nav-link:hover {
+  color: var(--primary-color);
+  font-weight: bolder;
+  font-size: 1.1rem;
+}
+
+.header-nav .nav-link:hover::after,
+.header-nav .nav-link.active::after {
+  width: 100%;
+}
+
+.header-nav .nav-link.active {
+  color: var(--primary-color);
+  font-weight: bolder;
+  font-size: 1.1rem;
+}
+
+.sidebar-toggle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--secondary-color);
+  color: #fff;
+  border: none;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-toggle-btn:hover {
+  background: #1a2338;
+  color: #fff;
+}
+
+.btn {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.notification-btn {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.lang-btn {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border-radius: 12px;
+  padding: 0.65rem 0.9rem;
+  border: none;
+}
+
+.lang-btn {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.lang-btn:active {
+  transform: scale(0.95);
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.lang-btn .lang-letter {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+@media (max-width: 991.98px) {
+  .user-header-container {
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+  }
+
+  .header-nav {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+
+  .user-btn,
+  .lang-btn,
+  app-notification-button {
+    display: none !important;
+  }
+
+  .user-navbar {
+    min-height: 72px;
+  }
+
+  .user-header-container {
+    min-height: 72px;
+  }
+
+  .navbar-brand img {
+    width: 110px;
+
+  }
+
+  .sidebar-toggle-btn {
+    display: inline-flex;
+  }
+}

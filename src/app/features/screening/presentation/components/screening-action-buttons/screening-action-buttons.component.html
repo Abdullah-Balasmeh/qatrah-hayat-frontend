@@ -1,0 +1,17 @@
+<div class="screening-action-buttons">
+  @if (!showContinue) {
+    <app-primary-button
+      type="submit"
+      [label]="submitKey | translate"
+      [disabled]="!canSubmit"
+      [isLoading]="isSubmitting"
+      (buttonClick)="onSubmit()"
+    />
+  } @else {
+    <app-primary-button
+      type="button"
+      [label]="continueKey | translate"
+      (buttonClick)="onContinue()"
+    />
+  }
+</div>

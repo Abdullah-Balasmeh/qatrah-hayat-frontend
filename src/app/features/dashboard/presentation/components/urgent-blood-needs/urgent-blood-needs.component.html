@@ -1,0 +1,51 @@
+<section class="urgent-needs-section mt-5">
+  <div class="section-header">
+    <h2 class="section-title">
+      {{ "USER_DASHBOARD.URGENT_BLOOD_NEEDS.TITLE" | translate }}
+    </h2>
+
+    <button type="button" class="view-all-btn" (click)="onViewAll()">
+      {{ "VIEW_ALL" | translate }}
+    </button>
+  </div>
+
+  <div class="needs-list">
+    <article
+      class="need-card"
+      *ngFor="let item of urgentNeeds; trackBy: trackByHospital"
+    >
+      <div class="need-card__badge">
+        <div class="blood-type-box">
+          <span class="blood-type">{{ item.bloodType }}</span>
+          <span class="blood-need-label">
+            {{ "USER_DASHBOARD.URGENT_BLOOD_NEEDS.NEED" | translate }}
+          </span>
+        </div>
+      </div>
+
+      <div class="need-card__content">
+        <h3 class="hospital-name">
+          {{ isArabic ? item.hospitalNameAr : item.hospitalNameEn }}
+        </h3>
+
+        <div class="need-meta">
+          <div class="meta-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>{{ isArabic ? item.locationAr : item.locationEn }}</span>
+          </div>
+
+          <div class="meta-item">
+            <i class="fa-regular fa-clock"></i>
+            <span>{{ isArabic ? item.postedTextAr : item.postedTextEn }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="need-card__action">
+        <button type="button" class="donate-btn" (click)="onDonate(item)">
+          {{ "USER_DASHBOARD.URGENT_BLOOD_NEEDS.DONATE" | translate }}
+        </button>
+      </div>
+    </article>
+  </div>
+</section>

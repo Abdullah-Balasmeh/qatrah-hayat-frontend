@@ -56,6 +56,7 @@ export class AuthFacade {
     catchError((error: Failure) => {
       const message = mapRegisterErrorToMessage(error , this.translate);
       this.authStore.setError(message);
+      console.error(message);
       return throwError(() => new Error(message));
     }),
     finalize(() => this.authStore.setLoading(false))
@@ -230,7 +231,7 @@ private clearSession(): void {
     };
 
     this.authStore.setCurrentUser(currentUser);
-    this.authUserStorageService.setUser(currentUser);
+    this.authUserStorageService.setUser(currentUser, rememberMe);
   }
 
   private redirectAfterCitizenLogin(

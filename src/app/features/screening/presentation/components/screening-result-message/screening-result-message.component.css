@@ -1,0 +1,26 @@
+.screening-result-message {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid #e5e8ee;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.screening-result-message__summary,
+.screening-result-message__detail {
+  margin: 0;
+  color: #2d2d2d;
+  line-height: 1.6;
+}
+
+.screening-result-message__summary {
+  font-weight: 700;
+}
+
+.screening-result-message__detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}

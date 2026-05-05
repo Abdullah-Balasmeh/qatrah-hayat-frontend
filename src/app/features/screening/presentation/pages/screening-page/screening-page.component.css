@@ -1,0 +1,22 @@
+.screening-page {
+  box-sizing: border-box;
+  width: min(100%, 1080px);
+  margin: 0 auto;
+  padding: 28px 16px 40px;
+}
+
+.screening-page__content {
+  display: grid;
+  gap: 18px;
+}
+
+.screening-page__form {
+  display: grid;
+  gap: 18px;
+}
+
+@media (max-width: 640px) {
+  .screening-page {
+    padding: 22px 12px 32px;
+  }
+}
