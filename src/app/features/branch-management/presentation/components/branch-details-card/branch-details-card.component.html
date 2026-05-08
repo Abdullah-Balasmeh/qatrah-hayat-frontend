@@ -1,0 +1,163 @@
+@if (store.errorMessage()) {
+  <app-alert-error [errorMessage]="store.errorMessage()!"></app-alert-error>
+}
+
+@if (store.isLoading()) {
+  <app-loading></app-loading>
+} @else {
+  @if (store.selectedBranch(); as branch) {
+    <div class="details-container">
+
+      <div class="details-top">
+        <div class="branch-main">
+          <div class="branch-icon">
+            <i class="fa-solid fa-building"></i>
+          </div>
+
+          <div>
+            <h2>
+              {{ isArabic() ? branch.branchNameAr : branch.branchNameEn }}
+            </h2>
+
+            <p>
+              {{ isArabic() ? branch.branchNameEn : branch.branchNameAr }}
+            </p>
+          </div>
+        </div>
+
+        <div class="branch-actions">
+          <app-branch-status-badge [isActive]="branch.isActive"></app-branch-status-badge>
+
+          <a
+            class="qh-primary-btn edit-btn"
+            [routerLink]="['/admin/branches/branch', branch.id, 'edit']"
+          >
+            {{ 'COMMON.EDIT' | translate }}
+            <i class="fa-solid fa-pen-to-square"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="details-section">
+        <h5 class="section-title">
+          {{ 'Branch-Details-Keys.BASIC_INFORMATION' | translate }}
+        </h5>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <span>{{ 'Branches-Management-Keys.BRANCH_NAME' | translate }}</span>
+            <strong>{{ branch.branchNameAr }}</strong>
+            <small>{{ branch.branchNameEn }}</small>
+          </div>
+
+          <div class="info-item">
+            <span>{{ 'Branches-Management-Keys.BRANCH_MANAGER' | translate }}</span>
+            <strong>{{ branch.managerFullNameAr || '—' }}</strong>
+            <small>{{ branch.managerFullNameEn || '—' }}</small>
+          </div>
+
+          <div class="info-item">
+            <span>{{ 'Branch-Details-Keys.CREATED_AT' | translate }}</span>
+            <strong>{{ formatDate(branch.createdAt) }}</strong>
+          </div>
+
+          <div class="info-item">
+            <span>{{ 'Branch-Details-Keys.UPDATED_AT' | translate }}</span>
+            <strong>{{ formatDate(branch.updatedAt) }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="details-section">
+        <h5 class="section-title">
+          {{ 'Branch-Details-Keys.ADDRESS_AND_LOCATION' | translate }}
+        </h5>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <span>{{ 'Branches-Management-Keys.BRANCH_ADDRESS' | translate }}</span>
+            <strong>{{ branch.addressAr }}</strong>
+            <small>{{ branch.addressEn }}</small>
+          </div>
+
+          <div class="info-item">
+            <span>{{ 'Branch-Details-Keys.GPS_LAT' | translate }}</span>
+            <strong>{{ branch.gpsLat }}</strong>
+          </div>
+
+          <div class="info-item">
+            <span>{{ 'Branch-Details-Keys.GPS_LNG' | translate }}</span>
+            <strong>{{ branch.gpsLng }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="details-section">
+        <h5 class="section-title">
+          {{ 'Branch-Details-Keys.CONTACT_INFORMATION' | translate }}
+        </h5>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <span>{{ 'Branch-Details-Keys.EMAIL' | translate }}</span>
+            <strong>{{ branch.email || '—' }}</strong>
+          </div>
+
+          <div class="info-item">
+            <span>{{ 'Branch-Details-Keys.PHONE' | translate }}</span>
+            <strong>{{ branch.phone || '—' }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="details-section">
+        <h5 class="section-title">
+          {{ 'Branch-Details-Keys.WORKING_HOURS' | translate }}
+        </h5>
+
+        <div class="working-hours-list">
+          @for (workingHour of branch.workingHours; track workingHour.dayOfWeek) {
+            <div class="working-hour-row">
+              <div class="day-cell">
+                <span class="day-icon">
+                  <i class="fa-solid fa-calendar-day"></i>
+                </span>
+
+                <div>
+                  <strong>
+                    {{ ('Days-Keys.' + workingHour.dayOfWeek) | translate }}
+                  </strong>
+
+                  <small>
+                    {{ workingHour.isClosed
+                      ? ('Branch-Details-Keys.CLOSED_DAY' | translate)
+                      : ('Branch-Details-Keys.OPEN_DAY' | translate)
+                    }}
+                  </small>
+                </div>
+              </div>
+
+              <div class="time-summary">
+                @if (workingHour.isClosed) {
+                  <span class="closed-badge">
+                    {{ 'Branch-Details-Keys.CLOSED' | translate }}
+                  </span>
+                } @else {
+                  <span>
+                    <i class="fa-solid fa-clock"></i>
+                    {{ formatTime(workingHour.openTime) }}
+                  </span>
+
+                  <span>
+                    <i class="fa-solid fa-clock"></i>
+                    {{ formatTime(workingHour.closeTime) }}
+                  </span>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+}

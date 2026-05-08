@@ -1,0 +1,217 @@
+.details-container {
+  display: block;
+}
+
+.details-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(16, 23, 39, 0.2);
+  border-radius: 18px;
+}
+
+.branch-main {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.branch-icon {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 1rem;
+  display: grid;
+  place-items: center;
+  color: var(--primary-color);
+  background-color: var(--primary-color-light);
+  font-size: 1.25rem;
+}
+
+.branch-main h2 {
+  margin: 0 0 0.2rem;
+  color: var(--primary-text-color);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.branch-main p {
+  margin: 0;
+  color: var(--grey-color);
+  font-size: var(--font-size-sm);
+}
+
+.branch-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.edit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.details-section {
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(16, 23, 39, 0.2);
+  border-radius: 18px;
+}
+
+.section-title {
+  margin-bottom: 1rem;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-text-color);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.info-item {
+  padding: 1rem;
+  border: 1px solid var(--divider-color);
+  border-radius: 1rem;
+  background-color: var(--surface-card);
+}
+
+.info-item span {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--grey-color);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+}
+
+.info-item strong {
+  display: block;
+  color: var(--primary-text-color);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+}
+
+.info-item small {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--grey-color);
+  font-size: var(--font-size-sm);
+}
+
+.working-hours-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.working-hour-row {
+  display: grid;
+  grid-template-columns: minmax(12rem, 1fr) minmax(16rem, 1fr);
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem;
+  border: 1px solid var(--divider-color);
+  border-radius: 1rem;
+}
+
+.day-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.day-icon {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.8rem;
+  display: inline-grid;
+  place-items: center;
+  color: var(--primary-color);
+  background-color: var(--primary-color-light);
+}
+
+.day-cell strong {
+  display: block;
+  color: var(--primary-text-color);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+}
+
+.day-cell small {
+  display: block;
+  color: var(--grey-color);
+  font-size: var(--font-size-xs);
+}
+
+.time-summary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.time-summary span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.35rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background-color: var(--input-background-color);
+  color: var(--primary-text-color);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semi-bold);
+}
+
+.closed-badge {
+  color: #991b1b !important;
+  background-color: #fef2f2 !important;
+}
+
+@media (max-width: 992px) {
+  .details-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .branch-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .working-hour-row {
+    grid-template-columns: 1fr;
+  }
+
+  .time-summary {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 576px) {
+  .details-top,
+  .details-section {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .branch-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .edit-btn {
+    justify-content: center;
+  }
+}

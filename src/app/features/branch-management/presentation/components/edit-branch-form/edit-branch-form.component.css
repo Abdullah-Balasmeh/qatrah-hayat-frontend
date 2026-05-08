@@ -1,0 +1,275 @@
+/* form style */
+.form-container {
+  padding: 1rem;
+}
+
+form {
+  display: block;
+}
+
+.form-section {
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--primary-text-color);
+  border-radius: 18px;
+}
+
+.section-title {
+  margin-bottom: 1rem;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-text-color);
+}
+
+.field-error-space {
+  min-height: 24px;
+  margin-top: 0.35rem;
+}
+
+.info-message {
+  margin-bottom: 1rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid #cfe7d1;
+  border-radius: 12px;
+  background-color: #edf9ee;
+  color: #1f5f2c;
+}
+
+.submit-wrapper {
+  margin-top: 1rem;
+}
+
+.success-message {
+  margin-bottom: 1rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid #cfe7d1;
+  border-radius: 12px;
+  background-color: #edf9ee;
+  color: #1f5f2c;
+}
+/* ============================================================
+   Working Hours Section
+============================================================ */
+
+.working-hours-section {
+  border-color: rgba(16, 23, 39, 0.2);
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.section-description {
+  margin: 0.25rem 0 0;
+  color: var(--grey-color);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+}
+
+.working-hours-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.working-hour-row {
+  display: grid;
+  grid-template-columns: minmax(10rem, 1.1fr) minmax(7rem, 0.7fr) minmax(11rem, 1fr) minmax(11rem, 1fr);
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.9rem;
+  border: 1px solid var(--divider-color);
+  border-radius: 1rem;
+   background-color: var(--surface-card);
+  transition: 0.2s ease;
+}
+
+.day-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.day-icon {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.8rem;
+  display: inline-grid;
+  place-items: center;
+  color: var(--primary-color);
+  background-color: var(--primary-color-light);
+  flex-shrink: 0;
+}
+
+.day-cell strong {
+  display: block;
+  color: var(--primary-text-color);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 0.1rem;
+}
+
+.day-cell small {
+  display: block;
+  color: var(--grey-color);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.closed-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 2.7rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--primary-text-color);
+  border-radius: 999px;
+
+  color: var(--primary-text-color);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semi-bold);
+  cursor: pointer;
+  user-select: none;
+}
+
+.closed-toggle input {
+  display: none;
+}
+
+.toggle-box {
+  width: 1.05rem;
+  height: 1.05rem;
+  border: 2px solid var(--grey-color);
+  border-radius: 0.3rem;
+  display: inline-grid;
+  place-items: center;
+  transition: 0.2s ease;
+  flex-shrink: 0;
+}
+
+.closed-toggle input:checked + .toggle-box {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+}
+
+.closed-toggle input:checked + .toggle-box::after {
+  content: "✓";
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.toggle-label {
+  white-space: nowrap;
+}
+
+.time-field {
+  min-width: 0;
+}
+
+.time-field label {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--grey-color);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+}
+
+/* لأن app-text-field غالبًا يأخذ العرض الكامل */
+.time-field app-text-field {
+  display: block;
+  width: 100%;
+}
+
+/* ============================================================
+   Responsive
+============================================================ */
+
+@media (max-width: 1200px) {
+  .working-hour-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .day-cell {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .section-header {
+    flex-direction: column;
+  }
+
+  .working-hour-row {
+    grid-template-columns: 1fr;
+    padding: 0.85rem;
+  }
+
+  .closed-toggle {
+    justify-content: flex-start;
+    width: fit-content;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .form-container {
+    padding: 1rem;
+  }
+
+  form {
+    padding: 0;
+  }
+
+  .form-section {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+}
+
+.active-toggle {
+  display: inline-flex;
+  align-self: center;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 3rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--primary-text-color);
+  border-radius: 999px;
+  color: var(--primary-text-color);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semi-bold);
+  cursor: pointer;
+  user-select: none;
+}
+
+.active-toggle input {
+  display: none;
+}
+
+.active-toggle-box {
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid var(--grey-color);
+  border-radius: 0.3rem;
+  display: inline-grid;
+  place-items: center;
+}
+
+.active-toggle input:checked + .active-toggle-box {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+}
+
+.active-toggle input:checked + .active-toggle-box::after {
+  content: "✓";
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+}

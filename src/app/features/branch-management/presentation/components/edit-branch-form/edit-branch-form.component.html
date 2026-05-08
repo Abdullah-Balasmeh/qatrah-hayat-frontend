@@ -1,0 +1,300 @@
+<div class="form-container">
+  <form [formGroup]="editBranchForm" (ngSubmit)="onSubmit()" novalidate>
+
+    <!-- Section 1: Basic Information -->
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Edit-Branch-Keys.BRANCH_BASIC_INFORMATION' | translate }}
+      </h5>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="editBranchForm.controls.branchNameAr"
+            type="text"
+            [placeholder]="'Edit-Branch-Keys.BRANCH_NAME_AR_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-building"
+            inputId="branchNameAr"
+          />
+
+          <div class="field-error-space">
+            @if (editBranchForm.controls.branchNameAr.touched || editBranchForm.controls.branchNameAr.dirty) {
+              @if (editBranchForm.controls.branchNameAr.hasError('required')) {
+                <app-form-error-message [errorMessage]="'Edit-Branch-Keys.BRANCH_NAME_AR_REQUIRED' | translate" />
+              } @else if (editBranchForm.controls.branchNameAr.hasError('maxlength')) {
+                <app-form-error-message [errorMessage]="'Edit-Branch-Keys.BRANCH_NAME_MAX_LENGTH' | translate" />
+              }
+            }
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="editBranchForm.controls.branchNameEn"
+            type="text"
+            [placeholder]="'Edit-Branch-Keys.BRANCH_NAME_EN_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-building"
+            inputId="branchNameEn"
+          />
+
+          <div class="field-error-space">
+            @if (editBranchForm.controls.branchNameEn.touched || editBranchForm.controls.branchNameEn.dirty) {
+              @if (editBranchForm.controls.branchNameEn.hasError('required')) {
+                <app-form-error-message [errorMessage]="'Edit-Branch-Keys.BRANCH_NAME_EN_REQUIRED' | translate" />
+              } @else if (editBranchForm.controls.branchNameEn.hasError('maxlength')) {
+                <app-form-error-message [errorMessage]="'Edit-Branch-Keys.BRANCH_NAME_MAX_LENGTH' | translate" />
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Address Information -->
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Edit-Branch-Keys.BRANCH_ADDRESS_INFORMATION' | translate }}
+      </h5>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="editBranchForm.controls.addressAr"
+            type="text"
+            [placeholder]="'Edit-Branch-Keys.BRANCH_ADDRESS_AR_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-location-dot"
+            inputId="addressAr"
+          />
+
+          <div class="field-error-space">
+            @if (editBranchForm.controls.addressAr.touched || editBranchForm.controls.addressAr.dirty) {
+              @if (editBranchForm.controls.addressAr.hasError('required')) {
+                <app-form-error-message [errorMessage]="'Edit-Branch-Keys.BRANCH_ADDRESS_AR_REQUIRED' | translate" />
+              } @else if (editBranchForm.controls.addressAr.hasError('maxlength')) {
+                <app-form-error-message [errorMessage]="'Edit-Branch-Keys.BRANCH_ADDRESS_MAX_LENGTH' | translate" />
+              }
+            }
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="editBranchForm.controls.addressEn"
+            type="text"
+            [placeholder]="'Edit-Branch-Keys.BRANCH_ADDRESS_EN_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-location-dot"
+            inputId="addressEn"
+          />
+
+          <div class="field-error-space">
+            @if (editBranchForm.controls.addressEn.touched || editBranchForm.controls.addressEn.dirty) {
+              @if (editBranchForm.controls.addressEn.hasError('required')) {
+                <app-form-error-message [errorMessage]="'Edit-Branch-Keys.BRANCH_ADDRESS_EN_REQUIRED' | translate" />
+              } @else if (editBranchForm.controls.addressEn.hasError('maxlength')) {
+                <app-form-error-message [errorMessage]="'Edit-Branch-Keys.BRANCH_ADDRESS_MAX_LENGTH' | translate" />
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Manager + Status -->
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Edit-Branch-Keys.BRANCH_MANAGER_INFORMATION' | translate }}
+      </h5>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <app-drop-down-with-label
+            [options]="managerOptions()"
+            [selectedValue]="editBranchForm.controls.managerUserId.value"
+            [placeholder]="'Edit-Branch-Keys.SELECT_BRANCH_MANAGER' | translate"
+            [translateLabels]="false"
+            (valueChanged)="onManagerChange($event)"
+          />
+
+          <div class="field-error-space">
+            @if (editBranchForm.controls.managerUserId.touched || editBranchForm.controls.managerUserId.dirty) {
+              @if (editBranchForm.controls.managerUserId.hasError('required')) {
+                <app-form-error-message [errorMessage]="'Edit-Branch-Keys.BRANCH_MANAGER_REQUIRED' | translate" />
+              }
+            }
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label class="active-toggle">
+            <input type="checkbox" formControlName="isActive" />
+            <span class="active-toggle-box"></span>
+            <span>
+              {{ 'Edit-Branch-Keys.BRANCH_IS_ACTIVE' | translate }}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Location -->
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Edit-Branch-Keys.BRANCH_LOCATION_INFORMATION' | translate }}
+      </h5>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="editBranchForm.controls.gpsLat"
+            type="number"
+            [placeholder]="'Edit-Branch-Keys.GPS_LAT_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-map-pin"
+            inputId="gpsLat"
+          />
+        </div>
+
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="editBranchForm.controls.gpsLng"
+            type="number"
+            [placeholder]="'Edit-Branch-Keys.GPS_LNG_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-map-location-dot"
+            inputId="gpsLng"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Contact -->
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Edit-Branch-Keys.BRANCH_CONTACT_INFORMATION' | translate }}
+      </h5>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="editBranchForm.controls.email"
+            type="email"
+            [placeholder]="'Edit-Branch-Keys.BRANCH_EMAIL_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-envelope"
+            inputId="email"
+          />
+        </div>
+
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="editBranchForm.controls.phone"
+            type="text"
+            [placeholder]="'Edit-Branch-Keys.BRANCH_PHONE_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-phone"
+            inputId="phone"
+            maxLength="10"
+            [isNumeric]="true"
+          />
+
+          <div class="field-error-space">
+            @if (editBranchForm.controls.phone.touched || editBranchForm.controls.phone.dirty) {
+              @if (editBranchForm.controls.phone.hasError('pattern')) {
+                <app-form-error-message [errorMessage]="'Edit-Branch-Keys.BRANCH_PHONE_INVALID' | translate" />
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 6: Working Hours -->
+    <div class="form-section working-hours-section">
+      <div class="section-header">
+        <div>
+          <h5 class="section-title">
+            {{ 'Edit-Branch-Keys.BRANCH_WORKING_HOURS_INFORMATION' | translate }}
+          </h5>
+
+          <p class="section-description">
+            {{ 'Edit-Branch-Keys.BRANCH_WORKING_HOURS_DESCRIPTION' | translate }}
+          </p>
+        </div>
+      </div>
+
+      <div formArrayName="workingHours" class="working-hours-list">
+        @for (workingHour of editBranchForm.controls.workingHours.controls; track $index) {
+          <div class="working-hour-row" [formGroupName]="$index">
+            <div class="day-cell">
+              <span class="day-icon">
+                <i class="fa-solid fa-calendar-day"></i>
+              </span>
+
+              <div>
+                <strong>
+                  {{ ('Days-Keys.' + workingHour.controls.dayOfWeek.value) | translate }}
+                </strong>
+
+                <small>
+                  {{ workingHour.controls.isClosed.value
+                    ? ('Edit-Branch-Keys.CLOSED_DAY' | translate)
+                    : ('Edit-Branch-Keys.OPEN_DAY' | translate)
+                  }}
+                </small>
+              </div>
+            </div>
+
+            <label class="closed-toggle">
+              <input type="checkbox" formControlName="isClosed" />
+              <span class="toggle-box"></span>
+              <span class="toggle-label">
+                {{ 'Edit-Branch-Keys.IS_CLOSED' | translate }}
+              </span>
+            </label>
+
+            <div class="time-field">
+              <label>{{ 'Edit-Branch-Keys.OPEN_TIME' | translate }}</label>
+
+              <app-text-field
+                [control]="workingHour.controls.openTime"
+                type="time"
+                [placeholder]="'Edit-Branch-Keys.OPEN_TIME' | translate"
+                prefixIcon="fa-solid fa-clock"
+                [inputId]="'openTime-' + $index"
+              />
+            </div>
+
+            <div class="time-field">
+              <label>{{ 'Edit-Branch-Keys.CLOSE_TIME' | translate }}</label>
+
+              <app-text-field
+                [control]="workingHour.controls.closeTime"
+                type="time"
+                [placeholder]="'Edit-Branch-Keys.CLOSE_TIME' | translate"
+                prefixIcon="fa-solid fa-clock"
+                [inputId]="'closeTime-' + $index"
+              />
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="submit-wrapper">
+      @if (store.errorMessage()) {
+        <app-form-error-message [errorMessage]="store.errorMessage()!" />
+      }
+
+      @if (showSuccessMessage()) {
+        <div class="success-message" role="alert">
+          <strong>
+            {{ 'Edit-Branch-Keys.BRANCH_UPDATED_SUCCESSFULLY' | translate }}
+          </strong>
+        </div>
+      }
+
+      <app-primary-button
+        [label]="'Edit-Branch-Keys.UPDATE_BRANCH' | translate"
+        type="submit"
+        [disabled]="store.isActionLoading()"
+        [isLoading]="store.isActionLoading()"
+      />
+    </div>
+  </form>
+</div>

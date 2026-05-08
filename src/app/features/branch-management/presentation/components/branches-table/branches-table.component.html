@@ -56,9 +56,11 @@
 
           <td [attr.data-label]="'Branches-Management-Keys.BRANCH_CONTACT' | translate">
             <div class="stacked-text">
-              <span>
-                {{ branch.email || ('COMMON.NOT_AVAILABLE' | translate) }}
+             @if( branch.email){
+               <span>
+                {{ branch.email}}
               </span>
+             }
 
               <small>
                 {{ branch.phone || ('COMMON.NOT_AVAILABLE' | translate) }}
@@ -74,7 +76,7 @@
             <div class="actions">
               <a
                 class="icon-btn view"
-                [routerLink]="[branch.id]"
+                [routerLink]="['branch', branch.id]"
                 [title]="'COMMON.VIEW' | translate"
               >
                 <i class="fa-solid fa-eye"></i>
@@ -82,7 +84,7 @@
 
               <a
                 class="icon-btn edit"
-                [routerLink]="[branch.id, 'edit']"
+                [routerLink]="['branch', branch.id, 'edit']"
                 [title]="'COMMON.EDIT' | translate"
               >
                 <i class="fa-solid fa-pen-to-square"></i>
