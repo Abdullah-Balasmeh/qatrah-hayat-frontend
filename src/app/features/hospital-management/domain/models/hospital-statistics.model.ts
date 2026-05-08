@@ -1,4 +1,4 @@
-export interface HospitalStatisticsResponseModel {
+export interface HospitalStatisticsModel {
   totalHospitals: number;
   activeHospitals: number;
   inactiveHospitals: number;

@@ -3,14 +3,15 @@ import { Observable } from 'rxjs';
 
 import { ApiService } from '../../../../core/services/api.service';
 import { PagedResultModel } from '../../../../core/models/paged-result.model';
-
-import { HospitalResponseModel } from '../../domain/models/hospital-response.model';
-import { HospitalStatisticsResponseModel } from '../../domain/models/hospital-statistics-response.model';
-import { HospitalQueryModel } from '../../domain/models/hospital-query.model';
-import { AddHospitalRequestModel } from '../../domain/models/add-hospital-request.model';
-import { UpdateHospitalRequestModel } from '../../domain/models/update-hospital-request.model';
-import { AvailableDoctorModel } from '../../domain/models/available-doctor.model';
 import { API_ENDPOINTS } from '../../../../core/constants/api.constants';
+
+import { HospitalQueryModel } from '../../domain/models/hospital-query.model';
+
+import { HospitalResponseDto } from '../dtos/hospital-response.dto';
+import { HospitalStatisticsResponseDto } from '../dtos/hospital-statistics-response.dto';
+import { AddHospitalRequestDto } from '../dtos/add-hospital-request.dto';
+import { UpdateHospitalRequestDto } from '../dtos/update-hospital-request.dto';
+import { AvailableDoctorDto } from '../dtos/available-doctor.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,8 @@ export class HospitalManagementApiService {
 
   getAllHospitals(
     query: HospitalQueryModel
-  ): Observable<PagedResultModel<HospitalResponseModel>> {
-    return this.apiService.get<PagedResultModel<HospitalResponseModel>>(
+  ): Observable<PagedResultModel<HospitalResponseDto>> {
+    return this.apiService.get<PagedResultModel<HospitalResponseDto>>(
       API_ENDPOINTS.hospitalManagement.getAllHospitalsEndpoint,
       {
         params: {
@@ -31,40 +32,43 @@ export class HospitalManagementApiService {
           ...(query.isActive !== null && query.isActive !== undefined
             ? { isActive: query.isActive }
             : {}),
-          ...(query.branchId ? { branchId: query.branchId } : {})
+          ...(query.branchId !== null && query.branchId !== undefined
+            ? { branchId: query.branchId }
+            : {})
         }
       }
     );
   }
 
-  getHospitalById(hospitalId: number): Observable<HospitalResponseModel> {
+  getHospitalById(hospitalId: number): Observable<HospitalResponseDto> {
     const url = API_ENDPOINTS.hospitalManagement.getHospitalByIdEndpoint
       .replace('{hospitalId}', hospitalId.toString());
 
-    return this.apiService.get<HospitalResponseModel>(url);
+    return this.apiService.get<HospitalResponseDto>(url);
   }
 
-  getStatistics(): Observable<HospitalStatisticsResponseModel> {
-    return this.apiService.get<HospitalStatisticsResponseModel>(
+  getStatistics(): Observable<HospitalStatisticsResponseDto> {
+    return this.apiService.get<HospitalStatisticsResponseDto>(
       API_ENDPOINTS.hospitalManagement.getHospitalsStatisticsEndpoint
     );
   }
 
   getAvailableDoctors(
     currentHospitalId?: number | null
-  ): Observable<AvailableDoctorModel[]> {
-    return this.apiService.get<AvailableDoctorModel[]>(
+  ): Observable<AvailableDoctorDto[]> {
+    return this.apiService.get<AvailableDoctorDto[]>(
       API_ENDPOINTS.hospitalManagement.getAvailableDoctorsEndpoint,
       {
-        params: currentHospitalId
-          ? { currentHospitalId }
-          : {}
+        params:
+          currentHospitalId !== null && currentHospitalId !== undefined
+            ? { currentHospitalId }
+            : {}
       }
     );
   }
 
-  addHospital(request: AddHospitalRequestModel): Observable<HospitalResponseModel> {
-    return this.apiService.post<AddHospitalRequestModel, HospitalResponseModel>(
+  addHospital(request: AddHospitalRequestDto): Observable<HospitalResponseDto> {
+    return this.apiService.post<AddHospitalRequestDto, HospitalResponseDto>(
       API_ENDPOINTS.hospitalManagement.addHospitalEndpoint,
       request
     );
@@ -72,12 +76,12 @@ export class HospitalManagementApiService {
 
   updateHospital(
     hospitalId: number,
-    request: UpdateHospitalRequestModel
-  ): Observable<HospitalResponseModel> {
+    request: UpdateHospitalRequestDto
+  ): Observable<HospitalResponseDto> {
     const url = API_ENDPOINTS.hospitalManagement.updateHospitalEndpoint
       .replace('{hospitalId}', hospitalId.toString());
 
-    return this.apiService.put<UpdateHospitalRequestModel, HospitalResponseModel>(
+    return this.apiService.put<UpdateHospitalRequestDto, HospitalResponseDto>(
       url,
       request
     );

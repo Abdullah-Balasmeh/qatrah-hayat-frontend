@@ -71,23 +71,23 @@
       <div class="row g-3">
         <div class="col-12 col-md-6">
           <app-text-field
-            [control]="addHospitalForm.controls.addressAR"
+            [control]="addHospitalForm.controls.addressAr"
             type="text"
             [placeholder]="'Add-Hospital-Keys.HOSPITAL_ADDRESS_AR_PLACEHOLDER' | translate"
             prefixIcon="fa-solid fa-location-dot"
-            inputId="addressAR"
+            inputId="addressAr"
           />
 
           <div class="field-error-space">
             @if (
-              addHospitalForm.controls.addressAR.touched ||
-              addHospitalForm.controls.addressAR.dirty
+              addHospitalForm.controls.addressAr.touched ||
+              addHospitalForm.controls.addressAr.dirty
             ) {
-              @if (addHospitalForm.controls.addressAR.hasError('required')) {
+              @if (addHospitalForm.controls.addressAr.hasError('required')) {
                 <app-form-error-message
                   [errorMessage]="'Add-Hospital-Keys.HOSPITAL_ADDRESS_AR_REQUIRED' | translate"
                 />
-              } @else if (addHospitalForm.controls.addressAR.hasError('maxlength')) {
+              } @else if (addHospitalForm.controls.addressAr.hasError('maxlength')) {
                 <app-form-error-message
                   [errorMessage]="'Add-Hospital-Keys.HOSPITAL_ADDRESS_MAX_LENGTH' | translate"
                 />

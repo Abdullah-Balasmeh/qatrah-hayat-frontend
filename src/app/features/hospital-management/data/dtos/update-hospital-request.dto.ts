@@ -1,9 +1,11 @@
-export interface AddHospitalRequestModel {
+export interface UpdateHospitalRequestDto {
   hospitalNameAr: string;
   hospitalNameEn: string;
 
-  addressAR: string;
+  addressAr: string;
   addressEn: string;
 
   branchId: number;
+
+  isActive: boolean;
 }

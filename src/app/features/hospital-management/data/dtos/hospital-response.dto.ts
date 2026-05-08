@@ -1,10 +1,10 @@
-export interface HospitalResponseModel {
+export interface HospitalResponseDto {
   id: number;
 
   hospitalNameAr: string;
   hospitalNameEn: string;
 
-  addressAR: string;
+  addressAr: string;
   addressEn: string;
 
   isActive: boolean;

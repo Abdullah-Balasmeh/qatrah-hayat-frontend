@@ -1,6 +1,6 @@
 import { Component, computed, inject, input, output } from '@angular/core';
 import { LanguageService } from '../../../../../core/services/language.service';
-import { HospitalResponseModel } from '../../../domain/models/hospital-response.model';
+import { HospitalModel } from '../../../domain/models/hospital.model';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
 import { HospitalStatusBadgeComponent } from '../hospital-status-badge/hospital-status-badge.component';
@@ -15,7 +15,7 @@ import { DatePipe } from '@angular/common';
   styleUrl: './hospitals-table.component.css'
 })
 export class HospitalsTableComponent {
-   readonly hospitals = input.required<HospitalResponseModel[]>();
+   readonly hospitals = input.required<HospitalModel[]>();
 
   readonly activateClicked = output<number>();
   readonly deactivateClicked = output<number>();

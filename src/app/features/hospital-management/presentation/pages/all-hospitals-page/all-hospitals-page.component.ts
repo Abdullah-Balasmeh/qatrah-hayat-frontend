@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import { HospitalManagementFacade } from '../../facades/hospital-management.facade';
 import { HospitalStatusFilter } from '../../store/hospital-management.store';
 import { ConfirmationModalComponent } from "../../../../../shared/ui/confirmation-modal/confirmation-modal.component";
@@ -21,6 +21,26 @@ export class AllHospitalsPageComponent  implements OnInit{
  readonly facade = inject(HospitalManagementFacade);
   readonly store = this.facade.store;
 
+  readonly lastUpdateLabel = computed(() => {
+  const lastUpdate = this.store.lastUpdate();
+
+  if (!lastUpdate) {
+    return '—';
+  }
+
+  const normalizedDate = lastUpdate.endsWith('Z')
+    ? lastUpdate
+    : `${lastUpdate}Z`;
+
+  return new Date(normalizedDate).toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+  });
+});
   ngOnInit(): void {
     this.facade.loadInitialData();
   }

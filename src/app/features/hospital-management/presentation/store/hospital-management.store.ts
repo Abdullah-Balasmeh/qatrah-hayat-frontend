@@ -1,6 +1,6 @@
 import { computed, Injectable, signal } from '@angular/core';
 
-import { HospitalResponseModel } from '../../domain/models/hospital-response.model';
+import { HospitalModel } from '../../domain/models/hospital.model';
 import { AvailableDoctorModel } from '../../domain/models/available-doctor.model';
 import { BranchInfoModel } from '../../../branch-management/domain/models/branch-info.model';
 
@@ -9,8 +9,8 @@ export type HospitalStatusFilter = 'all' | 'active' | 'inactive';
 @Injectable()
 export class HospitalManagementStore {
   // Data
-  readonly hospitals = signal<HospitalResponseModel[]>([]);
-  readonly selectedHospital = signal<HospitalResponseModel | null>(null);
+  readonly hospitals = signal<HospitalModel[]>([]);
+  readonly selectedHospital = signal<HospitalModel | null>(null);
 
   // Statistics
   readonly totalHospitals = signal(0);
@@ -75,11 +75,11 @@ export class HospitalManagementStore {
   readonly confirmationModalConfirmText = signal('');
 
   // Setters
-  setHospitals(hospitals: HospitalResponseModel[]): void {
+  setHospitals(hospitals: HospitalModel[]): void {
     this.hospitals.set(hospitals);
   }
 
-  setSelectedHospital(hospital: HospitalResponseModel | null): void {
+  setSelectedHospital(hospital: HospitalModel | null): void {
     this.selectedHospital.set(hospital);
   }
 
@@ -232,4 +232,14 @@ export class HospitalManagementStore {
     this.errorMessage.set(null);
     this.successMessage.set(null);
   }
+  resetListState(): void {
+  this.hospitals.set([]);
+  this.totalCount.set(0);
+  this.pageNumber.set(1);
+  this.searchValue.set('');
+  this.selectedStatus.set('all');
+  this.selectedBranchId.set(null);
+  this.errorMessage.set(null);
+  this.successMessage.set(null);
+}
 }

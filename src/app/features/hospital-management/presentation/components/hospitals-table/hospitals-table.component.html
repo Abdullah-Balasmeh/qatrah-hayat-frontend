@@ -33,11 +33,11 @@
           <td [attr.data-label]="'Hospitals-Management-Keys.HOSPITAL_ADDRESS' | translate">
             <div class="stacked-text">
               <span>
-                {{ isArabic() ? hospital.addressAR : hospital.addressEn }}
+                {{ isArabic() ? hospital.addressAr : hospital.addressEn }}
               </span>
 
               <small>
-                {{ isArabic() ? hospital.addressEn : hospital.addressAR }}
+                {{ isArabic() ? hospital.addressEn : hospital.addressAr }}
               </small>
             </div>
           </td>
@@ -80,7 +80,7 @@
             <div class="actions">
               <a
                 class="icon-btn view"
-                [routerLink]="[hospital.id]"
+                [routerLink]="['hospital', hospital.id]"
                 [title]="'COMMON.VIEW' | translate"
               >
                 <i class="fa-solid fa-eye"></i>
@@ -88,7 +88,7 @@
 
               <a
                 class="icon-btn edit"
-                [routerLink]="[hospital.id, 'edit']"
+                [routerLink]="['hospital', hospital.id, 'edit']"
                 [title]="'COMMON.EDIT' | translate"
               >
                 <i class="fa-solid fa-pen-to-square"></i>

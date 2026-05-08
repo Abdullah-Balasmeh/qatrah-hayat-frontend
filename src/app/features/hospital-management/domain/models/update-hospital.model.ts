@@ -1,8 +1,8 @@
-export interface UpdateHospitalRequestModel {
+export interface UpdateHospitalModel {
   hospitalNameAr: string;
   hospitalNameEn: string;
 
-  addressAR: string;
+  addressAr: string;
   addressEn: string;
 
   branchId: number;

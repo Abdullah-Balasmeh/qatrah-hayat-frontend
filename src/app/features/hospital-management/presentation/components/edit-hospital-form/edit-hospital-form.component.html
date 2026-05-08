@@ -1,0 +1,211 @@
+<div class="form-container">
+  <form [formGroup]="editHospitalForm" (ngSubmit)="onSubmit()" novalidate>
+
+    <!-- Basic Information -->
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Edit-Hospital-Keys.HOSPITAL_BASIC_INFORMATION' | translate }}
+      </h5>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="editHospitalForm.controls.hospitalNameAr"
+            type="text"
+            [placeholder]="'Edit-Hospital-Keys.HOSPITAL_NAME_AR_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-hospital"
+            inputId="hospitalNameAr"
+          />
+
+          <div class="field-error-space">
+            @if (
+              editHospitalForm.controls.hospitalNameAr.touched ||
+              editHospitalForm.controls.hospitalNameAr.dirty
+            ) {
+              @if (editHospitalForm.controls.hospitalNameAr.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Edit-Hospital-Keys.HOSPITAL_NAME_AR_REQUIRED' | translate"
+                />
+              } @else if (editHospitalForm.controls.hospitalNameAr.hasError('maxlength')) {
+                <app-form-error-message
+                  [errorMessage]="'Edit-Hospital-Keys.HOSPITAL_NAME_MAX_LENGTH' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="editHospitalForm.controls.hospitalNameEn"
+            type="text"
+            [placeholder]="'Edit-Hospital-Keys.HOSPITAL_NAME_EN_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-hospital"
+            inputId="hospitalNameEn"
+          />
+
+          <div class="field-error-space">
+            @if (
+              editHospitalForm.controls.hospitalNameEn.touched ||
+              editHospitalForm.controls.hospitalNameEn.dirty
+            ) {
+              @if (editHospitalForm.controls.hospitalNameEn.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Edit-Hospital-Keys.HOSPITAL_NAME_EN_REQUIRED' | translate"
+                />
+              } @else if (editHospitalForm.controls.hospitalNameEn.hasError('maxlength')) {
+                <app-form-error-message
+                  [errorMessage]="'Edit-Hospital-Keys.HOSPITAL_NAME_MAX_LENGTH' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Address Information -->
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Edit-Hospital-Keys.HOSPITAL_ADDRESS_INFORMATION' | translate }}
+      </h5>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="editHospitalForm.controls.addressAr"
+            type="text"
+            [placeholder]="'Edit-Hospital-Keys.HOSPITAL_ADDRESS_AR_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-location-dot"
+            inputId="addressAR"
+          />
+
+          <div class="field-error-space">
+            @if (
+              editHospitalForm.controls.addressAr.touched ||
+              editHospitalForm.controls.addressAr.dirty
+            ) {
+              @if (editHospitalForm.controls.addressAr.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Edit-Hospital-Keys.HOSPITAL_ADDRESS_AR_REQUIRED' | translate"
+                />
+              } @else if (editHospitalForm.controls.addressAr.hasError('maxlength')) {
+                <app-form-error-message
+                  [errorMessage]="'Edit-Hospital-Keys.HOSPITAL_ADDRESS_MAX_LENGTH' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="editHospitalForm.controls.addressEn"
+            type="text"
+            [placeholder]="'Edit-Hospital-Keys.HOSPITAL_ADDRESS_EN_PLACEHOLDER' | translate"
+            prefixIcon="fa-solid fa-location-dot"
+            inputId="addressEn"
+          />
+
+          <div class="field-error-space">
+            @if (
+              editHospitalForm.controls.addressEn.touched ||
+              editHospitalForm.controls.addressEn.dirty
+            ) {
+              @if (editHospitalForm.controls.addressEn.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Edit-Hospital-Keys.HOSPITAL_ADDRESS_EN_REQUIRED' | translate"
+                />
+              } @else if (editHospitalForm.controls.addressEn.hasError('maxlength')) {
+                <app-form-error-message
+                  [errorMessage]="'Edit-Hospital-Keys.HOSPITAL_ADDRESS_MAX_LENGTH' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Branch + Status -->
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Edit-Hospital-Keys.HOSPITAL_BRANCH_INFORMATION' | translate }}
+      </h5>
+
+      @if (store.isActiveBranchesLoading()) {
+        <div class="info-message">
+          {{ 'Edit-Hospital-Keys.LOADING_BRANCHES' | translate }}
+        </div>
+      }
+
+      @if (!store.isActiveBranchesLoading() && branchOptions().length === 0) {
+        <div class="info-message warning-message">
+          {{ 'Edit-Hospital-Keys.NO_ACTIVE_BRANCHES' | translate }}
+        </div>
+      }
+
+      <div class="row g-3 align-items-center">
+        <div class="col-12 col-md-6">
+          <app-drop-down-with-label
+            [label]="'Edit-Hospital-Keys.BRANCH' | translate"
+            [options]="branchOptions()"
+            [selectedValue]="editHospitalForm.controls.branchId.value"
+            [placeholder]="'Edit-Hospital-Keys.SELECT_BRANCH' | translate"
+            [translateLabels]="false"
+            (valueChanged)="onBranchChange($event)"
+          />
+
+          <div class="field-error-space">
+            @if (
+              editHospitalForm.controls.branchId.touched ||
+              editHospitalForm.controls.branchId.dirty
+            ) {
+              @if (editHospitalForm.controls.branchId.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Edit-Hospital-Keys.BRANCH_REQUIRED' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label class="active-toggle">
+            <input type="checkbox" formControlName="isActive" />
+            <span class="active-toggle-box"></span>
+            <span>
+              {{ 'Edit-Hospital-Keys.HOSPITAL_IS_ACTIVE' | translate }}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-wrapper">
+      @if (store.errorMessage()) {
+        <app-form-error-message [errorMessage]="store.errorMessage()!" />
+      }
+
+      @if (showSuccessMessage()) {
+        <div class="success-message" role="alert">
+          <strong>
+            {{ 'Edit-Hospital-Keys.HOSPITAL_UPDATED_SUCCESSFULLY' | translate }}
+          </strong>
+        </div>
+      }
+
+      <app-primary-button
+        [label]="'Edit-Hospital-Keys.UPDATE_HOSPITAL' | translate"
+        type="submit"
+        [disabled]="
+          store.isActionLoading() ||
+          store.isActiveBranchesLoading() ||
+          branchOptions().length === 0
+        "
+        [isLoading]="store.isActionLoading()"
+      />
+    </div>
+  </form>
+</div>

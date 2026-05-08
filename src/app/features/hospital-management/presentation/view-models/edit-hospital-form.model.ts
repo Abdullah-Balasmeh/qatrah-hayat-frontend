@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 
-export interface AddHospitalFormModel {
+export interface EditHospitalFormModel {
   hospitalNameAr: FormControl<string>;
   hospitalNameEn: FormControl<string>;
 
@@ -8,4 +8,6 @@ export interface AddHospitalFormModel {
   addressEn: FormControl<string>;
 
   branchId: FormControl<number | null>;
+
+  isActive: FormControl<boolean>;
 }

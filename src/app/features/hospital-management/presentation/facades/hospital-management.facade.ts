@@ -6,8 +6,8 @@ import { Failure } from '../../../../core/errors/failure';
 import { HospitalManagementRepository } from '../../domain/repositories/hospital-management.repository';
 import { HospitalManagementStore, HospitalStatusFilter } from '../store/hospital-management.store';
 
-import { AddHospitalRequestModel } from '../../domain/models/add-hospital-request.model';
-import { UpdateHospitalRequestModel } from '../../domain/models/update-hospital-request.model';
+import { AddHospitalModel } from '../../domain/models/add-hospital.model';
+import { UpdateHospitalModel } from '../../domain/models/update-hospital.model';
 
 import { BranchManagementRepository } from '../../../branch-management/domain/repositories/branch-management.repository';
 
@@ -155,7 +155,7 @@ export class HospitalManagementFacade {
   }
 
   addHospital(
-    request: AddHospitalRequestModel,
+    request: AddHospitalModel,
     onSuccess?: () => void
   ): void {
     this.store.setActionLoading(true);
@@ -182,7 +182,7 @@ export class HospitalManagementFacade {
 
   updateHospital(
     hospitalId: number,
-    request: UpdateHospitalRequestModel,
+    request: UpdateHospitalModel,
     onSuccess?: () => void
   ): void {
     this.store.setActionLoading(true);
