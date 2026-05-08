@@ -1,4 +1,6 @@
-export interface UpdateBranchRequestModel {
+import { BranchWorkingHourDto } from "./branch-working-hour.dto";
+
+export interface AddBranchRequestDto {
   branchNameAr: string;
   branchNameEn: string;
 
@@ -7,11 +9,10 @@ export interface UpdateBranchRequestModel {
 
   managerUserId: number;
 
-  isActive: boolean;
-
   gpsLat: number;
   gpsLng: number;
 
   email?: string | null;
   phone?: string | null;
+   workingHours: BranchWorkingHourDto[];
 }

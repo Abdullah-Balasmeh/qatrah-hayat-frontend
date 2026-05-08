@@ -1,5 +1,6 @@
 {
   "Shared-Keys": "Shared-Keys",
+  "NO_OPTIONS_AVAILABLE": "لا يوجد خيارات متاحة",
   "Marital-Status-Keys": {
     "SINGLE": "أعزب / عزباء",
     "SINGLE_MALE": "أعزب",
@@ -302,6 +303,11 @@
     "BRANCH_STATUS": "حالة الفرع",
     "BRANCH_ACTION": "إجراءات",
     "NO_BRANCH_FOUND": "لا يوجد فروع",
+    "SEARCH_PLACEHOLDER": "أبحث باسم الفرع أو الموقع...",
+    "FILTER_BY_STATUS": "تصفية حسب الحالة",
+    "ALL_STATUS": "جميع الحالات",
+    "ACTIVE_ONLY": "الحالات النشطة فقط",
+    "INACTIVE_ONLY": "الحالات غير النشطة فقط",
     "NOT_FOUND_DESCRIPTION": "جرّب تغيير البحث أو الفلاتر.",
     "ACTIVATE_BRANCH_TITLE": "تفعيل الفرع",
     "ACTIVATE_BRANCH_MESSAGE": "هل أنت متأكد من تفعيل هذا الفرع؟",
@@ -345,8 +351,25 @@
     "GPS_LNG_REQUIRED": "خط الطول مطلوب.",
     "GPS_LNG_INVALID": "يجب أن يكون خط الطول بين -180 و 180.",
     "BRANCH_EMAIL_INVALID": "يرجى إدخال بريد إلكتروني صحيح.",
-    "BRANCH_PHONE_INVALID": "يجب أن يبدأ رقم الهاتف بـ 07 ويتكوّن من 10 أرقام.",
-    "BRANCH_ADDED_SUCCESSFULLY": "تمت إضافة الفرع بنجاح"
+    "BRANCH_PHONE_INVALID": "يجب أن يبدأ رقم الهاتف بـ 0 وأن يحتوي على أرقام فقط وبحد أقصى 10 أرقام.",
+    "BRANCH_ADDED_SUCCESSFULLY": "تمت إضافة الفرع بنجاح",
+    "BRANCH_WORKING_HOURS_INFORMATION": "ساعات عمل الفرع",
+    "OPEN_TIME": "وقت الفتح",
+    "CLOSE_TIME": "وقت الإغلاق",
+    "IS_CLOSED": "مغلق",
+    "BRANCH_WORKING_HOURS_DESCRIPTION": "حدد أيام وساعات عمل الفرع، ويمكن تعليم اليوم كمغلق عند الحاجة.",
+    "OPEN_DAY": "يوم عمل",
+    "CLOSED_DAY": "مغلق",
+    "WORKING_HOURS_REQUIRED": "ساعات العمل مطلوبة."
+  },
+  "Days-Keys": {
+    "0": "الأحد",
+    "1": "الإثنين",
+    "2": "الثلاثاء",
+    "3": "الأربعاء",
+    "4": "الخميس",
+    "5": "الجمعة",
+    "6": "السبت"
   },
   "Hospitals-Management-Keys": {
     "PAGE_BADGE": "الإدارة",

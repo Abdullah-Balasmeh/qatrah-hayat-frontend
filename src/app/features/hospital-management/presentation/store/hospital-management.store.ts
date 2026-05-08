@@ -2,7 +2,7 @@ import { computed, Injectable, signal } from '@angular/core';
 
 import { HospitalResponseModel } from '../../domain/models/hospital-response.model';
 import { AvailableDoctorModel } from '../../domain/models/available-doctor.model';
-import { BranchResponseModel } from '../../../branch-management/domain/models/branch-response.model';
+import { BranchInfoModel } from '../../../branch-management/domain/models/branch-info.model';
 
 export type HospitalStatusFilter = 'all' | 'active' | 'inactive';
 
@@ -19,7 +19,7 @@ export class HospitalManagementStore {
   readonly lastUpdate = signal<string | null>(null);
 
   // Dropdown Data
-  readonly activeBranches = signal<BranchResponseModel[]>([]);
+  readonly activeBranches = signal<BranchInfoModel[]>([]);
   readonly availableDoctors = signal<AvailableDoctorModel[]>([]);
 
   // Filters
@@ -95,7 +95,7 @@ export class HospitalManagementStore {
     this.lastUpdate.set(data.lastUpdate);
   }
 
-  setActiveBranches(branches: BranchResponseModel[]): void {
+  setActiveBranches(branches: BranchInfoModel[]): void {
     this.activeBranches.set(branches);
   }
 

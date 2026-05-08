@@ -1,5 +1,6 @@
 {
   "Shared-Keys": "Shared-Keys",
+  "NO_OPTIONS_AVAILABLE": "No Options Available",
   "Marital-Status-Keys": {
     "SINGLE": "Single",
     "SINGLE_MALE": "Single",
@@ -301,6 +302,11 @@
     "BRANCH_CONTACT": "Branch Contact",
     "BRANCH_STATUS": "Branch Status",
     "BRANCH_ACTION": "Branch Action",
+    "SEARCH_PLACEHOLDER": "Search by branch name or location...",
+    "FILTER_BY_STATUS": "Filter by status",
+    "ALL_STATUS": "All Statuses",
+    "ACTIVE_ONLY": "Active Only",
+    "INACTIVE_ONLY": "Inactive Only",
     "NO_BRANCH_FOUND": "No branch found",
     "NOT_FOUND_DESCRIPTION": "Try changing the search term or filters.",
     "ACTIVATE_BRANCH_TITLE": "Activate Branch",
@@ -345,8 +351,25 @@
     "GPS_LNG_REQUIRED": "GPS longitude is required.",
     "GPS_LNG_INVALID": "GPS longitude must be between -180 and 180.",
     "BRANCH_EMAIL_INVALID": "Please enter a valid email address.",
-    "BRANCH_PHONE_INVALID": "Phone number must start with 07 and contain exactly 10 digits.",
-    "BRANCH_ADDED_SUCCESSFULLY": "Branch added successfully."
+    "BRANCH_PHONE_INVALID": "Phone number must start with 0, contain digits only, and be at most 10 digits.",
+    "BRANCH_ADDED_SUCCESSFULLY": "Branch added successfully.",
+    "BRANCH_WORKING_HOURS_INFORMATION": "Branch Working Hours",
+    "OPEN_TIME": "Open Time",
+    "CLOSE_TIME": "Close Time",
+    "IS_CLOSED": "Closed",
+    "BRANCH_WORKING_HOURS_DESCRIPTION": "Set the branch working days and hours. You can mark a day as closed when needed.",
+    "OPEN_DAY": "Working day",
+    "CLOSED_DAY": "Closed",
+    "WORKING_HOURS_REQUIRED": "Working hours are required."
+  },
+  "Days-Keys": {
+    "0": "Sunday",
+    "1": "Monday",
+    "2": "Tuesday",
+    "3": "Wednesday",
+    "4": "Thursday",
+    "5": "Friday",
+    "6": "Saturday"
   },
   "Hospitals-Management-Keys": {
     "PAGE_BADGE": "Management",

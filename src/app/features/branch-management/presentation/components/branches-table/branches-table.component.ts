@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { RoleBadgeComponent } from '../../../../user-management/presentation/components/role-badge/role-badge.component';
 import { UserStatusBadgeComponent } from '../../../../user-management/presentation/components/user-status-badge/user-status-badge.component';
-import { BranchResponseModel } from '../../../domain/models/branch-response.model';
+import { BranchInfoModel } from '../../../domain/models/branch-info.model';
 import { BranchStatusBadgeComponent } from "../branch-status-badge/branch-status-badge.component";
 
 @Component({
@@ -16,7 +16,7 @@ import { BranchStatusBadgeComponent } from "../branch-status-badge/branch-status
   styleUrl: './branches-table.component.css'
 })
 export class BranchesTableComponent {
-  readonly branches = input.required<BranchResponseModel[]>();
+  readonly branches = input.required<BranchInfoModel[]>();
 
   private readonly languageService = inject(LanguageService);
 

@@ -2,15 +2,16 @@ import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ApiService } from '../../../../core/services/api.service';
-
-import { PagedResultModel } from '../../../../core/models/paged-result.model';
-import { BranchResponseModel } from '../../domain/models/branch-response.model';
-import { BranchStatisticsResponseModel } from '../../domain/models/branch-statistics-response.model';
-import { BranchQueryModel } from '../../domain/models/branch-query.model';
-import { AddBranchRequestModel } from '../../domain/models/add-branch-request.model';
-import { UpdateBranchRequestModel } from '../../domain/models/update-branch-request.model';
 import { API_ENDPOINTS } from '../../../../core/constants/api.constants';
-import { AvailableBranchManagerModel } from '../../domain/models/available-branch-manager.model';
+import { PagedResultModel } from '../../../../core/models/paged-result.model';
+
+import { BranchQueryModel } from '../../domain/models/branch-query.model';
+
+import { BranchResponseDto } from '../dtos/branch-response.dto';
+import { BranchStatisticsResponseDto } from '../dtos/branch-statistics-response.dto';
+import { AddBranchRequestDto } from '../dtos/add-branch-request.dto';
+import { UpdateBranchRequestDto } from '../dtos/update-branch-request.dto';
+import { AvailableBranchManagerDto } from '../dtos/available-branch-manager.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,10 @@ import { AvailableBranchManagerModel } from '../../domain/models/available-branc
 export class BranchManagementApiService {
   private readonly apiService = inject(ApiService);
 
-  getAllBranches(query: BranchQueryModel): Observable<PagedResultModel<BranchResponseModel>> {
-    return this.apiService.get<PagedResultModel<BranchResponseModel>>(
+  getAllBranches(
+    query: BranchQueryModel
+  ): Observable<PagedResultModel<BranchResponseDto>> {
+    return this.apiService.get<PagedResultModel<BranchResponseDto>>(
       API_ENDPOINTS.branchManagement.getAllBranchesEndpoint,
       {
         params: {
@@ -34,33 +37,35 @@ export class BranchManagementApiService {
     );
   }
 
-  getBranchById(branchId: number): Observable<BranchResponseModel> {
+  getBranchById(branchId: number): Observable<BranchResponseDto> {
     const url = API_ENDPOINTS.branchManagement.getBranchByIdEndpoint
       .replace('{branchId}', branchId.toString());
 
-    return this.apiService.get<BranchResponseModel>(url);
+    return this.apiService.get<BranchResponseDto>(url);
   }
 
-  getStatistics(): Observable<BranchStatisticsResponseModel> {
-    return this.apiService.get<BranchStatisticsResponseModel>(
+  getStatistics(): Observable<BranchStatisticsResponseDto> {
+    return this.apiService.get<BranchStatisticsResponseDto>(
       API_ENDPOINTS.branchManagement.getBranchesStatisticsEndpoint
     );
   }
-  getAvailableManagers(
-  currentBranchId?: number | null
-): Observable<AvailableBranchManagerModel[]> {
-  return this.apiService.get<AvailableBranchManagerModel[]>(
-    API_ENDPOINTS.branchManagement.getAvailableBranchManagersEndpoint,
-    {
-      params: currentBranchId
-        ? { currentBranchId }
-        : {}
-    }
-  );
-}
 
-  addBranch(request: AddBranchRequestModel): Observable<BranchResponseModel> {
-    return this.apiService.post<AddBranchRequestModel, BranchResponseModel>(
+  getAvailableManagers(
+    currentBranchId?: number | null
+  ): Observable<AvailableBranchManagerDto[]> {
+    return this.apiService.get<AvailableBranchManagerDto[]>(
+      API_ENDPOINTS.branchManagement.getAvailableBranchManagersEndpoint,
+      {
+        params:
+          currentBranchId !== null && currentBranchId !== undefined
+            ? { currentBranchId }
+            : {}
+      }
+    );
+  }
+
+  addBranch(request: AddBranchRequestDto): Observable<BranchResponseDto> {
+    return this.apiService.post<AddBranchRequestDto, BranchResponseDto>(
       API_ENDPOINTS.branchManagement.addBranchEndpoint,
       request
     );
@@ -68,12 +73,12 @@ export class BranchManagementApiService {
 
   updateBranch(
     branchId: number,
-    request: UpdateBranchRequestModel
-  ): Observable<BranchResponseModel> {
+    request: UpdateBranchRequestDto
+  ): Observable<BranchResponseDto> {
     const url = API_ENDPOINTS.branchManagement.updateBranchEndpoint
       .replace('{branchId}', branchId.toString());
 
-    return this.apiService.put<UpdateBranchRequestModel, BranchResponseModel>(
+    return this.apiService.put<UpdateBranchRequestDto, BranchResponseDto>(
       url,
       request
     );

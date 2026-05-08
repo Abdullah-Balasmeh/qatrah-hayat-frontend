@@ -1,4 +1,4 @@
-export interface BranchStatisticsResponseModel {
+export interface BranchStatisticsResponseDto {
   totalBranches: number;
   activeBranches: number;
   inactiveBranches: number;

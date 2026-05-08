@@ -67,3 +67,13 @@
   font-weight: 500;
   color: #777;
 }
+
+input[type="time"] {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}

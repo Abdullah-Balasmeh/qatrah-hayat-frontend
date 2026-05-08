@@ -2,32 +2,32 @@ import { Observable } from 'rxjs';
 
 import { PagedResultModel } from '../../../../core/models/paged-result.model';
 
-import { BranchResponseModel } from '../models/branch-response.model';
-import { BranchStatisticsResponseModel } from '../models/branch-statistics-response.model';
+import { BranchInfoModel } from '../models/branch-info.model';
+import { BranchStatisticsModel } from '../models/branch-statistics.model';
 import { BranchQueryModel } from '../models/branch-query.model';
-import { AddBranchRequestModel } from '../models/add-branch-request.model';
-import { UpdateBranchRequestModel } from '../models/update-branch-request.model';
+import { AddBranchModel } from '../models/add-branch.model';
+import { UpdateBranchModel } from '../models/update-branch.model';
 import { AvailableBranchManagerModel } from '../models/available-branch-manager.model';
 
 export abstract class BranchManagementRepository {
   abstract getAllBranches(
     query: BranchQueryModel
-  ): Observable<PagedResultModel<BranchResponseModel>>;
+  ): Observable<PagedResultModel<BranchInfoModel>>;
 
-  abstract getBranchById(branchId: number): Observable<BranchResponseModel>;
+  abstract getBranchById(branchId: number): Observable<BranchInfoModel>;
 
-  abstract getStatistics(): Observable<BranchStatisticsResponseModel>;
+  abstract getStatistics(): Observable<BranchStatisticsModel>;
 abstract getAvailableManagers(
   currentBranchId?: number | null
 ): Observable<AvailableBranchManagerModel[]>;
   abstract addBranch(
-    request: AddBranchRequestModel
-  ): Observable<BranchResponseModel>;
+    request: AddBranchModel
+  ): Observable<BranchInfoModel>;
 
   abstract updateBranch(
     branchId: number,
-    request: UpdateBranchRequestModel
-  ): Observable<BranchResponseModel>;
+    request: UpdateBranchModel
+  ): Observable<BranchInfoModel>;
 
   abstract softDeleteBranch(branchId: number): Observable<void>;
 

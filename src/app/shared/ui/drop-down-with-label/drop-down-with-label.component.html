@@ -25,7 +25,8 @@
 
   @if (isOpen()) {
     <div class="dropdown-menu">
-      @for (option of options(); track option.value) {
+      @if (options().length > 0) {
+        @for (option of options(); track option.value) {
         <button
           type="button"
           class="dropdown-option"
@@ -49,6 +50,13 @@
           @if (option.value === selectedValue()) {
             <i class="fa-solid fa-check check-icon"></i>
           }
+        </button>
+      }
+      } @else {
+        <button type="button" class="dropdown-no-option" disabled>
+          <span class="option-content">
+            <span>{{ "NO_OPTIONS_AVAILABLE" | translate }}</span>
+          </span>
         </button>
       }
     </div>

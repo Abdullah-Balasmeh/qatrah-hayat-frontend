@@ -7,14 +7,14 @@
     (searchSubmitted)="onSearch()"
     inputId="users-search"
     autocomplete="off"
-    [placeholder]="'Admin-Keys.SEARCH_PLACEHOLDER' | translate"
+    [placeholder]="'Branches-Management-Keys.SEARCH_PLACEHOLDER' | translate"
   ></app-search-bar>
 </div>
 
   <app-filter-button
     [options]="statusOptions"
     [selectedValue]="selectedStatus()"
-    [placeholder]="'Admin-Keys.FILTER_BY_STATUS'"
+    [placeholder]="'Branches-Management-Keys.FILTER_BY_STATUS'"
     [prefixIcon]="'fa-solid fa-filter'"
     [translateLabels]="true"
     (valueChanged)="onStatusChange($event)"

@@ -1,17 +1,18 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 import { PagedResultModel } from '../../../../core/models/paged-result.model';
 
 import { BranchManagementRepository } from '../../domain/repositories/branch-management.repository';
 import { BranchManagementApiService } from '../services/branch-management-api.service';
+import { BranchManagementMapper } from '../mappers/branch-management.mapper';
 
-import { BranchResponseModel } from '../../domain/models/branch-response.model';
-import { BranchStatisticsResponseModel } from '../../domain/models/branch-statistics-response.model';
-import { BranchQueryModel } from '../../domain/models/branch-query.model';
-import { AddBranchRequestModel } from '../../domain/models/add-branch-request.model';
-import { UpdateBranchRequestModel } from '../../domain/models/update-branch-request.model';
 import { AvailableBranchManagerModel } from '../../domain/models/available-branch-manager.model';
+import { BranchQueryModel } from '../../domain/models/branch-query.model';
+import { BranchInfoModel } from '../../domain/models/branch-info.model';
+import { BranchStatisticsModel } from '../../domain/models/branch-statistics.model';
+import { AddBranchModel } from '../../domain/models/add-branch.model';
+import { UpdateBranchModel } from '../../domain/models/update-branch.model';
 
 @Injectable()
 export class BranchManagementRepositoryImpl extends BranchManagementRepository {
@@ -19,35 +20,50 @@ export class BranchManagementRepositoryImpl extends BranchManagementRepository {
 
   override getAllBranches(
     query: BranchQueryModel
-  ): Observable<PagedResultModel<BranchResponseModel>> {
-    return this.branchManagementApiService.getAllBranches(query);
+  ): Observable<PagedResultModel<BranchInfoModel>> {
+    return this.branchManagementApiService.getAllBranches(query).pipe(
+      map(result => ({
+        ...result,
+        items: result.items.map(BranchManagementMapper.branchToModel)
+      }))
+    );
   }
 
-  override getBranchById(branchId: number): Observable<BranchResponseModel> {
-    return this.branchManagementApiService.getBranchById(branchId);
+  override getBranchById(branchId: number): Observable<BranchInfoModel> {
+    return this.branchManagementApiService.getBranchById(branchId).pipe(
+      map(BranchManagementMapper.branchToModel)
+    );
   }
 
-  override getStatistics(): Observable<BranchStatisticsResponseModel> {
-    return this.branchManagementApiService.getStatistics();
+  override getStatistics(): Observable<BranchStatisticsModel> {
+    return this.branchManagementApiService.getStatistics().pipe(
+      map(BranchManagementMapper.statisticsToModel)
+    );
   }
 
   override getAvailableManagers(
-  currentBranchId?: number | null
-): Observable<AvailableBranchManagerModel[]> {
-  return this.branchManagementApiService.getAvailableManagers(currentBranchId);
-}
+    currentBranchId?: number | null
+  ): Observable<AvailableBranchManagerModel[]> {
+    return this.branchManagementApiService.getAvailableManagers(currentBranchId).pipe(
+      map(managers => managers.map(BranchManagementMapper.availableManagerToModel))
+    );
+  }
 
   override addBranch(
-    request: AddBranchRequestModel
-  ): Observable<BranchResponseModel> {
-    return this.branchManagementApiService.addBranch(request);
+    request: AddBranchModel
+  ): Observable<BranchInfoModel> {
+    return this.branchManagementApiService
+      .addBranch(BranchManagementMapper.addRequestToDto(request))
+      .pipe(map(BranchManagementMapper.branchToModel));
   }
 
   override updateBranch(
     branchId: number,
-    request: UpdateBranchRequestModel
-  ): Observable<BranchResponseModel> {
-    return this.branchManagementApiService.updateBranch(branchId, request);
+    request: UpdateBranchModel
+  ): Observable<BranchInfoModel> {
+    return this.branchManagementApiService
+      .updateBranch(branchId, BranchManagementMapper.updateRequestToDto(request))
+      .pipe(map(BranchManagementMapper.branchToModel));
   }
 
   override softDeleteBranch(branchId: number): Observable<void> {

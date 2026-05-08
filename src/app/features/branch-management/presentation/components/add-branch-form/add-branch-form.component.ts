@@ -2,8 +2,9 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
+  FormGroup,
   ReactiveFormsModule,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -16,9 +17,13 @@ import { DropDownWithLabelComponent } from '../../../../../shared/ui/drop-down-w
 import { DropdownOption } from '../../../../../shared/ui/app-filter-button/app-filter-button.component';
 
 import { BranchManagementFacade } from '../../facades/branch-management.facade';
-import { AddBranchFormModel } from '../../view-models/add-branch-form.model';
-import { AddBranchRequestModel } from '../../../domain/models/add-branch-request.model';
+import {
+  AddBranchFormModel,
+  BranchWorkingHourFormGroup,
+} from '../../view-models/add-branch-form.model';
+import { AddBranchModel } from '../../../domain/models/add-branch.model';
 import { LanguageService } from '../../../../../core/services/language.service';
+import { BranchDayOfWeek } from '../../../domain/models/branch-working-hour.model';
 
 @Component({
   selector: 'app-add-branch-form',
@@ -29,10 +34,10 @@ import { LanguageService } from '../../../../../core/services/language.service';
     TextFieldComponent,
     DropDownWithLabelComponent,
     FormErrorMessageComponent,
-    AppPrimaryButtonComponent
+    AppPrimaryButtonComponent,
   ],
   templateUrl: './add-branch-form.component.html',
-  styleUrl: './add-branch-form.component.css'
+  styleUrl: './add-branch-form.component.css',
 })
 export class AddBranchFormComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
@@ -47,61 +52,59 @@ export class AddBranchFormComponent implements OnInit {
   readonly isArabic = computed(() => {
     return this.languageService.currentLangSignal() === 'ar';
   });
+  readonly daysOfWeek: BranchDayOfWeek[] = [0, 1, 2, 3, 4, 5, 6];
 
   readonly managerOptions = computed<DropdownOption<number>[]>(() => {
-    return this.store.availableManagers().map(manager => ({
+    return this.store.availableManagers().map((manager) => ({
       value: manager.userId,
-      label: this.isArabic()
-        ? manager.fullNameAr
-        : manager.fullNameEn
+      label: this.isArabic() ? manager.fullNameAr : manager.fullNameEn,
     }));
   });
 
   readonly addBranchForm = this.fb.group<AddBranchFormModel>({
     branchNameAr: this.fb.nonNullable.control('', [
       Validators.required,
-      Validators.maxLength(256)
+      Validators.maxLength(256),
     ]),
 
     branchNameEn: this.fb.nonNullable.control('', [
       Validators.required,
-      Validators.maxLength(256)
+      Validators.maxLength(256),
     ]),
 
     addressAr: this.fb.nonNullable.control('', [
       Validators.required,
-      Validators.maxLength(500)
+      Validators.maxLength(500),
     ]),
 
     addressEn: this.fb.nonNullable.control('', [
       Validators.required,
-      Validators.maxLength(500)
+      Validators.maxLength(500),
     ]),
 
-    managerUserId: this.fb.control<number | null>(null, [
-      Validators.required
-    ]),
+    managerUserId: this.fb.control<number | null>(null, [Validators.required]),
 
     gpsLat: this.fb.control<number | null>(null, [
       Validators.required,
       Validators.min(-90),
-      Validators.max(90)
+      Validators.max(90),
     ]),
 
     gpsLng: this.fb.control<number | null>(null, [
       Validators.required,
       Validators.min(-180),
-      Validators.max(180)
+      Validators.max(180),
     ]),
 
     email: this.fb.nonNullable.control('', [
       Validators.email,
-      Validators.maxLength(256)
+      Validators.maxLength(256),
     ]),
 
-    phone: this.fb.nonNullable.control('', [
-      Validators.pattern(/^07\d{8}$/)
-    ])
+    phone: this.fb.nonNullable.control('', [Validators.pattern(/^0\d{1,9}$/)]),
+    workingHours: this.fb.array(
+      this.daysOfWeek.map((day) => this.createWorkingHourGroup(day)),
+    ),
   });
 
   ngOnInit(): void {
@@ -124,7 +127,7 @@ export class AddBranchFormComponent implements OnInit {
 
     const formValue = this.addBranchForm.getRawValue();
 
-    const request: AddBranchRequestModel = {
+    const request: AddBranchModel = {
       branchNameAr: formValue.branchNameAr.trim(),
       branchNameEn: formValue.branchNameEn.trim(),
 
@@ -137,7 +140,13 @@ export class AddBranchFormComponent implements OnInit {
       gpsLng: Number(formValue.gpsLng),
 
       email: formValue.email.trim() || null,
-      phone: formValue.phone.trim() || null
+      phone: formValue.phone.trim() || null,
+      workingHours: formValue.workingHours.map((wh) => ({
+        dayOfWeek: wh.dayOfWeek!,
+        openTime: this.normalizeTimeForApi(wh.openTime!),
+        closeTime: this.normalizeTimeForApi(wh.closeTime!),
+        isClosed: wh.isClosed!,
+      })),
     };
 
     this.facade.addBranch(request, () => {
@@ -149,4 +158,23 @@ export class AddBranchFormComponent implements OnInit {
       }, 800);
     });
   }
+
+  private createWorkingHourGroup(
+    day: BranchDayOfWeek,
+  ): FormGroup<BranchWorkingHourFormGroup> {
+    return this.fb.group<BranchWorkingHourFormGroup>({
+      dayOfWeek: this.fb.nonNullable.control(day),
+      openTime: this.fb.nonNullable.control('08:00', [Validators.required]),
+      closeTime: this.fb.nonNullable.control('20:00', [Validators.required]),
+      isClosed: this.fb.nonNullable.control(false),
+    });
+  }
+
+  private normalizeTimeForApi(time: string): string {
+  if (!time) {
+    return time;
+  }
+
+  return time.length === 5 ? `${time}:00` : time;
+}
 }

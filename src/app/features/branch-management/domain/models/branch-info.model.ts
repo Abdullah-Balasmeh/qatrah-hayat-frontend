@@ -1,4 +1,6 @@
-export interface BranchResponseModel {
+import { BranchWorkingHourModel } from "./branch-working-hour.model";
+
+export interface BranchInfoModel {
   id: number;
 
   branchNameAr: string;
@@ -23,4 +25,6 @@ export interface BranchResponseModel {
   phone: string | null;
 
   updatedAt: string | null;
+
+   workingHours: BranchWorkingHourModel[];
 }

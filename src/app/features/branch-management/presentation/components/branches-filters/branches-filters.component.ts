@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { AppFilterButtonComponent, DropdownOption } from '../../../../../shared/ui/app-filter-button/app-filter-button.component';
 import { SearchBarComponent } from '../../../../../shared/ui/search-bar/search-bar.component';
-import { UserStatusFilter } from '../../../../user-management/presentation/components/users-filters/users-filters.component';
 export type BranchStatusFilter = 'all' | 'active' | 'inactive';
 @Component({
   selector: 'app-branches-filters',
@@ -16,11 +15,11 @@ export type BranchStatusFilter = 'all' | 'active' | 'inactive';
 })
 export class BranchesFiltersComponent {
   readonly searchValue = input.required<string>();
-  readonly selectedStatus = input<UserStatusFilter>('all');
+  readonly selectedStatus = input<BranchStatusFilter>('all');
 
   readonly searchValueChanged = output<string>();
   readonly searchSubmitted = output<void>();
-  readonly statusChanged = output<UserStatusFilter>();
+  readonly statusChanged = output<BranchStatusFilter>();
 
   private searchDebounceTimer: ReturnType<typeof setTimeout> | null = null;
 
@@ -57,7 +56,7 @@ export class BranchesFiltersComponent {
     this.searchSubmitted.emit();
   }
 
-  onStatusChange(value: UserStatusFilter): void {
+  onStatusChange(value: BranchStatusFilter): void {
     this.statusChanged.emit(value);
   }
 

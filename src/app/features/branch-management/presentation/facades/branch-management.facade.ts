@@ -6,8 +6,8 @@ import { BranchManagementStore } from '../store/branch-management.store';
 
 import { Failure } from '../../../../core/errors/failure';
 
-import { AddBranchRequestModel } from '../../domain/models/add-branch-request.model';
-import { UpdateBranchRequestModel } from '../../domain/models/update-branch-request.model';
+import { AddBranchModel } from '../../domain/models/add-branch.model';
+import { UpdateBranchModel } from '../../domain/models/update-branch.model';
 import { BranchStatusFilter } from '../components/branches-filters/branches-filters.component';
 
 @Injectable()
@@ -158,7 +158,7 @@ export class BranchManagementFacade {
   // ============================================================
 
   addBranch(
-    request: AddBranchRequestModel,
+    request: AddBranchModel,
     onSuccess?: () => void
   ): void {
     this.store.setActionLoading(true);
@@ -187,7 +187,7 @@ export class BranchManagementFacade {
 
   updateBranch(
     branchId: number,
-    request: UpdateBranchRequestModel,
+    request: UpdateBranchModel,
     onSuccess?: () => void
   ): void {
     this.store.setActionLoading(true);

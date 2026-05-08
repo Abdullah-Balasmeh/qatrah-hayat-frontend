@@ -1,6 +1,6 @@
 import { computed, Injectable, signal } from '@angular/core';
 
-import { BranchResponseModel } from '../../domain/models/branch-response.model';
+import { BranchInfoModel } from '../../domain/models/branch-info.model';
 import { BranchStatusFilter } from '../components/branches-filters/branches-filters.component';
 import { AvailableBranchManagerModel } from '../../domain/models/available-branch-manager.model';
 
@@ -10,8 +10,8 @@ export class BranchManagementStore {
   // Data State
   // ============================================================
 
-  readonly branches = signal<BranchResponseModel[]>([]);
-  readonly selectedBranch = signal<BranchResponseModel | null>(null);
+  readonly branches = signal<BranchInfoModel[]>([]);
+  readonly selectedBranch = signal<BranchInfoModel | null>(null);
 
   // ============================================================
   // Statistics State
@@ -101,11 +101,11 @@ readonly isAvailableManagersLoading = signal(false);
 setAvailableManagersLoading(value: boolean): void {
   this.isAvailableManagersLoading.set(value);
 }
-  setBranches(branches: BranchResponseModel[]): void {
+  setBranches(branches: BranchInfoModel[]): void {
     this.branches.set(branches);
   }
 
-  setSelectedBranch(branch: BranchResponseModel | null): void {
+  setSelectedBranch(branch: BranchInfoModel | null): void {
     this.selectedBranch.set(branch);
   }
 

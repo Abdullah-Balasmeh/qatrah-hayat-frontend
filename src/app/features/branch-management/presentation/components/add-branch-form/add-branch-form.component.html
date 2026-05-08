@@ -189,7 +189,7 @@
                 addBranchForm.controls.gpsLat.hasError('max')
               ) {
                 <app-form-error-message
-                  [errorMessage]="'Add-Branches-Keys.GPS_LAT_INVALID' | translate"
+                  [errorMessage]="'Add-Branch-Keys.GPS_LAT_INVALID' | translate"
                 />
               }
             }
@@ -284,6 +284,84 @@
         </div>
       </div>
     </div>
+
+   <!-- Section 6: Working Hours Information -->
+<div class="form-section working-hours-section">
+  <div class="section-header">
+    <div>
+      <h5 class="section-title">
+        {{ 'Add-Branch-Keys.BRANCH_WORKING_HOURS_INFORMATION' | translate }}
+      </h5>
+
+      <p class="section-description">
+        {{ 'Add-Branch-Keys.BRANCH_WORKING_HOURS_DESCRIPTION' | translate }}
+      </p>
+    </div>
+  </div>
+
+  <div formArrayName="workingHours" class="working-hours-list">
+    @for (workingHour of addBranchForm.controls.workingHours.controls; track $index) {
+      <div class="working-hour-row" [formGroupName]="$index">
+        <div class="day-cell">
+          <span class="day-icon">
+            <i class="fa-solid fa-calendar-day"></i>
+          </span>
+
+          <div>
+            <strong>
+              {{ ('Days-Keys.' + workingHour.controls.dayOfWeek.value) | translate }}
+            </strong>
+
+            <small>
+              {{ workingHour.controls.isClosed.value
+                ? ('Add-Branch-Keys.CLOSED_DAY' | translate)
+                : ('Add-Branch-Keys.OPEN_DAY' | translate)
+              }}
+            </small>
+          </div>
+        </div>
+
+        <label class="closed-toggle">
+          <input type="checkbox" formControlName="isClosed" />
+
+          <span class="toggle-box"></span>
+
+          <span class="toggle-label">
+            {{ 'Add-Branch-Keys.IS_CLOSED' | translate }}
+          </span>
+        </label>
+
+        <div class="time-field">
+          <label>
+            {{ 'Add-Branch-Keys.OPEN_TIME' | translate }}
+          </label>
+
+          <app-text-field
+            [control]="workingHour.controls.openTime"
+            type="time"
+            [placeholder]="'Add-Branch-Keys.OPEN_TIME' | translate"
+            prefixIcon="fa-solid fa-clock"
+            [inputId]="'openTime-' + $index"
+          />
+        </div>
+
+        <div class="time-field">
+          <label>
+            {{ 'Add-Branch-Keys.CLOSE_TIME' | translate }}
+          </label>
+
+          <app-text-field
+            [control]="workingHour.controls.closeTime"
+            type="time"
+            [placeholder]="'Add-Branch-Keys.CLOSE_TIME' | translate"
+            prefixIcon="fa-solid fa-clock"
+            [inputId]="'closeTime-' + $index"
+          />
+        </div>
+      </div>
+    }
+  </div>
+</div>
 
     <!-- Submit -->
     <div class="submit-wrapper">

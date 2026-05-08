@@ -1,4 +1,6 @@
-export interface AddBranchRequestModel {
+import { BranchWorkingHourModel } from "./branch-working-hour.model";
+
+export interface UpdateBranchModel {
   branchNameAr: string;
   branchNameEn: string;
 
@@ -7,9 +9,12 @@ export interface AddBranchRequestModel {
 
   managerUserId: number;
 
+  isActive: boolean;
+
   gpsLat: number;
   gpsLng: number;
 
   email?: string | null;
   phone?: string | null;
+   workingHours: BranchWorkingHourModel[];
 }
