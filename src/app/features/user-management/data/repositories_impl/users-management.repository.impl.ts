@@ -25,6 +25,7 @@ import { mapCreateStaffFromRegistryModelToDto } from '../mappers/create-staff-fr
 import { mapPromoteCitizenToStaffModelToDto } from '../mappers/promote-citizen-to-staff-request.mapper';
 import { mapUpdateStaffModelToDto } from '../mappers/update-staff-request.mapper';
 import { mapUpdateCitizenModelToDto } from '../mappers/update-citizen-request.mapper';
+import { mapUserManagementQueryModelToDto } from '../mappers/user-management-query.mapper';
 
 @Injectable({
   providedIn: 'root'
@@ -37,11 +38,13 @@ export class UsersManagementRepositoryImpl extends UsersManagementRepository {
   override getAllStaffUsers(
     query: UserManagementQueryModel
   ): Observable<PagedResultModel<StaffInfoModel>> {
-    return this.apiService.getAllStaffUsers(query).pipe(
-      map(dto =>
-        mapPagedResultDtoToModel(dto, mapStaffInfoResponseDtoToModel)
+    const dto = mapUserManagementQueryModelToDto(query);
+
+    return this.apiService.getAllStaffUsers(dto).pipe(
+      map(result =>
+        mapPagedResultDtoToModel(result, mapStaffInfoResponseDtoToModel)
       )
-    );
+);
   }
 
   override getStaffById(userId: number): Observable<StaffInfoModel> {
@@ -93,11 +96,13 @@ export class UsersManagementRepositoryImpl extends UsersManagementRepository {
   override getAllCitizenUsers(
     query: UserManagementQueryModel
   ): Observable<PagedResultModel<CitizenInfoModel>> {
-    return this.apiService.getAllCitizenUsers(query).pipe(
-      map(dto =>
-        mapPagedResultDtoToModel(dto, mapCitizenInfoResponseDtoToModel)
-      )
-    );
+   const dto = mapUserManagementQueryModelToDto(query);
+
+  return this.apiService.getAllCitizenUsers(dto).pipe(
+  map(result =>
+    mapPagedResultDtoToModel(result, mapCitizenInfoResponseDtoToModel)
+  )
+);
   }
 
   override getCitizenById(userId: number): Observable<CitizenInfoModel> {

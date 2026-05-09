@@ -1,0 +1,129 @@
+@if (store.errorMessage()) {
+  <app-alert-error [errorMessage]="store.errorMessage()!"></app-alert-error>
+}
+
+@if (store.loading()) {
+  <app-loading></app-loading>
+} @else {
+  @if (store.selectedStaff(); as staff) {
+    <div class="details-container">
+      <div class="details-top">
+        <div class="user-main">
+          <div class="user-icon">
+            <i class="fa-solid fa-user-tie"></i>
+          </div>
+
+          <div>
+            <h2>
+              {{ isArabic() ? staff.fullNameAr : staff.fullNameEn }}
+            </h2>
+
+            <p>
+              {{ staff.nationalId }}
+            </p>
+          </div>
+        </div>
+
+        <div class="user-actions">
+          <app-user-status-badge [isActive]="staff.isActive"></app-user-status-badge>
+
+          <a
+            class="qh-primary-btn edit-btn"
+            [routerLink]="['/admin/users/staff', staff.userId, 'edit']"
+          >
+            {{ 'COMMON.EDIT' | translate }}
+            <i class="fa-solid fa-pen-to-square"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="details-section">
+        <h5 class="section-title">
+          {{ 'Staff-Details-Keys.BASIC_INFORMATION' | translate }}
+        </h5>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <span>{{ 'Admin-Keys.USER' | translate }}</span>
+            <strong>{{ staff.fullNameAr }}</strong>
+            <small>{{ staff.fullNameEn }}</small>
+          </div>
+
+          <div class="info-item">
+            <span>{{ 'Admin-Keys.NATIONAL_ID' | translate }}</span>
+            <strong>{{ staff.nationalId }}</strong>
+          </div>
+
+          <div class="info-item">
+            <span>{{ 'Admin-Keys.CONTACT' | translate }}</span>
+            <strong>{{ staff.email }}</strong>
+            <small>{{ staff.phoneNumber }}</small>
+          </div>
+
+          <div class="info-item">
+            <span>{{ 'Admin-Keys.STATUS' | translate }}</span>
+            <strong>
+              {{ staff.isActive ? ('COMMON.ACTIVE' | translate) : ('COMMON.INACTIVE' | translate) }}
+            </strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="details-section">
+        <h5 class="section-title">
+          {{ 'Staff-Details-Keys.ROLE_AND_LOCATION' | translate }}
+        </h5>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <span>{{ 'Admin-Keys.JOB_ROLE' | translate }}</span>
+
+            <div class="roles-list">
+              @for (role of staff.roles; track role) {
+                <app-role-badge [role]="role"></app-role-badge>
+              }
+            </div>
+          </div>
+
+          <div class="info-item">
+            <span>{{ 'Admin-Keys.BRANCH_HOSPITAL' | translate }}</span>
+
+            <strong>
+              {{
+                staff.branchNameAr ||
+                staff.hospitalNameAr ||
+                ('Admin-Keys.NOT_SET' | translate)
+              }}
+            </strong>
+
+            <small>
+              {{
+                staff.branchNameEn ||
+                staff.hospitalNameEn ||
+                ('Admin-Keys.NOT_SET' | translate)
+              }}
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="details-section">
+        <h5 class="section-title">
+          {{ 'Staff-Details-Keys.SYSTEM_INFORMATION' | translate }}
+        </h5>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <span>{{ 'Staff-Details-Keys.CREATED_AT' | translate }}</span>
+            <strong>{{ formatDate(staff.createdAt) }}</strong>
+          </div>
+
+          <div class="info-item">
+            <span>{{ 'Staff-Details-Keys.UPDATED_AT' | translate }}</span>
+            <strong>{{ staff.updatedAt ? formatDate(staff.updatedAt) : '—' }}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+}

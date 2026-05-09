@@ -1,0 +1,199 @@
+<div class="form-container">
+  <form [formGroup]="editStaffForm" (ngSubmit)="onSubmit()" novalidate>
+
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Edit-Staff-Keys.ACCOUNT_INFORMATION' | translate }}
+      </h5>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="editStaffForm.controls.email"
+            type="email"
+            [placeholder]="'Signup-Keys.EMAIL_PLACEHOLDER' | translate"
+            prefixIcon="fas fa-envelope"
+            inputId="email"
+          />
+
+          <div class="field-error-space">
+            @if (
+              editStaffForm.controls.email.touched ||
+              editStaffForm.controls.email.dirty
+            ) {
+              @if (editStaffForm.controls.email.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Signup-Keys.EMAIL_IS_REQUIRED' | translate"
+                />
+              } @else if (editStaffForm.controls.email.hasError('email')) {
+                <app-form-error-message
+                  [errorMessage]="'Signup-Keys.EMAIL_MUST_BE_VALID' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="editStaffForm.controls.phoneNumber"
+            type="text"
+            [placeholder]="'Signup-Keys.PHONE_PLACEHOLDER' | translate"
+            prefixIcon="fas fa-phone"
+            inputId="phoneNumber"
+            maxLength="10"
+            [isNumeric]="true"
+          />
+
+          <div class="field-error-space">
+            @if (
+              editStaffForm.controls.phoneNumber.touched ||
+              editStaffForm.controls.phoneNumber.dirty
+            ) {
+              @if (editStaffForm.controls.phoneNumber.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Signup-Keys.PHONE_IS_REQUIRED' | translate"
+                />
+              } @else if (editStaffForm.controls.phoneNumber.hasError('pattern')) {
+                <app-form-error-message
+                  [errorMessage]="'Signup-Keys.PHONE_MUST_BE_10_DIGITS' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Edit-Staff-Keys.STAFF_INFORMATION' | translate }}
+      </h5>
+
+      <div class="row g-3 align-items-start">
+        <div class="col-12 col-md-6">
+          <app-drop-down-with-label
+            [label]="'Add-Staff-Keys.STAFF_ROLE' | translate"
+            [options]="staffRoleOptions"
+            [selectedValue]="editStaffForm.controls.staffRole.value"
+            [placeholder]="'Add-Staff-Keys.SELECT_STAFF_ROLE' | translate"
+            [translateLabels]="true"
+            (valueChanged)="onStaffRoleChange($event)"
+          />
+
+          <div class="field-error-space">
+            @if (
+              editStaffForm.controls.staffRole.touched ||
+              editStaffForm.controls.staffRole.dirty
+            ) {
+              @if (editStaffForm.controls.staffRole.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Add-Staff-Keys.STAFF_ROLE_REQUIRED' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+
+        @if (editStaffForm.controls.staffRole.value === UserRole.Doctor) {
+          <div class="col-12 col-md-6">
+            <app-drop-down-with-label
+              [label]="'Add-Staff-Keys.HOSPITAL' | translate"
+              [options]="hospitalOptions()"
+              [selectedValue]="editStaffForm.controls.hospitalId.value"
+              [placeholder]="'Add-Staff-Keys.SELECT_HOSPITAL' | translate"
+              [translateLabels]="false"
+              (valueChanged)="onHospitalChange($event)"
+            />
+
+            <div class="field-error-space">
+              @if (
+                editStaffForm.controls.hospitalId.touched ||
+                editStaffForm.controls.hospitalId.dirty
+              ) {
+                @if (editStaffForm.controls.hospitalId.hasError('required')) {
+                  <app-form-error-message
+                    [errorMessage]="'Add-Staff-Keys.HOSPITAL_REQUIRED' | translate"
+                  />
+                }
+              }
+            </div>
+          </div>
+        }
+
+        @if (editStaffForm.controls.staffRole.value === UserRole.Employee) {
+          <div class="col-12 col-md-6">
+            <app-drop-down-with-label
+              [label]="'Add-Staff-Keys.BRANCH' | translate"
+              [options]="branchOptions()"
+              [selectedValue]="editStaffForm.controls.branchId.value"
+              [placeholder]="'Add-Staff-Keys.SELECT_BRANCH' | translate"
+              [translateLabels]="false"
+              (valueChanged)="onBranchChange($event)"
+            />
+
+            <div class="field-error-space">
+              @if (
+                editStaffForm.controls.branchId.touched ||
+                editStaffForm.controls.branchId.dirty
+              ) {
+                @if (editStaffForm.controls.branchId.hasError('required')) {
+                  <app-form-error-message
+                    [errorMessage]="'Add-Staff-Keys.BRANCH_REQUIRED' | translate"
+                  />
+                }
+              }
+            </div>
+          </div>
+        }
+
+        @if (editStaffForm.controls.staffRole.value === UserRole.BranchManager) {
+          <div class="col-12">
+            <div class="info-message">
+              {{ 'Add-Staff-Keys.BRANCH_MANAGER_ASSIGNMENT_NOTE' | translate }}
+            </div>
+          </div>
+        }
+
+        @if (editStaffForm.controls.staffRole.value === UserRole.Admin) {
+          <div class="col-12">
+            <div class="info-message">
+              {{ 'Add-Staff-Keys.ADMIN_DOES_NOT_REQUIRE_LOCATION' | translate }}
+            </div>
+          </div>
+        }
+
+        <div class="col-12">
+          <label class="active-toggle">
+            <input type="checkbox" formControlName="isActive" />
+            <span class="active-toggle-box"></span>
+            <span>
+              {{ 'Edit-Staff-Keys.STAFF_IS_ACTIVE' | translate }}
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-wrapper">
+      @if (store.errorMessage()) {
+        <app-form-error-message [errorMessage]="store.errorMessage()!" />
+      }
+
+      @if (showSuccessMessage()) {
+        <div class="success-message" role="alert">
+          <strong>
+            {{ 'Edit-Staff-Keys.STAFF_UPDATED_SUCCESSFULLY' | translate }}
+          </strong>
+        </div>
+      }
+
+      <app-primary-button
+        [label]="'Edit-Staff-Keys.UPDATE_STAFF' | translate"
+        type="submit"
+        [disabled]="store.loading()"
+        [isLoading]="store.loading()"
+      />
+    </div>
+  </form>
+</div>

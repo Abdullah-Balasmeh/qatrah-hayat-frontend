@@ -66,3 +66,43 @@ form {
     border-radius: 16px;
   }
 }
+
+.active-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 3rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--primary-text-color);
+  border-radius: 999px;
+  color: var(--primary-text-color);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semi-bold);
+  cursor: pointer;
+  user-select: none;
+}
+
+.active-toggle input {
+  display: none;
+}
+
+.active-toggle-box {
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid var(--grey-color);
+  border-radius: 0.3rem;
+  display: inline-grid;
+  place-items: center;
+}
+
+.active-toggle input:checked + .active-toggle-box {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+}
+
+.active-toggle input:checked + .active-toggle-box::after {
+  content: "✓";
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+}

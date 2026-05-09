@@ -8,6 +8,7 @@ export function mapUpdateCitizenModelToDto(
     email: model.email,
     phoneNumber: model.phoneNumber,
     bloodTypeStatus: model.bloodTypeStatus,
+    bloodType: model.bloodType,
     eligibilityStatus: model.eligibilityStatus,
     permanentDeferralReason: model.permanentDeferralReason ?? null,
     isActive: model.isActive,

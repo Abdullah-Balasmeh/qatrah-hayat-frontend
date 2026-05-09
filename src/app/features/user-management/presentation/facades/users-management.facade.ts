@@ -5,22 +5,28 @@ import {
   UsersManagementStore,
   UsersTabType,
 } from '../store/users-management.store';
+
 import { UserManagementQueryModel } from '../../domain/models/user-management-query.model';
-import { UsersManagementRepositoryImpl } from '../../data/repositories_impl/users-management.repository.impl';
+import { UsersManagementRepository } from '../../domain/repositories/users-management.repository';
+
 import { Router } from '@angular/router';
 import { CreateStaffFromRegistryModel } from '../../domain/models/create-staff-from-registry.model';
 import { PromoteCitizenToStaffModel } from '../../domain/models/promote-citizen-to-staff.model';
 import { StaffInfoModel } from '../../domain/models/staff-info.model';
 import { CitizenLookupModel } from '../../domain/models/citizen-lookup.model';
+import { BranchManagementRepository } from '../../../branch-management/domain/repositories/branch-management.repository';
+import { HospitalManagementRepository } from '../../../hospital-management/domain/repositories/hospital-management.repository';
+import { UpdateCitizenModel } from '../../domain/models/update-citizen.model';
+import { UpdateStaffModel } from '../../domain/models/update-staff.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class UsersManagementFacade {
   constructor(
-    private readonly repository: UsersManagementRepositoryImpl,
-    public readonly store: UsersManagementStore,
-    private readonly router: Router,
+  private readonly repository: UsersManagementRepository,
+  private readonly branchManagementRepository: BranchManagementRepository,
+  private readonly hospitalManagementRepository: HospitalManagementRepository,
+  public readonly store: UsersManagementStore,
+  private readonly router: Router,
   ) {}
 
   changeTab(tab: UsersTabType): void {
@@ -87,7 +93,48 @@ export class UsersManagementFacade {
   navigateToUsersManagement(): void {
     this.router.navigate(['/admin/users']);
   }
+loadActiveBranches(): void {
+  this.store.setActiveBranchesLoading(true);
+  this.store.errorMessage.set(null);
 
+  this.branchManagementRepository.getAllBranches({
+    pageNumber: 1,
+    pageSize: 100,
+    searchTerm: null,
+    isActive: true
+  })
+    .pipe(finalize(() => this.store.setActiveBranchesLoading(false)))
+    .subscribe({
+      next: result => {
+        this.store.setActiveBranches(result.items);
+      },
+      error: () => {
+        this.store.errorMessage.set('Failed to load active branches.');
+      }
+    });
+}
+
+loadActiveHospitals(): void {
+  this.store.setActiveHospitalsLoading(true);
+  this.store.errorMessage.set(null);
+
+  this.hospitalManagementRepository.getAllHospitals({
+    pageNumber: 1,
+    pageSize: 100,
+    searchTerm: null,
+    isActive: true,
+    branchId: null
+  })
+    .pipe(finalize(() => this.store.setActiveHospitalsLoading(false)))
+    .subscribe({
+      next: result => {
+        this.store.setActiveHospitals(result.items);
+      },
+      error: () => {
+        this.store.errorMessage.set('Failed to load active hospitals.');
+      }
+    });
+}
   loadUsersStatistics(): void {
     this.repository.getUsersStatistics().subscribe({
       next: (statistics) => {
@@ -154,6 +201,81 @@ export class UsersManagementFacade {
         error: () => this.store.errorMessage.set('Failed to delete user.'),
       });
   }
+  loadStaffById(userId: number): void {
+  this.store.loading.set(true);
+  this.store.errorMessage.set(null);
+
+  this.repository.getStaffById(userId)
+    .pipe(finalize(() => this.store.loading.set(false)))
+    .subscribe({
+      next: staff => {
+        this.store.selectedStaff.set(staff);
+      },
+      error: () => {
+        this.store.errorMessage.set('Failed to load staff details.');
+      }
+    });
+}
+
+loadCitizenById(userId: number): void {
+  this.store.loading.set(true);
+  this.store.errorMessage.set(null);
+
+  this.repository.getCitizenById(userId)
+    .pipe(finalize(() => this.store.loading.set(false)))
+    .subscribe({
+      next: citizen => {
+        this.store.selectedCitizen.set(citizen);
+      },
+      error: () => {
+        this.store.errorMessage.set('Failed to load citizen details.');
+      }
+    });
+}
+
+updateStaff(
+  userId: number,
+  request: UpdateStaffModel,
+  onSuccess?: () => void
+): void {
+  this.store.loading.set(true);
+  this.store.errorMessage.set(null);
+
+  this.repository.updateStaff(userId, request)
+    .pipe(finalize(() => this.store.loading.set(false)))
+    .subscribe({
+      next: staff => {
+        this.store.selectedStaff.set(staff);
+        this.loadUsersStatistics();
+        onSuccess?.();
+      },
+      error: error => {
+        this.store.errorMessage.set(error?.message ?? 'Failed to update staff.');
+      }
+    });
+}
+
+updateCitizen(
+  userId: number,
+  request: UpdateCitizenModel,
+  onSuccess?: () => void
+): void {
+  this.store.loading.set(true);
+  this.store.errorMessage.set(null);
+
+  this.repository.updateCitizen(userId, request)
+    .pipe(finalize(() => this.store.loading.set(false)))
+    .subscribe({
+      next: citizen => {
+        this.store.selectedCitizen.set(citizen);
+        this.loadUsersStatistics();
+        onSuccess?.();
+      },
+      error: error => {
+        this.store.errorMessage.set(error?.message ?? 'Failed to update citizen.');
+      }
+    });
+}
 
   private loadStaff(query: UserManagementQueryModel): void {
     this.store.loading.set(true);

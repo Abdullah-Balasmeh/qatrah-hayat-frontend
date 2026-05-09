@@ -1,0 +1,135 @@
+<div class="form-container">
+  <form [formGroup]="editCitizenForm" (ngSubmit)="onSubmit()" novalidate>
+
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Edit-Citizen-Keys.ACCOUNT_INFORMATION' | translate }}
+      </h5>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="editCitizenForm.controls.email"
+            type="email"
+            [placeholder]="'Signup-Keys.EMAIL_PLACEHOLDER' | translate"
+            prefixIcon="fas fa-envelope"
+            inputId="email"
+          />
+        </div>
+
+        <div class="col-12 col-md-6">
+          <app-text-field
+            [control]="editCitizenForm.controls.phoneNumber"
+            type="text"
+            [placeholder]="'Signup-Keys.PHONE_PLACEHOLDER' | translate"
+            prefixIcon="fas fa-phone"
+            inputId="phoneNumber"
+            maxLength="10"
+            [isNumeric]="true"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Edit-Citizen-Keys.DONOR_INFORMATION' | translate }}
+      </h5>
+
+    <div class="row g-3">
+  <div class="col-12 col-md-6">
+    <app-drop-down-with-label
+      [label]="'Edit-Citizen-Keys.BLOOD_TYPE' | translate"
+      [options]="bloodTypeOptions"
+      [selectedValue]="editCitizenForm.controls.bloodType.value"
+      [placeholder]="'Edit-Citizen-Keys.SELECT_BLOOD_TYPE' | translate"
+      [translateLabels]="false"
+      (valueChanged)="onBloodTypeChange($event)"
+    />
+
+    <div class="field-error-space">
+      @if (
+        editCitizenForm.controls.bloodType.touched ||
+        editCitizenForm.controls.bloodType.dirty
+      ) {
+        @if (editCitizenForm.controls.bloodType.hasError('required')) {
+          <app-form-error-message
+            [errorMessage]="'Edit-Citizen-Keys.BLOOD_TYPE_REQUIRED' | translate"
+          />
+        }
+      }
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6">
+    <app-drop-down-with-label
+      [label]="'Edit-Citizen-Keys.BLOOD_TYPE_STATUS' | translate"
+      [options]="bloodTypeStatusOptions"
+      [selectedValue]="editCitizenForm.controls.bloodTypeStatus.value"
+      [placeholder]="'Edit-Citizen-Keys.SELECT_BLOOD_TYPE_STATUS' | translate"
+      [translateLabels]="true"
+      (valueChanged)="onBloodTypeStatusChange($event)"
+    />
+  </div>
+
+  <div class="col-12 col-md-6">
+    <app-drop-down-with-label
+      [label]="'Edit-Citizen-Keys.ELIGIBILITY_STATUS' | translate"
+      [options]="eligibilityStatusOptions"
+      [selectedValue]="editCitizenForm.controls.eligibilityStatus.value"
+      [placeholder]="'Edit-Citizen-Keys.SELECT_ELIGIBILITY_STATUS' | translate"
+      [translateLabels]="true"
+      (valueChanged)="onEligibilityStatusChange($event)"
+    />
+  </div>
+
+ <div class="col-12 col-md-6">
+  <div class="field-block">
+    <label class="form-label" for="permanentDeferralReason">
+      {{ 'Edit-Citizen-Keys.PERMANENT_DEFERRAL_REASON_LABEL' | translate }}
+    </label>
+
+    <app-text-field
+      [control]="editCitizenForm.controls.permanentDeferralReason"
+      type="text"
+      [placeholder]="'Edit-Citizen-Keys.PERMANENT_DEFERRAL_REASON' | translate"
+      prefixIcon="fa-solid fa-triangle-exclamation"
+      inputId="permanentDeferralReason"
+    />
+  </div>
+</div>
+
+  <div class="col-12">
+    <label class="active-toggle">
+      <input type="checkbox" formControlName="isActive" />
+      <span class="active-toggle-box"></span>
+      <span>
+        {{ 'Edit-Citizen-Keys.CITIZEN_IS_ACTIVE' | translate }}
+      </span>
+    </label>
+  </div>
+</div>
+    </div>
+
+    <div class="submit-wrapper">
+      @if (store.errorMessage()) {
+        <app-form-error-message [errorMessage]="store.errorMessage()!" />
+      }
+
+      @if (showSuccessMessage()) {
+        <div class="success-message" role="alert">
+          <strong>
+            {{ 'Edit-Citizen-Keys.CITIZEN_UPDATED_SUCCESSFULLY' | translate }}
+          </strong>
+        </div>
+      }
+
+      <app-primary-button
+        [label]="'Edit-Citizen-Keys.UPDATE_CITIZEN' | translate"
+        type="submit"
+        [disabled]="store.loading()"
+        [isLoading]="store.loading()"
+      />
+    </div>
+  </form>
+</div>

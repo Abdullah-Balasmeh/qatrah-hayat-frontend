@@ -1,14 +1,30 @@
 import { Routes } from '@angular/router';
 import { UsersManagementRepository } from './domain/repositories/users-management.repository';
 import { UsersManagementRepositoryImpl } from './data/repositories_impl/users-management.repository.impl';
+import { UsersManagementStore } from './presentation/store/users-management.store';
+import { UsersManagementFacade } from './presentation/facades/users-management.facade';
+import { BranchManagementRepositoryImpl } from '../branch-management/data/repositories_impl/branch-management.repository.impl';
+import { BranchManagementRepository } from '../branch-management/domain/repositories/branch-management.repository';
+import { HospitalManagementRepositoryImpl } from '../hospital-management/data/repositories_impl/hospital-management.repository.impl';
+import { HospitalManagementRepository } from '../hospital-management/domain/repositories/hospital-management.repository';
 
 export const USER_MANAGEMENT_ROUTES: Routes = [
   {
     path: '',
     providers: [
+      UsersManagementStore,
+      UsersManagementFacade,
       {
         provide: UsersManagementRepository,
         useClass: UsersManagementRepositoryImpl
+      },
+      {
+        provide: BranchManagementRepository,
+        useClass: BranchManagementRepositoryImpl
+      },
+      {
+        provide: HospitalManagementRepository,
+        useClass: HospitalManagementRepositoryImpl
       }
     ],
     children: [

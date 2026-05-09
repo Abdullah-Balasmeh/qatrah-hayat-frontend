@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
+import { Component, DestroyRef, OnInit, computed, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormBuilder,
@@ -34,6 +34,8 @@ import { CitizenLookupModel } from '../../../domain/models/citizen-lookup.model'
 import { CreateStaffFromRegistryModel } from '../../../domain/models/create-staff-from-registry.model';
 import { PromoteCitizenToStaffModel } from '../../../domain/models/promote-citizen-to-staff.model';
 import { DropDownWithLabelComponent } from "../../../../../shared/ui/drop-down-with-label/drop-down-with-label.component";
+import { LanguageService } from '../../../../../core/services/language.service';
+import { DropdownOption } from '../../../../../shared/ui/app-filter-button/app-filter-button.component';
 
 type StaffCreationMode = 'none' | 'createNewUser' | 'promoteExistingCitizen' | 'alreadyStaff';
 
@@ -53,7 +55,7 @@ type StaffCreationMode = 'none' | 'createNewUser' | 'promoteExistingCitizen' | '
   templateUrl: './add-staff-form.component.html',
   styleUrl: './add-staff-form.component.css'
 })
-export class AddStaffFormComponent {
+export class AddStaffFormComponent implements OnInit{
   private readonly fb = inject(FormBuilder);
   private readonly translate = inject(TranslateService);
   private readonly destroyRef = inject(DestroyRef);
@@ -61,27 +63,33 @@ export class AddStaffFormComponent {
   readonly facade = inject(UsersManagementFacade);
   readonly store = this.facade.store;
   readonly UserRole = UserRole;
-  readonly hospitalOptions = [
-  {
-    value: 1,
-    label: 'King Abdullah University Hospital'
-  },
-  {
-    value: 2,
-    label: 'Al Bashir Hospital'
-  }
-];
+  private readonly languageService = inject(LanguageService);
 
-readonly branchOptions = [
-  {
-    value: 1,
-    label: 'Irbid Branch'
-  },
-  {
-    value: 2,
-    label: 'Amman Branch'
-  }
-];
+readonly isArabic = computed(() => {
+  return this.languageService.currentLangSignal() === 'ar';
+});
+
+readonly hospitalOptions = computed<DropdownOption<number>[]>(() => {
+  return this.store.activeHospitals().map(hospital => ({
+    value: hospital.id,
+    label: this.isArabic()
+      ? hospital.hospitalNameAr
+      : hospital.hospitalNameEn
+  }));
+});
+
+readonly branchOptions = computed<DropdownOption<number>[]>(() => {
+  return this.store.activeBranches().map(branch => ({
+    value: branch.id,
+    label: this.isArabic()
+      ? branch.branchNameAr
+      : branch.branchNameEn
+  }));
+});
+ ngOnInit(): void {
+  this.facade.loadActiveBranches();
+  this.facade.loadActiveHospitals();
+}
   readonly staffRoleOptions = [
     {
       value: UserRole.Doctor,
@@ -213,6 +221,7 @@ readonly branchOptions = [
 
 onStaffRoleChange(role: UserRole | null): void {
   this.addStaffForm.controls.staffRole.setValue(role);
+  this.addStaffForm.controls.staffRole.markAsTouched();
   this.addStaffForm.controls.staffRole.markAsDirty();
 
   this.addStaffForm.patchValue({
@@ -489,7 +498,7 @@ onBranchChange(branchId: number | null): void {
     this.applyLocationValidators();
   }
 
- private applyLocationValidators(): void {
+private applyLocationValidators(): void {
   const staffRole = this.addStaffForm.controls.staffRole.value;
 
   const branchControl = this.addStaffForm.controls.branchId;
@@ -499,18 +508,20 @@ onBranchChange(branchId: number | null): void {
   hospitalControl.clearValidators();
 
   if (staffRole === UserRole.Doctor) {
-    // hospitalControl.setValidators([Validators.required]);
-     hospitalControl.setValidators(null);
+    hospitalControl.setValidators([Validators.required]);
     branchControl.setValue(null);
   }
 
-  if (staffRole === UserRole.BranchManager) {
-    // branchControl.setValidators([Validators.required]);
-    branchControl.setValidators(null);
+  if (staffRole === UserRole.Employee) {
+    branchControl.setValidators([Validators.required]);
     hospitalControl.setValue(null);
   }
 
-  if (staffRole === UserRole.Employee || staffRole === UserRole.Admin) {
+  if (
+    staffRole === UserRole.BranchManager ||
+    staffRole === UserRole.Admin ||
+    staffRole === null
+  ) {
     branchControl.setValue(null);
     hospitalControl.setValue(null);
   }
@@ -518,12 +529,11 @@ onBranchChange(branchId: number | null): void {
   branchControl.updateValueAndValidity();
   hospitalControl.updateValueAndValidity();
 }
-
 private getBranchIdForRole(
   staffRole: UserRole,
   branchId: number | null
 ): number | null {
-  return staffRole === UserRole.BranchManager
+  return staffRole === UserRole.Employee
     ? branchId
     : null;
 }

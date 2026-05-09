@@ -17,7 +17,7 @@
   "Eligibility-Status-Keys": {
     "ELIGIBLE": "مؤهل",
     "TEMP_DEFERRED": "مؤجل مؤقتا",
-    "PERM_DEFERRED": "Permanently Deferred"
+    "PERM_DEFERRED": "مؤجل دائما"
   },
   "Loading-Keys": {
     "LOADING": "جار التحميل"
@@ -269,7 +269,10 @@
     "BACK_TO_USERS": "العودة إلى المستخدمين",
     "NEW_USER_STAFF_CREATION_MESSAGE": "هذا الرقم الوطني لا يملك حسابًا في النظام. سيتم إنشاء حساب مواطن جديد مع إضافة الدور الوظيفي.",
     "EXISTING_CITIZEN_PROMOTION_MESSAGE": "هذا المواطن لديه حساب مسبقًا في النظام. سيتم فقط إضافة الدور الوظيفي وربطه بالفرع أو المستشفى.",
-    "EMPLOYEE_DOES_NOT_REQUIRE_LOCATION": "الموظف لا يحتاج إلى ربطه بفرع أو مستشفى.",
+    "EMPLOYEE_DOES_NOT_REQUIRE_LOCATION": "الموظف التشغيلي يجب ربطه بفرع.",
+    "BRANCH_REQUIRED": "الفرع مطلوب للموظف.",
+    "BRANCH_MANAGER_ASSIGNMENT_NOTE": "سيتم ربط مدير الفرع بفرع محدد من خلال إدارة الفروع.",
+    "ADMIN_DOES_NOT_REQUIRE_LOCATION": "المسؤول لا يحتاج إلى ربطه بفرع أو مستشفى.",
     "USER_ALREADY_STAFF": "هذا المستخدم موظف مسبقًا ولا يمكن إضافته مرة أخرى.",
     "ACCOUNT_INFORMATION": "معلومات الحساب",
     "STAFF_INFORMATION": "المعلومات الوظيفية",
@@ -281,12 +284,66 @@
     "HOSPITAL_REQUIRED": "المستشفى مطلوب للمستخدم الطبيب.",
     "BRANCH": "الفرع",
     "SELECT_BRANCH": "اختر الفرع",
-    "BRANCH_REQUIRED": "الفرع مطلوب للموظف ومدير الفرع.",
-    "ADMIN_DOES_NOT_REQUIRE_LOCATION": "المسؤول لا يحتاج إلى ربطه بفرع أو مستشفى.",
     "STAFF_ADDED_SUCCESSFULLY": "تمت إضافة الموظف بنجاح.",
     "FAILED_TO_ADD_STAFF": "فشلت عملية إضافة الموظف.",
     "FAILED_TO_PROMOTE_CITIZEN": "فشلت عملية ترقية المواطن إلى موظف.",
-    "USER_ID_NOT_FOUND": "لم يتم العثور على رقم المستخدم الخاص بالمواطن."
+    "USER_ID_NOT_FOUND": "لم يتم العثور على رقم المستخدم الخاص بالمواطن.",
+    "LOADING_BRANCHES": "جاري تحميل الفروع النشطة...",
+    "NO_ACTIVE_BRANCHES": "لا توجد فروع نشطة. يرجى إضافة فرع أو تفعيل فرع أولًا.",
+    "LOADING_HOSPITALS": "جاري تحميل المستشفيات النشطة...",
+    "NO_ACTIVE_HOSPITALS": "لا توجد مستشفيات نشطة. يرجى إضافة مستشفى أو تفعيل مستشفى أولًا."
+  },
+  "Staff-Details-Keys": {
+    "STAFF_DETAILS": "تفاصيل الموظف",
+    "STAFF_DETAILS_DESCRIPTION": "عرض معلومات الموظف، الدور الوظيفي، ومكان الارتباط.",
+    "BACK_TO_USERS": "العودة إلى المستخدمين",
+    "BASIC_INFORMATION": "المعلومات الأساسية",
+    "ROLE_AND_LOCATION": "الدور ومكان الارتباط",
+    "SYSTEM_INFORMATION": "معلومات النظام",
+    "CREATED_AT": "تاريخ الإنشاء",
+    "UPDATED_AT": "آخر تحديث"
+  },
+  "Edit-Staff-Keys": {
+    "EDIT_STAFF": "تعديل الموظف",
+    "EDIT_STAFF_DESCRIPTION": "تعديل معلومات التواصل، الدور الوظيفي، ومكان ارتباط الموظف.",
+    "BACK_TO_USERS": "العودة إلى المستخدمين",
+    "ACCOUNT_INFORMATION": "معلومات الحساب",
+    "STAFF_INFORMATION": "المعلومات الوظيفية",
+    "STAFF_IS_ACTIVE": "الموظف نشط",
+    "UPDATE_STAFF": "تعديل الموظف",
+    "STAFF_UPDATED_SUCCESSFULLY": "تم تعديل الموظف بنجاح."
+  },
+  "Citizen-Details-Keys": {
+    "CITIZEN_DETAILS": "تفاصيل المواطن",
+    "CITIZEN_DETAILS_DESCRIPTION": "عرض معلومات المواطن، حالة الأهلية، ومعلومات التبرع.",
+    "BACK_TO_USERS": "العودة إلى المستخدمين",
+    "BASIC_INFORMATION": "المعلومات الأساسية",
+    "DONOR_INFORMATION": "معلومات المتبرع",
+    "SYSTEM_INFORMATION": "معلومات النظام",
+    "BLOOD_TYPE_STATUS": "حالة فصيلة الدم",
+    "ELIGIBILITY_STATUS": "حالة الأهلية",
+    "LAST_DONATION_DATE": "آخر تاريخ تبرع",
+    "CREATED_AT": "تاريخ الإنشاء",
+    "UPDATED_AT": "آخر تحديث"
+  },
+  "Edit-Citizen-Keys": {
+    "EDIT_CITIZEN": "تعديل المواطن",
+    "EDIT_CITIZEN_DESCRIPTION": "تعديل معلومات التواصل، حالة الأهلية، وحالة فصيلة الدم.",
+    "BACK_TO_USERS": "العودة إلى المستخدمين",
+    "ACCOUNT_INFORMATION": "معلومات الحساب",
+    "DONOR_INFORMATION": "معلومات المتبرع",
+    "BLOOD_TYPE_STATUS": "حالة فصيلة الدم",
+    "SELECT_BLOOD_TYPE_STATUS": "اختر حالة فصيلة الدم",
+    "ELIGIBILITY_STATUS": "حالة الأهلية",
+    "SELECT_ELIGIBILITY_STATUS": "اختر حالة الأهلية",
+    "PERMANENT_DEFERRAL_REASON": "سبب المنع الدائم...",
+    "CITIZEN_IS_ACTIVE": "المواطن نشط",
+    "UPDATE_CITIZEN": "تعديل المواطن",
+    "CITIZEN_UPDATED_SUCCESSFULLY": "تم تعديل المواطن بنجاح.",
+    "BLOOD_TYPE": "فصيلة الدم",
+    "SELECT_BLOOD_TYPE": "اختر فصيلة الدم",
+    "BLOOD_TYPE_REQUIRED": "فصيلة الدم مطلوبة.",
+    "PERMANENT_DEFERRAL_REASON_LABEL": "سبب المنع الدائم"
   },
   "Branches-Management-Keys": {
     "TITLE": "إدارة الفروع",

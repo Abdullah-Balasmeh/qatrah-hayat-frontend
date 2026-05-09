@@ -222,8 +222,8 @@
     </div>
    }
 
-    <!-- Section 5: Staff Information -->
- @if (isCitizenVerified() && !isAlreadyStaffMode()) {
+ <!-- Section 5: Staff Information -->
+@if (isCitizenVerified() && !isAlreadyStaffMode()) {
   <div class="form-section">
     <h5 class="section-title">
       {{ "Add-Staff-Keys.STAFF_INFORMATION" | translate }}
@@ -254,62 +254,86 @@
         </div>
       </div>
 
-      @if (addStaffForm.controls.staffRole.value === UserRole.Doctor) {
-        <div class="col-12 col-md-6">
-          <app-drop-down-with-label
-            [label]="'Add-Staff-Keys.HOSPITAL' | translate"
-            [options]="hospitalOptions"
-            [selectedValue]="addStaffForm.controls.hospitalId.value"
-            [placeholder]="'Add-Staff-Keys.SELECT_HOSPITAL' | translate"
-            [translateLabels]="false"
-            (valueChanged)="onHospitalChange($event)"
-          />
+    @if (addStaffForm.controls.staffRole.value === UserRole.Doctor) {
+  <div class="col-12 col-md-6">
+    @if (store.isActiveHospitalsLoading()) {
+      <div class="info-message">
+        {{ "Add-Staff-Keys.LOADING_HOSPITALS" | translate }}
+      </div>
+    }
 
-          <div class="field-error-space">
-            @if (
-              addStaffForm.controls.hospitalId.touched ||
-              addStaffForm.controls.hospitalId.dirty
-            ) {
-              @if (addStaffForm.controls.hospitalId.hasError("required")) {
-                <app-form-error-message
-                  [errorMessage]="'Add-Staff-Keys.HOSPITAL_REQUIRED' | translate"
-                />
-              }
-            }
-          </div>
-        </div>
+    @if (!store.isActiveHospitalsLoading() && hospitalOptions().length === 0) {
+      <div class="info-message warning-message">
+        {{ "Add-Staff-Keys.NO_ACTIVE_HOSPITALS" | translate }}
+      </div>
+    }
+
+    <app-drop-down-with-label
+      [label]="'Add-Staff-Keys.HOSPITAL' | translate"
+      [options]="hospitalOptions()"
+      [selectedValue]="addStaffForm.controls.hospitalId.value"
+      [placeholder]="'Add-Staff-Keys.SELECT_HOSPITAL' | translate"
+      [translateLabels]="false"
+      (valueChanged)="onHospitalChange($event)"
+    />
+
+    <div class="field-error-space">
+      @if (
+        addStaffForm.controls.hospitalId.touched ||
+        addStaffForm.controls.hospitalId.dirty
+      ) {
+        @if (addStaffForm.controls.hospitalId.hasError("required")) {
+          <app-form-error-message
+            [errorMessage]="'Add-Staff-Keys.HOSPITAL_REQUIRED' | translate"
+          />
+        }
       }
+    </div>
+  </div>
+}
+
+    @if (addStaffForm.controls.staffRole.value === UserRole.Employee) {
+  <div class="col-12 col-md-6">
+    @if (store.isActiveBranchesLoading()) {
+      <div class="info-message">
+        {{ "Add-Staff-Keys.LOADING_BRANCHES" | translate }}
+      </div>
+    }
+
+    @if (!store.isActiveBranchesLoading() && branchOptions().length === 0) {
+      <div class="info-message warning-message">
+        {{ "Add-Staff-Keys.NO_ACTIVE_BRANCHES" | translate }}
+      </div>
+    }
+
+    <app-drop-down-with-label
+      [label]="'Add-Staff-Keys.BRANCH' | translate"
+      [options]="branchOptions()"
+      [selectedValue]="addStaffForm.controls.branchId.value"
+      [placeholder]="'Add-Staff-Keys.SELECT_BRANCH' | translate"
+      [translateLabels]="false"
+      (valueChanged)="onBranchChange($event)"
+    />
+
+    <div class="field-error-space">
+      @if (
+        addStaffForm.controls.branchId.touched ||
+        addStaffForm.controls.branchId.dirty
+      ) {
+        @if (addStaffForm.controls.branchId.hasError("required")) {
+          <app-form-error-message
+            [errorMessage]="'Add-Staff-Keys.BRANCH_REQUIRED' | translate"
+          />
+        }
+      }
+    </div>
+  </div>
+}
 
       @if (addStaffForm.controls.staffRole.value === UserRole.BranchManager) {
-        <div class="col-12 col-md-6">
-          <app-drop-down-with-label
-            [label]="'Add-Staff-Keys.BRANCH' | translate"
-            [options]="branchOptions"
-            [selectedValue]="addStaffForm.controls.branchId.value"
-            [placeholder]="'Add-Staff-Keys.SELECT_BRANCH' | translate"
-            [translateLabels]="false"
-            (valueChanged)="onBranchChange($event)"
-          />
-
-          <div class="field-error-space">
-            @if (
-              addStaffForm.controls.branchId.touched ||
-              addStaffForm.controls.branchId.dirty
-            ) {
-              @if (addStaffForm.controls.branchId.hasError("required")) {
-                <app-form-error-message
-                  [errorMessage]="'Add-Staff-Keys.BRANCH_REQUIRED' | translate"
-                />
-              }
-            }
-          </div>
-        </div>
-      }
-
-      @if (addStaffForm.controls.staffRole.value === UserRole.Employee) {
         <div class="col-12">
           <div class="info-message">
-            {{ "Add-Staff-Keys.EMPLOYEE_DOES_NOT_REQUIRE_LOCATION" | translate }}
+            {{ "Add-Staff-Keys.BRANCH_MANAGER_ASSIGNMENT_NOTE" | translate }}
           </div>
         </div>
       }
@@ -340,17 +364,19 @@
       }
 
      @if (isNewUserMode() || isPromoteMode()) {
-  <app-primary-button
-    label="{{ 'Add-Staff-Keys.ADD_STAFF' | translate }}"
-    type="submit"
-    [disabled]="
-      isLoading() ||
-      isFetchingCitizenData() ||
-      !isCitizenVerified() ||
-      isAlreadyStaffMode()
-    "
-    [isLoading]="isLoading()"
-  />
+ <app-primary-button
+  label="{{ 'Add-Staff-Keys.ADD_STAFF' | translate }}"
+  type="submit"
+  [disabled]="
+    isLoading() ||
+    isFetchingCitizenData() ||
+    store.isActiveBranchesLoading() ||
+    store.isActiveHospitalsLoading() ||
+    !isCitizenVerified() ||
+    isAlreadyStaffMode()
+  "
+  [isLoading]="isLoading()"
+/>
 }
     </div>
   </form>
