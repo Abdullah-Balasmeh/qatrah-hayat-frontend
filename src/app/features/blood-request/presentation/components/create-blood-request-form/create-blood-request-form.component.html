@@ -1,0 +1,278 @@
+<div class="page-header">
+  <div>
+    <h1 class="page-title">
+      {{ pageTitleKey() | translate }}
+    </h1>
+
+    <p class="page-description">
+      {{ pageDescriptionKey() | translate }}
+    </p>
+  </div>
+
+  <a routerLink="/user/blood-request/create" class="qh-secondary-btn back-btn">
+    {{ 'Create-Blood-Request-Form-Keys.BACK_TO_REQUEST_TYPES' | translate }}
+    <i class="fa-solid fa-arrow-left"></i>
+  </a>
+</div>
+
+<div class="form-card">
+  <form [formGroup]="createBloodRequestForm" (ngSubmit)="onSubmit()" novalidate>
+    @if (!isSelfRequest()) {
+      <div class="form-section">
+        <h5 class="section-title">
+          {{ 'Create-Blood-Request-Form-Keys.LOOKUP_BENEFICIARY' | translate }}
+        </h5>
+
+        <div class="row g-3 lookup-row">
+          <div class="col-12 col-md-8">
+            <app-text-field
+              [control]="createBloodRequestForm.controls.beneficiaryNationalId"
+              type="text"
+              [placeholder]="'Create-Blood-Request-Form-Keys.BENEFICIARY_NATIONAL_ID_PLACEHOLDER' | translate"
+              prefixIcon="fa-solid fa-id-card"
+              inputId="beneficiaryNationalId"
+            />
+
+            <div class="field-error-space">
+              @if (
+                createBloodRequestForm.controls.beneficiaryNationalId.touched ||
+                createBloodRequestForm.controls.beneficiaryNationalId.dirty
+              ) {
+                @if (createBloodRequestForm.controls.beneficiaryNationalId.hasError('required')) {
+                  <app-form-error-message
+                    [errorMessage]="'Create-Blood-Request-Form-Keys.BENEFICIARY_NATIONAL_ID_REQUIRED' | translate"
+                  />
+                } @else if (createBloodRequestForm.controls.beneficiaryNationalId.hasError('pattern')) {
+                  <app-form-error-message
+                    [errorMessage]="'Create-Blood-Request-Form-Keys.BENEFICIARY_NATIONAL_ID_INVALID' | translate"
+                  />
+                }
+              }
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 lookup-btn-wrapper">
+            <app-primary-button
+              [label]="'Create-Blood-Request-Form-Keys.FETCH_BENEFICIARY' | translate"
+              type="button"
+              [disabled]="store.isBeneficiaryLookupLoading()"
+              [isLoading]="store.isBeneficiaryLookupLoading()"
+              (buttonClick)="onLookupBeneficiary()"
+            />
+          </div>
+        </div>
+
+        @if (beneficiaryLookupSuccess()) {
+          <div class="success-message beneficiary-success" role="alert">
+            {{ 'Create-Blood-Request-Form-Keys.BENEFICIARY_LOOKUP_SUCCESS' | translate }}
+          </div>
+        }
+      </div>
+    }
+
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Create-Blood-Request-Form-Keys.PATIENT_INFORMATION' | translate }}
+      </h5>
+
+      @if (store.isCitizenDataLoading()) {
+        <div class="info-message">
+          {{ 'Create-Blood-Request-Form-Keys.LOADING_PATIENT_DATA' | translate }}
+        </div>
+      }
+
+      @if (store.isBeneficiaryLookupLoading()) {
+        <div class="info-message">
+          {{ 'Create-Blood-Request-Form-Keys.LOADING_BENEFICIARY_DATA' | translate }}
+        </div>
+      }
+
+      @if (patientData()) {
+        <div class="row g-3 patient-info-grid">
+          <div class="col-12 col-md-6">
+            <label class="readonly-label">
+              {{ 'Create-Blood-Request-Form-Keys.NATIONAL_ID' | translate }}
+            </label>
+            <div class="readonly-field">
+              {{ patientData()!.nationalId }}
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="readonly-label">
+              {{ 'Create-Blood-Request-Form-Keys.FULL_NAME_AR' | translate }}
+            </label>
+            <div class="readonly-field">
+              {{ patientData()!.fullNameAr }}
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="readonly-label">
+              {{ 'Create-Blood-Request-Form-Keys.FULL_NAME_EN' | translate }}
+            </label>
+            <div class="readonly-field">
+              {{ patientData()!.fullNameEn }}
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="readonly-label">
+              {{ 'Create-Blood-Request-Form-Keys.BLOOD_TYPE' | translate }}
+            </label>
+            <div class="readonly-field">
+              {{ patientData()!.bloodTypeDisplayName }}
+            </div>
+          </div>
+        </div>
+      } @else {
+        <div class="info-message warning-message">
+          {{
+            isSelfRequest()
+              ? ('Create-Blood-Request-Form-Keys.NO_PATIENT_DATA' | translate)
+              : ('Create-Blood-Request-Form-Keys.ENTER_NATIONAL_ID_AND_FETCH' | translate)
+          }}
+        </div>
+      }
+    </div>
+
+    <div class="form-section">
+      <h5 class="section-title">
+        {{ 'Create-Blood-Request-Form-Keys.REQUEST_INFORMATION' | translate }}
+      </h5>
+
+      <div class="row g-3">
+        @if (!isSelfRequest()) {
+          <div class="col-12 col-md-6">
+            <app-drop-down-with-label
+              [label]="'Create-Blood-Request-Form-Keys.RELATIONSHIP' | translate"
+              [options]="relationshipOptions"
+              [selectedValue]="createBloodRequestForm.controls.relationshipType.value"
+              [placeholder]="'Create-Blood-Request-Form-Keys.SELECT_RELATIONSHIP' | translate"
+              [translateLabels]="true"
+              (valueChanged)="onRelationshipChange($event)"
+            />
+
+            <div class="field-error-space">
+              @if (
+                createBloodRequestForm.controls.relationshipType.touched ||
+                createBloodRequestForm.controls.relationshipType.dirty
+              ) {
+                @if (createBloodRequestForm.controls.relationshipType.hasError('required')) {
+                  <app-form-error-message
+                    [errorMessage]="'Create-Blood-Request-Form-Keys.RELATIONSHIP_REQUIRED' | translate"
+                  />
+                }
+              }
+            </div>
+          </div>
+        }
+
+        <div class="col-12 col-md-6">
+          @if (store.isActiveHospitalsLoading()) {
+            <div class="info-message">
+              {{ 'Create-Blood-Request-Form-Keys.LOADING_HOSPITALS' | translate }}
+            </div>
+          }
+
+          @if (!store.isActiveHospitalsLoading() && hospitalOptions().length === 0) {
+            <div class="info-message warning-message">
+              {{ 'Create-Blood-Request-Form-Keys.NO_ACTIVE_HOSPITALS' | translate }}
+            </div>
+          }
+
+          <app-drop-down-with-label
+            [label]="'Create-Blood-Request-Form-Keys.HOSPITAL' | translate"
+            [options]="hospitalOptions()"
+            [selectedValue]="createBloodRequestForm.controls.hospitalId.value"
+            [placeholder]="'Create-Blood-Request-Form-Keys.SELECT_HOSPITAL' | translate"
+            [translateLabels]="false"
+            (valueChanged)="onHospitalChange($event)"
+          />
+
+          <div class="field-error-space">
+            @if (
+              createBloodRequestForm.controls.hospitalId.touched ||
+              createBloodRequestForm.controls.hospitalId.dirty
+            ) {
+              @if (createBloodRequestForm.controls.hospitalId.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Create-Blood-Request-Form-Keys.HOSPITAL_REQUIRED' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          @if (store.isDoctorsLoading()) {
+            <div class="info-message">
+              {{ 'Create-Blood-Request-Form-Keys.LOADING_DOCTORS' | translate }}
+            </div>
+          }
+
+          @if (
+            createBloodRequestForm.controls.hospitalId.value &&
+            !store.isDoctorsLoading() &&
+            doctorOptions().length === 0
+          ) {
+            <div class="info-message warning-message">
+              {{ 'Create-Blood-Request-Form-Keys.NO_DOCTORS_FOUND' | translate }}
+            </div>
+          }
+
+          <app-drop-down-with-label
+            [label]="'Create-Blood-Request-Form-Keys.DOCTOR' | translate"
+            [options]="doctorOptions()"
+            [selectedValue]="createBloodRequestForm.controls.doctorId.value"
+            [placeholder]="'Create-Blood-Request-Form-Keys.SELECT_DOCTOR' | translate"
+            [translateLabels]="false"
+            (valueChanged)="onDoctorChange($event)"
+          />
+
+          <div class="field-error-space">
+            @if (
+              createBloodRequestForm.controls.doctorId.touched ||
+              createBloodRequestForm.controls.doctorId.dirty
+            ) {
+              @if (createBloodRequestForm.controls.doctorId.hasError('required')) {
+                <app-form-error-message
+                  [errorMessage]="'Create-Blood-Request-Form-Keys.DOCTOR_REQUIRED' | translate"
+                />
+              }
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-wrapper">
+      @if (store.errorMessage()) {
+        <app-form-error-message [errorMessage]="store.errorMessage()! | translate" />
+      }
+
+      @if (showSuccessMessage()) {
+        <div class="success-message" role="alert">
+          <strong>
+            {{ 'Create-Blood-Request-Form-Keys.REQUEST_CREATED_SUCCESSFULLY' | translate }}
+          </strong>
+        </div>
+      }
+
+      <app-primary-button
+        [label]="'Create-Blood-Request-Form-Keys.SUBMIT_REQUEST' | translate"
+        type="submit"
+        [disabled]="
+          store.isActionLoading() ||
+          store.isActiveHospitalsLoading() ||
+          store.isCitizenDataLoading() ||
+          store.isBeneficiaryLookupLoading() ||
+          store.isDoctorsLoading() ||
+          hospitalOptions().length === 0 ||
+          !patientData()
+        "
+        [isLoading]="store.isActionLoading()"
+      />
+    </div>
+  </form>
+</div>

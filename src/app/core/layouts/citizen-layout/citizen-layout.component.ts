@@ -103,7 +103,7 @@ export class CitizenLayoutComponent{
       sectionItems: [
         {
           labelKey:"User-Keys.Create_Blood_Request",
-          routerLink:"/user/requests/new",
+          routerLink:"/user/blood-request/create",
           icon:"fa-file-circle-plus",
           exact:true,
           delay:180,

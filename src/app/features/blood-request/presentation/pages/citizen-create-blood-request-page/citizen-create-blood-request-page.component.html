@@ -1,0 +1,49 @@
+<section class="blood-request-section">
+  <div class="container blood-request-container">
+    <div class="section-heading text-center">
+      <h2>{{ 'Blood-Request-Create-Keys.SECTION_TITLE' | translate }}</h2>
+      <p>{{ 'Blood-Request-Create-Keys.SECTION_DESC' | translate }}</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      <div
+        class="col-12 col-md-6 col-xl-5"
+        *ngFor="let item of requestTypes"
+      >
+        <article
+          class="request-card h-100"
+          [class.featured-card]="item.featured"
+        >
+          <span class="card-badge">
+            {{ item.badgeKey | translate }}
+          </span>
+
+          <div class="card-image">
+            <img
+              [src]="item.image"
+              [alt]="item.titleKey | translate"
+            />
+          </div>
+
+          <div class="card-content">
+            <h3 class="card-title">
+              {{ item.titleKey | translate }}
+            </h3>
+
+            <p class="card-text">
+              {{ item.descKey | translate }}
+            </p>
+          </div>
+
+          <button
+            type="button"
+            class="btn-qh-primary card-btn"
+            (click)="goToRequestForm(item.route)"
+          >
+            {{ 'Blood-Request-Create-Keys.CREATE_REQUEST' | translate }}
+          </button>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>

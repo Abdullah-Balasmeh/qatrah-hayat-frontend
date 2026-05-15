@@ -1,0 +1,12 @@
+.create-blood-request-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: var(--surface-ground, #f5f7fb);
+}
+
+@media (max-width: 576px) {
+  .create-blood-request-page {
+    padding: 1rem;
+  }
+}

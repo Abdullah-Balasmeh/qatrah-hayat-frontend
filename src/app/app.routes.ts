@@ -102,11 +102,11 @@ export const routes: Routes = [
           import('./features/screening/screening.routes').then(r => r.SCREENING_ROUTES)
       },
 
-      // {
-      //   path: 'requests',
-      //   loadChildren: () =>
-      //     import('./features/request/request.routes').then(r => r.REQUEST_ROUTES)
-      // },
+      {
+        path: 'blood-request',
+        loadChildren: () =>
+          import('./features/blood-request/citizen-blood-request.routes').then(r => r.CITIZEN_BLOOD_REQUEST_ROUTES)
+      },
       // {
       //   path: 'requests/new',
       //   loadChildren: () =>

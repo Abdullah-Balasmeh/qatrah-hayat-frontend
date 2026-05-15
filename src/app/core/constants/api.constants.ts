@@ -58,5 +58,22 @@ export const API_ENDPOINTS = {
     activateHospitalEndpoint: `${API_BASE_URL}/hospital-management/{hospitalId}/activate`,
     deactivateHospitalEndpoint: `${API_BASE_URL}/hospital-management/{hospitalId}/deactivate`,
   },
+bloodRequests: {
+  getCurrentCitizenDataEndpoint: `${API_BASE_URL}/blood-requests/citizen-data`,
+  lookupBeneficiaryEndpoint: `${API_BASE_URL}/blood-requests/beneficiary-lookup/{nationalId}`,
+
+  createBloodRequestEndpoint: `${API_BASE_URL}/blood-requests`,
+  getMyBloodRequestsEndpoint: `${API_BASE_URL}/blood-requests/my`,
+  getDoctorBloodRequestsEndpoint: `${API_BASE_URL}/blood-requests/doctor`,
+  getBranchBloodRequestsEndpoint: `${API_BASE_URL}/blood-requests/branch`,
+  getBloodRequestByIdEndpoint: `${API_BASE_URL}/blood-requests/{requestId}`,
+
+  doctorReviewBloodRequestEndpoint: `${API_BASE_URL}/blood-requests/{requestId}/doctor-review`,
+  employeeReviewBloodRequestEndpoint: `${API_BASE_URL}/blood-requests/{requestId}/employee-review`,
+  confirmBloodRequestAllocationEndpoint: `${API_BASE_URL}/blood-requests/{requestId}/confirm-allocation`,
+  publishBloodRequestEndpoint: `${API_BASE_URL}/blood-requests/{requestId}/publish`,
+  rejectBloodRequestEndpoint: `${API_BASE_URL}/blood-requests/{requestId}/reject`,
+  cancelBloodRequestEndpoint: `${API_BASE_URL}/blood-requests/{requestId}/cancel`
+}
 
 };
